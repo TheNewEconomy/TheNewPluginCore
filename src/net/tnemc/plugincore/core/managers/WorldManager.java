@@ -9,4 +9,10 @@ package net.tnemc.plugincore.core.managers;
  * would be linked to "world" in the economy service, but have no link under the "statistics" service.
  */
 public class WorldManager {
+
+  private String defaultWorld = "world";
+
+  public WorldManager(String defaultWorld) {
+    this.defaultWorld = defaultWorld;
+  }
 }
