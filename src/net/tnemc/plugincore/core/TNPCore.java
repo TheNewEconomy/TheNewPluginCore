@@ -1,6 +1,7 @@
 package net.tnemc.plugincore.core;
 
 import net.tnemc.plugincore.core.common.utils.CoreSettings;
+import net.tnemc.plugincore.core.managers.SaveManager;
 import net.tnemc.plugincore.core.managers.UUIDManager;
 import net.tnemc.plugincore.core.managers.WorldManager;
 import org.bukkit.Bukkit;
@@ -23,6 +24,7 @@ public class TNPCore extends JavaPlugin {
   //Our Managers
   protected WorldManager worldManager;
   protected UUIDManager uuidManager;
+  protected SaveManager saveManager;
 
   //Our settings-related variables
   protected Map<String, String> uuidPrefixes = new HashMap<>();
@@ -62,6 +64,14 @@ public class TNPCore extends JavaPlugin {
 
   public static UUIDManager uuidManager() {
     return instance.uuidManager;
+  }
+
+  public static WorldManager worldManager() {
+    return instance.worldManager;
+  }
+
+  public static SaveManager saveManager() {
+    return instance.saveManager;
   }
 
   public static void debug(String message) {

@@ -11,7 +11,7 @@ public class CoreSettings {
   private boolean useDatasource = false;
 
   //Version Settings
-  public Double currentSaveVersion = 0.0;
+  private Double currentSaveVersion = 0.0;
 
   public String getConsoleName() {
     return consoleName;
@@ -35,5 +35,29 @@ public class CoreSettings {
 
   public void setDebug(boolean debug) {
     this.debug = debug;
+  }
+
+  public String getConnectionPoolName() {
+    return connectionPoolName;
+  }
+
+  public void setConnectionPoolName(String connectionPoolName) {
+    this.connectionPoolName = connectionPoolName;
+  }
+
+  public boolean isUseDatasource() {
+    return useDatasource;
+  }
+
+  public void setUseDatasource(boolean useDatasource) {
+    this.useDatasource = useDatasource;
+  }
+
+  public Double getCurrentSaveVersion() {
+    return currentSaveVersion;
+  }
+
+  public void setCurrentSaveVersion(Double currentSaveVersion) {
+    this.currentSaveVersion = currentSaveVersion;
   }
 }
