@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.UUID;
 
+/**
+ * A class used for storing data in a key-value pair without explicitly declaring value type.
+ */
 public class ConvertableData {
 
   private String identifier;
