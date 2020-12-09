@@ -5,11 +5,23 @@ import java.math.BigDecimal;
 /**
  * Created by creatorfromhell.
  *
- * The New Kings Minecraft Server Plugin
+ * The New Plugin Core Minecraft Server Plugin
  *
- * This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0
- * International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/
- * or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+ * All rights reserved.
+ *
+ * Some Details about what is acceptable use of this software:
+ *
+ * This project accepts user contributions.
+ *
+ * Direct redistribution of this software is not allowed without written permission. However,
+ * compiling this project into your software to utilize it as a library is acceptable as long
+ * as it's not used for commercial purposes.
+ *
+ * Commercial usage is allowed if a commercial usage license is bought and verification of the
+ * purchase is able to be provided by both parties.
+ *
+ * By contributing to this software you agree that your rights to your contribution are handed
+ * over to the owner of the project.
  */
 public interface EconomyConnector {
 
@@ -17,15 +29,16 @@ public interface EconomyConnector {
 
   boolean hasHoldings(String identifier, String world, String currency, BigDecimal amount);
 
-  void removeHoldings(String identifier, String world, String currency, BigDecimal amount);
-
   void addHoldings(String identifier, String world, String currency, BigDecimal amount);
 
   void setHoldings(String identifier, String world, String currency, BigDecimal amount);
 
+  void removeHoldings(String identifier, String world, String currency, BigDecimal amount);
+
   /**
    * Used to create an economy account
-   * @param identifier The identifier of the account.
+   * @param identifier The identifier of the account. This could be a username or a UUID valid
+   * String.
    * @param world The world to create the account for.
    * @return True if the account was created.
    */
@@ -33,7 +46,8 @@ public interface EconomyConnector {
 
   /**
    * Used to delete an economy account
-   * @param identifier The identifier of the account.
+   * @param identifier The identifier of the account. This could be a username or a UUID valid
+   * String.
    * @param world The world to delete the account from.
    * @return True if the account was deleted.
    */
