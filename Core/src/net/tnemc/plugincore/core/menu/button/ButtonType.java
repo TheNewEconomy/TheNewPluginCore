@@ -28,9 +28,14 @@ import java.util.function.Consumer;
  */
 public interface ButtonType {
 
+  /**
+   * @return The unique identifier for this button type.
+   */
   String identifier();
 
+  /**
+   * Used to call the consumer to the on click event for the button.
+   * @return The consumer listening to the onClick event for this button.
+   */
   Consumer<ButtonClickedEvent> onClick();
-
-  void addClickListener(Consumer<ButtonClickedEvent> listener);
 }

@@ -25,6 +25,8 @@ import java.math.BigDecimal;
  */
 public interface EconomyConnector {
 
+  BigDecimal getHoldings(String identifier, String world);
+
   BigDecimal getHoldings(String identifier, String world, String currency);
 
   boolean hasHoldings(String identifier, String world, String currency, BigDecimal amount);

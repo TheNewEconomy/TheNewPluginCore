@@ -67,4 +67,12 @@ public interface PluginCore {
   default Optional<ModuleManager> moduleManager() {
     return Optional.empty();
   }
+
+  /**
+   * Checks if this plugin has modules enabled.
+   * @return True if modules are enabled.
+   */
+  default boolean modulesEnabled() {
+    return moduleManager().isPresent();
+  }
 }

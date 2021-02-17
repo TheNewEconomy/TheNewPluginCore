@@ -33,10 +33,11 @@ public interface DatabaseConnector {
 
   /**
    * @param configurations A map containing the configurations for the database.
+   * @param dbName An identifier to label the DB connection from JavaLite.
    * @return The DataSource based on the configuration of the
    * {@link DatabaseProvider}.
    */
-  DataSource dataSource(Map<String, Object> configurations);
+  DataSource dataSource(Map<String, Object> configurations, String dbName);
 
   /**
    * Used to get the SQL Connection. This will create a connect if one doesn't exist already.

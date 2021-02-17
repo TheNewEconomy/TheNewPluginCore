@@ -22,13 +22,17 @@ import java.util.Map;
  * as it's not used for commercial purposes.
  *
  * Commercial usage is allowed if a commercial usage license is bought and verification of the
- * purchase is able to be provided by both parties.
+ * purchase is able to be provided by both the using party and the creator of the project.
  *
  * By contributing to this software you agree that your rights to your contribution are handed
  * over to the owner of the project.
  */
 public interface Button {
 
+  /**
+   *
+   * @return The slot number associated with this button.
+   */
   int slot();
 
   AbstractItemStack item();

@@ -1,6 +1,8 @@
 package net.tnemc.plugincore.core.providers;
 
 
+import net.tnemc.plugincore.core.providers.log.DebugLevel;
+
 /**
  * Created by creatorfromhell.
  *
@@ -25,14 +27,30 @@ package net.tnemc.plugincore.core.providers;
 public interface LogProvider {
 
   /**
-   * Sends a debug message.
+   * Sends an informative message, which doesn't contain an error or debug message.
    * @param message The message to send.
+   * @param level The {@link DebugLevel} to log this message at.
    */
-  void DEBUG(String message);
+  void inform(String message, DebugLevel level);
 
   /**
-   * Sends a generic informative message.
+   * Sends a message related to debug purposes.
    * @param message The message to send.
+   * @param level The {@link DebugLevel} to log this message at.
    */
-  void INFO(String message);
+  void debug(String message, DebugLevel level);
+
+  /**
+   * Sends an error-related message.
+   * @param message The message to send.
+   * @param level The {@link DebugLevel} to log this message at.
+   */
+  void error(String message, DebugLevel level);
+
+  /**
+   * Sends an error-related message.
+   * @param message The message to send.
+   * @param level The {@link DebugLevel} to log this message at.
+   */
+  void error(String message, Exception exception, DebugLevel level);
 }

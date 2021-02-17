@@ -44,9 +44,9 @@ public class BaseConnector implements DatabaseConnector {
    * @return The DataSource based on the configuration of the {@link DatabaseProvider}.
    */
   @Override
-  public DataSource dataSource(Map<String, Object> configurations) {
+  public DataSource dataSource(Map<String, Object> configurations, String dbName) {
     if(database == null) {
-      database = new DB((String)configurations.getOrDefault("connection_id", "TNPC"));
+      database = new DB((String)configurations.getOrDefault("connection_id", dbName));
     }
 
 

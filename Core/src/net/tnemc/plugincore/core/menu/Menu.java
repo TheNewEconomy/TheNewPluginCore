@@ -21,6 +21,11 @@ package net.tnemc.plugincore.core.menu;
  *
  * By contributing to this software you agree that your rights to your contribution are handed
  * over to the owner of the project.
+ *
+ * Menu menu = MenuBuilder.create(Type.Custom, 36, "Currency Creator");
+ * Icon create = MenuBuilder.createIcon(menu, 5, MaterialBuilder.create("Green Glass Pane"));
+ * create.clickable(createClick());
+ * menu.addIcon(create);
  */
 public interface Menu {
 

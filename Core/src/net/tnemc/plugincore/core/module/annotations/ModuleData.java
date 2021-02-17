@@ -27,6 +27,7 @@ import java.lang.annotation.Target;
  *
  * By contributing to this software you agree that your rights to your contribution are handed
  * over to the owner of the project.
+ *
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
