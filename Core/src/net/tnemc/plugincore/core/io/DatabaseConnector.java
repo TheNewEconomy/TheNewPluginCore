@@ -64,7 +64,6 @@ public interface DatabaseConnector {
    */
   Optional<ResultSet> query(final String query, final Object[] variables);
 
-
   /**
    * Used to execute an update on this connector.
    * @param query The query string.

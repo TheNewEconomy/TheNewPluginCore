@@ -12,7 +12,9 @@ package net.tnemc.plugincore.core.io.db.query.dialect;
  */
 public interface SQLDialect {
 
-  String select(String table);
+  default String select(String table) {
+    return "SELECT";
+  }
 
   String select(String table, String... columns);
 

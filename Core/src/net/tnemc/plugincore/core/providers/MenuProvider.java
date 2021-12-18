@@ -1,7 +1,7 @@
 package net.tnemc.plugincore.core.providers;
 
-import net.tnemc.plugincore.core.menu.Menu;
-import net.tnemc.plugincore.core.menu.button.ButtonType;
+import net.tnemc.plugincore.core.menuredux.Menu;
+import net.tnemc.plugincore.core.menuredux.icon.IconType;
 
 import java.util.Map;
 import java.util.Optional;
@@ -32,7 +32,7 @@ public interface MenuProvider {
 
   Map<String, Menu> menus();
 
-  Map<String, ButtonType> buttonTypes();
+  Map<String, IconType> buttonTypes();
 
   Optional<Menu> getMenu(final String name);
 
@@ -42,5 +42,5 @@ public interface MenuProvider {
 
   void shut(final UUID identifier);
 
-  Optional<ButtonType> findType(final String name);
+  Optional<IconType> findType(final String name);
 }

@@ -25,18 +25,6 @@ import java.math.BigDecimal;
  */
 public interface EconomyConnector {
 
-  BigDecimal getHoldings(String identifier, String world);
-
-  BigDecimal getHoldings(String identifier, String world, String currency);
-
-  boolean hasHoldings(String identifier, String world, String currency, BigDecimal amount);
-
-  void addHoldings(String identifier, String world, String currency, BigDecimal amount);
-
-  void setHoldings(String identifier, String world, String currency, BigDecimal amount);
-
-  void removeHoldings(String identifier, String world, String currency, BigDecimal amount);
-
   /**
    * Used to create an economy account
    * @param identifier The identifier of the account. This could be a username or a UUID valid
@@ -54,4 +42,43 @@ public interface EconomyConnector {
    * @return True if the account was deleted.
    */
   boolean deleteAccount(String identifier, String world);
+
+  /**
+   * @return The global default currency.
+   */
+  String getCurrency();
+
+  /**
+   *
+   * @param world The world to use for the search.
+   * @return The default currency for the world.
+   */
+  String getCurrency(String world);
+
+  /**
+   * Used to check if the specified currency exists.
+   * @param currency The name of the currency to look for.
+   * @return True if the currency exists, otherwise false.
+   */
+  boolean hasCurrency(String currency);
+
+  /**
+   * Used to check if the specified currency exists in the specific world.
+   * @param currency The name of the currency to look for.
+   * @param world The name of the world to use in the search
+   * @return True if the currency exists, otherwise false.
+   */
+  boolean hasCurrency(String currency, String world);
+
+  BigDecimal getHoldings(String identifier, String world);
+
+  BigDecimal getHoldings(String identifier, String world, String currency);
+
+  boolean hasHoldings(String identifier, String world, String currency, BigDecimal amount);
+
+  void addHoldings(String identifier, String world, String currency, BigDecimal amount);
+
+  void setHoldings(String identifier, String world, String currency, BigDecimal amount);
+
+  void removeHoldings(String identifier, String world, String currency, BigDecimal amount);
 }

@@ -1,5 +1,6 @@
 package net.tnemc.plugincore;
 
+import net.tnemc.plugincore.core.managers.MenuManager;
 import net.tnemc.plugincore.core.providers.DatabaseProvider;
 import net.tnemc.plugincore.core.module.ModuleManager;
 import net.tnemc.plugincore.core.providers.ColorProvider;
@@ -47,9 +48,9 @@ public interface PluginCore {
   DatabaseProvider database();
 
   /**
-   * @return The {@link MenuProvider}
+   * @return The {@link MenuManager}
    */
-  MenuProvider menu();
+  MenuManager menu();
 
   /**
    * @return The {@link LogProvider}

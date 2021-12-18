@@ -2,6 +2,7 @@ package net.tnemc.plugincore.core.module;
 
 import net.tnemc.plugincore.core.module.annotations.ModuleData;
 import net.tnemc.plugincore.core.module.annotations.ModuleDepend;
+import net.tnemc.plugincore.core.providers.log.DebugLevel;
 import net.tnemc.plugincore.core.utils.IOUtils;
 
 import java.io.File;
@@ -153,7 +154,7 @@ public class ModuleLoader {
 
         Vector<Class> classes =  (Vector<Class>) f.get(wrapper.getLoader());
         for(Class clazz : classes) {
-          ModuleManager.instance().getCore().log().INFO("Loaded: " + clazz.getName());
+          ModuleManager.instance().getCore().log().inform("Loaded: " + clazz.getName(), DebugLevel.DETAILED);
         }
       } catch (Exception e) {
         e.printStackTrace();

@@ -36,6 +36,9 @@ public class MessageFormatter {
     this.variables = variables;
   }
 
+  /**
+   * @return A {@link LinkedList} of Strings that represent lines that have been formatted.
+   */
   public LinkedList<String> format() {
     LinkedList<String> formatted = new LinkedList<>();
 
