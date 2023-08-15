@@ -1,38 +1,30 @@
 package net.tnemc.plugincore.core.module;
 
-import net.tnemc.plugincore.core.module.annotations.ModuleData;
+import net.tnemc.plugincore.PluginCore;
 
 import java.io.IOException;
 import java.net.URLClassLoader;
-import java.util.HashMap;
-import java.util.Map;
 
-
-/**
- * Created by creatorfromhell.
+/*
+ * The New Economy
+ * Copyright (C) 2022 - 2023 Daniel "creatorfromhell" Vidmar
  *
- * The New Plugin Core Minecraft Server Plugin
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * All rights reserved.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
  *
- * Some Details about what is acceptable use of this software:
- *
- * This project accepts user contributions.
- *
- * Direct redistribution of this software is not allowed without written permission. However,
- * compiling this project into your software to utilize it as a library is acceptable as long
- * as it's not used for commercial purposes.
- *
- * Commercial usage is allowed if a commercial usage license is bought and verification of the
- * purchase is able to be provided by both parties.
- *
- * By contributing to this software you agree that your rights to your contribution are handed
- * over to the owner of the project.
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class ModuleWrapper {
 
-  ModuleData data;
-  Map<String, Boolean> depends = new HashMap<>();
+  ModuleInfo info;
   Module module;
   URLClassLoader loader;
 
@@ -46,44 +38,32 @@ public class ModuleWrapper {
       loader = null;
       System.gc();
     } catch (IOException ignore) {
-      System.out.println("Module " + data.name() + " unloaded incorrectly.");
+      PluginCore.log().inform("ModuleOld " + info.name() + " unloaded incorrectly.");
     }
-    data = null;
+    info = null;
   }
 
   public String name() {
-    if(data == null) return "unknown";
-    return data.name();
-  }
-
-  public String author() {
-    if(data == null) return "unknown";
-    return data.author();
+    if(info == null) return "unknown";
+    return info.name();
   }
 
   public String version() {
-    if(data == null) return "unknown";
-    return data.version();
+    if(info == null) return "unknown";
+    return info.version();
   }
 
-  public ModuleData getData() {
-    return data;
+  public String author() {
+    if(info == null) return "unknown";
+    return info.author();
   }
 
-  public void setData(ModuleData data) {
-    this.data = data;
+  public ModuleInfo getInfo() {
+    return info;
   }
 
-  public void addDepend(final String name, final boolean required) {
-    depends.put(name, required);
-  }
-
-  public Map<String, Boolean> getDepends() {
-    return depends;
-  }
-
-  public void setDepends(Map<String, Boolean> depends) {
-    this.depends = depends;
+  public void setInfo(ModuleInfo info) {
+    this.info = info;
   }
 
   public Module getModule() {

@@ -1,10 +1,4 @@
-package net.tnemc.plugincore.core.module;
-
-import net.tnemc.plugincore.PluginCore;
-
-import java.net.URL;
-import java.net.URLClassLoader;
-
+package net.tnemc.plugincore.core.compatibility.scheduler;
 /*
  * The New Economy
  * Copyright (C) 2022 - 2023 Daniel "creatorfromhell" Vidmar
@@ -22,25 +16,14 @@ import java.net.URLClassLoader;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ModuleClassLoader extends URLClassLoader {
 
-  public ModuleClassLoader(URL url) {
-    super(new URL[]{url}, PluginCore.instance().getClass().getClassLoader());
-  }
-
-  @Override
-  protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-    try {
-      return super.loadClass(name, resolve);
-    } catch (ClassNotFoundException e) {
-      return null;
-    }
-  }
-
-  @Override
-  protected void finalize() throws Throwable {
-    super.finalize();
-
-    PluginCore.log().debug("ModuleOld Class Loader has been GC'd");
-  }
+/**
+ * ChoreExecution represents the different environments that a {@link Chore} may be executed in.
+ *
+ * @author creatorfromhell
+ * @since 0.1.2.0
+ */
+public enum ChoreExecution {
+  MAIN_THREAD,
+  SECONDARY
 }

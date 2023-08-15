@@ -1,6 +1,7 @@
 package net.tnemc.plugincore.core.module;
 
-import net.tnemc.plugincore.core.utils.IOUtils;
+import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.utils.IOUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -18,34 +19,24 @@ import java.net.URL;
 import java.security.SecureRandom;
 import java.util.Optional;
 
-
-/**
- * Created by creatorfromhell.
+/*
+ * The New Economy
+ * Copyright (C) 2022 - 2023 Daniel "creatorfromhell" Vidmar
  *
- * The New Plugin Core Minecraft Server Plugin
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * All rights reserved.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
  *
- * Some Details about what is acceptable use of this software:
- *
- * This project accepts user contributions.
- *
- * Direct redistribution of this software is not allowed without written permission. However,
- * compiling this project into your software to utilize it as a library is acceptable as long
- * as it's not used for commercial purposes.
- *
- * Commercial usage is allowed if a commercial usage license is bought and verification of the
- * purchase is able to be provided by both parties.
- *
- * By contributing to this software you agree that your rights to your contribution are handed
- * over to the owner of the project.
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class ModuleUpdateChecker {
-
-  private final ModuleLoader loader;
-  private final File directory;
-
-  private static ModuleUpdateChecker instance;
 
   private String module;
   private String updateURL;
@@ -53,27 +44,24 @@ public class ModuleUpdateChecker {
   private String current = "";
   private String jarURL = "";
 
-  public ModuleUpdateChecker(ModuleLoader loader, File directory, String module, String updateURL, String oldVersion) {
-    instance = this;
-    this.loader = loader;
-    this.directory = directory;
+  public ModuleUpdateChecker(String module, String updateURL, String oldVersion) {
     this.module = module;
     this.updateURL = updateURL;
     this.oldVersion = oldVersion;
   }
   public void check() {
-    System.out.println("Checking module for update: " + module);
+    PluginCore.log().inform("Checking module for update: " + module);
     if(readInformation()) {
       if(!upToDate()) {
-        System.out.println("Updating module: " + module);
+        PluginCore.log().inform("Updating module: " + module);
         if(download(module, jarURL)) {
-          System.out.println("Downloaded module update for " + module);
+          PluginCore.log().inform("Downloaded module update for " + module);
         } else {
-          System.out.println("Failed to download module update for " + module);
+          PluginCore.log().inform("Failed to download module update for " + module);
         }
-        loader.initialize(module);
+        PluginCore.loader().load(module);
       } else {
-        System.out.println("Module " + module + " is up to date.");
+        PluginCore.log().inform("ModuleOld " + module + " is up to date.");
       }
     }
   }
@@ -91,7 +79,7 @@ public class ModuleUpdateChecker {
       if(i >= oldSplit.length && !currentSplit[i].equalsIgnoreCase("0")) return false;
       if(i >= oldSplit.length && currentSplit[i].equalsIgnoreCase("0")) continue;
 
-      if(Integer.valueOf(currentSplit[i]) > Integer.valueOf(oldSplit[i])) return false;
+      if(Integer.parseInt(currentSplit[i]) > Integer.parseInt(oldSplit[i])) return false;
     }
     return true;
   }
@@ -101,14 +89,14 @@ public class ModuleUpdateChecker {
       return false;
     }
 
-    if(instance.loader.isLoaded(module)) {
-      instance.loader.unload(module);
+    if(PluginCore.loader().hasModule(module)) {
+      PluginCore.loader().unload(module);
     }
 
     try {
 
       SSLContext sc = SSLContext.getInstance("TLS");
-      sc.init(null, IOUtils.selfCertificates(), new SecureRandom());
+      sc.init(null, IOUtil.selfCertificates(), new SecureRandom());
       HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 
       URL url = new URL(jarURL);
@@ -117,26 +105,28 @@ public class ModuleUpdateChecker {
       if (responseCode == HttpURLConnection.HTTP_OK) {
         String fileName = jarURL.substring(jarURL.lastIndexOf("/") + 1);
 
-        InputStream in = connection.getInputStream();
-        File file = new File(instance.directory, fileName);
+        try(InputStream in = connection.getInputStream()) {
+          File file = new File(PluginCore.directory() + File.separator + "modules", fileName);
 
-        if(file.exists()) {
-          if(!file.renameTo(new File(instance.directory, "outdated-" + fileName))) {
-            return false;
+          if(file.exists()) {
+            if(!file.renameTo(new File(PluginCore.directory() + File.separator + "modules", "outdated-" + fileName))) {
+              return false;
+            }
+          }
+
+          try(FileOutputStream out = new FileOutputStream(file)) {
+
+            int bytesRead = -1;
+            byte[] buffer = new byte[4096];
+            while((bytesRead = in.read(buffer)) != -1) {
+              out.write(buffer, 0, bytesRead);
+            }
+
+            out.close();
+            in.close();
+            return true;
           }
         }
-
-        FileOutputStream out = new FileOutputStream(file);
-
-        int bytesRead = -1;
-        byte[] buffer = new byte[4096];
-        while ((bytesRead = in.read(buffer)) != -1) {
-          out.write(buffer, 0, bytesRead);
-        }
-
-        out.close();
-        in.close();
-        return true;
       }
     } catch (Exception ignore) {
       return false;
@@ -145,62 +135,62 @@ public class ModuleUpdateChecker {
   }
 
   public boolean readInformation() {
-    Optional<Document> document = readUpdateURL(updateURL);
+    final Optional<Document> document = readUpdateURL(updateURL);
     if(document.isPresent()) {
-      Document doc = document.get();
+      final Document doc = document.get();
 
-      NodeList mainNodes = doc.getElementsByTagName("modules");
+      final NodeList mainNodes = doc.getElementsByTagName("modules");
       if(mainNodes != null && mainNodes.getLength() > 0) {
-        Node modulesNode = mainNodes.item(0);
-        Element element = (Element)modulesNode;
+        final Node modulesNode = mainNodes.item(0);
+        final Element element = (Element)modulesNode;
 
-        NodeList modules = element.getElementsByTagName("module");
+        final NodeList modules = element.getElementsByTagName("module");
 
         for(int i = 0; i < modules.getLength(); i++) {
-          Node moduleNode = modules.item(i);
+          final Node moduleNode = modules.item(i);
 
           if(moduleNode.hasAttributes()) {
 
-            Node nameNode = moduleNode.getAttributes().getNamedItem("name");
+            final Node nameNode = moduleNode.getAttributes().getNamedItem("name");
             if (nameNode != null) {
 
               if (nameNode.getTextContent().equalsIgnoreCase(module)) {
 
-                Node releasedNode = moduleNode.getAttributes().getNamedItem("released");
+                final Node releasedNode = moduleNode.getAttributes().getNamedItem("released");
                 if (releasedNode != null) {
                   if(releasedNode.getTextContent().equalsIgnoreCase("yes")) {
 
                     //We have the correct name, and this module is released.
-                    Element moduleElement = (Element)moduleNode;
+                    final Element moduleElement = (Element)moduleNode;
 
-                    NodeList versions = moduleElement.getElementsByTagName("versions");
+                    final NodeList versions = moduleElement.getElementsByTagName("versions");
 
-                    if(versions != null && versions.getLength() > 0) {
+                    if(versions.getLength() > 0) {
 
-                      NodeList versionsNodes = moduleElement.getElementsByTagName("version");
+                      final NodeList versionsNodes = moduleElement.getElementsByTagName("version");
 
                       for(int v = 0; v < versionsNodes.getLength(); v++) {
 
-                        Node versionNode = versionsNodes.item(v);
+                        final Node versionNode = versionsNodes.item(v);
                         if(versionNode != null && versionNode.hasAttributes()) {
 
-                          Element versionElement = (Element)versionNode;
+                          final Element versionElement = (Element)versionNode;
 
-                          Node latest = versionNode.getAttributes().getNamedItem("latest");
-                          Node versionReleased = versionNode.getAttributes().getNamedItem("released");
+                          final Node latest = versionNode.getAttributes().getNamedItem("latest");
+                          final Node versionReleased = versionNode.getAttributes().getNamedItem("released");
 
                           if(latest != null && latest.getTextContent().equalsIgnoreCase("yes") &&
                           versionReleased != null && versionReleased.getTextContent().equalsIgnoreCase("yes")) {
 
                             //We have the latest module version
-                            NodeList name = versionElement.getElementsByTagName("name");
-                            NodeList jar = versionElement.getElementsByTagName("jar");
+                            final NodeList name = versionElement.getElementsByTagName("name");
+                            final NodeList jar = versionElement.getElementsByTagName("jar");
 
-                            if(name != null && name.getLength() > 0) {
+                            if(name.getLength() > 0) {
                               this.current = name.item(0).getTextContent();
                             }
 
-                            if(jar != null && jar.getLength() > 0) {
+                            if(jar.getLength() > 0) {
                               this.jarURL = jar.item(0).getTextContent();
                             }
                             return true;
@@ -224,20 +214,21 @@ public class ModuleUpdateChecker {
 
   public static Optional<Document> readUpdateURL(String updateURL) {
     try {
+
       SSLContext sc = SSLContext.getInstance("TLS");
-      sc.init(null, IOUtils.selfCertificates(), new SecureRandom());
+      sc.init(null, IOUtil.selfCertificates(), new SecureRandom());
       HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 
-      URL url = new URL(updateURL);
-      HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+      final URL url = new URL(updateURL);
+      final HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
-      DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-      DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-      Document document = documentBuilder.parse(connection.getInputStream());
+      final DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+      final DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+      final Document document = documentBuilder.parse(connection.getInputStream());
 
       return Optional.of(document);
 
-    } catch(Exception ignore) {
+    } catch(Exception e) {
       return Optional.empty();
     }
   }

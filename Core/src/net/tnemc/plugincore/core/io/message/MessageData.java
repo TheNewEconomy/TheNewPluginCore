@@ -1,9 +1,4 @@
-package net.tnemc.plugincore.core.module;
-
-import net.tnemc.plugincore.PluginCore;
-
-import java.net.URL;
-import java.net.URLClassLoader;
+package net.tnemc.plugincore.core.io.message;
 
 /*
  * The New Economy
@@ -22,25 +17,35 @@ import java.net.URLClassLoader;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ModuleClassLoader extends URLClassLoader {
 
-  public ModuleClassLoader(URL url) {
-    super(new URL[]{url}, PluginCore.instance().getClass().getClassLoader());
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Represents data for a message translation to be sent to a sender.
+ *
+ * @author creatorfromhell
+ * @since 0.1.2.0
+ */
+public class MessageData {
+
+  private final Map<String, String> replacements = new HashMap<>();
+
+  private final String node;
+
+  public MessageData(String node) {
+    this.node = node;
   }
 
-  @Override
-  protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-    try {
-      return super.loadClass(name, resolve);
-    } catch (ClassNotFoundException e) {
-      return null;
-    }
+  public void addReplacement(final String search, final String replacement) {
+    this.replacements.put(search, replacement);
   }
 
-  @Override
-  protected void finalize() throws Throwable {
-    super.finalize();
+  public Map<String, String> getReplacements() {
+    return replacements;
+  }
 
-    PluginCore.log().debug("ModuleOld Class Loader has been GC'd");
+  public String getNode() {
+    return node;
   }
 }

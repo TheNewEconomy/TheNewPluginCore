@@ -1,9 +1,4 @@
-package net.tnemc.plugincore.core.module;
-
-import net.tnemc.plugincore.PluginCore;
-
-import java.net.URL;
-import java.net.URLClassLoader;
+package net.tnemc.plugincore.core.io.maps;
 
 /*
  * The New Economy
@@ -22,25 +17,21 @@ import java.net.URLClassLoader;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ModuleClassLoader extends URLClassLoader {
 
-  public ModuleClassLoader(URL url) {
-    super(new URL[]{url}, PluginCore.instance().getClass().getClassLoader());
-  }
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-  @Override
-  protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-    try {
-      return super.loadClass(name, resolve);
-    } catch (ClassNotFoundException e) {
-      return null;
-    }
-  }
+/**
+ * Used to specify a key for an {@link EnhancedHashMap}.
+ *
+ * @see EnhancedHashMap
+ * @author creatorfromhell
+ * @since 0.1.2.0
+ */
 
-  @Override
-  protected void finalize() throws Throwable {
-    super.finalize();
-
-    PluginCore.log().debug("ModuleOld Class Loader has been GC'd");
-  }
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MapKey {
 }

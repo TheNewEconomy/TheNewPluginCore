@@ -1,9 +1,5 @@
-package net.tnemc.plugincore.core.module;
+package net.tnemc.plugincore.core.id.impl;
 
-import net.tnemc.plugincore.PluginCore;
-
-import java.net.URL;
-import java.net.URLClassLoader;
 
 /*
  * The New Economy
@@ -22,25 +18,21 @@ import java.net.URLClassLoader;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ModuleClassLoader extends URLClassLoader {
 
-  public ModuleClassLoader(URL url) {
-    super(new URL[]{url}, PluginCore.instance().getClass().getClassLoader());
-  }
+import net.tnemc.core.manager.id.UUIDAPI;
 
+/**
+ * Represents the Official Mojang API.
+ *
+ * @author creatorfromhell
+ * @since 0.1.2.0
+ */
+public class MojangAPI implements UUIDAPI {
+  /**
+   * @return The URL for this UUID API Service.
+   */
   @Override
-  protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-    try {
-      return super.loadClass(name, resolve);
-    } catch (ClassNotFoundException e) {
-      return null;
-    }
-  }
-
-  @Override
-  protected void finalize() throws Throwable {
-    super.finalize();
-
-    PluginCore.log().debug("ModuleOld Class Loader has been GC'd");
+  public String url() {
+    return "https://api.mojang.com/users/profiles/minecraft/";
   }
 }

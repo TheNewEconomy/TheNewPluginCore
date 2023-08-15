@@ -1,10 +1,4 @@
-package net.tnemc.plugincore.core.module;
-
-import net.tnemc.plugincore.PluginCore;
-
-import java.net.URL;
-import java.net.URLClassLoader;
-
+package net.tnemc.plugincore.core.io.storage;
 /*
  * The New Economy
  * Copyright (C) 2022 - 2023 Daniel "creatorfromhell" Vidmar
@@ -22,25 +16,28 @@ import java.net.URLClassLoader;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ModuleClassLoader extends URLClassLoader {
 
-  public ModuleClassLoader(URL url) {
-    super(new URL[]{url}, PluginCore.instance().getClass().getClassLoader());
-  }
+/**
+ * StorageConnector represents a connection helper class for a storage method.
+ *
+ * @param <C> Represents the connection object for this connector.
+ *
+ * @author creatorfromhell
+ * @since 0.1.2.0
+ * @see StorageEngine
+ */
+public interface StorageConnector<C> {
 
-  @Override
-  protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-    try {
-      return super.loadClass(name, resolve);
-    } catch (ClassNotFoundException e) {
-      return null;
-    }
-  }
+  /**
+   * Used to initialize a connection to the specified {@link StorageEngine}
+   */
+  void initialize();
 
-  @Override
-  protected void finalize() throws Throwable {
-    super.finalize();
 
-    PluginCore.log().debug("ModuleOld Class Loader has been GC'd");
-  }
+  /**
+   * Used to get the connection from the
+   *
+   * @return The connection.
+   */
+  C connection() throws Exception;
 }

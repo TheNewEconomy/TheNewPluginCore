@@ -1,9 +1,4 @@
-package net.tnemc.plugincore.core.module;
-
-import net.tnemc.plugincore.PluginCore;
-
-import java.net.URL;
-import java.net.URLClassLoader;
+package net.tnemc.plugincore.core.io.message.translation;
 
 /*
  * The New Economy
@@ -22,25 +17,39 @@ import java.net.URLClassLoader;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ModuleClassLoader extends URLClassLoader {
 
-  public ModuleClassLoader(URL url) {
-    super(new URL[]{url}, PluginCore.instance().getClass().getClassLoader());
+import org.simpleyaml.configuration.file.YamlFile;
+
+/**
+ * Language
+ *
+ * @author creatorfromhell
+ * @since 0.1.2.0
+ */
+public  class Language {
+
+  private final YamlFile config;
+
+  private final String name;
+
+  public Language(String name, YamlFile config) {
+    this.name = name;
+    this.config = config;
   }
 
-  @Override
-  protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-    try {
-      return super.loadClass(name, resolve);
-    } catch (ClassNotFoundException e) {
-      return null;
-    }
+  public YamlFile getConfig() {
+    return config;
   }
 
-  @Override
-  protected void finalize() throws Throwable {
-    super.finalize();
+  public String getName() {
+    return name;
+  }
 
-    PluginCore.log().debug("ModuleOld Class Loader has been GC'd");
+  public boolean hasTranslation(String node) {
+    return config.contains(node);
+  }
+
+  public String getTranslation(String node) {
+    return config.getString(node);
   }
 }

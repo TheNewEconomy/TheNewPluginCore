@@ -1,9 +1,4 @@
-package net.tnemc.plugincore.core.module;
-
-import net.tnemc.plugincore.PluginCore;
-
-import java.net.URL;
-import java.net.URLClassLoader;
+package net.tnemc.plugincore.core.module.cache;
 
 /*
  * The New Economy
@@ -22,25 +17,39 @@ import java.net.URLClassLoader;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ModuleClassLoader extends URLClassLoader {
+public class ModuleFile {
 
-  public ModuleClassLoader(URL url) {
-    super(new URL[]{url}, PluginCore.instance().getClass().getClassLoader());
+  private String name;
+  private String version;
+  private String url;
+
+  public ModuleFile(String name, String version, String url) {
+    this.name = name;
+    this.version = version;
+    this.url = url;
   }
 
-  @Override
-  protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-    try {
-      return super.loadClass(name, resolve);
-    } catch (ClassNotFoundException e) {
-      return null;
-    }
+  public String getName() {
+    return name;
   }
 
-  @Override
-  protected void finalize() throws Throwable {
-    super.finalize();
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    PluginCore.log().debug("ModuleOld Class Loader has been GC'd");
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
   }
 }

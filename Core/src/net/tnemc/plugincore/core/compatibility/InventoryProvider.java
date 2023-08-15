@@ -1,9 +1,4 @@
-package net.tnemc.plugincore.core.module;
-
-import net.tnemc.plugincore.PluginCore;
-
-import java.net.URL;
-import java.net.URLClassLoader;
+package net.tnemc.plugincore.core.compatibility;
 
 /*
  * The New Economy
@@ -22,25 +17,24 @@ import java.net.URLClassLoader;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ModuleClassLoader extends URLClassLoader {
 
-  public ModuleClassLoader(URL url) {
-    super(new URL[]{url}, PluginCore.instance().getClass().getClassLoader());
-  }
+import net.tnemc.menu.core.compatibility.PlayerInventory;
 
-  @Override
-  protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-    try {
-      return super.loadClass(name, resolve);
-    } catch (ClassNotFoundException e) {
-      return null;
-    }
-  }
 
-  @Override
-  protected void finalize() throws Throwable {
-    super.finalize();
+/**
+ * A class that acts as a bridge between various inventory objects on different server software providers.
+ *
+ * @param <I> Represents the platform's Inventory object.
+ * @author creatorfromhell
+ * @since 0.1.2.0
+ */
+public interface InventoryProvider<I> extends PlayerInventory<I> {
 
-    PluginCore.log().debug("ModuleOld Class Loader has been GC'd");
-  }
+  /**
+   * Used to get an inventory object.
+   *
+   * @param ender True if the ender chest object should be returned, otherwise false.
+   * @return The inventory object.
+   */
+  I getInventory(boolean ender);
 }

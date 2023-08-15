@@ -1,9 +1,4 @@
-package net.tnemc.plugincore.core.module;
-
-import net.tnemc.plugincore.PluginCore;
-
-import java.net.URL;
-import java.net.URLClassLoader;
+package net.tnemc.plugincore.core.io.storage.engine.sql;
 
 /*
  * The New Economy
@@ -22,25 +17,37 @@ import java.net.URLClassLoader;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ModuleClassLoader extends URLClassLoader {
 
-  public ModuleClassLoader(URL url) {
-    super(new URL[]{url}, PluginCore.instance().getClass().getClassLoader());
+import net.tnemc.core.io.storage.engine.StandardSQL;
+
+public class Oracle extends StandardSQL {
+
+  /**
+   * The name of this engine.
+   *
+   * @return The engine name.
+   */
+  @Override
+  public String name() {
+    return "oracle";
   }
 
   @Override
-  protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-    try {
-      return super.loadClass(name, resolve);
-    } catch (ClassNotFoundException e) {
-      return null;
-    }
+  public String[] driver() {
+    return new String[] {
+      "oracle.jdbc.driver.OracleDriver"
+    };
   }
 
   @Override
-  protected void finalize() throws Throwable {
-    super.finalize();
+  public String[] dataSource() {
+    return new String[] {
+      "oracle.jdbc.pool.OracleDataSource"
+    };
+  }
 
-    PluginCore.log().debug("ModuleOld Class Loader has been GC'd");
+  @Override
+  public String url(String file, String host, int port, String database) {
+    return "jdbc:oracle:thin:@" + host + ":" + port + ":" + database;
   }
 }

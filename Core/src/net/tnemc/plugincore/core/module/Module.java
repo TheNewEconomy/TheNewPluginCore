@@ -1,110 +1,119 @@
 package net.tnemc.plugincore.core.module;
+/*
+ * The New Economy
+ * Copyright (C) 2022 - 2023 Daniel "creatorfromhell" Vidmar
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-import net.tnemc.plugincore.core.module.annotations.ModuleDepend;
-import net.tnemc.plugincore.core.module.annotations.ModuleData;
+import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.api.CallbackEntry;
+import net.tnemc.plugincore.core.api.CallbackManager;
+import net.tnemc.plugincore.core.api.callback.Callback;
+import net.tnemc.plugincore.core.io.storage.StorageManager;
+import revxrsal.commands.CommandHandler;
+import revxrsal.commands.orphan.OrphanCommand;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 /**
- * Created by creatorfromhell.
+ * Module represents an add-on module for TNE.
  *
- * The New Plugin Core Minecraft Server Plugin
- *
- * All rights reserved.
- *
- * Some Details about what is acceptable use of this software:
- *
- * This project accepts user contributions.
- *
- * Direct redistribution of this software is not allowed without written permission. However,
- * compiling this project into your software to utilize it as a library is acceptable as long
- * as it's not used for commercial purposes.
- *
- * Commercial usage is allowed if a commercial usage license is bought and verification of the
- * purchase is able to be provided by both parties.
- *
- * By contributing to this software you agree that your rights to your contribution are handed
- * over to the owner of the project.
+ * @author creatorfromhell
+ * @since 0.1.2.0
  */
 public interface Module {
 
   /**
-   * Called when the Module class is initialized to begin reading the {@link ModuleData} and
-   * {@link ModuleDepend} annotations.
+   * Called after the {@link PluginCore#enable()} method is called.
    */
-  void initialize();
+  void enable(PluginCore core);
 
   /**
-   * Called when the loading phase begins.
+   * Called when the {@link PluginCore#onDisable()} method is called.
    */
-  void load();
+  void disable(PluginCore core);
 
   /**
-   * Called when this module's files are loaded into memory.
+   * Called when the configurations are initialized and loaded.
+   *
+   * @param directory The plugin's configuration directory.
    */
-  void initFiles();
+  void initConfigurations(File directory);
 
   /**
-   * Called when this module's configurations are loaded into memory.
+   * Called when the {@link StorageManager storage manager} runs its backup method.
+   * @param manager The {@link StorageManager storage manager} instance.
    */
-  void initConfigurations();
+  void backup(StorageManager manager);
 
   /**
-   * Enables the IO for this module.
+   * Called when the {@link StorageManager storage manager} runs its reset method.
+   * @param manager The {@link StorageManager storage manager} instance.
    */
-  void enableIO();
+  void reset(StorageManager manager);
 
   /**
-   * Called when this module's commands are loaded into memory.
+   * Called when the {@link StorageManager storage manager} is enabled, and a connection is established.
+   * @param manager The {@link StorageManager storage manager} instance.
    */
-  void initCommands();
+  void enableSave(StorageManager manager);
 
   /**
-   * Called when this module's menus are loaded into memory.
+   * Called after the default TNE Commands are registered.
+   * @param handler The {@link CommandHandler} that the commands are registered to.
    */
-  void initMenus();
+  void registerCommands(CommandHandler handler);
 
   /**
-   * Called after the loading phase is complete.
+   * Used to register sub commands onto the exist /money command set.
    */
-  void postLoad();
+  List<OrphanCommand> registerMoneySub();
 
   /**
-   * Adds this module's consumable listeners to the module manager.
+   * Used to register sub commands onto the exist /transaction command set.
    */
-  void initConsumables();
+  List<OrphanCommand> registerTransactionSub();
 
   /**
-   * Called when the unloading phase begins.
+   * Used to register sub commands onto the exist /tne command set.
    */
-  void unload();
+  List<OrphanCommand> registerAdminSub();
 
   /**
-   * Called when this module's menus are removed from memory.
+   * Called after the {@link CallbackManager} is initialized. This method will
+   * register new callbacks with the manager automatically.
+   *
+   * @return A map containing the callbacks to register where the key is the callback name and the
+   * value is the {@link CallbackEntry} function.
    */
-  void removeMenus();
+  default Map<String, CallbackEntry> registerCallbacks() {
+    return new HashMap<>();
+  }
 
   /**
-   * Called when this module's commands are removed from memory.
+   * Called after the {@link CallbackManager} is initialized. This method will
+   * register the callback listeners with the manager automatically.
+   *
+   * @return A map containing the listeners to register where the key is the callback name and the
+   * value is the listener function.
    */
-  void removeCommands();
-
-  /**
-   * Called before this module's IO is disabled.
-   */
-  void backupIO();
-
-  /**
-   * Disables the IO for this module.
-   */
-  void disableIO();
-
-  /**
-   * Called when this module's configurations are removed from memory.
-   */
-  void removeConfigurations();
-
-  /**
-   * Called when this module's files are removed from memory.
-   */
-  void removeFiles();
+  default Map<String, Function<Callback, Boolean>> registerListeners() {
+    return new HashMap<>();
+  }
 }

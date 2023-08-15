@@ -1,9 +1,4 @@
-package net.tnemc.plugincore.core.module;
-
-import net.tnemc.plugincore.PluginCore;
-
-import java.net.URL;
-import java.net.URLClassLoader;
+package net.tnemc.plugincore.core.compatibility;
 
 /*
  * The New Economy
@@ -22,25 +17,23 @@ import java.net.URLClassLoader;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ModuleClassLoader extends URLClassLoader {
 
-  public ModuleClassLoader(URL url) {
-    super(new URL[]{url}, PluginCore.instance().getClass().getClassLoader());
+/**
+ * A class that acts like a bridge for the initial TNE setup process. This is utilized
+ * to set up basic features, and read offline player data to have the plugin install
+ * seemlessly into the server without missing a beat.
+ *
+ * @author creatorfromhell
+ * @since 0.1.2.0
+ */
+public interface SetupProvider {
+
+  default void setup() {
+    //TODO: This
   }
 
-  @Override
-  protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-    try {
-      return super.loadClass(name, resolve);
-    } catch (ClassNotFoundException e) {
-      return null;
-    }
-  }
-
-  @Override
-  protected void finalize() throws Throwable {
-    super.finalize();
-
-    PluginCore.log().debug("ModuleOld Class Loader has been GC'd");
-  }
+  /**
+   * This method is used to load existing UUIDs and map them to players in the UUID System.
+   */
+  void loadExistingIDS();
 }

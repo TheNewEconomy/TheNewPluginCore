@@ -1,9 +1,4 @@
-package net.tnemc.plugincore.core.module;
-
-import net.tnemc.plugincore.PluginCore;
-
-import java.net.URL;
-import java.net.URLClassLoader;
+package net.tnemc.plugincore.core.utils;
 
 /*
  * The New Economy
@@ -22,25 +17,36 @@ import java.net.URLClassLoader;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ModuleClassLoader extends URLClassLoader {
 
-  public ModuleClassLoader(URL url) {
-    super(new URL[]{url}, PluginCore.instance().getClass().getClassLoader());
+/**
+ * This represents a response from an event handler that should be returned to the implementation.
+ *
+ * @author creatorfromhell
+ * @since 0.1.2.0
+ */
+public class HandlerResponse {
+
+  private String response;
+  private boolean cancelled;
+
+  public HandlerResponse(String response, boolean cancelled) {
+    this.response = response;
+    this.cancelled = cancelled;
   }
 
-  @Override
-  protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-    try {
-      return super.loadClass(name, resolve);
-    } catch (ClassNotFoundException e) {
-      return null;
-    }
+  public String getResponse() {
+    return response;
   }
 
-  @Override
-  protected void finalize() throws Throwable {
-    super.finalize();
+  public void setResponse(String response) {
+    this.response = response;
+  }
 
-    PluginCore.log().debug("ModuleOld Class Loader has been GC'd");
+  public boolean isCancelled() {
+    return cancelled;
+  }
+
+  public void setCancelled(boolean cancelled) {
+    this.cancelled = cancelled;
   }
 }
