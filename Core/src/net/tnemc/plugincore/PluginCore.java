@@ -6,6 +6,8 @@ import net.tnemc.plugincore.core.channel.ChannelMessageManager;
 import net.tnemc.plugincore.core.compatibility.LogProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
 import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
+import net.tnemc.plugincore.core.id.UUIDProvider;
+import net.tnemc.plugincore.core.id.impl.provider.BaseUUIDProvider;
 import net.tnemc.plugincore.core.io.message.MessageHandler;
 import net.tnemc.plugincore.core.io.message.TranslationProvider;
 import net.tnemc.plugincore.core.io.message.translation.BaseTranslationProvider;
@@ -72,6 +74,7 @@ public abstract class PluginCore {
   //Manager Instances
   protected ServerConnector server;
   protected StorageManager storage;
+  protected UUIDProvider uuidProvider;
   protected CommandHandler command;
   private final MessageHandler messenger;
 
@@ -130,10 +133,12 @@ public abstract class PluginCore {
     if(!directory.exists()) {
       final boolean created = directory.mkdir();
       if(!created) {
-        logger.error("Failed to create plugin directory. Disabling plugin.");
+        logger.error("Failed to create plugin directory. Disabling plugin.", DebugLevel.OFF);
         return;
       }
     }
+
+    this.uuidProvider = new BaseUUIDProvider();
 
     //Load our modules
     loader.load();
@@ -310,5 +315,9 @@ public abstract class PluginCore {
 
   public static PluginCore instance() {
     return instance;
+  }
+
+  public static UUIDProvider uuidProvider() {
+    return instance.uuidProvider;
   }
 }

@@ -17,9 +17,8 @@ package net.tnemc.plugincore.core.channel;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.core.TNECore;
-import net.tnemc.core.channel.handlers.BalanceHandler;
-import net.tnemc.core.channel.handlers.SyncHandler;
+
+import net.tnemc.plugincore.PluginCore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,8 +39,6 @@ public class ChannelMessageManager {
 
   public ChannelMessageManager() {
 
-    register(new BalanceHandler());
-    register(new SyncHandler());
     register();
   }
 
@@ -51,7 +48,7 @@ public class ChannelMessageManager {
 
   public void register() {
     handlers.keySet().forEach(channel->{
-      TNECore.server().proxy().registerChannel(channel);
+      PluginCore.server().proxy().registerChannel(channel);
     });
   }
 

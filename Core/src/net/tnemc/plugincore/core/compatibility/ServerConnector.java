@@ -18,14 +18,10 @@ package net.tnemc.plugincore.core.compatibility;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.core.TNECore;
-import net.tnemc.core.compatibility.helper.CraftingRecipe;
-import net.tnemc.core.compatibility.scheduler.SchedulerProvider;
-import net.tnemc.core.currency.calculations.ItemCalculations;
-import net.tnemc.core.currency.item.ItemDenomination;
-import net.tnemc.core.region.RegionMode;
 import net.tnemc.item.AbstractItemStack;
 import net.tnemc.item.providers.CalculationsProvider;
+import net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe;
+import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
 import org.jetbrains.annotations.NotNull;
 import revxrsal.commands.command.CommandActor;
 
@@ -130,26 +126,6 @@ public interface ServerConnector {
   }
 
   /**
-   * Returns the name of the default region.
-   *
-   * @param mode The {@link RegionMode} to use for this.
-   *
-   * @return The name of the default region. This could be different based on the current
-   * {@link RegionMode}.
-   */
-  String defaultRegion(final RegionMode mode);
-
-  /**
-   * Returns the name of the default region.
-   *
-   * @return The name of the default region. This could be different based on the current
-   * {@link RegionMode}.
-   */
-  default String defaultRegion() {
-    return defaultRegion(TNECore.eco().region().getMode());
-  }
-
-  /**
    * Determines if a plugin with the correlating name is currently installed.
    *
    * @param name The name to use for our check.
@@ -192,12 +168,6 @@ public interface ServerConnector {
    * @see CraftingRecipe
    */
   void registerCrafting(@NotNull final CraftingRecipe recipe);
-
-  <S, T extends AbstractItemStack<S>, INV> CalculationsProvider<T, S, INV> calculations();
-
-  <S> AbstractItemStack<S> denominationToStack(final ItemDenomination denomination);
-
-  <INV> ItemCalculations<INV> itemCalculations();
 
 
 }

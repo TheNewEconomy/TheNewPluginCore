@@ -18,9 +18,8 @@ package net.tnemc.plugincore.core.compatibility;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.core.TNECore;
-import net.tnemc.core.account.Account;
-import net.tnemc.core.io.message.MessageData;
+import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.io.message.MessageData;
 import revxrsal.commands.command.CommandActor;
 
 import java.util.Optional;
@@ -45,11 +44,11 @@ public abstract class CmdSource<T extends CommandActor> {
    * The UUID of this command source.
    * @return The UUID of this command source.
    */
-  public UUID identifier() {
+  public Optional<UUID> identifier() {
     if(!isPlayer()) {
-      return TNECore.instance().getServerAccount();
+      return Optional.empty();
     }
-    return actor.getUniqueId();
+    return Optional.of(actor.getUniqueId());
   }
 
   /**
@@ -74,29 +73,10 @@ public abstract class CmdSource<T extends CommandActor> {
   public abstract Optional<PlayerProvider> player();
 
   /**
-   * Used to get the account associated with this specific {@link CmdSource}.
-   * @return An Optional containing the {@link Account account} class, or an empty Optional.
-   */
-  public Optional<Account> account() {
-    return TNECore.eco().account().findAccount(identifier());
-  }
-
-  /**
    * Used to send a message to this command source.
    * @param messageData The message data to utilize for this translation.
    */
   public abstract void message(final MessageData messageData);
-
-  /**
-   * Used to get the world for this command source.
-   * @return The name of the world that this command source is in.
-   */
-  public String region() {
-    if(player().isPresent()) {
-      return TNECore.eco().region().getMode().region(player().get());
-    }
-    return TNECore.eco().region().defaultRegion();
-  }
 
   public T getActor() {
     return actor;

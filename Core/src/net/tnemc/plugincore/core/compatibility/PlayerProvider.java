@@ -18,8 +18,8 @@ package net.tnemc.plugincore.core.compatibility;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.core.io.message.MessageData;
 import net.tnemc.menu.core.compatibility.MenuPlayer;
+import net.tnemc.plugincore.core.io.message.MessageData;
 
 import java.util.Optional;
 

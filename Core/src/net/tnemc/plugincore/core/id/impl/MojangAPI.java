@@ -19,7 +19,7 @@ package net.tnemc.plugincore.core.id.impl;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.core.manager.id.UUIDAPI;
+import net.tnemc.plugincore.core.id.UUIDAPI;
 
 /**
  * Represents the Official Mojang API.

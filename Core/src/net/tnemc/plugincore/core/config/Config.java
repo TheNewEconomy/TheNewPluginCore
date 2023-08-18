@@ -18,7 +18,8 @@ package net.tnemc.plugincore.core.config;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.core.TNECore;
+import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
 import org.simpleyaml.configuration.file.YamlFile;
 
 import java.io.File;
@@ -44,11 +45,11 @@ public abstract class Config {
   public Config(final String fileName, String defaults, String... nodes) {
     this.defaults = defaults;
     this.nodes = List.of(nodes);
-    file = new File(TNECore.directory(), fileName);
+    file = new File(PluginCore.directory(), fileName);
 
 
     if(!file.exists()) {
-      TNECore.log().error("Configuration doesn't exist! File Name:" + fileName);
+      PluginCore.log().error("Configuration doesn't exist! File Name:" + fileName, DebugLevel.OFF);
       create = true;
     }
 
@@ -75,7 +76,7 @@ public abstract class Config {
   }
 
   public void saveDefaults() {
-    TNECore.server().saveResource(defaults, false);
+    PluginCore.server().saveResource(defaults, false);
   }
 
   public boolean save() {
@@ -83,7 +84,7 @@ public abstract class Config {
       yaml.save(file);
       return true;
     } catch(IOException e) {
-      TNECore.log().error("Error while saving config \"" + nodes.get(0) + "\".");
+      PluginCore.log().error("Error while saving config \"" + nodes.get(0) + "\".", DebugLevel.OFF);
       e.printStackTrace();
       return false;
     }

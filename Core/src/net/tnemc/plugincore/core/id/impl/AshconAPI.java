@@ -1,7 +1,5 @@
 package net.tnemc.plugincore.core.id.impl;
 
-import net.tnemc.core.manager.id.UUIDAPI;
-
 /*
  * The New Economy Minecraft Server Plugin
  * <p>
@@ -12,6 +10,8 @@ import net.tnemc.core.manager.id.UUIDAPI;
  * Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
  * Created by creatorfromhell on 06/30/2017.
  */
+
+import net.tnemc.plugincore.core.id.UUIDAPI;
 
 /**
  * Represents the AshCon API.

@@ -1,6 +1,6 @@
 package net.tnemc.plugincore.core.id;
 
-import net.tnemc.core.TNECore;
+import net.tnemc.plugincore.PluginCore;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -54,13 +54,13 @@ public interface UUIDAPI {
         : null;
 
     if(id != null) {
-      TNECore.eco().account().uuidProvider().store(new UUIDPair(id, username));
+      PluginCore.uuidProvider().store(new UUIDPair(id, username));
     }
     return id;
   }
 
   static String dashUUIDString(String uuid) {
-    return uuid.replaceAll(TNECore.UUID_MATCHER_PATTERN.pattern(), "$1-$2-$3-$4-$5");
+    return uuid.replaceAll(PluginCore.UUID_MATCHER_PATTERN.pattern(), "$1-$2-$3-$4-$5");
   }
 
   default JSONObject sendRequestJSON(final String linkAddition) {

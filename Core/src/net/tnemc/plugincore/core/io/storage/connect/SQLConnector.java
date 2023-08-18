@@ -21,7 +21,11 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
-import net.tnemc.plugincore.core.io.storage.*;
+import net.tnemc.plugincore.core.io.storage.Dialect;
+import net.tnemc.plugincore.core.io.storage.SQLEngine;
+import net.tnemc.plugincore.core.io.storage.StorageConnector;
+import net.tnemc.plugincore.core.io.storage.StorageEngine;
+import net.tnemc.plugincore.core.io.storage.StorageManager;
 import org.intellij.lang.annotations.Language;
 
 import javax.sql.DataSource;
@@ -51,7 +55,6 @@ public class SQLConnector implements StorageConnector<Connection> {
    */
   @Override
   public void initialize() {
-
     findDriverSource();
 
     final HikariConfig config = new HikariConfig();
@@ -63,20 +66,20 @@ public class SQLConnector implements StorageConnector<Connection> {
     //String file, String host, int port, String database
     config.addDataSourceProperty("url",
                                  ((SQLEngine) StorageManager.instance().getEngine()).url(
-                                     new File(TNECore.directory(), DataConfig.yaml().getString("Data.Database.File")).getAbsolutePath(),
-                                     DataConfig.yaml().getString("Data.Database.SQL.Host"),
-                                     DataConfig.yaml().getInt("Data.Database.SQL.Port"),
-                                     DataConfig.yaml().getString("Data.Database.SQL.DB")
+                                     new File(PluginCore.directory(), StorageManager.instance().settings().fileName()).getAbsolutePath(),
+                                         StorageManager.instance().settings().host(),
+                                         StorageManager.instance().settings().port(),
+                                         StorageManager.instance().settings().database()
                                  ));
 
-    config.addDataSourceProperty("user",  DataConfig.yaml().getString("Data.Database.SQL.User"));
-    config.addDataSourceProperty("password",  DataConfig.yaml().getString("Data.Database.SQL.Password"));
+    config.addDataSourceProperty("user",  StorageManager.instance().settings().user());
+    config.addDataSourceProperty("password",  StorageManager.instance().settings().password());
 
-    config.setPoolName("TNE");
+    config.setPoolName(StorageManager.instance().settings().poolName());
     config.setConnectionTestQuery("SELECT 1");
-    config.setMaximumPoolSize(DataConfig.yaml().getInt("Data.Pool.MaxSize"));
-    config.setMaxLifetime(DataConfig.yaml().getInt("Data.Pool.MaxLife"));
-    config.setConnectionTimeout(DataConfig.yaml().getLong("Data.Pool.Timeout"));
+    config.setMaximumPoolSize(StorageManager.instance().settings().maxPool());
+    config.setMaxLifetime(StorageManager.instance().settings().maxLife());
+    config.setConnectionTimeout(StorageManager.instance().settings().timeout());
 
     for(Map.Entry<String, Object> entry : ((SQLEngine)StorageManager.instance().getEngine()).properties().entrySet()) {
       config.addDataSourceProperty(entry.getKey(), entry.getValue());

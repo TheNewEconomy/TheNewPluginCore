@@ -1,7 +1,7 @@
 package net.tnemc.plugincore.core.utils;
 
-import net.tnemc.core.TNECore;
-import net.tnemc.core.compatibility.log.DebugLevel;
+import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -59,7 +59,7 @@ public class IOUtil {
       build = in.readLine();
       in.close();
     } catch (Exception ignore) {
-      TNECore.log().warning("Unable to contact update server!", DebugLevel.OFF);
+      PluginCore.log().warning("Unable to contact update server!", DebugLevel.OFF);
     }
     return Optional.ofNullable(build);
   }

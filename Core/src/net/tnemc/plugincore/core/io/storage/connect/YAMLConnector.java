@@ -19,6 +19,7 @@ package net.tnemc.plugincore.core.io.storage.connect;
 
 import net.tnemc.plugincore.core.io.storage.StorageConnector;
 import net.tnemc.plugincore.core.io.storage.StorageEngine;
+import net.tnemc.plugincore.core.io.storage.engine.StorageSettings;
 
 import java.io.File;
 

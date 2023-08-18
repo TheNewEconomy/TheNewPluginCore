@@ -18,19 +18,16 @@ package net.tnemc.plugincore.core.io.storage.engine.sql;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.core.config.DataConfig;
-import net.tnemc.core.io.storage.Dialect;
-import net.tnemc.core.io.storage.SQLEngine;
-import net.tnemc.core.io.storage.engine.StandardSQL;
+
+import net.tnemc.plugincore.core.io.storage.Dialect;
+import net.tnemc.plugincore.core.io.storage.SQLEngine;
+import net.tnemc.plugincore.core.io.storage.StorageManager;
+import net.tnemc.plugincore.core.io.storage.engine.StandardSQL;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class MySQL extends StandardSQL {
-
-  public MySQL() {
-    super();
-  }
 
   public MySQL(final String prefix, Dialect dialect) {
     super(prefix, dialect);
@@ -73,9 +70,9 @@ public class MySQL extends StandardSQL {
     builder.append("/");
     builder.append(database);
     builder.append("?allowPublicKeyRetrieval=");
-    builder.append(DataConfig.yaml().getBoolean("Data.Database.SQL.PublicKey"));
+    builder.append(StorageManager.instance().settings().publicKey());
     builder.append("&useSSL=");
-    builder.append(DataConfig.yaml().getBoolean("Data.Database.SQL.SSL"));
+    builder.append(StorageManager.instance().settings().ssl());
     return builder.toString();
   }
 

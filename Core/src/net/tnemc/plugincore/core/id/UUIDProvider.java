@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.UUID;
 
-import static net.tnemc.core.utils.PlayerHelper.playerMatcher;
+import static net.tnemc.plugincore.core.utils.PlayerHelper.playerMatcher;
 
 /**
  * Represents a provider that is used to resolve and store UUID<->Username Pairs.

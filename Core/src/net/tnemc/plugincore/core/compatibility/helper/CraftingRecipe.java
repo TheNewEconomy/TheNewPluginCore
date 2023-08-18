@@ -17,7 +17,8 @@ package net.tnemc.plugincore.core.compatibility.helper;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.core.currency.item.ItemDenomination;
+
+import net.tnemc.item.AbstractItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,9 +38,9 @@ public class CraftingRecipe {
   private final boolean shaped;
   private final int amount;
 
-  private final ItemDenomination result;
+  private final AbstractItemStack<?> result;
 
-  public CraftingRecipe(boolean shaped, int amount, ItemDenomination result) {
+  public CraftingRecipe(boolean shaped, int amount, AbstractItemStack<?> result) {
     this.shaped = shaped;
     this.amount = amount;
     this.result = result;
@@ -49,7 +50,7 @@ public class CraftingRecipe {
     return ingredients;
   }
 
-  public ItemDenomination getResult() {
+  public AbstractItemStack<?> getResult() {
     return result;
   }
 

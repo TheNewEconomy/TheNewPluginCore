@@ -17,8 +17,8 @@ package net.tnemc.plugincore.core.channel;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.core.TNECore;
-import net.tnemc.core.compatibility.log.DebugLevel;
+import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -53,10 +53,9 @@ public abstract class ChannelMessageHandler {
       if(serverID.isPresent()) {
         server = serverID.get();
 
-        TNECore.log().debug("Message Received:", DebugLevel.DEVELOPER);
-        TNECore.log().debug("ID:" + TNECore.instance().getServerID().toString(), DebugLevel.DEVELOPER);
-        TNECore.log().debug("Received:" + server, DebugLevel.DEVELOPER);
-        if(!TNECore.instance().getServerID().equals(server)) {
+        PluginCore.log().debug("Message Received:", DebugLevel.DEVELOPER);
+        PluginCore.log().debug("Received:" + server, DebugLevel.DEVELOPER);
+        if(!PluginCore.instance().getServerID().equals(server)) {
           handle(wrapper);
         }
       }

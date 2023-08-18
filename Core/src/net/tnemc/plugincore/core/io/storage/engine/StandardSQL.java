@@ -17,9 +17,8 @@ package net.tnemc.plugincore.core.io.storage.engine;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.core.io.storage.Datable;
-import net.tnemc.plugincore.core.io.storage.Dialect;
-import net.tnemc.plugincore.core.io.storage.SQLEngine;
+import net.tnemc.plugincore.core.io.storage.*;
+import net.tnemc.plugincore.core.io.storage.connect.SQLConnector;
 import org.intellij.lang.annotations.Language;
 
 import java.sql.ResultSet;
@@ -40,13 +39,8 @@ public abstract class StandardSQL implements SQLEngine {
   protected final Dialect dialect;
   protected final String prefix;
 
-  public StandardSQL() {
-    this(DataConfig.yaml().getString("Data.Database.Prefix"),
-         new MySQLDialect(DataConfig.yaml().getString("Data.Database.Prefix")));
-  }
-
   public StandardSQL(Dialect dialect) {
-    this(DataConfig.yaml().getString("Data.Database.Prefix"), dialect);
+    this(StorageManager.instance().settings().prefix(), dialect);
   }
 
   public StandardSQL(final String prefix, Dialect dialect) {
@@ -59,15 +53,6 @@ public abstract class StandardSQL implements SQLEngine {
   protected void initSQLDatabales() {
 
     //add our datables.
-    final SQLAccount account = new SQLAccount();
-    datables.put(Account.class, account);
-    datables.put(NonPlayerAccount.class, account);
-    datables.put(SharedAccount.class, account);
-    datables.put(GeyserAccount.class, account);
-    datables.put(PlayerAccount.class, account);
-
-    datables.put(HoldingsEntry.class, new SQLHoldings());
-    datables.put(Receipt.class, new SQLReceipt());
   }
 
   /**
@@ -77,15 +62,7 @@ public abstract class StandardSQL implements SQLEngine {
   @Override
   public void initialize(StorageConnector<?> connector) {
     if(connector instanceof SQLConnector) {
-      ((SQLConnector)connector).executeUpdate(dialect().accountsTable(), new Object[]{});
-      ((SQLConnector)connector).executeUpdate(dialect().accountsNonPlayerTable(), new Object[]{});
-      ((SQLConnector)connector).executeUpdate(dialect().accountsPlayerTable(), new Object[]{});
-      ((SQLConnector)connector).executeUpdate(dialect().accountMembersTable(), new Object[]{});
-      ((SQLConnector)connector).executeUpdate(dialect().holdingsTable(), new Object[]{});
-      ((SQLConnector)connector).executeUpdate(dialect().receiptsTable(), new Object[]{});
-      ((SQLConnector)connector).executeUpdate(dialect().receiptsHoldingsTable(), new Object[]{});
-      ((SQLConnector)connector).executeUpdate(dialect().receiptsParticipantsTable(), new Object[]{});
-      ((SQLConnector)connector).executeUpdate(dialect().receiptsModifiersTable(), new Object[]{});
+      //TODO: initialize
     }
   }
 

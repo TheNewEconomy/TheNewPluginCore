@@ -18,9 +18,15 @@ package net.tnemc.plugincore.core.io.storage.engine.sql;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.core.io.storage.engine.StandardSQL;
+
+import net.tnemc.plugincore.core.io.storage.Dialect;
+import net.tnemc.plugincore.core.io.storage.engine.StandardSQL;
 
 public class PostgreSQL extends StandardSQL {
+
+  public PostgreSQL(Dialect dialect) {
+    super(dialect);
+  }
 
   /**
    * The name of this engine.

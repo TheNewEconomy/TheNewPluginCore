@@ -18,19 +18,12 @@ package net.tnemc.plugincore.core.io.storage;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.core.TNECore;
-import net.tnemc.core.account.Account;
-import net.tnemc.core.account.holdings.HoldingsEntry;
-import net.tnemc.core.compatibility.log.DebugLevel;
-import net.tnemc.core.compatibility.scheduler.ChoreExecution;
-import net.tnemc.core.compatibility.scheduler.ChoreTime;
-import net.tnemc.core.config.DataConfig;
-import net.tnemc.core.io.storage.connect.SQLConnector;
-import net.tnemc.core.io.storage.connect.YAMLConnector;
-import net.tnemc.core.io.storage.dialect.MariaDialect;
-import net.tnemc.core.io.storage.engine.flat.YAML;
-import net.tnemc.core.io.storage.engine.sql.MySQL;
-import net.tnemc.core.io.storage.engine.sql.PostgreSQL;
+import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
+import net.tnemc.plugincore.core.compatibility.scheduler.ChoreExecution;
+import net.tnemc.plugincore.core.compatibility.scheduler.ChoreTime;
+import net.tnemc.plugincore.core.io.storage.connect.SQLConnector;
+import net.tnemc.plugincore.core.io.storage.engine.StorageSettings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -53,52 +46,15 @@ public class StorageManager {
 
   private static StorageManager instance;
   private StorageEngine engine;
-  private final StorageConnector<?> connector;
+  private final StorageSettings settings;
+  private StorageConnector<?> connector;
 
 
-  public StorageManager(final String engine, final String prefix) {
+  public StorageManager(final String engine, final StorageSettings settings) {
     instance = this;
+    this.settings = settings;
 
-    switch(engine.toLowerCase()) {
-      case "mysql" -> {
-
-        boolean maria = false;
-
-        try {
-          Class.forName("org.mariadb.jdbc.Driver");
-          maria = true;
-        } catch(Exception ignore) {}
-
-        try {
-          Class.forName("org.mariadb.jdbc.MariaDbDataSource");
-          maria = true;
-        } catch(Exception ignore) {}
-
-        if(maria) {
-
-          final String prefix = DataConfig.yaml().getString("Data.Database.Prefix");
-          this.engine = new MySQL(prefix, new MariaDialect(prefix));
-          this.connector = new SQLConnector();
-          break;
-        }
-        this.engine = new MySQL();
-        this.connector = new SQLConnector();
-      }
-      case "maria" -> {
-
-        final String prefix = DataConfig.yaml().getString("Data.Database.Prefix");
-        this.engine = new MySQL(prefix, new MariaDialect(prefix));
-        this.connector = new SQLConnector();
-      }
-      case "postgre" -> {
-        this.engine = new PostgreSQL();
-        this.connector = new SQLConnector();
-      }
-      default -> {
-        this.engine = new YAML();
-        this.connector = new YAMLConnector();
-      }
-    }
+    //TODO: initialize storage connector.
 
     initialize();
   }
@@ -159,10 +115,10 @@ public class StorageManager {
    */
   public <T> void store(T object, @Nullable String identifier) {
 
-    TNECore.log().inform("Storing Datable of type: " + object.getClass().getName(), DebugLevel.DEVELOPER);
+    PluginCore.log().inform("Storing Datable of type: " + object.getClass().getName(), DebugLevel.DEVELOPER);
     final Datable<T> data = (Datable<T>)engine.datables().get(object.getClass());
     if(data != null) {
-      TNECore.server().scheduler().createDelayedTask(()->data.store(connector, object, identifier),
+      PluginCore.server().scheduler().createDelayedTask(()->data.store(connector, object, identifier),
                                                      new ChoreTime(0), ChoreExecution.SECONDARY);
     }
   }
@@ -172,23 +128,14 @@ public class StorageManager {
    * thread automatically. Please make sure to use wisely.
    */
   public void storeAll(@NotNull final String identifier) {
-    final Optional<Datable<?>> data = Optional.ofNullable(engine.datables().get(HoldingsEntry.class));
-
-    //Our account storeAll requires no identifier, so we set it to null
-    if(data.isPresent()) {
-      data.get().storeAll(connector, identifier);
-    }
+    //TODO: Store all
   }
 
   /**
    * Used to store all data in TNE.
    */
   public void storeAll() {
-    final Optional<Datable<?>> data = Optional.ofNullable(engine.datables().get(Account.class));
-
-    //Our account storeAll requires no identifier, so we set it to null
-    data.ifPresent(datable->TNECore.server().scheduler()
-        .createDelayedTask(()->datable.storeAll(connector, null), new ChoreTime(0), ChoreExecution.SECONDARY));
+    //TODO: Store all.
   }
 
   /**
@@ -196,7 +143,7 @@ public class StorageManager {
    */
   public void purge() {
     for(Datable<?> data : engine.datables().values()) {
-      TNECore.server().scheduler().createDelayedTask(()->data.purge(connector), new ChoreTime(0), ChoreExecution.SECONDARY);
+      PluginCore.server().scheduler().createDelayedTask(()->data.purge(connector), new ChoreTime(0), ChoreExecution.SECONDARY);
     }
   }
 
@@ -205,9 +152,9 @@ public class StorageManager {
    */
   public void reset() {
     //call the reset method for all modules.
-    TNECore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this)));
+    PluginCore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this)));
 
-    TNECore.server().scheduler().createDelayedTask(()->engine.reset(connector), new ChoreTime(0), ChoreExecution.SECONDARY);
+    PluginCore.server().scheduler().createDelayedTask(()->engine.reset(connector), new ChoreTime(0), ChoreExecution.SECONDARY);
   }
 
   /**
@@ -216,9 +163,9 @@ public class StorageManager {
    */
   public boolean backup() {
     //call the backup method for all modules.
-    TNECore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this)));
+    PluginCore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this)));
 
-    TNECore.server().scheduler().createDelayedTask(()->engine.backup(connector), new ChoreTime(0), ChoreExecution.SECONDARY);
+    PluginCore.server().scheduler().createDelayedTask(()->engine.backup(connector), new ChoreTime(0), ChoreExecution.SECONDARY);
     return true;
   }
 
@@ -228,5 +175,9 @@ public class StorageManager {
 
   public StorageConnector<?> getConnector() {
     return connector;
+  }
+
+  public StorageSettings settings() {
+    return settings;
   }
 }

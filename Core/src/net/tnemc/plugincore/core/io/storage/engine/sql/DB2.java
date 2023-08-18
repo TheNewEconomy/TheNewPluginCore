@@ -18,9 +18,14 @@ package net.tnemc.plugincore.core.io.storage.engine.sql;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.tnemc.plugincore.core.io.storage.Dialect;
 import net.tnemc.plugincore.core.io.storage.engine.StandardSQL;
 
 public class DB2 extends StandardSQL {
+
+  public DB2(Dialect dialect) {
+    super(dialect);
+  }
 
   /**
    * The name of this engine.

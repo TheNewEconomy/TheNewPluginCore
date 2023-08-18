@@ -18,10 +18,10 @@ package net.tnemc.plugincore.core.id.impl.provider;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.core.manager.id.UUIDAPI;
-import net.tnemc.core.manager.id.UUIDPair;
-import net.tnemc.core.manager.id.UUIDProvider;
-import net.tnemc.core.manager.id.impl.AshconAPI;
+import net.tnemc.plugincore.core.id.UUIDAPI;
+import net.tnemc.plugincore.core.id.UUIDPair;
+import net.tnemc.plugincore.core.id.UUIDProvider;
+import net.tnemc.plugincore.core.id.impl.AshconAPI;
 
 import java.util.Optional;
 import java.util.UUID;

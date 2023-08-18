@@ -17,6 +17,7 @@ package net.tnemc.plugincore.core.io.storage.engine.flat;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.io.storage.Datable;
 import net.tnemc.plugincore.core.io.storage.StorageConnector;
 import net.tnemc.plugincore.core.io.storage.StorageEngine;
@@ -37,14 +38,6 @@ public class YAML implements StorageEngine {
   protected final Map<Class<?>, Datable<?>> datables = new HashMap<>();
 
   public YAML() {
-    final YAMLAccount account = new YAMLAccount();
-    datables.put(Account.class, account);
-    datables.put(NonPlayerAccount.class, account);
-    datables.put(SharedAccount.class, account);
-    datables.put(GeyserAccount.class, account);
-    datables.put(PlayerAccount.class, account);
-
-    datables.put(HoldingsEntry.class, new YAMLHoldings());
   }
 
   /**
@@ -75,12 +68,6 @@ public class YAML implements StorageEngine {
    */
   @Override
   public void reset(StorageConnector<?> connector) {
-    final File directory = new File(TNECore.directory(), "accounts");
-    if(directory.exists()) {
-      for(File file : Objects.requireNonNull(directory.listFiles())) {
-        file.delete();
-      }
-    }
   }
 
   /**
