@@ -18,7 +18,6 @@ package net.tnemc.plugincore.core.io.storage;
  */
 
 import com.vdurmont.semver4j.Semver;
-import org.intellij.lang.annotations.Language;
 
 /**
  * Dialect

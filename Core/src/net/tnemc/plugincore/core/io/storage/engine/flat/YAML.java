@@ -17,15 +17,12 @@ package net.tnemc.plugincore.core.io.storage.engine.flat;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.io.storage.Datable;
 import net.tnemc.plugincore.core.io.storage.StorageConnector;
 import net.tnemc.plugincore.core.io.storage.StorageEngine;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * YAML

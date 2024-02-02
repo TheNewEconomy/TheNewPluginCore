@@ -17,7 +17,11 @@ package net.tnemc.plugincore.core.io.storage.engine;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.core.io.storage.*;
+import net.tnemc.plugincore.core.io.storage.Datable;
+import net.tnemc.plugincore.core.io.storage.Dialect;
+import net.tnemc.plugincore.core.io.storage.SQLEngine;
+import net.tnemc.plugincore.core.io.storage.StorageConnector;
+import net.tnemc.plugincore.core.io.storage.StorageManager;
 import net.tnemc.plugincore.core.io.storage.connect.SQLConnector;
 import org.intellij.lang.annotations.Language;
 

@@ -18,7 +18,6 @@ package net.tnemc.plugincore.core.compatibility;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.io.message.MessageData;
 import revxrsal.commands.command.CommandActor;
 

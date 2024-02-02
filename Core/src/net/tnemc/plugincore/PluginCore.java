@@ -1,7 +1,8 @@
 package net.tnemc.plugincore;
 
-import net.tnemc.menu.core.MenuManager;
+import net.tnemc.menu.core.MenuHandler;
 import net.tnemc.plugincore.core.api.CallbackManager;
+import net.tnemc.plugincore.core.api.CallbackProvider;
 import net.tnemc.plugincore.core.channel.ChannelMessageManager;
 import net.tnemc.plugincore.core.compatibility.LogProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
@@ -10,25 +11,18 @@ import net.tnemc.plugincore.core.id.UUIDProvider;
 import net.tnemc.plugincore.core.id.impl.provider.BaseUUIDProvider;
 import net.tnemc.plugincore.core.io.message.MessageHandler;
 import net.tnemc.plugincore.core.io.message.TranslationProvider;
-import net.tnemc.plugincore.core.io.message.translation.BaseTranslationProvider;
 import net.tnemc.plugincore.core.io.storage.StorageManager;
 import net.tnemc.plugincore.core.module.ModuleLoader;
 import net.tnemc.plugincore.core.module.cache.ModuleFileCache;
 import net.tnemc.plugincore.core.utils.UpdateChecker;
 import org.jetbrains.annotations.Nullable;
 import revxrsal.commands.CommandHandler;
-import revxrsal.commands.annotation.Command;
 import revxrsal.commands.command.CommandActor;
 import revxrsal.commands.command.ExecutableCommand;
 import revxrsal.commands.orphan.Orphans;
 
 import java.io.File;
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 /**
@@ -78,6 +72,8 @@ public abstract class PluginCore {
   protected CommandHandler command;
   private final MessageHandler messenger;
 
+  protected MenuHandler menuHandler;
+
   /* Plugin Instance */
   private static PluginCore instance;
 
@@ -91,23 +87,20 @@ public abstract class PluginCore {
 
   protected UpdateChecker updateChecker = null;
 
-  public PluginCore(ServerConnector server, LogProvider logger) {
-    this.server = server;
-    this.logger = logger;
-    this.messenger = new MessageHandler(new BaseTranslationProvider());
-  }
+  protected UUID serverID;
 
-  public PluginCore(ServerConnector server, LogProvider logger, TranslationProvider provider) {
+  public PluginCore(ServerConnector server, LogProvider logger, TranslationProvider provider, CallbackProvider callbackProvider) {
     this.server = server;
     this.logger = logger;
     this.messenger = new MessageHandler(provider);
+    this.callbackManager = new CallbackManager(callbackProvider);
   }
 
   public static void setInstance(PluginCore core) {
     if(instance == null) {
       instance = core;
     } else {
-      throw new IllegalStateException("TNE has already been initiated. Please refrain from attempting" +
+      throw new IllegalStateException("PluginCore has already been initiated. Please refrain from attempting" +
               "to modify the instance variable.");
     }
   }
@@ -120,7 +113,7 @@ public abstract class PluginCore {
       onEnable();
 
     } else {
-      throw new IllegalStateException("TNE has already been enabled!");
+      throw new IllegalStateException("PluginCore has already been enabled!");
     }
   }
 
@@ -137,6 +130,7 @@ public abstract class PluginCore {
         return;
       }
     }
+    this.serverID = UUID.randomUUID();
 
     this.uuidProvider = new BaseUUIDProvider();
 
@@ -149,9 +143,7 @@ public abstract class PluginCore {
     //Call initConfigurations for all modules loaded.
     loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().initConfigurations(directory)));
 
-    this.callbackManager = new CallbackManager();
-
-    registerCallbacks();
+    this.registerCallbacks();
 
     //Register the callback listeners and callbacks for the modules
     loader.getModules().values().forEach((moduleWrapper ->{
@@ -166,39 +158,35 @@ public abstract class PluginCore {
 
     this.channelMessageManager = new ChannelMessageManager();
 
-    this.storage = new StorageManager();
-
-    if(!this.storage.meetsRequirement()) {
-      logger.error("This server does not meet SQL requirements needed for TNE!", DebugLevel.OFF);
-      return;
+    this.registerStorage();
+    if(this.storage == null) {
+      logger.warning("Storage engine not initialized, proceeding without storage!", DebugLevel.OFF);
+    } else {
+      if(! this.storage.meetsRequirement()) {
+        logger.error("This server does not meet SQL requirements needed!", DebugLevel.OFF);
+        return;
+      }
     }
 
     //Call the enableSave method for all modules loaded.
     loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this.storage)));
 
     //register our commands
-    registerCommandHandler();
+    this.registerCommandHandler();
 
     //Register our help writer.
     command.setHelpWriter(this::commandHelpWriter);
 
     //Register our commands.
-    registerCommands();
+    this.registerCommands();
 
     //Call our command methods for the modules.
     loader.getModules().values().forEach((moduleWrapper ->{
       moduleWrapper.getModule().registerCommands(command);
-
-      moduleWrapper.getModule().registerMoneySub().forEach((orphan)->command.register(Orphans.path("money"), orphan));
-      moduleWrapper.getModule().registerTransactionSub().forEach((orphan)->command.register(Orphans.path("transaction"), orphan));
-      moduleWrapper.getModule().registerAdminSub().forEach((orphan)->command.register(Orphans.path("tne"), orphan));
     }));
 
 
-    new MenuManager();
-    /*MenuManager.instance().addMenu(new MyEcoMenu());
-    MenuManager.instance().addMenu(new MyCurrencyMenu());
-    MenuManager.instance().addMenu(new MyBalMenu());*/
+    this.registerMenuHandler();
 
     this.moduleCache = new ModuleFileCache();
 
@@ -221,6 +209,10 @@ public abstract class PluginCore {
    * Used to register the command handlers.
    */
   public abstract void registerCommandHandler();
+
+  public abstract void registerMenuHandler();
+
+  public abstract void registerStorage();
 
   public abstract String commandHelpWriter(ExecutableCommand command, CommandActor actor);
 
@@ -319,5 +311,17 @@ public abstract class PluginCore {
 
   public static UUIDProvider uuidProvider() {
     return instance.uuidProvider;
+  }
+
+  public UUID getServerID() {
+    return serverID;
+  }
+
+  public void setStorage(StorageManager storage) {
+    this.storage = storage;
+  }
+
+  public void setCallbackManager(CallbackManager callbackManager) {
+    this.callbackManager = callbackManager;
   }
 }

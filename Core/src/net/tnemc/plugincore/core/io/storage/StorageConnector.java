@@ -17,8 +17,6 @@ package net.tnemc.plugincore.core.io.storage;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.core.io.storage.engine.StorageSettings;
-
 /**
  * StorageConnector represents a connection helper class for a storage method.
  *

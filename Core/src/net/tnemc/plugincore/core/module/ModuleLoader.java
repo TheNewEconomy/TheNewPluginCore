@@ -2,7 +2,12 @@ package net.tnemc.plugincore.core.module;
 
 import net.tnemc.plugincore.PluginCore;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.URL;
