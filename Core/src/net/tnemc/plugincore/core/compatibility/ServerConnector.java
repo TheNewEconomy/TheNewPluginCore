@@ -44,6 +44,14 @@ public interface ServerConnector {
   String name();
 
   /**
+   * Used to replace placeholders from a string.
+   * @param player The player to use for the placeholder replacement.
+   * @param message The message to replace placeholders in.
+   * @return The string after placeholders have been replaced.
+   */
+  String replacePlaceholder(final UUID player, final String message);
+
+  /**
    * The proxy provider to use for this implementation.
    * @return The proxy provider to use for this implementation.
    */
@@ -68,6 +76,14 @@ public interface ServerConnector {
    * Optional if no player is located.
    */
   Optional<PlayerProvider> findPlayer(@NotNull UUID identifier);
+
+  /**
+   * This is used to return an instance of an {@link PlayerProvider player} based on the provided
+   * instance's player object.
+   * @param player The instance of the player.
+   * @return The initialized {@link PlayerProvider player object}.
+   */
+  PlayerProvider initializePlayer(@NotNull Object player);
 
   /**
    * Used to get a cached UUID based on a username.
@@ -110,6 +126,14 @@ public interface ServerConnector {
    * @return An optional containing the UUId if exists, otherwise false.
    */
   Optional<UUID> fromName(final String name);
+
+  /**
+   * Used to locate a username for a specific name. This could be called from either a primary or secondary thread, and
+   * should not call back to the Mojang API ever.
+   * @param id The {@link UUID} to use for the search.
+   * @return An optional containing the name if exists, otherwise false.
+   */
+  Optional<String> fromID(final UUID id);
 
   /**
    * Returns the {@link Pattern pattern} utilized to determine if a string is a valid
@@ -167,6 +191,4 @@ public interface ServerConnector {
    * @see CraftingRecipe
    */
   void registerCrafting(@NotNull final CraftingRecipe recipe);
-
-
 }

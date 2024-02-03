@@ -10,3 +10,8 @@ bin/
 /target/
 /TNE/target/
 fiotnh33.xot.txt
+/Core/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+/Core/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+/Core/target/maven-archiver/pom.properties
+/Core/target/TNPC-Core-1.0.0.0-shaded.jar
+/Core/target/TNPC-Core-1.0.0.0.jar

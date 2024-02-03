@@ -75,6 +75,11 @@ public class MessageHandler {
    * @param audience The audience that should receive the translated message.
    */
   public static void translate(final MessageData messageData, UUID identifier, Audience audience) {
+    if(identifier == null) {
+      audience.sendMessage(instance.mini.deserialize(instance.translator.translateNode(messageData, "default")));
+      return;
+    }
+    //TODO: PAPI
     audience.sendMessage(instance.mini.deserialize(instance.translator.translateNode(messageData, "default")));
   }
 

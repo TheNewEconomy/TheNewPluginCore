@@ -1,5 +1,4 @@
-package net.tnemc.plugincore.core.compatibility;
-
+package net.tnemc.plugincore.bukkit.listener.server;
 /*
  * The New Economy
  * Copyright (C) 2022 - 2023 Daniel "creatorfromhell" Vidmar
@@ -18,22 +17,20 @@ package net.tnemc.plugincore.core.compatibility;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.tnemc.plugincore.PluginCore;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.messaging.PluginMessageListener;
+import org.jetbrains.annotations.NotNull;
+
 /**
- * A class that acts like a bridge for the initial TNE setup process. This is utilized
- * to set up basic features, and read offline player data to have the plugin install
- * seemlessly into the server without missing a beat.
+ * MessageChannelListener
  *
  * @author creatorfromhell
  * @since 0.1.2.0
  */
-public interface SetupProvider {
-
-  default void setup() {
-    //TODO: This
+public class MessageChannelListener implements PluginMessageListener {
+  @Override
+  public void onPluginMessageReceived(@NotNull String channel, @NotNull Player player, byte[] bytes) {
+    PluginCore.instance().getChannelMessageManager().handle(channel, bytes);
   }
-
-  /**
-   * This method is used to load existing UUIDs and map them to players in the UUID System.
-   */
-  void loadExistingIDS();
 }

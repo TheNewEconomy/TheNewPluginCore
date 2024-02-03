@@ -8,6 +8,7 @@
 
     <modules>
         <module>Core</module>
+        <module>TNPC-Bukkit</module>
     </modules>
 
     <properties>
