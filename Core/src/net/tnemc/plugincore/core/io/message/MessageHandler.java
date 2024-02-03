@@ -23,6 +23,7 @@ import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import net.tnemc.plugincore.PluginCore;
 
 import java.util.UUID;
 
@@ -79,8 +80,7 @@ public class MessageHandler {
       audience.sendMessage(instance.mini.deserialize(instance.translator.translateNode(messageData, "default")));
       return;
     }
-    //TODO: PAPI
-    audience.sendMessage(instance.mini.deserialize(instance.translator.translateNode(messageData, "default")));
+    audience.sendMessage(instance.mini.deserialize(PluginCore.server().replacePlaceholder(identifier, instance.translator.translateNode(messageData, "default"))));
   }
 
   /**

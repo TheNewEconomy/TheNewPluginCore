@@ -22,10 +22,12 @@ import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
 import net.tnemc.plugincore.core.compatibility.scheduler.ChoreExecution;
 import net.tnemc.plugincore.core.compatibility.scheduler.ChoreTime;
+import net.tnemc.plugincore.core.io.redis.TNEJedisManager;
 import net.tnemc.plugincore.core.io.storage.connect.SQLConnector;
 import net.tnemc.plugincore.core.io.storage.engine.StorageSettings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import redis.clients.jedis.JedisPool;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,36 +47,57 @@ import java.util.Optional;
 public class StorageManager {
 
   private static StorageManager instance;
-  private StorageEngine engine;
   private final StorageSettings settings;
-  private StorageConnector<?> connector;
+
+  private StorageProvider provider;
+
+  private final TNEJedisManager jedisManager;
 
 
-  public StorageManager(final String engine, final StorageSettings settings) {
+  public StorageManager(final String engine, final StorageProvider provider,
+                        final StorageSettings settings, final JedisPool pool) {
     instance = this;
     this.settings = settings;
 
-    //TODO: initialize storage connector.
+    if(pool == null || settings.proxyType().equalsIgnoreCase("bungee")) {
+      this.jedisManager = null;
+    } else {
+      this.jedisManager = new TNEJedisManager(pool);
+    }
 
-    initialize();
+    this.provider = provider;
+
+    initialize(engine);
   }
 
   public boolean meetsRequirement() {
-    if(this.connector instanceof SQLConnector) {
-      return ((SQLConnector)this.connector).checkVersion();
+    if(this.provider instanceof SQLConnector) {
+      return ((SQLConnector)this.provider.connector()).checkVersion();
     }
     return true;
   }
 
-  public void initialize() {
+  public void initialize(final String engine) {
 
     //Initialize our connection.
-    this.connector.initialize();
-    this.engine.initialize(this.connector);
+    this.provider.initialize(engine);
+    this.provider.connector().initialize();
+    this.provider.engine().initialize(this.provider.connector());
   }
 
   public static StorageManager instance() {
     return instance;
+  }
+
+  public void sendProxyMessage(final String channel, final byte[] data) {
+    switch(settings.proxyType().toLowerCase()) {
+      case "redis" -> {
+        if(jedisManager != null) {
+          jedisManager.publish(channel, data);
+        }
+      }
+      default -> PluginCore.server().proxy().send(channel, data);
+    }
   }
 
   /**
@@ -84,9 +107,9 @@ public class StorageManager {
    * @return The object to load.
    */
   public <T> Optional<T> load(Class<? extends T> object, @NotNull final String identifier) {
-    final Datable<T> data = (Datable<T>)engine.datables().get(object);
+    final Datable<T> data = (Datable<T>)provider.engine().datables().get(object);
     if(data != null) {
-      return data.load(connector, identifier);
+      return data.load(provider.connector(), identifier);
     }
     return Optional.empty();
   }
@@ -99,9 +122,9 @@ public class StorageManager {
    * @return A collection containing the objects loaded.
    */
   public <T> Collection<T> loadAll(Class<? extends T> object, @Nullable final String identifier) {
-    final Datable<T> data = (Datable<T>)engine.datables().get(object);
+    final Datable<T> data = (Datable<T>)provider.engine().datables().get(object);
     if(data != null) {
-      return data.loadAll(connector, identifier);
+      return data.loadAll(provider.connector(), identifier);
     }
     return new ArrayList<>();
   }
@@ -116,9 +139,9 @@ public class StorageManager {
   public <T> void store(T object, @Nullable String identifier) {
 
     PluginCore.log().inform("Storing Datable of type: " + object.getClass().getName(), DebugLevel.DEVELOPER);
-    final Datable<T> data = (Datable<T>)engine.datables().get(object.getClass());
+    final Datable<T> data = (Datable<T>)provider.engine().datables().get(object.getClass());
     if(data != null) {
-      PluginCore.server().scheduler().createDelayedTask(()->data.store(connector, object, identifier),
+      PluginCore.server().scheduler().createDelayedTask(()->data.store(provider.connector(), object, identifier),
                                                      new ChoreTime(0), ChoreExecution.SECONDARY);
     }
   }
@@ -128,22 +151,22 @@ public class StorageManager {
    * thread automatically. Please make sure to use wisely.
    */
   public void storeAll(@NotNull final String identifier) {
-    //TODO: Store all
+    provider.storeAll(identifier);
   }
 
   /**
    * Used to store all data in TNE.
    */
   public void storeAll() {
-    //TODO: Store all.
+    provider.storeAll();
   }
 
   /**
    * Used to purge TNE data.
    */
   public void purge() {
-    for(Datable<?> data : engine.datables().values()) {
-      PluginCore.server().scheduler().createDelayedTask(()->data.purge(connector), new ChoreTime(0), ChoreExecution.SECONDARY);
+    for(Datable<?> data : provider.engine().datables().values()) {
+      PluginCore.server().scheduler().createDelayedTask(()->data.purge(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);
     }
   }
 
@@ -154,7 +177,7 @@ public class StorageManager {
     //call the reset method for all modules.
     PluginCore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this)));
 
-    PluginCore.server().scheduler().createDelayedTask(()->engine.reset(connector), new ChoreTime(0), ChoreExecution.SECONDARY);
+    PluginCore.server().scheduler().createDelayedTask(()->provider.engine().reset(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);
   }
 
   /**
@@ -165,16 +188,16 @@ public class StorageManager {
     //call the backup method for all modules.
     PluginCore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this)));
 
-    PluginCore.server().scheduler().createDelayedTask(()->engine.backup(connector), new ChoreTime(0), ChoreExecution.SECONDARY);
+    PluginCore.server().scheduler().createDelayedTask(()->provider.engine().backup(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);
     return true;
   }
 
   public StorageEngine getEngine() {
-    return engine;
+    return provider.engine();
   }
 
   public StorageConnector<?> getConnector() {
-    return connector;
+    return provider.connector();
   }
 
   public StorageSettings settings() {

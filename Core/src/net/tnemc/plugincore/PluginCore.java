@@ -133,6 +133,8 @@ public abstract class PluginCore {
 
     this.uuidProvider = new BaseUUIDProvider();
 
+    this.registerConfigs();
+
     //Load our modules
     loader.load();
 
@@ -208,6 +210,8 @@ public abstract class PluginCore {
    * Used to register the command handlers.
    */
   public abstract void registerCommandHandler();
+
+  public abstract void registerConfigs();
 
   public abstract void registerMenuHandler();
 

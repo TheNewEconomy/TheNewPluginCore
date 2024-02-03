@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.io.storage.connect;
+package net.tnemc.plugincore.core.io.redis;
 /*
  * The New Economy
  * Copyright (C) 2022 - 2023 Daniel "creatorfromhell" Vidmar
@@ -17,34 +17,27 @@ package net.tnemc.plugincore.core.io.storage.connect;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.core.io.storage.StorageConnector;
-import net.tnemc.plugincore.core.io.storage.StorageEngine;
+import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
+import redis.clients.jedis.BinaryJedisPubSub;
 
-import java.io.File;
+import java.nio.charset.StandardCharsets;
 
 /**
- * YAMLConnector
+ * TNESubscriber
  *
  * @author creatorfromhell
  * @since 0.1.2.0
  */
-public class YAMLConnector implements StorageConnector<File> {
+public class TNESubscriber extends BinaryJedisPubSub {
 
-  /**
-   * Used to initialize a connection to the specified {@link StorageEngine}
-   */
   @Override
-  public void initialize() {
-    //I don't think this needs to be initialized here.
-  }
+  public void onMessage(byte[] channel, byte[] message) {
+    super.onMessage(channel, message);
 
-  /**
-   * Used to get the connection from the
-   *
-   * @return The connection.
-   */
-  @Override
-  public File connection() throws Exception {
-    return null;
+    final String channelStr = new String(channel, StandardCharsets.UTF_8);
+
+    PluginCore.log().debug("Redis Message Received: " + channelStr, DebugLevel.STANDARD);
+    PluginCore.instance().getChannelMessageManager().handle(channelStr, message);
   }
 }
