@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.tnemc</groupId>
     <artifactId>TNPC</artifactId>
-    <version>1.0.0.1-Pre-1</version>
+    <version>1.0.0.1-Pre-2</version>
     <packaging>pom</packaging>
     <name>The New Plugin Core</name>
 
@@ -13,6 +13,8 @@
     </modules>
 
     <properties>
+        <tnil.version>0.1.7.4-Pre-27</tnil.version>
+        <tnml.version>1.5.0.0-SNAPSHOT-3</tnml.version>
         <tne.relocation>net.tnpc.libs</tne.relocation>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -146,7 +148,7 @@
         <dependency>
             <groupId>net.tnemc</groupId>
             <artifactId>TNML-CORE</artifactId>
-            <version>1.5.0.0-SNAPSHOT-2</version>
+            <version>${tnml.version}</version>
             <scope>compile</scope>
             <exclusions>
                 <exclusion>
@@ -158,7 +160,7 @@
         <dependency>
             <groupId>net.tnemc</groupId>
             <artifactId>TNIL-Core</artifactId>
-            <version>0.1.7.4-Pre-26</version>
+            <version>${tnil.version}</version>
             <scope>compile</scope>
         </dependency>
         <!-- Pooling For Performance -->

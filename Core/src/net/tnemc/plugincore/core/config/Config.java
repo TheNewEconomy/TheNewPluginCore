@@ -34,7 +34,7 @@ import java.util.List;
  */
 public abstract class Config {
 
-  protected final YamlFile yaml;
+  protected YamlFile yaml;
 
   protected final File file;
   protected final String defaults;
@@ -58,6 +58,10 @@ public abstract class Config {
 
   public YamlFile getYaml() {
     return yaml;
+  }
+
+  public void setYaml(YamlFile yaml) {
+    this.yaml = yaml;
   }
 
   public boolean load() {
