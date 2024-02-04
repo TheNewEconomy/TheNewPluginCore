@@ -1,5 +1,23 @@
 package net.tnemc.plugincore;
 
+/*
+ * The New Plugin Core
+ * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import net.tnemc.menu.core.MenuHandler;
 import net.tnemc.plugincore.core.api.CallbackManager;
 import net.tnemc.plugincore.core.api.CallbackProvider;
@@ -23,28 +41,6 @@ import revxrsal.commands.command.ExecutableCommand;
 import java.io.File;
 import java.util.UUID;
 import java.util.regex.Pattern;
-
-/**
- * Created by creatorfromhell.
- *
- * The New Plugin Core Minecraft Server Plugin
- *
- * All rights reserved.
- *
- * Some Details about what is acceptable use of this software:
- *
- * This project accepts user contributions.
- *
- * Direct redistribution of this software is not allowed without written permission. However,
- * compiling this project into your software to utilize it as a library is acceptable as long
- * as it's not used for commercial purposes.
- *
- * Commercial usage is allowed if a commercial usage license is bought and verification of the
- * purchase is able to be provided by both parties.
- *
- * By contributing to this software you agree that your rights to your contribution are handed
- * over to the owner of the project.
- */
 public abstract class PluginCore {
 
   /*

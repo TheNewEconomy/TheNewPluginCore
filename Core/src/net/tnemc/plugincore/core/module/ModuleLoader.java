@@ -19,8 +19,8 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /*
- * The New Economy
- * Copyright (C) 2022 - 2023 Daniel "creatorfromhell" Vidmar
+ * The New Plugin Core
+ * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by

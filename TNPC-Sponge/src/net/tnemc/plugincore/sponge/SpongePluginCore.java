@@ -41,8 +41,6 @@ public abstract class SpongePluginCore extends PluginCore {
 
 
   protected final PluginContainer container;
-
-  private SpongePluginCore core;
   @Inject
   @ConfigDir(sharedRoot = false)
   private Path configDir;
@@ -52,9 +50,9 @@ public abstract class SpongePluginCore extends PluginCore {
                           TranslationProvider provider, CallbackProvider callbackProvider) {
     super(new SpongeServerProvider(), new SpongeLogProvider(log), provider, callbackProvider);
 
+    setInstance(this);
     this.container = container;
     this.logger = new SpongeLogProvider(log);
-    this.core = this;
     command = SpongeCommandHandler.create(container);
   }
 
