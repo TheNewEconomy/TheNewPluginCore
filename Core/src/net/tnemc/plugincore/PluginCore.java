@@ -198,7 +198,6 @@ public abstract class PluginCore {
 
   public void onDisable() {
 
-
     loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().disable(this)));
   }
 
@@ -234,8 +233,6 @@ public abstract class PluginCore {
    * @return The build for this version.
    */
   public abstract String build();
-
-
 
   /**
    * The implementation's {@link LogProvider}.

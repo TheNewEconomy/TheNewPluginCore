@@ -39,7 +39,7 @@ public class SpongeCMDSource extends CmdSource<SpongeCommandActor> {
   public SpongeCMDSource(SpongeCommandActor actor) {
     super(actor);
 
-    if(actor.isPlayer() && actor.getAsPlayer().user() != null) {
+    if(actor.isPlayer() && actor.getAsPlayer() != null) {
       provider = new SpongePlayerProvider(actor.getAsPlayer().user(),
                                           SpongePluginCore.instance().getContainer());
     } else {
