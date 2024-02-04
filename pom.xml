@@ -9,9 +9,11 @@
     <modules>
         <module>Core</module>
         <module>TNPC-Bukkit</module>
+        <module>TNPC-Sponge</module>
     </modules>
 
     <properties>
+        <tne.relocation>net.tnpc.libs</tne.relocation>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <java.version>17</java.version>

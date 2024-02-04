@@ -22,11 +22,12 @@ import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.bukkit.impl.BukkitLogProvider;
 import net.tnemc.plugincore.bukkit.impl.BukkitServerProvider;
 import net.tnemc.plugincore.core.api.CallbackProvider;
-import net.tnemc.plugincore.core.compatibility.LogProvider;
-import net.tnemc.plugincore.core.compatibility.ServerConnector;
+import net.tnemc.plugincore.core.api.callback.Callback;
 import net.tnemc.plugincore.core.io.message.TranslationProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import revxrsal.commands.bukkit.BukkitCommandHandler;
+import revxrsal.commands.command.CommandActor;
+import revxrsal.commands.command.ExecutableCommand;
 
 /**
  * BukkitPluginCore
@@ -34,7 +35,7 @@ import revxrsal.commands.bukkit.BukkitCommandHandler;
  * @author creatorfromhell
  * @since 0.0.1.0
  */
-public abstract class BukkitPluginCore extends PluginCore {
+public class BukkitPluginCore extends PluginCore {
 
   private JavaPlugin plugin;
   public BukkitPluginCore(JavaPlugin plugin, TranslationProvider provider, CallbackProvider callbackProvider) {
@@ -65,8 +66,55 @@ public abstract class BukkitPluginCore extends PluginCore {
   }
 
   @Override
+  public void registerConfigs() {
+
+  }
+
+  @Override
   public void registerMenuHandler() {
     this.menuHandler = new BukkitMenuHandler(plugin, true);
+  }
+
+  @Override
+  public void registerStorage() {
+
+  }
+
+  @Override
+  public String commandHelpWriter(ExecutableCommand command, CommandActor actor) {
+    return null;
+  }
+
+  /**
+   * Used to register commands.
+   */
+  @Override
+  public void registerCommands() {
+
+  }
+
+  /**
+   * Used to register {@link Callback Callbacks} during initialization.
+   */
+  @Override
+  public void registerCallbacks() {
+
+  }
+
+  /**
+   * @return The current version for this plugin.
+   */
+  @Override
+  public String version() {
+    return null;
+  }
+
+  /**
+   * @return The build for this version.
+   */
+  @Override
+  public String build() {
+    return null;
   }
 
   public static BukkitPluginCore instance() {
