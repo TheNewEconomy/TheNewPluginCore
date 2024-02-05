@@ -22,6 +22,7 @@ import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.bukkit.impl.BukkitLogProvider;
 import net.tnemc.plugincore.bukkit.impl.BukkitServerProvider;
 import net.tnemc.plugincore.core.api.CallbackProvider;
+import net.tnemc.plugincore.core.compatibility.ServerConnector;
 import net.tnemc.plugincore.core.io.message.TranslationProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import revxrsal.commands.bukkit.BukkitCommandHandler;
@@ -36,8 +37,12 @@ public abstract class BukkitPluginCore extends PluginCore {
 
   private final JavaPlugin plugin;
   public BukkitPluginCore(JavaPlugin plugin, TranslationProvider provider, CallbackProvider callbackProvider) {
-    super(new BukkitServerProvider(), new BukkitLogProvider(plugin.getLogger()), provider,
-            callbackProvider);
+    this(plugin, new BukkitServerProvider(), provider, callbackProvider);
+  }
+
+  public BukkitPluginCore(JavaPlugin plugin, ServerConnector connector, TranslationProvider provider,
+                          CallbackProvider callbackProvider) {
+    super(connector, new BukkitLogProvider(plugin.getLogger()), provider, callbackProvider);
 
     setInstance(this);
     this.plugin = plugin;

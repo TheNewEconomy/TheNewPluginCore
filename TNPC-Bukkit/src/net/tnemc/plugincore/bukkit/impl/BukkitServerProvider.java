@@ -21,6 +21,7 @@ package net.tnemc.plugincore.bukkit.impl;
 import net.tnemc.item.AbstractItemStack;
 import net.tnemc.item.bukkit.BukkitCalculationsProvider;
 import net.tnemc.item.bukkit.BukkitItemStack;
+import net.tnemc.item.providers.CalculationsProvider;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.bukkit.BukkitPluginCore;
 import net.tnemc.plugincore.bukkit.hook.PAPIParser;
@@ -33,12 +34,17 @@ import net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe;
 import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.jetbrains.annotations.NotNull;
 import revxrsal.commands.bukkit.BukkitCommandActor;
 import revxrsal.commands.command.CommandActor;
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -54,6 +60,8 @@ public class BukkitServerProvider implements ServerConnector {
   protected final BukkitProxyProvider proxy = new BukkitProxyProvider();
 
   protected final BukkitScheduler scheduler;
+
+  protected String world = null;
 
   public BukkitServerProvider() {
     this.scheduler = new BukkitScheduler();
@@ -222,6 +230,19 @@ public class BukkitServerProvider implements ServerConnector {
   }
 
   /**
+   * Returns the name of the default world.
+   *
+   * @return The name of the default world.
+   */
+  @Override
+  public String defaultWorld() {
+    if(world == null) {
+      world = Bukkit.getServer().getWorlds().get(0).getName();
+    }
+    return world;
+  }
+
+  /**
    * Determines if a plugin with the correlating name is currently installed.
    *
    * @param name The name to use for our check.
@@ -274,6 +295,25 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public void registerCrafting(@NotNull CraftingRecipe recipe) {
-    //TODO: Crafting
+    if(recipe.isShaped()) {
+      final ShapedRecipe shaped = new ShapedRecipe((ItemStack)recipe.getResult().locale());
+      shaped.shape(recipe.getRows());
+
+      for(Map.Entry<Character, String> ingredient : recipe.getIngredients().entrySet()) {
+        shaped.setIngredient(ingredient.getKey(), Material.valueOf(ingredient.getValue()));
+      }
+      Bukkit.getServer().addRecipe(shaped);
+    } else {
+      final ShapelessRecipe shapeless = new ShapelessRecipe((ItemStack)recipe.getResult().locale());
+      for(Map.Entry<Character, String> ingredient : recipe.getIngredients().entrySet()) {
+        shapeless.addIngredient(1, Material.valueOf(ingredient.getValue()));
+      }
+      Bukkit.getServer().addRecipe(shapeless);
+    }
+  }
+
+  @Override
+  public BukkitCalculationsProvider calculations() {
+    return calc;
   }
 }

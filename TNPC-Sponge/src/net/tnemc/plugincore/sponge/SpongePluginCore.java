@@ -20,6 +20,7 @@ package net.tnemc.plugincore.sponge;
 import com.google.inject.Inject;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.api.CallbackProvider;
+import net.tnemc.plugincore.core.compatibility.ServerConnector;
 import net.tnemc.plugincore.core.io.message.TranslationProvider;
 import net.tnemc.plugincore.sponge.impl.SpongeLogProvider;
 import net.tnemc.plugincore.sponge.impl.SpongeServerProvider;
@@ -48,12 +49,20 @@ public abstract class SpongePluginCore extends PluginCore {
   @Inject
   public SpongePluginCore(final PluginContainer container, final Logger log,
                           TranslationProvider provider, CallbackProvider callbackProvider) {
-    super(new SpongeServerProvider(), new SpongeLogProvider(log), provider, callbackProvider);
+    this(container, new SpongeServerProvider(), log, provider, callbackProvider);
+  }
+
+  @Inject
+  public SpongePluginCore(final PluginContainer container, ServerConnector connector, final Logger log,
+                          TranslationProvider provider, CallbackProvider callbackProvider) {
+    super(connector, new SpongeLogProvider(log), provider, callbackProvider);
 
     setInstance(this);
     this.container = container;
     this.logger = new SpongeLogProvider(log);
     command = SpongeCommandHandler.create(container);
+
+    registerCommands();
   }
 
   public static SpongePluginCore instance() {

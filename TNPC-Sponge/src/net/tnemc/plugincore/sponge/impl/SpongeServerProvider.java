@@ -34,6 +34,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.world.DefaultWorldKeys;
 import revxrsal.commands.command.CommandActor;
 import revxrsal.commands.sponge.SpongeCommandActor;
 
@@ -60,6 +61,8 @@ public class SpongeServerProvider implements ServerConnector {
   private final SpongeProxyProvider proxy = new SpongeProxyProvider();
 
   private final SpongeScheduler scheduler;
+
+  protected String world = null;
 
   public SpongeServerProvider() {
     this.scheduler = new SpongeScheduler();
@@ -212,6 +215,19 @@ public class SpongeServerProvider implements ServerConnector {
   }
 
   /**
+   * Returns the name of the default world.
+   *
+   * @return The name of the default world.
+   */
+  @Override
+  public String defaultWorld() {
+    if(world == null) {
+      world = Sponge.server().worldManager().world(DefaultWorldKeys.DEFAULT).get().key().asString();
+    }
+    return world;
+  }
+
+  /**
    * Used to replace colour codes in a string.
    *
    * @param string The string to format.
@@ -293,7 +309,10 @@ public class SpongeServerProvider implements ServerConnector {
     //TODO: Sponge Register crafting
   }
 
-
+  @Override
+  public SpongeItemCalculationsProvider calculations() {
+    return calc;
+  }
 
   public @Nullable InputStream getResource(@NotNull String filename) {
     try {

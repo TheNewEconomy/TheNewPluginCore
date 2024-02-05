@@ -19,6 +19,7 @@ package net.tnemc.plugincore.core.compatibility;
  */
 
 import net.tnemc.item.AbstractItemStack;
+import net.tnemc.item.providers.CalculationsProvider;
 import net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe;
 import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
 import org.jetbrains.annotations.NotNull;
@@ -149,6 +150,13 @@ public interface ServerConnector {
   }
 
   /**
+   * Returns the name of the default world.
+   *
+   * @return The name of the default world.
+   */
+  String defaultWorld();
+
+  /**
    * Determines if a plugin with the correlating name is currently installed.
    *
    * @param name The name to use for our check.
@@ -191,4 +199,6 @@ public interface ServerConnector {
    * @see CraftingRecipe
    */
   void registerCrafting(@NotNull final CraftingRecipe recipe);
+
+  <S, T extends AbstractItemStack<S>, INV> CalculationsProvider<T, S, INV> calculations();
 }
