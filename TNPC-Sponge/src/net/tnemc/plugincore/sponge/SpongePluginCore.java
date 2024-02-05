@@ -17,7 +17,6 @@ package net.tnemc.plugincore.sponge;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import com.google.inject.Inject;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.api.CallbackProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
@@ -26,11 +25,8 @@ import net.tnemc.plugincore.sponge.impl.SpongeLogProvider;
 import net.tnemc.plugincore.sponge.impl.SpongeServerProvider;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.config.ConfigDir;
 import org.spongepowered.plugin.PluginContainer;
 import revxrsal.commands.sponge.SpongeCommandHandler;
-
-import java.nio.file.Path;
 
 /**
  * SpongePluginCore
@@ -42,17 +38,12 @@ public abstract class SpongePluginCore extends PluginCore {
 
 
   protected final PluginContainer container;
-  @Inject
-  @ConfigDir(sharedRoot = false)
-  private Path configDir;
 
-  @Inject
   public SpongePluginCore(final PluginContainer container, final Logger log,
                           TranslationProvider provider, CallbackProvider callbackProvider) {
     this(container, new SpongeServerProvider(), log, provider, callbackProvider);
   }
 
-  @Inject
   public SpongePluginCore(final PluginContainer container, ServerConnector connector, final Logger log,
                           TranslationProvider provider, CallbackProvider callbackProvider) {
     super(connector, new SpongeLogProvider(log), provider, callbackProvider);
@@ -63,6 +54,19 @@ public abstract class SpongePluginCore extends PluginCore {
     command = SpongeCommandHandler.create(container);
 
     registerCommands();
+  }
+
+  /**
+   * Used to register the command handlers.
+   */
+  @Override
+  public void registerCommandHandler() {
+    command = SpongeCommandHandler.create(container);
+  }
+
+  @Override
+  public void registerMenuHandler() {
+    //TODO: Sponge Menu Handler
   }
 
   public static SpongePluginCore instance() {

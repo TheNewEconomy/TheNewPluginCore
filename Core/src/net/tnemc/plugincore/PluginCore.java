@@ -187,13 +187,7 @@ public abstract class PluginCore {
 
     this.moduleCache = new ModuleFileCache();
 
-    this.updateChecker = new UpdateChecker();
-
-    logger.inform("Build Stability: " + this.updateChecker.stable());
-
-    if(this.updateChecker.needsUpdate()) {
-      logger.inform("Update Available! Latest: " + this.updateChecker.getBuild());
-    }
+    this.registerUpdateChecker();
   }
 
   public void onDisable() {
@@ -202,27 +196,37 @@ public abstract class PluginCore {
   }
 
   /**
+   * Used to register commands.
+   */
+  public abstract void registerCommands();
+
+  public abstract void registerStorage();
+
+  /**
    * Used to register the command handlers.
    */
   public abstract void registerCommandHandler();
+
+  public abstract String commandHelpWriter(ExecutableCommand command, CommandActor actor);
 
   public abstract void registerConfigs();
 
   public abstract void registerMenuHandler();
 
-  public abstract void registerStorage();
-
-  public abstract String commandHelpWriter(ExecutableCommand command, CommandActor actor);
-
-  /**
-   * Used to register commands.
-   */
-  public abstract void registerCommands();
-
   /**
    * Used to register {@link net.tnemc.plugincore.core.api.callback.Callback Callbacks} during initialization.
    */
   public abstract void registerCallbacks();
+
+  public void registerUpdateChecker() {
+    this.updateChecker = new UpdateChecker();
+
+    logger.inform("Build Stability: " + this.updateChecker.stable());
+
+    if(this.updateChecker.needsUpdate()) {
+      logger.inform("Update Available! Latest: " + this.updateChecker.getBuild());
+    }
+  }
 
   /**
    * @return The current version for this plugin.
