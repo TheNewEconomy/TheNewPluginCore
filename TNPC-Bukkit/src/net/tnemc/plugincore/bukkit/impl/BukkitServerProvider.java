@@ -21,7 +21,6 @@ package net.tnemc.plugincore.bukkit.impl;
 import net.tnemc.item.AbstractItemStack;
 import net.tnemc.item.bukkit.BukkitCalculationsProvider;
 import net.tnemc.item.bukkit.BukkitItemStack;
-import net.tnemc.item.providers.CalculationsProvider;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.bukkit.BukkitPluginCore;
 import net.tnemc.plugincore.bukkit.hook.PAPIParser;

@@ -27,7 +27,6 @@ import net.tnemc.plugincore.sponge.impl.SpongeServerProvider;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.plugin.PluginContainer;
-import revxrsal.commands.sponge.SpongeCommandHandler;
 
 /**
  * SpongePluginCore
@@ -35,7 +34,7 @@ import revxrsal.commands.sponge.SpongeCommandHandler;
  * @author creatorfromhell
  * @since 0.0.1.0
  */
-public abstract class SpongePluginCore extends PluginCore {
+public class SpongePluginCore extends PluginCore {
 
 
   protected final PluginContainer container;

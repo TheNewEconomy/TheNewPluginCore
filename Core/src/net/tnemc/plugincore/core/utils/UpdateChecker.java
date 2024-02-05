@@ -35,15 +35,15 @@ public class UpdateChecker {
   }
 
   public boolean isEarlyBuild() {
-    return ver.isLowerThan(PluginCore.instance().version() + "-" + PluginCore.instance().build());
+    return ver.isLowerThan(PluginCore.engine().version() + "-" + PluginCore.engine().build());
   }
 
   public boolean needsUpdate() {
-    return ver.isGreaterThan(PluginCore.instance().version() + "-" + PluginCore.instance().build());
+    return ver.isGreaterThan(PluginCore.engine().version() + "-" + PluginCore.engine().build());
   }
 
   public String stable() {
-    if(new Semver(PluginCore.instance().version() + "-" + PluginCore.instance().build()).isStable()) {
+    if(new Semver(PluginCore.engine().version() + "-" + PluginCore.engine().build()).isStable()) {
       return "Stable";
     }
     return "Not Stable";

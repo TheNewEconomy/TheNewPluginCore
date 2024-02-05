@@ -41,6 +41,16 @@ public abstract class PluginEngine {
 
   protected UpdateChecker updateChecker = null;
 
+  /**
+   * @return The current version for this plugin.
+   */
+  public abstract String version();
+
+  /**
+   * @return The build for this version.
+   */
+  public abstract String build();
+
   public abstract void registerConfigs();
 
   public abstract void registerStorage();

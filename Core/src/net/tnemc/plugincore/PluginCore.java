@@ -39,7 +39,7 @@ import revxrsal.commands.CommandHandler;
 import java.io.File;
 import java.util.UUID;
 import java.util.regex.Pattern;
-public abstract class PluginCore {
+public class PluginCore {
 
   /*
    * Core final variables utilized within TNPC.
@@ -191,16 +191,6 @@ public abstract class PluginCore {
   }
 
   /**
-   * @return The current version for this plugin.
-   */
-  public abstract String version();
-
-  /**
-   * @return The build for this version.
-   */
-  public abstract String build();
-
-  /**
    * The implementation's {@link LogProvider}.
    *
    * @return The log provider.
@@ -281,5 +271,9 @@ public abstract class PluginCore {
 
   public void setCallbackManager(CallbackManager callbackManager) {
     this.callbackManager = callbackManager;
+  }
+
+  public static PluginEngine engine() {
+    return instance.engine;
   }
 }
