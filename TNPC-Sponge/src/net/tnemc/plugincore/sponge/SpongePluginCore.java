@@ -18,6 +18,7 @@ package net.tnemc.plugincore.sponge;
  */
 
 import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.PluginEngine;
 import net.tnemc.plugincore.core.api.CallbackProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
 import net.tnemc.plugincore.core.io.message.TranslationProvider;
@@ -39,34 +40,20 @@ public abstract class SpongePluginCore extends PluginCore {
 
   protected final PluginContainer container;
 
-  public SpongePluginCore(final PluginContainer container, final Logger log,
+  public SpongePluginCore(final PluginContainer container, PluginEngine engine, final Logger log,
                           TranslationProvider provider, CallbackProvider callbackProvider) {
-    this(container, new SpongeServerProvider(), log, provider, callbackProvider);
+    this(container, engine, new SpongeServerProvider(), log, provider, callbackProvider);
   }
 
-  public SpongePluginCore(final PluginContainer container, ServerConnector connector, final Logger log,
-                          TranslationProvider provider, CallbackProvider callbackProvider) {
-    super(connector, new SpongeLogProvider(log), provider, callbackProvider);
+  public SpongePluginCore(final PluginContainer container, PluginEngine engine, ServerConnector connector,
+                          final Logger log, TranslationProvider provider, CallbackProvider callbackProvider) {
+    super(engine, connector, new SpongeLogProvider(log), provider, callbackProvider);
 
     setInstance(this);
     this.container = container;
     this.logger = new SpongeLogProvider(log);
-    command = SpongeCommandHandler.create(container);
-
-    registerCommands();
-  }
-
-  /**
-   * Used to register the command handlers.
-   */
-  @Override
-  public void registerCommandHandler() {
-    command = SpongeCommandHandler.create(container);
-  }
-
-  @Override
-  public void registerMenuHandler() {
-    //TODO: Sponge Menu Handler
+    engine.registerCommandHandler();
+    engine.registerCommands();
   }
 
   public static SpongePluginCore instance() {

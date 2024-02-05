@@ -21,6 +21,7 @@ import net.tnemc.menu.bukkit.BukkitMenuHandler;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.bukkit.impl.BukkitLogProvider;
 import net.tnemc.plugincore.bukkit.impl.BukkitServerProvider;
+import net.tnemc.plugincore.core.PluginEngine;
 import net.tnemc.plugincore.core.api.CallbackProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
 import net.tnemc.plugincore.core.io.message.TranslationProvider;
@@ -36,13 +37,14 @@ import revxrsal.commands.bukkit.BukkitCommandHandler;
 public abstract class BukkitPluginCore extends PluginCore {
 
   private final JavaPlugin plugin;
-  public BukkitPluginCore(JavaPlugin plugin, TranslationProvider provider, CallbackProvider callbackProvider) {
-    this(plugin, new BukkitServerProvider(), provider, callbackProvider);
+  public BukkitPluginCore(JavaPlugin plugin, PluginEngine engine, TranslationProvider provider,
+                          CallbackProvider callbackProvider) {
+    this(plugin, engine, new BukkitServerProvider(), provider, callbackProvider);
   }
 
-  public BukkitPluginCore(JavaPlugin plugin, ServerConnector connector, TranslationProvider provider,
-                          CallbackProvider callbackProvider) {
-    super(connector, new BukkitLogProvider(plugin.getLogger()), provider, callbackProvider);
+  public BukkitPluginCore(JavaPlugin plugin, PluginEngine engine, ServerConnector connector,
+                          TranslationProvider provider, CallbackProvider callbackProvider) {
+    super(engine, connector, new BukkitLogProvider(plugin.getLogger()), provider, callbackProvider);
 
     setInstance(this);
     this.plugin = plugin;
@@ -57,19 +59,6 @@ public abstract class BukkitPluginCore extends PluginCore {
     this.directory = plugin.getDataFolder();
 
     super.onEnable();
-  }
-
-  /**
-   * Used to register the command handlers.
-   */
-  @Override
-  public void registerCommandHandler() {
-    command = BukkitCommandHandler.create(plugin);
-  }
-
-  @Override
-  public void registerMenuHandler() {
-    this.menuHandler = new BukkitMenuHandler(plugin, true);
   }
 
   public static BukkitPluginCore instance() {

@@ -18,7 +18,7 @@ package net.tnemc.plugincore;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.menu.core.MenuHandler;
+import net.tnemc.plugincore.core.PluginEngine;
 import net.tnemc.plugincore.core.api.CallbackManager;
 import net.tnemc.plugincore.core.api.CallbackProvider;
 import net.tnemc.plugincore.core.channel.ChannelMessageManager;
@@ -35,8 +35,6 @@ import net.tnemc.plugincore.core.module.cache.ModuleFileCache;
 import net.tnemc.plugincore.core.utils.UpdateChecker;
 import org.jetbrains.annotations.Nullable;
 import revxrsal.commands.CommandHandler;
-import revxrsal.commands.command.CommandActor;
-import revxrsal.commands.command.ExecutableCommand;
 
 import java.io.File;
 import java.util.UUID;
@@ -60,14 +58,12 @@ public abstract class PluginCore {
   //General Key Object Instances
   protected LogProvider logger;
 
+  protected PluginEngine engine;
+
   //Manager Instances
   protected ServerConnector server;
-  protected StorageManager storage;
   protected UUIDProvider uuidProvider;
-  protected CommandHandler command;
   private final MessageHandler messenger;
-
-  protected MenuHandler menuHandler;
 
   /* Plugin Instance */
   private static PluginCore instance;
@@ -80,13 +76,12 @@ public abstract class PluginCore {
 
   private boolean enabled = false;
 
-  protected UpdateChecker updateChecker = null;
-
   protected UUID serverID;
 
-  public PluginCore(ServerConnector server, LogProvider logger, TranslationProvider provider, CallbackProvider callbackProvider) {
+  public PluginCore(PluginEngine engine, ServerConnector server, LogProvider logger, TranslationProvider provider, CallbackProvider callbackProvider) {
     this.server = server;
     this.logger = logger;
+    this.engine = engine;
     this.messenger = new MessageHandler(provider);
     this.callbackManager = new CallbackManager(callbackProvider);
   }
@@ -129,7 +124,7 @@ public abstract class PluginCore {
 
     this.uuidProvider = new BaseUUIDProvider();
 
-    this.registerConfigs();
+    this.engine.registerConfigs();
 
     //Load our modules
     loader.load();
@@ -140,7 +135,7 @@ public abstract class PluginCore {
     //Call initConfigurations for all modules loaded.
     loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().initConfigurations(directory)));
 
-    this.registerCallbacks();
+    this.engine.registerCallbacks(callbackManager);
 
     //Register the callback listeners and callbacks for the modules
     loader.getModules().values().forEach((moduleWrapper ->{
@@ -155,77 +150,44 @@ public abstract class PluginCore {
 
     this.channelMessageManager = new ChannelMessageManager();
 
-    this.registerStorage();
-    if(this.storage == null) {
+    this.engine.registerStorage();
+    if(this.engine.storage() == null) {
       logger.warning("Storage engine not initialized, proceeding without storage!", DebugLevel.OFF);
     } else {
-      if(! this.storage.meetsRequirement()) {
+      if(! this.storage().meetsRequirement()) {
         logger.error("This server does not meet SQL requirements needed!", DebugLevel.OFF);
         return;
       }
     }
 
     //Call the enableSave method for all modules loaded.
-    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this.storage)));
+    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this.engine.storage())));
 
     //register our commands
-    this.registerCommandHandler();
+    this.engine.registerCommandHandler();
 
     //Register our help writer.
-    command.setHelpWriter(this::commandHelpWriter);
+    command().setHelpWriter(this.command().getHelpWriter());
 
     //Register our commands.
-    this.registerCommands();
+    this.engine.registerCommands();
 
     //Call our command methods for the modules.
     loader.getModules().values().forEach((moduleWrapper ->{
-      moduleWrapper.getModule().registerCommands(command);
+      moduleWrapper.getModule().registerCommands(this.engine.command());
     }));
 
 
-    this.registerMenuHandler();
+    this.engine.registerMenuHandler();
 
     this.moduleCache = new ModuleFileCache();
 
-    this.registerUpdateChecker();
+    this.engine.registerUpdateChecker();
   }
 
   public void onDisable() {
 
     loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().disable(this)));
-  }
-
-  /**
-   * Used to register commands.
-   */
-  public abstract void registerCommands();
-
-  public abstract void registerStorage();
-
-  /**
-   * Used to register the command handlers.
-   */
-  public abstract void registerCommandHandler();
-
-  public abstract String commandHelpWriter(ExecutableCommand command, CommandActor actor);
-
-  public abstract void registerConfigs();
-
-  public abstract void registerMenuHandler();
-
-  /**
-   * Used to register {@link net.tnemc.plugincore.core.api.callback.Callback Callbacks} during initialization.
-   */
-  public abstract void registerCallbacks();
-
-  public void registerUpdateChecker() {
-    this.updateChecker = new UpdateChecker();
-
-    logger.inform("Build Stability: " + this.updateChecker.stable());
-
-    if(this.updateChecker.needsUpdate()) {
-      logger.inform("Update Available! Latest: " + this.updateChecker.getBuild());
-    }
   }
 
   /**
@@ -253,7 +215,7 @@ public abstract class PluginCore {
    * @return The {@link StorageManager}.
    */
   public static StorageManager storage() {
-    return instance.storage;
+    return instance.engine.storage();
   }
 
   /**
@@ -286,7 +248,7 @@ public abstract class PluginCore {
 
   @Nullable
   public static UpdateChecker update() {
-    return instance.updateChecker;
+    return instance.engine.update();
   }
 
   public ModuleFileCache moduleCache() {
@@ -302,7 +264,7 @@ public abstract class PluginCore {
   }
 
   public CommandHandler command() {
-    return command;
+    return engine.command();
   }
 
   public static PluginCore instance() {
@@ -315,10 +277,6 @@ public abstract class PluginCore {
 
   public UUID getServerID() {
     return serverID;
-  }
-
-  public void setStorage(StorageManager storage) {
-    this.storage = storage;
   }
 
   public void setCallbackManager(CallbackManager callbackManager) {
