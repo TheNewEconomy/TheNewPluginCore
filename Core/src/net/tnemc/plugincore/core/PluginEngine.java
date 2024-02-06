@@ -41,6 +41,12 @@ public abstract class PluginEngine {
 
   protected UpdateChecker updateChecker = null;
 
+  //Phase-related methods.
+  //TODO: Early onEnable, middle, end
+
+  //TODO: onDisable
+
+
   /**
    * @return The current version for this plugin.
    */
