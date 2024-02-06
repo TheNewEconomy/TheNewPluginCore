@@ -105,4 +105,19 @@ public abstract class PluginEngine {
   public UpdateChecker update() {
     return updateChecker;
   }
+
+  public void postConfigs() {
+  }
+
+  public void postStorage() {
+  }
+
+  public void postCommands() {
+  }
+
+  public void postEnable() {
+  }
+
+  public void postDisable() {
+  }
 }

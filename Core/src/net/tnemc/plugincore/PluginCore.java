@@ -148,6 +148,8 @@ public class PluginCore {
       });
     }));
 
+    this.engine.postConfigs();
+
     this.channelMessageManager = new ChannelMessageManager();
 
     this.engine.registerStorage();
@@ -159,6 +161,8 @@ public class PluginCore {
         return;
       }
     }
+
+    this.engine.postStorage();
 
     //Call the enableSave method for all modules loaded.
     loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this.engine.storage())));
@@ -178,16 +182,23 @@ public class PluginCore {
     }));
 
 
+    this.engine.postCommands();
+
+
     this.engine.registerMenuHandler();
 
     this.moduleCache = new ModuleFileCache();
 
     this.engine.registerUpdateChecker();
+
+    this.engine.postEnable();
   }
 
   public void onDisable() {
 
     loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().disable(this)));
+
+    this.engine.postDisable();
   }
 
   /**
