@@ -280,6 +280,10 @@ public class PluginCore {
     return serverID;
   }
 
+  public void setServerID(UUID serverID) {
+    this.serverID = serverID;
+  }
+
   public void setCallbackManager(CallbackManager callbackManager) {
     this.callbackManager = callbackManager;
   }
