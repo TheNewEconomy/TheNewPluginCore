@@ -37,11 +37,6 @@ public class ChannelMessageManager {
 
   private final List<String> accountsMessage = new ArrayList<>();
 
-  public ChannelMessageManager() {
-
-    register();
-  }
-
   public void register(final ChannelMessageHandler handler) {
     handlers.put("tne:" + handler.tag, handler);
   }

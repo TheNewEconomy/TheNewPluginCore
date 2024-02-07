@@ -151,6 +151,8 @@ public class PluginCore {
     this.engine.postConfigs();
 
     this.channelMessageManager = new ChannelMessageManager();
+    this.engine.registerPluginChannels();
+    this.channelMessageManager.register();
 
     this.engine.registerStorage();
     if(this.engine.storage() == null) {

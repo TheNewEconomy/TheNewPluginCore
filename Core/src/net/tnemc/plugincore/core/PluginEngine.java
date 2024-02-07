@@ -59,6 +59,8 @@ public abstract class PluginEngine {
 
   public abstract void registerConfigs();
 
+  public abstract void registerPluginChannels();
+
   public abstract void registerStorage();
 
   /**
