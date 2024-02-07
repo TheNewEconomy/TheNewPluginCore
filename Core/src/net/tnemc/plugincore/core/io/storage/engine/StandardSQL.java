@@ -50,13 +50,6 @@ public abstract class StandardSQL implements SQLEngine {
   public StandardSQL(final String prefix, Dialect dialect) {
     this.dialect = dialect;
     this.prefix = prefix;
-
-    initSQLDatabales();
-  }
-
-  protected void initSQLDatabales() {
-
-    //add our datables.
   }
 
   /**
@@ -65,9 +58,6 @@ public abstract class StandardSQL implements SQLEngine {
    */
   @Override
   public void initialize(StorageConnector<?> connector) {
-    if(connector instanceof SQLConnector) {
-      //TODO: initialize
-    }
   }
 
   /**

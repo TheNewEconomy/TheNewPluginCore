@@ -171,7 +171,7 @@ public class PluginCore {
     this.engine.registerCommandHandler();
 
     //Register our help writer.
-    command().setHelpWriter(this.command().getHelpWriter());
+    command().setHelpWriter(engine::commandHelpWriter);
 
     //Register our commands.
     this.engine.registerCommands();
