@@ -78,6 +78,10 @@ public class BukkitCMDSource extends CmdSource<BukkitCommandActor> {
   public void message(final MessageData messageData) {
 
     try(BukkitAudiences provider = BukkitAudiences.create(BukkitPluginCore.instance().getPlugin())) {
+      if(identifier().isEmpty()) {
+        MessageHandler.translate(messageData, null, provider.sender(actor.getSender()));
+        return;
+      }
       MessageHandler.translate(messageData, identifier().get(), provider.sender(actor.getSender()));
     }
   }

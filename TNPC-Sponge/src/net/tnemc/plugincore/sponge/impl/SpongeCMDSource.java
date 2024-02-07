@@ -75,6 +75,10 @@ public class SpongeCMDSource extends CmdSource<SpongeCommandActor> {
    */
   @Override
   public void message(final MessageData messageData) {
+    if(identifier().isEmpty()) {
+      MessageHandler.translate(messageData, null, actor.getSource().audience());
+      return;
+    }
     MessageHandler.translate(messageData, identifier().get(), actor.getSource().audience());
   }
 }
