@@ -47,6 +47,12 @@ public interface StorageProvider {
   StorageEngine engine();
 
   /**
+   * Called after the connection is initialized, so we can do any actions that need done immediately
+   * after connecting.
+   */
+  void initialize();
+
+  /**
    * Used to store all data for an identifier in TNE. This method is not switched over to a secondary
    * thread automatically. Please make sure to use wisely.
    */
@@ -56,4 +62,20 @@ public interface StorageProvider {
    * Used to store all data in TNE.
    */
   void storeAll();
+
+  /**
+   * Used to purge TNE data.
+   */
+  void purge();
+
+  /**
+   * Used to reset all data in TNE.
+   */
+  void reset();
+
+  /**
+   * Used to back up data that is currently in the database.
+   * @return True if the backup was successful, otherwise false.
+   */
+  void backup();
 }

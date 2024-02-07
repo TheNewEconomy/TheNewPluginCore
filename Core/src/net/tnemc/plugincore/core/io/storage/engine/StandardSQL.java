@@ -112,10 +112,7 @@ public abstract class StandardSQL implements SQLEngine {
    */
   @Override
   public void backup(StorageConnector<?> connector) {
-
-    if(connector instanceof SQLConnector) {
-
-    }
+    T
   }
 
   /**

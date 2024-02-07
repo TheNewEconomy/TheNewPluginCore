@@ -83,6 +83,7 @@ public class StorageManager {
     this.provider.initialize(engine);
     this.provider.connector().initialize();
     this.provider.engine().initialize(this.provider.connector());
+    this.provider.initialize();
   }
 
   public static StorageManager instance() {
@@ -168,6 +169,8 @@ public class StorageManager {
     for(Datable<?> data : provider.engine().datables().values()) {
       PluginCore.server().scheduler().createDelayedTask(()->data.purge(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);
     }
+
+    provider.purge();
   }
 
   /**
@@ -178,6 +181,8 @@ public class StorageManager {
     PluginCore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this)));
 
     PluginCore.server().scheduler().createDelayedTask(()->provider.engine().reset(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);
+
+    provider.reset();
   }
 
   /**
@@ -189,6 +194,8 @@ public class StorageManager {
     PluginCore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this)));
 
     PluginCore.server().scheduler().createDelayedTask(()->provider.engine().backup(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);
+
+    provider.backup();
     return true;
   }
 
