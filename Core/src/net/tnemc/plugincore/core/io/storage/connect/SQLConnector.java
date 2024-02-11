@@ -146,19 +146,18 @@ public class SQLConnector implements StorageConnector<Connection> {
    *
    * @return True to indicate that the statement has executed successfully, otherwise false.
    */
-  public boolean executeUpdate(@Language("SQL") final String query, Object[] variables) {
+  public int executeUpdate(@Language("SQL") final String query, Object[] variables) {
     try(Connection connection = connection();
         PreparedStatement statement = connection.prepareStatement(query)) {
 
       for(int i = 0; i < variables.length; i++) {
         statement.setObject((i + 1), variables[i]);
       }
-      statement.executeUpdate();
-      return true;
+      return statement.executeUpdate();
     } catch(SQLException e) {
       PluginCore.log().sqlError("", e, query, variables, DebugLevel.OFF);
     }
-    return false;
+    return 0;
   }
 
   public Dialect dialect() {
