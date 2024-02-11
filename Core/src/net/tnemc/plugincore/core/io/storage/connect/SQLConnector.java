@@ -134,15 +134,7 @@ public class SQLConnector implements StorageConnector<Connection> {
       return statement.executeQuery();
 
     } catch(SQLException e) {
-      e.printStackTrace();
-      PluginCore.log().error("======= Query Statement =======", DebugLevel.OFF);
-      PluginCore.log().error(query, DebugLevel.OFF);
-      PluginCore.log().error("======= Query Variables Statement =======", DebugLevel.OFF);
-
-      for(int i = 0; i < variables.length; i++) {
-        PluginCore.log().error("Variable - " + variables[i], DebugLevel.OFF);
-      }
-      PluginCore.log().error("======= End Query Statement =======", DebugLevel.OFF);
+      PluginCore.log().sqlError("", e, query, variables, DebugLevel.OFF);
     }
     return null;
   }
@@ -151,8 +143,10 @@ public class SQLConnector implements StorageConnector<Connection> {
    * Used to execute a prepared update.
    * @param query The query string.
    * @param variables An array of variables for the prepared statement.
+   *
+   * @return True to indicate that the statement has executed successfully, otherwise false.
    */
-  public void executeUpdate(@Language("SQL") final String query, Object[] variables) {
+  public boolean executeUpdate(@Language("SQL") final String query, Object[] variables) {
     try(Connection connection = connection();
         PreparedStatement statement = connection.prepareStatement(query)) {
 
@@ -160,18 +154,11 @@ public class SQLConnector implements StorageConnector<Connection> {
         statement.setObject((i + 1), variables[i]);
       }
       statement.executeUpdate();
-
+      return true;
     } catch(SQLException e) {
-      e.printStackTrace();
-      PluginCore.log().error("======= Query Statement =======", DebugLevel.OFF);
-      PluginCore.log().error(query, DebugLevel.OFF);
-      PluginCore.log().error("======= Query Variables Statement =======", DebugLevel.OFF);
-
-      for(int i = 0; i < variables.length; i++) {
-        PluginCore.log().error("Variable - " + variables[i], DebugLevel.OFF);
-      }
-      PluginCore.log().error("======= End Query Statement =======", DebugLevel.OFF);
+      PluginCore.log().sqlError("", e, query, variables, DebugLevel.OFF);
     }
+    return false;
   }
 
   public Dialect dialect() {

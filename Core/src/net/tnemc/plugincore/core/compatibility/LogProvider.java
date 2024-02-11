@@ -18,6 +18,7 @@ package net.tnemc.plugincore.core.compatibility;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
 
 /**
@@ -95,4 +96,27 @@ public interface LogProvider {
    * @param level The {@link DebugLevel} to log this message at.
    */
   void error(String message, Exception exception, DebugLevel level);
+
+
+  /**
+   * Sends an error that is SQL-related.
+   * @param message The message to send.
+   * @param exception The error's {@link Exception}.
+   * @param query The query string.
+   * @param variables An array of variables for the prepared statement.
+   * @param level The {@link DebugLevel} to log this message at.
+   */
+  default void sqlError(String message, Exception exception, String query, Object[] variables, DebugLevel level) {
+    error("======= Query Error =======", level);
+    error(message, exception, level);
+
+    error("======= Query Statement =======", level);
+    error(query, level);
+    error("======= Query Variables Statement =======", level);
+
+    for(int i = 0; i < variables.length; i++) {
+      error("Variable - " + variables[i], level);
+    }
+    error("======= End Query Statement =======", level);
+  }
 }
