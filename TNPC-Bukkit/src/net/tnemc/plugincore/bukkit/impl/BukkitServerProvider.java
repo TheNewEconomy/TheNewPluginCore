@@ -255,13 +255,15 @@ public class BukkitServerProvider implements ServerConnector {
 
   /**
    * Used to replace colour codes in a string.
-   *
    * @param string The string to format.
-   *
+   * @param strip If true, the color codes are striped from the string.
    * @return The formatted string.
    */
   @Override
-  public String replaceColours(String string) {
+  public String replaceColours(String string, boolean strip) {
+    if(strip) {
+      return ChatColor.stripColor(string);
+    }
     return ChatColor.translateAlternateColorCodes('&', string);
   }
 

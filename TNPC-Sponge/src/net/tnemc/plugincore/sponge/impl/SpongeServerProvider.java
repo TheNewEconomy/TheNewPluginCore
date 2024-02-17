@@ -18,6 +18,7 @@ package net.tnemc.plugincore.sponge.impl;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.tnemc.item.AbstractItemStack;
 import net.tnemc.plugincore.core.compatibility.CmdSource;
 import net.tnemc.plugincore.core.compatibility.LogProvider;
@@ -229,14 +230,13 @@ public class SpongeServerProvider implements ServerConnector {
 
   /**
    * Used to replace colour codes in a string.
-   *
    * @param string The string to format.
-   *
+   * @param strip If true, the color codes are striped from the string.
    * @return The formatted string.
    */
   @Override
-  public String replaceColours(String string) {
-    return null;
+  public String replaceColours(String string, boolean strip) {
+    return string;
   }
 
   @Override

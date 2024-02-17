@@ -169,9 +169,10 @@ public interface ServerConnector {
   /**
    * Used to replace colour codes in a string.
    * @param string The string to format.
+   * @param strip If true, the color codes are striped from the string.
    * @return The formatted string.
    */
-  String replaceColours(final String string);
+  String replaceColours(final String string, boolean strip);
 
   /**
    * Provides direct access to the implementation's instance of TNIL's AbstractItemStack, which acts
