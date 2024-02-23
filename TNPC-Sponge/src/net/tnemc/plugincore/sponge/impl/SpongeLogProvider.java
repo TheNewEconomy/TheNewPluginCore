@@ -94,9 +94,7 @@ public record SpongeLogProvider(Logger logger) implements LogProvider {
   public void error(String message, Exception exception, DebugLevel level) {
     if(level.compare(PluginCore.instance().getLevel())) {
       logger.error("====== Exception Occurred ======");
-      for(StackTraceElement trace : exception.getStackTrace()) {
-        logger.error(trace.toString());
-      }
+      exception.printStackTrace();
       logger.error("====== Please report this to someone ======");
     }
   }

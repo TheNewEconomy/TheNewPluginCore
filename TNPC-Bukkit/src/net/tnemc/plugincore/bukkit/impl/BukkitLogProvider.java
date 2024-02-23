@@ -95,9 +95,7 @@ public record BukkitLogProvider(Logger logger) implements LogProvider {
   public void error(String message, Exception exception, DebugLevel level) {
     if(level.compare(PluginCore.instance().getLevel())) {
       logger.warning("====== Exception Occurred ======");
-      for(StackTraceElement trace : exception.getStackTrace()) {
-        logger.warning(trace.toString());
-      }
+      exception.printStackTrace();
       logger.warning("====== Please report this to someone ======");
     }
   }
