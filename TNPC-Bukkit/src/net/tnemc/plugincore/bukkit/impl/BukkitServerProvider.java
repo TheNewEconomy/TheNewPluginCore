@@ -43,8 +43,12 @@ import org.jetbrains.annotations.NotNull;
 import revxrsal.commands.bukkit.BukkitCommandActor;
 import revxrsal.commands.command.CommandActor;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.UUID;
 
 /**
@@ -68,6 +72,10 @@ public class BukkitServerProvider implements ServerConnector {
 
   public BukkitServerProvider(BukkitScheduler scheduler) {
     this.scheduler = scheduler;
+  }
+
+  public void setDefaultWorld(String world) {
+    this.world = world;
   }
 
   @Override
@@ -164,7 +172,9 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public boolean playedBefore(UUID uuid) {
-    return false;
+
+    final OfflinePlayer player = Bukkit.getOfflinePlayer(uuid);
+    return player.hasPlayedBefore();
   }
 
   /**
@@ -178,7 +188,9 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public boolean playedBefore(String name) {
-    return false;
+
+    final OfflinePlayer player = Bukkit.getOfflinePlayer(name);
+    return player.hasPlayedBefore();
   }
 
   /**
@@ -239,6 +251,19 @@ public class BukkitServerProvider implements ServerConnector {
       world = Bukkit.getServer().getWorlds().get(0).getName();
     }
     return world;
+    /*
+
+    if(world == null) {
+
+      final Properties props = new Properties();
+      try {
+
+        props.load(new FileInputStream(new File(".", "server.properties")));
+      } catch(IOException ignore) {
+      }
+      world = props.getProperty("level-name");
+    }
+    return world;*/
   }
 
   /**

@@ -76,11 +76,21 @@ public class MessageHandler {
    * @param audience The audience that should receive the translated message.
    */
   public static void translate(final MessageData messageData, UUID identifier, Audience audience) {
+    final String msg = instance.translator.translateNode(messageData, "default");
+
     if(identifier == null) {
-      audience.sendMessage(instance.mini.deserialize(instance.translator.translateNode(messageData, "default")));
+
+      if(!msg.isEmpty()) {
+
+        audience.sendMessage(instance.mini.deserialize(msg));
+      }
       return;
     }
-    audience.sendMessage(instance.mini.deserialize(PluginCore.server().replacePlaceholder(identifier, instance.translator.translateNode(messageData, "default"))));
+
+    if(!msg.isEmpty()) {
+
+      audience.sendMessage(instance.mini.deserialize(PluginCore.server().replacePlaceholder(identifier, msg)));
+    }
   }
 
   /**
@@ -90,8 +100,14 @@ public class MessageHandler {
    * @param audiences The audiences that should receive the translated message.
    */
   public static void translate(final MessageData messageData, UUID identifier, Audience... audiences) {
+
+    final String msg = instance.translator.translateNode(messageData, "default");
+    if(msg.isEmpty()) {
+      return;
+    }
+
     for(Audience a : audiences) {
-      a.sendMessage(instance.mini.deserialize(instance.translator.translateNode(messageData, "default")));
+      a.sendMessage(instance.mini.deserialize(msg));
     }
   }
 
