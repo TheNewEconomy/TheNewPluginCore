@@ -35,11 +35,11 @@ public class UpdateChecker {
   }
 
   public boolean isEarlyBuild() {
-    return ver.isLowerThan(PluginCore.engine().version() + "-" + PluginCore.engine().build());
+    return ver.isLowerThan(PluginCore.engine().version());
   }
 
   public boolean needsUpdate() {
-    return ver.isGreaterThan(PluginCore.engine().version() + "-" + PluginCore.engine().build());
+    return ver.isGreaterThan(PluginCore.engine().version());
   }
 
   public String stable() {
