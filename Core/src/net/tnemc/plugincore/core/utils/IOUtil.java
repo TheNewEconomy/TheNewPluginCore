@@ -1,6 +1,7 @@
 package net.tnemc.plugincore.core.utils;
 
 import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.PluginEngine;
 import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -51,7 +52,7 @@ public class IOUtil {
       sc.init(null, selfCertificates(), new SecureRandom());
       HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 
-      URL url = new URL("https://tnemc.net/files/tnebuild.txt");
+      URL url = new URL(PluginCore.engine().versionCheckSite());
       HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
       connection.setReadTimeout(3000);
 

@@ -46,6 +46,7 @@ public abstract class PluginEngine {
 
   //TODO: onDisable
 
+  public abstract String versionCheckSite();
 
   /**
    * @return The current version for this plugin.
