@@ -18,8 +18,10 @@ package net.tnemc.plugincore.core.io.message;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Represents data for a message translation to be sent to a sender.
@@ -39,6 +41,26 @@ public class MessageData {
 
   public void addReplacement(final String search, final String replacement) {
     this.replacements.put(search, replacement);
+  }
+
+  public void addReplacement(final String search, final BigDecimal replacement) {
+    this.replacements.put(search, replacement.toPlainString());
+  }
+
+  public void addReplacement(final String search, final Integer replacement) {
+    this.replacements.put(search, String.valueOf(replacement));
+  }
+
+  public void addReplacement(final String search, final Double replacement) {
+    this.replacements.put(search, String.valueOf(replacement));
+  }
+
+  public void addReplacement(final String search, final Boolean replacement) {
+    this.replacements.put(search, String.valueOf(replacement));
+  }
+
+  public void addReplacement(final String search, final UUID replacement) {
+    this.replacements.put(search, replacement.toString());
   }
 
   public void addReplacements(final String[] search, final String[] replacements) {
