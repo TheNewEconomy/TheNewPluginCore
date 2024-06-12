@@ -35,23 +35,19 @@ import java.util.UUID;
  */
 public class MessageHandler {
 
-  final MiniMessage mini;
+  static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
   final TranslationProvider translator;
 
   private static MessageHandler instance;
 
   public MessageHandler(final TranslationProvider translator) {
     this.translator = translator;
-    this.mini = MiniMessage.builder()
-        .tags(TagResolver.standard()).build();
 
     instance = this;
   }
 
   public MessageHandler(final TranslationProvider translator, final TagResolver... resolvers) {
     this.translator = translator;
-    this.mini = MiniMessage.builder().tags(TagResolver.builder().resolvers(resolvers).build())
-        .build();
 
     instance = this;
   }
@@ -66,7 +62,7 @@ public class MessageHandler {
    * the given player.
    */
   public static Component grab(final MessageData messageData, UUID id) {
-    return instance.mini.deserialize(instance.translator.translate(id, messageData));
+    return MINI_MESSAGE.deserialize(instance.translator.translate(id, messageData));
   }
 
   /**
@@ -82,14 +78,14 @@ public class MessageHandler {
 
       if(!msg.isEmpty()) {
 
-        audience.sendMessage(instance.mini.deserialize(msg));
+        audience.sendMessage(MINI_MESSAGE.deserialize(msg));
       }
       return;
     }
 
     if(!msg.isEmpty()) {
 
-      audience.sendMessage(instance.mini.deserialize(PluginCore.server().replacePlaceholder(identifier, msg)));
+      audience.sendMessage(MINI_MESSAGE.deserialize(PluginCore.server().replacePlaceholder(identifier, msg)));
     }
   }
 
@@ -107,12 +103,12 @@ public class MessageHandler {
     }
 
     for(Audience a : audiences) {
-      a.sendMessage(instance.mini.deserialize(msg));
+      a.sendMessage(MINI_MESSAGE.deserialize(msg));
     }
   }
 
   public MiniMessage getMini() {
-    return mini;
+    return MINI_MESSAGE;
   }
 
   public TranslationProvider getTranslator() {
