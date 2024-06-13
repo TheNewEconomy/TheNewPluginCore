@@ -85,7 +85,7 @@ public class MessageHandler {
 
     if(!msg.isEmpty()) {
 
-      audience.sendMessage(MINI_MESSAGE.deserialize(PluginCore.server().replacePlaceholder(identifier, msg)));
+      audience.sendMessage(MINI_MESSAGE.deserialize(msg));
     }
   }
 
