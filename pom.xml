@@ -14,7 +14,7 @@
 
     <properties>
         <tnil.version>0.1.7.4-Pre-28</tnil.version>
-        <tnml.version>1.5.0.0-SNAPSHOT-4</tnml.version>
+        <tnml.version>1.5.0.0-SNAPSHOT-5</tnml.version>
         <tne.relocation>net.tnpc.libs</tne.relocation>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
