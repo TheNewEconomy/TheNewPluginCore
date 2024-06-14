@@ -13,8 +13,8 @@
     </modules>
 
     <properties>
-        <tnil.version>0.1.7.5-Pre-1</tnil.version>
-        <tnml.version>1.5.0.1-SNAPSHOT-1</tnml.version>
+        <tnil.version>0.1.7.5-Pre-3</tnil.version>
+        <tnml.version>1.5.0.1-SNAPSHOT-2</tnml.version>
         <tne.relocation>net.tnpc.libs</tne.relocation>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
