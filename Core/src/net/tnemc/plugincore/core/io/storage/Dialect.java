@@ -49,6 +49,6 @@ public interface Dialect {
    * @return True if the provided version meets our requirement.
    */
   default boolean checkRequirement(final String version) {
-    return new Semver(version).isGreaterThanOrEqualTo(requirement());
+    return new Semver(version, Semver.SemverType.LOOSE).isGreaterThanOrEqualTo(requirement());
   }
 }
