@@ -17,6 +17,7 @@ package net.tnemc.plugincore.core;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.tnemc.item.providers.HelperMethods;
 import net.tnemc.menu.core.MenuHandler;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.api.CallbackManager;
@@ -38,6 +39,7 @@ public abstract class PluginEngine {
   protected CommandHandler command;
 
   protected MenuHandler menuHandler;
+  protected HelperMethods helperMethods;
 
   protected UpdateChecker updateChecker = null;
 
@@ -103,6 +105,10 @@ public abstract class PluginEngine {
 
   public MenuHandler menu() {
     return menuHandler;
+  }
+
+  public HelperMethods helper() {
+    return helperMethods;
   }
 
   public UpdateChecker update() {
