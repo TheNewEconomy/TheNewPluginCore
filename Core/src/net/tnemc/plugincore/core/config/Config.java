@@ -44,24 +44,35 @@ public abstract class Config {
 
   protected final List<String> nodes = new ArrayList<>();
 
+  protected Settings[] settings;
+
   public Config(final String fileName, String defaults, List<String> nodes, Settings... settings) {
     this.defaults = defaults;
     this.nodes.addAll(nodes);
     file = new File(PluginCore.directory(), fileName);
 
+    this.settings = settings;
 
     if(!file.exists()) {
       PluginCore.log().error("Configuration doesn't exist! File Name:" + fileName, DebugLevel.OFF);
     }
+  }
+
+  public boolean load() {
 
     try(InputStream in = getClass().getResourceAsStream(defaults)) {
 
       if(in != null) {
         this.yaml = YamlDocument.create(file, in, settings);
+
+        return true;
       }
     } catch (IOException e) {
-      PluginCore.log().error("Error while creating config \"" + fileName + "\".", e, DebugLevel.OFF);
+
+      PluginCore.log().error("Error while creating config \"" + file.getName() + "\".", e, DebugLevel.OFF);
+      return false;
     }
+    return false;
   }
 
   public YamlDocument getYaml() {
