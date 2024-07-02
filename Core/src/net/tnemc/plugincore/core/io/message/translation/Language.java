@@ -18,7 +18,7 @@ package net.tnemc.plugincore.core.io.message.translation;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.simpleyaml.configuration.file.YamlFile;
+import dev.dejvokep.boostedyaml.YamlDocument;
 
 /**
  * Language
@@ -26,24 +26,7 @@ import org.simpleyaml.configuration.file.YamlFile;
  * @author creatorfromhell
  * @since 0.1.2.0
  */
-public  class Language {
-
-  private final YamlFile config;
-
-  private final String name;
-
-  public Language(String name, YamlFile config) {
-    this.name = name;
-    this.config = config;
-  }
-
-  public YamlFile getConfig() {
-    return config;
-  }
-
-  public String getName() {
-    return name;
-  }
+public record Language(String name, YamlDocument config) {
 
   public boolean hasTranslation(String node) {
     return config.contains(node);
