@@ -96,7 +96,7 @@ public abstract class Config {
 
   public void setComment(final String route, final List<String> comments) {
 
-    if(yaml.getBlock(route) != null) {
+    if(yaml.contains(route)) {
       yaml.getBlock(route).setComments(comments);
     }
   }
