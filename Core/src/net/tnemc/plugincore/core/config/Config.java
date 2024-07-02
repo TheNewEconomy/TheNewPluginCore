@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -91,5 +92,17 @@ public abstract class Config {
       PluginCore.log().error("Error while saving config \"" + nodes.get(0) + "\".", e, DebugLevel.OFF);
       return false;
     }
+  }
+
+  public void setComment(final String route, final List<String> comments) {
+
+    if(yaml.getBlock(route) != null) {
+      yaml.getBlock(route).setComments(comments);
+    }
+  }
+
+  public void setComment(final String route, final String comment) {
+
+    setComment(route, Collections.singletonList(comment));
   }
 }
