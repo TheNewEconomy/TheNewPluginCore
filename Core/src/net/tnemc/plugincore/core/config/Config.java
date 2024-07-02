@@ -18,12 +18,15 @@ package net.tnemc.plugincore.core.config;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import dev.dejvokep.boostedyaml.YamlDocument;
+import dev.dejvokep.boostedyaml.settings.Settings;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
-import org.simpleyaml.configuration.file.YamlFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,53 +37,39 @@ import java.util.List;
  */
 public abstract class Config {
 
-  protected YamlFile yaml;
+  YamlDocument yaml;
 
   protected final File file;
   protected final String defaults;
-  private boolean create = false;
 
-  protected final List<String> nodes;
+  protected final List<String> nodes = new ArrayList<>();
 
-  public Config(final String fileName, String defaults, String... nodes) {
+  public Config(final String fileName, String defaults, List<String> nodes, Settings... settings) {
     this.defaults = defaults;
-    this.nodes = List.of(nodes);
+    this.nodes.addAll(nodes);
     file = new File(PluginCore.directory(), fileName);
 
 
     if(!file.exists()) {
       PluginCore.log().error("Configuration doesn't exist! File Name:" + fileName, DebugLevel.OFF);
-      create = true;
     }
 
-    this.yaml = new YamlFile(file.getPath());
+    try(InputStream in = getClass().getResourceAsStream(defaults)) {
+
+      if(in != null) {
+        this.yaml = YamlDocument.create(file, in, settings);
+      }
+    } catch (IOException e) {
+      PluginCore.log().error("Error while creating config \"" + fileName + "\".", e, DebugLevel.OFF);
+    }
   }
 
-  public YamlFile getYaml() {
+  public YamlDocument getYaml() {
     return yaml;
   }
 
-  public void setYaml(YamlFile yaml) {
+  public void setYaml(YamlDocument yaml) {
     this.yaml = yaml;
-  }
-
-  public boolean load() {
-
-    if(create) {
-      saveDefaults();
-    }
-
-    try {
-      this.yaml.loadWithComments();
-      return true;
-    } catch(Exception e) {
-      e.printStackTrace();
-      return false;
-    }
-  }
-
-  public void saveDefaults() {
-    PluginCore.server().saveResource(defaults, false);
   }
 
   public boolean save() {
@@ -88,8 +77,7 @@ public abstract class Config {
       yaml.save(file);
       return true;
     } catch(IOException e) {
-      PluginCore.log().error("Error while saving config \"" + nodes.get(0) + "\".", DebugLevel.OFF);
-      e.printStackTrace();
+      PluginCore.log().error("Error while saving config \"" + nodes.get(0) + "\".", e, DebugLevel.OFF);
       return false;
     }
   }
