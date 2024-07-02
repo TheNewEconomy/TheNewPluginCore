@@ -37,7 +37,7 @@ import java.util.List;
  */
 public abstract class Config {
 
-  YamlDocument yaml;
+  protected YamlDocument yaml;
 
   protected final File file;
   protected final String defaults;
