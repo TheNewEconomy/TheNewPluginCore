@@ -248,6 +248,7 @@ public class SpongeServerProvider implements ServerConnector {
   public void saveResource(String resourcePath, boolean replace) {
     if (resourcePath != null && !resourcePath.equals("")) {
       resourcePath = resourcePath.replace('\\', '/');
+
       final LogProvider logger = SpongePluginCore.log();
       InputStream in = this.getResource(resourcePath);
       if (in == null) {
@@ -314,6 +315,7 @@ public class SpongeServerProvider implements ServerConnector {
     return calc;
   }
 
+  @Override
   public @Nullable InputStream getResource(@NotNull String filename) {
     try {
       URL url = this.getClass().getClassLoader().getResource(filename);

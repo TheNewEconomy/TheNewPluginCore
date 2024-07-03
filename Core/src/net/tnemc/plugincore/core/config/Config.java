@@ -22,10 +22,14 @@ import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.settings.Settings;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -61,7 +65,7 @@ public abstract class Config {
 
   public boolean load() {
 
-    try(InputStream in = getClass().getResourceAsStream(defaults)) {
+    try(InputStream in = getResource(defaults)) {
 
       if(in != null) {
         this.yaml = YamlDocument.create(file, in, settings);
@@ -104,5 +108,22 @@ public abstract class Config {
   public void setComment(final String route, final String comment) {
 
     setComment(route, Collections.singletonList(comment));
+  }
+
+  public @Nullable InputStream getResource(@NotNull String filename) {
+
+    try {
+      URL url = this.getClass().getClassLoader().getResource(filename);
+      if (url == null) {
+        return null;
+      } else {
+
+        URLConnection connection = url.openConnection();
+        connection.setUseCaches(false);
+        return connection.getInputStream();
+      }
+    } catch (IOException var4) {
+      return null;
+    }
   }
 }

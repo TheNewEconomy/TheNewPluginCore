@@ -21,7 +21,6 @@ package net.tnemc.plugincore.bukkit.impl;
 import net.tnemc.item.AbstractItemStack;
 import net.tnemc.item.bukkit.BukkitCalculationsProvider;
 import net.tnemc.item.bukkit.BukkitItemStack;
-import net.tnemc.menu.core.viewer.MenuViewer;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.bukkit.BukkitPluginCore;
 import net.tnemc.plugincore.bukkit.hook.PAPIParser;
@@ -41,15 +40,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import revxrsal.commands.bukkit.BukkitCommandActor;
 import revxrsal.commands.command.CommandActor;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Properties;
 import java.util.UUID;
 
 /**
@@ -301,6 +298,19 @@ public class BukkitServerProvider implements ServerConnector {
   @Override
   public void saveResource(String path, boolean replace) {
     BukkitPluginCore.instance().getPlugin().saveResource(path, replace);
+  }
+
+  /**
+   * Retrieves an input stream for the specified filename from the resources.
+   *
+   * @param filename The name of the file to retrieve from the resources. Cannot be null.
+   *
+   * @return An input stream for the specified file, or null if the file is not found in the
+   * resources.
+   */
+  @Override
+  public @Nullable InputStream getResource(@NotNull String filename) {
+    return BukkitPluginCore.instance().getPlugin().getResource(filename);
   }
 
   /**

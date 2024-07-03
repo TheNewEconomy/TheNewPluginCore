@@ -24,8 +24,10 @@ import net.tnemc.menu.core.viewer.MenuViewer;
 import net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe;
 import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import revxrsal.commands.command.CommandActor;
 
+import java.io.InputStream;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Pattern;
@@ -188,6 +190,14 @@ public interface ServerConnector {
    * @param replace If the file exists in the local system's storage, should it be replaced?
    */
   void saveResource(final String path, final boolean replace);
+
+  /**
+   * Retrieves an input stream for the specified filename from the resources.
+   *
+   * @param filename The name of the file to retrieve from the resources. Cannot be null.
+   * @return An input stream for the specified file, or null if the file is not found in the resources.
+   */
+  @Nullable InputStream getResource(@NotNull String filename);
 
   /**
    * Provides this implementation's {@link SchedulerProvider scheduler}.
