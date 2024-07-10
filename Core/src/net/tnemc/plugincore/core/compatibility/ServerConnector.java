@@ -207,10 +207,12 @@ public interface ServerConnector {
 
   /**
    * Used to register a crafting recipe to the server.
+   *
+   * @param key The key for the crafting recipe to be registered.
    * @param recipe The crafting recipe to register.
    * @see CraftingRecipe
    */
-  void registerCrafting(@NotNull final CraftingRecipe recipe);
+  void registerCrafting(@NotNull final String key, @NotNull final CraftingRecipe recipe);
 
   <S, T extends AbstractItemStack<S>, INV> CalculationsProvider<T, S, INV> calculations();
 }

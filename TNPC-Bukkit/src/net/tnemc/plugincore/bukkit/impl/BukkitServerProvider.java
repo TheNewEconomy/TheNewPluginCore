@@ -34,6 +34,7 @@ import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -326,14 +327,22 @@ public class BukkitServerProvider implements ServerConnector {
   /**
    * Used to register a crafting recipe to the server.
    *
+   * @param key The key for the crafting recipe to be registered.
    * @param recipe The crafting recipe to register.
    *
    * @see CraftingRecipe
    */
   @Override
-  public void registerCrafting(@NotNull CraftingRecipe recipe) {
+  public void registerCrafting(@NotNull final String key, @NotNull CraftingRecipe recipe) {
     if(recipe.isShaped()) {
-      final ShapedRecipe shaped = new ShapedRecipe((ItemStack)recipe.getResult().locale());
+      ShapedRecipe shaped;
+
+      try {
+        shaped = new ShapedRecipe(new NamespacedKey(BukkitPluginCore.instance().getPlugin(), key), (ItemStack)recipe.getResult().locale());
+      } catch(Exception ignore) {
+        shaped = new ShapedRecipe((ItemStack)recipe.getResult().locale());
+      }
+
       shaped.shape(recipe.getRows());
 
       for(Map.Entry<Character, String> ingredient : recipe.getIngredients().entrySet()) {
@@ -341,7 +350,14 @@ public class BukkitServerProvider implements ServerConnector {
       }
       Bukkit.getServer().addRecipe(shaped);
     } else {
-      final ShapelessRecipe shapeless = new ShapelessRecipe((ItemStack)recipe.getResult().locale());
+      ShapelessRecipe shapeless;
+
+      try {
+        shapeless = new ShapelessRecipe(new NamespacedKey(BukkitPluginCore.instance().getPlugin(), key), (ItemStack)recipe.getResult().locale());
+      } catch(Exception ignore) {
+        shapeless = new ShapelessRecipe((ItemStack)recipe.getResult().locale());
+      }
+
       for(Map.Entry<Character, String> ingredient : recipe.getIngredients().entrySet()) {
         shapeless.addIngredient(1, Material.valueOf(ingredient.getValue()));
       }
