@@ -18,6 +18,10 @@ package net.tnemc.plugincore.core.io.message;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.kyori.adventure.text.Component;
+import net.tnemc.plugincore.core.compatibility.PlayerProvider;
+import org.jetbrains.annotations.NotNull;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -70,6 +74,31 @@ public class MessageData {
 
       this.replacements.put(search[i], replacements[i]);
     }
+  }
+
+  /**
+   * Used to translate a message for a player and return the translated {@link Component}.
+   *
+   * @param player The {@link PlayerProvider player} to translate this for.
+   *
+   * @return The {@link Component} that is the result of the translation process of the message for
+   * the given player.
+   */
+  public Component grab(@NotNull PlayerProvider player) {
+    return MessageHandler.grab(this, player);
+  }
+
+
+  /**
+   * Used to translate a message for a player and return the translated {@link Component}.
+   *
+   * @param id The {@link UUID unique identifier} of the player to translate this for.
+   *
+   * @return The {@link Component} that is the result of the translation process of the message for
+   * the given player.
+   */
+  public Component grab(@NotNull UUID id) {
+    return MessageHandler.grab(this, id);
   }
 
   public Map<String, String> getReplacements() {

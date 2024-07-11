@@ -18,7 +18,6 @@ package net.tnemc.plugincore.sponge.impl;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.tnemc.item.AbstractItemStack;
 import net.tnemc.plugincore.core.compatibility.CmdSource;
 import net.tnemc.plugincore.core.compatibility.LogProvider;
@@ -48,7 +47,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.logging.Level;
 
 /**
  * SpongeServerProvider
@@ -246,27 +244,28 @@ public class SpongeServerProvider implements ServerConnector {
 
   @Override
   public void saveResource(String resourcePath, boolean replace) {
-    if (resourcePath != null && !resourcePath.equals("")) {
+    if (resourcePath != null && ! resourcePath.isEmpty()) {
+
       resourcePath = resourcePath.replace('\\', '/');
 
       final LogProvider logger = SpongePluginCore.log();
-      InputStream in = this.getResource(resourcePath);
+      final InputStream in = this.getResource(resourcePath);
       if (in == null) {
+
         throw new IllegalArgumentException("The embedded resource '" + resourcePath + "' cannot be found in the jar.");
       } else {
+
         final File outFile = new File(SpongePluginCore.directory(), resourcePath);
         int lastIndex = resourcePath.lastIndexOf(47);
-        File outDir = new File(SpongePluginCore.directory(), resourcePath.substring(0, lastIndex >= 0 ? lastIndex : 0));
+        File outDir = new File(SpongePluginCore.directory(), resourcePath.substring(0, Math.max(lastIndex, 0)));
         if (!outDir.exists()) {
           outDir.mkdirs();
         }
 
         try {
           if (outFile.exists() && !replace) {
-            final Level var10001 = Level.WARNING;
-            final String var10002 = outFile.getName();
-            //logger.log(var10001, "Could not save " + var10002 + " to " + outFile + " because " + outFile.getName() + " already exists.");
           } else {
+
             OutputStream out = new FileOutputStream(outFile);
             byte[] buf = new byte[1024];
 
@@ -278,7 +277,7 @@ public class SpongeServerProvider implements ServerConnector {
             out.close();
             in.close();
           }
-        } catch (IOException var10) {
+        } catch (IOException ignore) {
           logger.error("Could not save " + outFile.getName() + " to " + outFile);
         }
 

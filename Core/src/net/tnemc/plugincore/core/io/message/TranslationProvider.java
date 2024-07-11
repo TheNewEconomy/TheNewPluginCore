@@ -1,6 +1,5 @@
 package net.tnemc.plugincore.core.io.message;
 
-
 /*
  * The New Plugin Core
  * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar

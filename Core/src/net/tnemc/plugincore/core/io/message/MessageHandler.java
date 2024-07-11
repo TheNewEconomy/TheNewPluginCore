@@ -24,6 +24,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.compatibility.PlayerProvider;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
@@ -56,12 +58,25 @@ public class MessageHandler {
    * Used to translate a message for a player and return the translated {@link Component}.
    *
    * @param messageData The message data to utilize for this translation.
+   * @param player The {@link PlayerProvider player} to translate this for.
+   *
+   * @return The {@link Component} that is the result of the translation process of the message for
+   * the given player.
+   */
+  public static Component grab(final MessageData messageData, @NotNull PlayerProvider player) {
+    return MINI_MESSAGE.deserialize(instance.translator.translate(player.identifier(), messageData));
+  }
+
+  /**
+   * Used to translate a message for a player and return the translated {@link Component}.
+   *
+   * @param messageData The message data to utilize for this translation.
    * @param id The {@link UUID unique identifier} of the player to translate this for.
    *
    * @return The {@link Component} that is the result of the translation process of the message for
    * the given player.
    */
-  public static Component grab(final MessageData messageData, UUID id) {
+  public static Component grab(final MessageData messageData, @NotNull UUID id) {
     return MINI_MESSAGE.deserialize(instance.translator.translate(id, messageData));
   }
 
