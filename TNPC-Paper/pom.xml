@@ -9,7 +9,7 @@
         <version>1.0.0.2-Pre-19</version>
     </parent>
 
-    <artifactId>TNPC-Sponge</artifactId>
+    <artifactId>TNPC-Paper</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -19,9 +19,20 @@
 
     <repositories>
         <repository>
-            <id>sponge-repo</id>
-            <name>Sponge Maven Repository</name>
-            <url>https://repo.spongepowered.org/maven</url>
+            <id>mcmmo-repo</id>
+            <url>https://maven.elmakers.com/repository</url>
+        </repository>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>glaremasters repo</id>
+            <url>https://repo.glaremasters.me/repository/towny/</url>
+        </repository>
+        <repository>
+            <id>factions repo</id>
+            <url>https://ci.ender.zone/plugin/repository/everything/</url>
         </repository>
         <repository>
             <id>aikar</id>
@@ -32,14 +43,16 @@
             <url>https://jitpack.io</url>
         </repository>
         <repository>
-            <id>codemc-releases</id>
-            <url>https://repo.codemc.io/repository/maven-public/</url>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
         <repository>
             <id>luck-repo</id>
             <url>https://repo.lucko.me/</url>
         </repository>
     </repositories>
+
+
 
     <build>
         <defaultGoal>clean package</defaultGoal>
@@ -106,11 +119,12 @@
                             <include>com.zaxxer:*</include>
                             <include>com.github.Revxrsal.Lamp:*</include>
                             <include>net.kyori:adventure-key</include>
+                            <include>net.kyori:adventure-text-minimessage</include>
                             <include>net.kyori:examination-api</include>
                             <include>net.kyori:examination-string</include>
-                            <include>net.kyori:adventure-text-minimessage</include>
                             <include>redis.clients:*</include>
-                            <include>org.apache.commons:commons-pool2</include>
+                            <include>org.apache:*</include>
+                            <include>org.apache.commons:*</include>
                             <include>org.apache.commons.pool2:*</include>
                             <include>dev.dejvokep:boosted-yaml</include>
                         </includes>
@@ -129,16 +143,16 @@
                             <shadedPattern>${tne.relocation}.zaxxer</shadedPattern>
                         </relocation>
                         <relocation>
+                            <pattern>net.kyori</pattern>
+                            <shadedPattern>${tne.relocation}.kyori</shadedPattern>
+                        </relocation>
+                        <relocation>
                             <pattern>org.bstats</pattern>
                             <shadedPattern>${tne.relocation}.bstats</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>revxrsal</pattern>
                             <shadedPattern>${tne.relocation}.lamp</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>net.kyori</pattern>
-                            <shadedPattern>${tne.relocation}.kyori</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>redis.clients</pattern>
@@ -159,55 +173,40 @@
     </build>
 
     <dependencies>
-        <!-- LuckPerms API -->
-        <dependency>
-            <groupId>net.luckperms</groupId>
-            <artifactId>api</artifactId>
-            <version>5.3</version>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>net.tnemc</groupId>
-            <artifactId>TNML-Sponge-API-8</artifactId>
+            <artifactId>TNML-Paper</artifactId>
             <version>${tnml.version}</version>
             <scope>compile</scope>
             <exclusions>
                 <exclusion>
                     <groupId>net.tnemc</groupId>
-                    <artifactId>TNIL-Core</artifactId>
+                    <artifactId>TNIL-Paper</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.tnemc</groupId>
+                    <artifactId>TNIL-CORE</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
+
         <dependency>
             <groupId>net.tnemc</groupId>
-            <artifactId>TNIL-Sponge</artifactId>
+            <artifactId>TNIL-Paper</artifactId>
             <version>${tnil.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.spongepowered</groupId>
-            <artifactId>spongeapi</artifactId>
-            <version>8.2.0-SNAPSHOT</version>
-            <type>jar</type>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.17-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.Revxrsal.Lamp</groupId>
-            <artifactId>sponge</artifactId>
-            <version>3.1.9</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.kyori</groupId>
-            <artifactId>adventure-platform-spongeapi</artifactId>
-            <version>4.3.2</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-sponge</artifactId>
-            <version>3.0.2</version>
+            <groupId>com.github.Revxrsal.Lamp</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>3.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -216,6 +215,11 @@
             <version>1.0.0.2-Pre-19</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.3</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
-
 </project>

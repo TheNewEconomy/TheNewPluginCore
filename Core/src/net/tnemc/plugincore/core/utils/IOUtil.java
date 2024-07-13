@@ -1,7 +1,6 @@
 package net.tnemc.plugincore.core.utils;
 
 import net.tnemc.plugincore.PluginCore;
-import net.tnemc.plugincore.core.PluginEngine;
 import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
 
 import javax.net.ssl.HttpsURLConnection;

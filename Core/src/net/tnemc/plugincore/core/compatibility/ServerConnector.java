@@ -20,7 +20,6 @@ package net.tnemc.plugincore.core.compatibility;
 
 import net.tnemc.item.AbstractItemStack;
 import net.tnemc.item.providers.CalculationsProvider;
-import net.tnemc.menu.core.viewer.MenuViewer;
 import net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe;
 import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
 import org.jetbrains.annotations.NotNull;
