@@ -49,20 +49,6 @@
                                     <exclude>net.kyori:adventure-text-serializer-legacy</exclude>
                                 </excludes>
                             </artifactSet>
-                            <!--<relocations>
-                                <relocation>
-                                    <pattern>redis.clients</pattern>
-                                    <shadedPattern>${tne.relocation}.jedis</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>org.apache.commons.pool2</pattern>
-                                    <shadedPattern>${tne.relocation}.commons</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>dev.dejvokep.boostedyaml</pattern>
-                                    <shadedPattern>${tne.relocation}.boosted</shadedPattern>
-                                </relocation>
-                            </relocations>-->
                         </configuration>
                     </execution>
                 </executions>
