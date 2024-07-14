@@ -6,7 +6,7 @@
     <parent>
         <groupId>net.tnemc</groupId>
         <artifactId>TNPC</artifactId>
-        <version>1.0.0.2-Pre-19</version>
+        <version>1.0.0.2-Pre-20</version>
     </parent>
 
     <artifactId>TNPC-Bukkit</artifactId>
@@ -116,16 +116,17 @@
                             <include>org.json.simple:*</include>
                             <include>com.zaxxer:*</include>
                             <include>com.github.Revxrsal.Lamp:*</include>
-                            <include>net.kyori:*</include>
+                            <include>net.kyori:adventure-key</include>
+                            <include>net.kyori:adventure-text-minimessage</include>
+                            <include>net.kyori:examination-api</include>
+                            <include>net.kyori:examination-string</include>
                             <include>redis.clients:*</include>
-                            <include>org.apache.commons:commons-pool2</include>
+                            <include>org.apache:*</include>
+                            <include>org.apache.commons:*</include>
                             <include>org.apache.commons.pool2:*</include>
-                            <include>dev.dejvokep.boostedyaml:*</include>
+                            <include>dev.dejvokep:boosted-yaml</include>
+                            <include>com.vdurmont:*</include>
                         </includes>
-                        <excludes>
-                            <exclude>net.kyori:adventure-api</exclude>
-                            <exclude>net.kyori:adventure-text-serializer-legacy</exclude>
-                        </excludes>
                     </artifactSet>
                     <relocations>
                         <relocation>
@@ -155,6 +156,10 @@
                         <relocation>
                             <pattern>org.apache</pattern>
                             <shadedPattern>${tne.relocation}.commons</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>com.vdurmont</pattern>
+                            <shadedPattern>${tne.relocation}.vdurmont</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>dev.dejvokep.boostedyaml</pattern>
@@ -212,7 +217,7 @@
         <dependency>
             <groupId>net.tnemc</groupId>
             <artifactId>TNPC-Core</artifactId>
-            <version>1.0.0.2-Pre-19</version>
+            <version>1.0.0.2-Pre-20</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

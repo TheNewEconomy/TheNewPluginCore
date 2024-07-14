@@ -1,6 +1,6 @@
 package net.tnemc.plugincore.sponge;
 /*
- * The New Kings
+ * The New Plugin Core
  * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify

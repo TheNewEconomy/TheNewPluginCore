@@ -1,6 +1,6 @@
 package net.tnemc.plugincore.bukkit;
 /*
- * The New Kings
+ * The New Plugin Core
  * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@ import net.tnemc.plugincore.core.PluginEngine;
 import net.tnemc.plugincore.core.api.CallbackProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
 import net.tnemc.plugincore.core.io.message.TranslationProvider;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
