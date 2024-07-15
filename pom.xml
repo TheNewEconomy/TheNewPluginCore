@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.tnemc</groupId>
     <artifactId>TNPC</artifactId>
-    <version>1.0.0.2-Pre-21</version>
+    <version>1.0.0.2-Pre-22</version>
     <packaging>pom</packaging>
     <name>The New Plugin Core</name>
 
