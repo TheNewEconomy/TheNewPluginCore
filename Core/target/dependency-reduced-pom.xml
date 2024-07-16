@@ -3,13 +3,13 @@
   <parent>
     <artifactId>TNPC</artifactId>
     <groupId>net.tnemc</groupId>
-    <version>1.0.0.2-Pre-22</version>
+    <version>1.0.0.2-Pre-23</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>TNPC-Core</artifactId>
   <name>The New Plugin Core - Core</name>
-  <version>1.0.0.2-Pre-22</version>
+  <version>1.0.0.2-Pre-23</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <outputDirectory>target/classes</outputDirectory>
