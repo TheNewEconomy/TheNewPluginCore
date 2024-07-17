@@ -58,7 +58,7 @@ import java.util.UUID;
  */
 public class PaperServerProvider implements ServerConnector {
 
-  protected final PaperCalculationsProvider calc = new PaperCalculationsProvider();
+  protected PaperCalculationsProvider calc;
   protected final PaperProxyProvider proxy = new PaperProxyProvider();
 
   protected final PaperScheduler scheduler;
@@ -66,6 +66,11 @@ public class PaperServerProvider implements ServerConnector {
   protected String world = null;
 
   public PaperServerProvider() {
+    this(new PaperCalculationsProvider());
+  }
+
+  public PaperServerProvider(PaperCalculationsProvider calc) {
+    this.calc = calc;
     this.scheduler = new PaperScheduler();
   }
 
