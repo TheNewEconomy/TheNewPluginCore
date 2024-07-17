@@ -79,7 +79,7 @@ public class PaperServerProvider implements ServerConnector {
 
   @Override
   public String name() {
-    return "bukkit";
+    return "paper";
   }
 
   /**
