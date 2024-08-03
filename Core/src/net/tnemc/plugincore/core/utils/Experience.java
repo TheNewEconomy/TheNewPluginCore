@@ -109,6 +109,26 @@ public class Experience {
   }
 
   /**
+   * Change a player's exp level.
+   * @param player The Player affected.
+   * @param level the new level
+   */
+  public static void setLevel(PlayerProvider player, int level) {
+    player.setExpLevel(level);
+  }
+
+  /**
+   * Change a player's exp level.
+   * @param player The Player affected.
+   * @param level the new level
+   * @param remove should this be a removal?
+   */
+  public static void changeLevel(PlayerProvider player, int level, boolean remove) {
+    final int newLevel = (remove)? player.getExpLevel() - level : player.getExpLevel() + level;
+    player.setExpLevel(newLevel);
+  }
+
+  /**
    * Change a Player's exp.
    * <p>
    * This method should be used in place of built-in player experience methods, which does not properly
