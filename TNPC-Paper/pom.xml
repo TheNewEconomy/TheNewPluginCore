@@ -6,7 +6,7 @@
     <parent>
         <groupId>net.tnemc</groupId>
         <artifactId>TNPC</artifactId>
-        <version>1.0.0.2-Pre-3</version>
+        <version>1.0.0.2-Pre-4</version>
     </parent>
 
     <artifactId>TNPC-Paper</artifactId>
@@ -165,7 +165,7 @@
         <dependency>
             <groupId>net.tnemc</groupId>
             <artifactId>TNPC-Core</artifactId>
-            <version>1.0.0.2-Pre-3</version>
+            <version>1.0.0.2-Pre-4</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
