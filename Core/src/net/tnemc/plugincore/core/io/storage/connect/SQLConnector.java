@@ -45,10 +45,10 @@ import java.util.Map;
  */
 public class SQLConnector implements StorageConnector<Connection> {
 
-  private DataSource source;
+  protected DataSource source;
 
-  private String sourceClass;
-  private String driverClass;
+  protected String sourceClass;
+  protected String driverClass;
 
   /**
    * Used to initialize a connection to the specified {@link StorageEngine}

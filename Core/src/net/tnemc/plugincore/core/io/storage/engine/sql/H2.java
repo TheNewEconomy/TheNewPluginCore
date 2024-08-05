@@ -24,7 +24,7 @@ import net.tnemc.plugincore.core.io.storage.engine.StandardSQL;
  * H2
  *
  * @author creatorfromhell
- * @since 1.0.0.2-Pre-6
+ * @since 1.0.0.2-Pre-7
  */
 public class H2 extends StandardSQL {
 
