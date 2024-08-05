@@ -164,7 +164,7 @@ public class SQLConnector implements StorageConnector<Connection> {
     return ((SQLEngine)StorageManager.instance().getEngine()).dialect();
   }
 
-  private void findDriverSource() {
+  protected void findDriverSource() {
 
     for(final String source : ((SQLEngine)StorageManager.instance().getEngine()).dataSource()) {
 
