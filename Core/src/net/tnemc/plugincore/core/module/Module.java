@@ -17,6 +17,7 @@ package net.tnemc.plugincore.core.module;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.tnemc.menu.core.MenuHandler;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.api.CallbackEntry;
 import net.tnemc.plugincore.core.api.CallbackManager;
@@ -75,6 +76,12 @@ public interface Module {
   void enableSave(StorageManager manager);
 
   /**
+   * Called when the {@link MenuHandler menu handler} is enabled.
+   * @param menuHandler The menu handler.
+   */
+  void enableMenu(MenuHandler menuHandler);
+
+  /**
    * Called after the default TNE Commands are registered.
    * @param handler The {@link CommandHandler} that the commands are registered to.
    */
@@ -94,6 +101,8 @@ public interface Module {
    * Used to register sub commands onto the exist /tne command set.
    */
   List<OrphanCommand> registerAdminSub();
+
+
 
   /**
    * Called after the {@link CallbackManager} is initialized. This method will

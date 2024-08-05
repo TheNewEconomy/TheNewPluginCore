@@ -35,6 +35,7 @@ import net.tnemc.plugincore.core.module.cache.ModuleFileCache;
 import net.tnemc.plugincore.core.utils.UpdateChecker;
 import org.jetbrains.annotations.Nullable;
 import revxrsal.commands.CommandHandler;
+import revxrsal.commands.orphan.Orphans;
 
 import java.io.File;
 import java.util.UUID;
@@ -151,7 +152,9 @@ public class PluginCore {
     this.engine.postConfigs();
 
     this.channelMessageManager = new ChannelMessageManager();
+
     this.engine.registerPluginChannels();
+
     this.channelMessageManager.register();
 
     this.engine.registerStorage();
@@ -186,8 +189,24 @@ public class PluginCore {
 
     this.engine.postCommands();
 
+    //Register our orphan commands from the modules.
+    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().registerAdminSub().forEach(orphanCommand -> {
+      this.engine.command().register(Orphans.path("tne").handler(orphanCommand));
+    })));
+
+    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().registerMoneySub().forEach(orphanCommand -> {
+      this.engine.command().register(Orphans.path("money").handler(orphanCommand));
+    })));
+
+    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().registerTransactionSub().forEach(orphanCommand -> {
+      this.engine.command().register(Orphans.path("transaction").handler(orphanCommand));
+    })));
+
 
     this.engine.registerMenuHandler();
+
+    //Call enableMenu for all modules loaded.
+    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableMenu(this.engine.menu())));
 
     this.moduleCache = new ModuleFileCache();
 

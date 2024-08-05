@@ -178,7 +178,7 @@ public class StorageManager {
    */
   public void reset() {
     //call the reset method for all modules.
-    PluginCore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this)));
+    PluginCore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().reset(this)));
 
     PluginCore.server().scheduler().createDelayedTask(()->provider.engine().reset(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);
 
@@ -191,7 +191,7 @@ public class StorageManager {
    */
   public boolean backup() {
     //call the backup method for all modules.
-    PluginCore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this)));
+    PluginCore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().backup(this)));
 
     PluginCore.server().scheduler().createDelayedTask(()->provider.engine().backup(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);
 
