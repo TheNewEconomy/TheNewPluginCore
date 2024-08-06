@@ -164,9 +164,8 @@ public class SQLConnector implements StorageConnector<Connection> {
     return ((SQLEngine)StorageManager.instance().getEngine()).dialect();
   }
 
-  protected void findDriverSource() {
-
-    for(final String source : ((SQLEngine)StorageManager.instance().getEngine()).dataSource()) {
+  protected void findDriverSource(final SQLEngine engine) {
+    for(final String source : engine.dataSource()) {
 
       if(sourceClass != null) {
         break;
@@ -180,7 +179,7 @@ public class SQLConnector implements StorageConnector<Connection> {
       } catch(Exception ignore) {}
     }
 
-    for(final String driver : ((SQLEngine)StorageManager.instance().getEngine()).driver()) {
+    for(final String driver : engine.driver()) {
 
       if(driverClass != null) {
         break;
@@ -193,5 +192,9 @@ public class SQLConnector implements StorageConnector<Connection> {
         this.driverClass = driver;
       } catch(Exception ignore) {}
     }
+  }
+
+  protected void findDriverSource() {
+    findDriverSource((SQLEngine)StorageManager.instance().getEngine());
   }
 }
