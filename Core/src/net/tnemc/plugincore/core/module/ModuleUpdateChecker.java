@@ -99,14 +99,14 @@ public class ModuleUpdateChecker {
       sc.init(null, IOUtil.selfCertificates(), new SecureRandom());
       HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 
-      URL url = new URL(jarURL);
-      HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-      int responseCode = connection.getResponseCode();
+      final URL url = new URL(jarURL);
+      final HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+      final int responseCode = connection.getResponseCode();
       if (responseCode == HttpURLConnection.HTTP_OK) {
         String fileName = jarURL.substring(jarURL.lastIndexOf("/") + 1);
 
         try(InputStream in = connection.getInputStream()) {
-          File file = new File(PluginCore.directory() + File.separator + "modules", fileName);
+          final File file = new File(PluginCore.directory() + File.separator + "modules", fileName);
 
           if(file.exists()) {
             if(!file.renameTo(new File(PluginCore.directory() + File.separator + "modules", "outdated-" + fileName))) {
@@ -117,7 +117,7 @@ public class ModuleUpdateChecker {
           try(FileOutputStream out = new FileOutputStream(file)) {
 
             int bytesRead = -1;
-            byte[] buffer = new byte[4096];
+            final byte[] buffer = new byte[4096];
             while((bytesRead = in.read(buffer)) != -1) {
               out.write(buffer, 0, bytesRead);
             }

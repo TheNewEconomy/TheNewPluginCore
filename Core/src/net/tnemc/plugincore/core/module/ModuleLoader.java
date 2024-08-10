@@ -1,5 +1,6 @@
 package net.tnemc.plugincore.core.module;
 
+import com.vdurmont.semver4j.Semver;
 import net.tnemc.plugincore.PluginCore;
 
 import java.io.BufferedReader;
@@ -59,26 +60,26 @@ public class ModuleLoader {
   }
 
   public void load() {
-    File directory = new File(PluginCore.directory(), "modules");
+    final File directory = new File(PluginCore.directory(), "modules");
 
     if(directory.exists()) {
 
-      File[] jars = directory.listFiles((dir, name) -> name.endsWith(".jar"));
+      final File[] jars = directory.listFiles((dir, name) -> name.endsWith(".jar"));
 
-      if (jars != null) {
-        for (File jar : jars) {
+      if(jars != null) {
+        for(File jar : jars) {
 
           try {
-            ModuleWrapper wrapper = loadModuleWrapper(jar.getAbsolutePath());
+            final ModuleWrapper wrapper = loadModuleWrapper(jar.getAbsolutePath());
 
-            if (wrapper.getModule() == null || wrapper.getModule().getClass() == null) {
+            if(wrapper.getModule() == null) {
               PluginCore.log().inform("Skipping file due to invalid module: " + jar.getName());
               continue;
             }
 
-            if (jar.getName().contains("old-")) continue;
+            if(jar.getName().contains("old-")) continue;
 
-            if (!wrapper.getModule().getClass().isAnnotationPresent(ModuleInfo.class)) {
+            if(!wrapper.getModule().getClass().isAnnotationPresent(ModuleInfo.class)) {
               PluginCore.log().inform("Invalid module format! ModuleOld File: " + jar.getName());
               continue;
             }
@@ -98,7 +99,9 @@ public class ModuleLoader {
         }
       }
     } else {
-      directory.mkdir();
+      if(directory.mkdir()) {
+        PluginCore.log().inform("Created module directory: " + directory.getAbsolutePath());
+      }
     }
   }
 
@@ -106,21 +109,29 @@ public class ModuleLoader {
     final String path = findPath(moduleName);
     if(path != null) {
       try {
-        ModuleWrapper wrapper = loadModuleWrapper(path);
-        if (!wrapper.getModule().getClass().isAnnotationPresent(ModuleInfo.class)) {
+        final ModuleWrapper wrapper = loadModuleWrapper(path);
+        if(!wrapper.getModule().getClass().isAnnotationPresent(ModuleInfo.class)) {
           PluginCore.log().inform("Invalid module format! ModuleOld File: " + moduleName);
           return false;
         }
 
         wrapper.setInfo(wrapper.getModule().getClass().getAnnotation(ModuleInfo.class));
+
+        if(!wrapper.getInfo().pluginVersion().equalsIgnoreCase("0.0.0.0") &&
+           new Semver(wrapper.info.pluginVersion()).isGreaterThan(PluginCore.engine().version())) {
+
+          PluginCore.log().error("Unable to load module: " + wrapper.name() + " Requires a higher plugin version. Required version: " + PluginCore.engine().version());
+          return false;
+        }
+
         PluginCore.log().inform("Found module: " + wrapper.name() + " version: " + wrapper.version());
         modules.put(wrapper.name(), wrapper);
 
-        if(!wrapper.getInfo().updateURL().trim().equalsIgnoreCase("")) {
+        /*if(!wrapper.getInfo().updateURL().trim().equalsIgnoreCase("")) {
           PluginCore.log().inform("Checking for updates for module " + moduleName);
           ModuleUpdateChecker checker = new ModuleUpdateChecker(moduleName, wrapper.info.updateURL(), wrapper.version());
           checker.check();
-        }
+        }*/
         return true;
       } catch(Exception ignore) {
         PluginCore.log().inform("Unable to load module: " + moduleName + ". Are you sure it exists?");
@@ -132,7 +143,7 @@ public class ModuleLoader {
   public void unload(String moduleName) {
     if(hasModule(moduleName)) {
       ModuleWrapper wrapper = getModule(moduleName);
-      //TODO: Command and configuration loading.
+      //TODO: Command and configuration unloading.
       wrapper.getModule().disable(PluginCore.instance());
 
       try {
@@ -158,11 +169,11 @@ public class ModuleLoader {
   }
 
   protected String findPath(String moduleName) {
-    File directory = new File(PluginCore.directory(), "modules");
-    File[] jars = directory.listFiles((dir, name) -> name.endsWith(".jar"));
+    final File directory = new File(PluginCore.directory(), "modules");
+    final File[] jars = directory.listFiles((dir, name) -> name.endsWith(".jar"));
 
     if(jars != null) {
-      for (File jar : jars) {
+      for(File jar : jars) {
         if(jar.getAbsolutePath().toLowerCase().contains(moduleName.toLowerCase() + ".jar")) {
           return jar.getAbsolutePath();
         }
@@ -197,13 +208,13 @@ public class ModuleLoader {
       try {
         final String fileURL = modules.get(module).info.updateURL();
         final URL url = new URL(fileURL);
-        HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
-        int responseCode = httpConn.getResponseCode();
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-          String fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1, fileURL.length());
+        final HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+        final int responseCode = httpConn.getResponseCode();
+        if(responseCode == HttpURLConnection.HTTP_OK) {
+          final String fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1, fileURL.length());
 
-          InputStream in = httpConn.getInputStream();
-          File file = new File(PluginCore.directory() + File.separator + "modules", fileName);
+          final InputStream in = httpConn.getInputStream();
+          final File file = new File(PluginCore.directory() + File.separator + "modules", fileName);
 
           if(file.exists()) {
             if(!file.renameTo(new File(PluginCore.directory() + File.separator + "modules", "outdated-" + fileName))) {
@@ -211,10 +222,10 @@ public class ModuleLoader {
             }
           }
 
-          FileOutputStream out = new FileOutputStream(file);
+          final FileOutputStream out = new FileOutputStream(file);
 
           int bytesRead = -1;
-          byte[] buffer = new byte[4096];
+          final byte[] buffer = new byte[4096];
           while ((bytesRead = in.read(buffer)) != -1) {
             out.write(buffer, 0, bytesRead);
           }
@@ -222,7 +233,7 @@ public class ModuleLoader {
           out.close();
           in.close();
         }
-      } catch (Exception e) {
+      } catch(Exception ignore) {
         return false;
       }
       return true;
@@ -238,7 +249,7 @@ public class ModuleLoader {
 
     try {
       jar = new JarFile(jarFile);
-      JarEntry infoFile = jar.getJarEntry("module.tne");
+      final JarEntry infoFile = jar.getJarEntry("module.tne");
 
       if(infoFile == null) {
         PluginCore.log().inform("TNE encountered an error while loading a module! No module.tne file!");
@@ -249,7 +260,7 @@ public class ModuleLoader {
       reader = new BufferedReader(new InputStreamReader(in));
 
       main = reader.readLine().split("=")[1].trim();
-    } catch (IOException e) {
+    } catch(IOException e) {
       PluginCore.log().debug(e.toString());
     } finally {
       if(jar != null) {
