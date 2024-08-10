@@ -31,6 +31,7 @@ public @interface ModuleInfo {
   String name();
   String author();
   String version();
+  String pluginVersion();
   String[] dependencies() default {};
   String updateURL() default "";
 }
