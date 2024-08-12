@@ -101,9 +101,7 @@ public interface Module {
    * Used to register sub commands onto the exist /tne command set.
    */
   List<OrphanCommand> registerAdminSub();
-
-
-
+  
   /**
    * Called after the {@link CallbackManager} is initialized. This method will
    * register new callbacks with the manager automatically.
