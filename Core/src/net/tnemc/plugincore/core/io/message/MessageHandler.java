@@ -37,7 +37,7 @@ import java.util.UUID;
  */
 public class MessageHandler {
 
-  static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
+  public static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
   final TranslationProvider translator;
 
   private static MessageHandler instance;
