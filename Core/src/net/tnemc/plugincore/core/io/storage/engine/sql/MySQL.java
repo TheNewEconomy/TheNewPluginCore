@@ -46,18 +46,14 @@ public class MySQL extends StandardSQL {
   @Override
   public String[] driver() {
     return new String[] {
-        "org.mariadb.jdbc.Driver",
-        "com.mysql.cj.jdbc.Driver",
-        "com.mysql.jdbc.Driver"
+        "org.mariadb.jdbc.Driver"
     };
   }
 
   @Override
   public String[] dataSource() {
     return new String[] {
-        "org.mariadb.jdbc.MariaDbDataSource",
-        "com.mysql.jdbc.jdbc2.optional.MysqlDataSource",
-        "com.mysql.cj.jdbc.MysqlDataSource"
+        "org.mariadb.jdbc.MariaDbDataSource"
     };
   }
 
@@ -82,7 +78,7 @@ public class MySQL extends StandardSQL {
    */
   @Override
   public Map<String, Object> properties() {
-    Map<String, Object> properties = new HashMap<>();
+    final Map<String, Object> properties = new HashMap<>();
 
     properties.put("autoReconnect", true);
     properties.put("cachePrepStmts", true);

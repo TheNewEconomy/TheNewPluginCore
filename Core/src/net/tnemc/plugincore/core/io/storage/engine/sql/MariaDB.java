@@ -1,4 +1,5 @@
 package net.tnemc.plugincore.core.io.storage.engine.sql;
+
 /*
  * The New Plugin Core
  * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
@@ -17,19 +18,19 @@ package net.tnemc.plugincore.core.io.storage.engine.sql;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 import net.tnemc.plugincore.core.io.storage.Dialect;
+import net.tnemc.plugincore.core.io.storage.SQLEngine;
+import net.tnemc.plugincore.core.io.storage.StorageManager;
 import net.tnemc.plugincore.core.io.storage.engine.StandardSQL;
 
-/**
- * H2
- *
- * @author creatorfromhell
- * @since 1.0.0.2-Pre-12
- */
-public class H2 extends StandardSQL {
+import java.util.HashMap;
+import java.util.Map;
 
-  public H2(Dialect dialect) {
-    super(dialect);
+public class MariaDB extends StandardSQL {
+
+  public MariaDB(final String prefix, Dialect dialect) {
+    super(prefix, dialect);
   }
 
   /**
@@ -39,25 +40,50 @@ public class H2 extends StandardSQL {
    */
   @Override
   public String name() {
-    return "h2";
+    return "maria";
   }
 
   @Override
   public String[] driver() {
     return new String[] {
-            "org.h2.Driver"
+        "org.mariadb.jdbc.Driver"
     };
   }
 
   @Override
   public String[] dataSource() {
     return new String[] {
-            "org.h2.jdbcx.JdbcDataSource"
+        "org.mariadb.jdbc.MariaDbDataSource"
     };
   }
 
   @Override
   public String url(String file, String host, int port, String database) {
-    return "jdbc:h2:file:" + file + ";mode=MySQL;DB_CLOSE_ON_EXIT=TRUE;FILE_LOCK=NO";
+
+    final String ssl = (StorageManager.instance().settings().ssl())? "trust" : "disable";
+    final StringBuilder builder = new StringBuilder("jdbc:mariadb://");
+    builder.append(host);
+    builder.append(":");
+    builder.append(port);
+    builder.append("/");
+    builder.append(database);
+    builder.append("?allowPublicKeyRetrieval=");
+    builder.append(StorageManager.instance().settings().publicKey());
+    builder.append("&sslMode=");
+    builder.append(ssl);
+    return builder.toString();
+  }
+
+  /**
+   * Used to get addition hikari properties for this {@link SQLEngine}.
+   * @return A map containing the additional properties.
+   */
+  @Override
+  public Map<String, Object> properties() {
+    final Map<String, Object> properties = new HashMap<>();
+
+    properties.put("useServerPrepStmts", true);
+    properties.put("cacheCallableStmts", true);
+    return properties;
   }
 }
