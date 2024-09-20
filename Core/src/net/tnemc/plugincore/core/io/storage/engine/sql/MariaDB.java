@@ -83,7 +83,6 @@ public class MariaDB extends StandardSQL {
     final Map<String, Object> properties = new HashMap<>();
 
     properties.put("useServerPrepStmts", true);
-    properties.put("cacheCallableStmts", true);
     return properties;
   }
 }
