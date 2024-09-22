@@ -80,9 +80,6 @@ public class MariaDB extends StandardSQL {
    */
   @Override
   public Map<String, Object> properties() {
-    final Map<String, Object> properties = new HashMap<>();
-
-    properties.put("useServerPrepStmts", true);
-    return properties;
+    return new HashMap<>();
   }
 }
