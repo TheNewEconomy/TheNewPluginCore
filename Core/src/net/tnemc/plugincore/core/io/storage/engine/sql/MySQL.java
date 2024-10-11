@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class MySQL extends StandardSQL {
 
-  public MySQL(final String prefix, Dialect dialect) {
+  public MySQL(final String prefix, final Dialect dialect) {
     super(prefix, dialect);
   }
 
@@ -46,19 +46,23 @@ public class MySQL extends StandardSQL {
   @Override
   public String[] driver() {
     return new String[] {
-        "org.mariadb.jdbc.Driver"
+            "org.mariadb.jdbc.Driver",
+            "com.mysql.cj.jdbc.Driver",
+            "com.mysql.jdbc.Driver"
     };
   }
 
   @Override
   public String[] dataSource() {
     return new String[] {
-        "org.mariadb.jdbc.MariaDbDataSource"
+            "org.mariadb.jdbc.MariaDbDataSource",
+            "com.mysql.jdbc.jdbc2.optional.MysqlDataSource",
+            "com.mysql.cj.jdbc.MysqlDataSource"
     };
   }
 
   @Override
-  public String url(String file, String host, int port, String database) {
+  public String url(final String file, final String host, final int port, final String database) {
     final StringBuilder builder = new StringBuilder("jdbc:mysql://");
     builder.append(host);
     builder.append(":");
