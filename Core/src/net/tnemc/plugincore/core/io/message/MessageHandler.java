@@ -24,6 +24,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import net.kyori.adventure.text.serializer.json.JSONComponentSerializer;
+import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.compatibility.PlayerProvider;
 import org.jetbrains.annotations.NotNull;
 
@@ -63,8 +64,8 @@ public class MessageHandler {
    * @return The {@link Component} that is the result of the translation process of the message for
    * the given player.
    */
-  public static Component grab(final MessageData messageData, @NotNull PlayerProvider player) {
-    return MINI_MESSAGE.deserialize(instance.translator.translate(player.identifier(), messageData));
+  public static Component grab(final MessageData messageData, @NotNull final PlayerProvider player) {
+    return MINI_MESSAGE.deserialize(PluginCore.server().replacePlaceholder(player.identifier(), instance.translator.translate(player.identifier(), messageData)));
   }
 
   /**
@@ -76,8 +77,8 @@ public class MessageHandler {
    * @return The {@link Component} that is the result of the translation process of the message for
    * the given player.
    */
-  public static Component grab(final MessageData messageData, @NotNull UUID id) {
-    return MINI_MESSAGE.deserialize(instance.translator.translate(id, messageData));
+  public static Component grab(final MessageData messageData, @NotNull final UUID id) {
+    return MINI_MESSAGE.deserialize(PluginCore.server().replacePlaceholder(id, instance.translator.translate(id, messageData)));
   }
 
   /**
@@ -86,8 +87,8 @@ public class MessageHandler {
    * @param messageData The message data to utilize for this translation.
    * @param audience The audience that should receive the translated message.
    */
-  public static void translate(final MessageData messageData, UUID identifier, Audience audience) {
-    final String msg = instance.translator.translateNode(messageData, "default");
+  public static void translate(final MessageData messageData, final UUID identifier, final Audience audience) {
+    final String msg = PluginCore.server().replacePlaceholder(identifier, instance.translator.translateNode(messageData, "default"));
 
     if(identifier == null) {
 
@@ -110,14 +111,14 @@ public class MessageHandler {
    * @param messageData The message data to utilize for this translation.
    * @param audiences The audiences that should receive the translated message.
    */
-  public static void translate(final MessageData messageData, UUID identifier, Audience... audiences) {
+  public static void translate(final MessageData messageData, final UUID identifier, final Audience... audiences) {
 
-    final String msg = instance.translator.translateNode(messageData, "default");
+    final String msg = PluginCore.server().replacePlaceholder(identifier, instance.translator.translateNode(messageData, "default"));
     if(msg.isEmpty()) {
       return;
     }
 
-    for(Audience a : audiences) {
+    for(final Audience a : audiences) {
       a.sendMessage(MINI_MESSAGE.deserialize(msg));
     }
   }

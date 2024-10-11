@@ -24,11 +24,11 @@ import net.tnemc.plugincore.core.io.storage.engine.StandardSQL;
  * H2
  *
  * @author creatorfromhell
- * @since 1.0.0.2-Pre-14
+ * @since 1.0.0.2-Pre-15
  */
 public class H2 extends StandardSQL {
 
-  public H2(Dialect dialect) {
+  public H2(final Dialect dialect) {
     super(dialect);
   }
 
@@ -57,7 +57,7 @@ public class H2 extends StandardSQL {
   }
 
   @Override
-  public String url(String file, String host, int port, String database) {
+  public String url(final String file, final String host, final int port, final String database) {
     return "jdbc:h2:file:" + file + ";mode=MySQL;DB_CLOSE_ON_EXIT=TRUE;FILE_LOCK=NO";
   }
 }
