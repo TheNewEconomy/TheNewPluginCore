@@ -51,7 +51,7 @@ public abstract class Config {
 
   protected Settings[] settings;
 
-  public Config(final String fileName, String defaults, List<String> nodes, Settings... settings) {
+  public Config(final String fileName, final String defaults, final List<String> nodes, final Settings... settings) {
     this.defaults = defaults;
     this.nodes.addAll(nodes);
     file = new File(PluginCore.directory(), fileName);
@@ -65,14 +65,14 @@ public abstract class Config {
 
   public boolean load() {
 
-    try(InputStream in = getResource(defaults)) {
+    try(final InputStream in = getResource(defaults)) {
 
       if(in != null) {
         this.yaml = YamlDocument.create(file, in, settings);
 
         return true;
       }
-    } catch (IOException e) {
+    } catch (final IOException e) {
 
       PluginCore.log().error("Error while creating config \"" + file.getName() + "\".", e, DebugLevel.OFF);
       return false;
@@ -84,7 +84,7 @@ public abstract class Config {
     return yaml;
   }
 
-  public void setYaml(YamlDocument yaml) {
+  public void setYaml(final YamlDocument yaml) {
     this.yaml = yaml;
   }
 
@@ -92,7 +92,7 @@ public abstract class Config {
     try {
       yaml.save(file);
       return true;
-    } catch(IOException e) {
+    } catch(final IOException e) {
       PluginCore.log().error("Error while saving config \"" + nodes.get(0) + "\".", e, DebugLevel.OFF);
       return false;
     }
@@ -110,19 +110,20 @@ public abstract class Config {
     setComment(route, Collections.singletonList(comment));
   }
 
-  public @Nullable InputStream getResource(@NotNull String filename) {
+  public @Nullable InputStream getResource(@NotNull final String filename) {
 
     try {
-      URL url = this.getClass().getClassLoader().getResource(filename);
+      final URL url = this.getClass().getClassLoader().getResource(filename);
       if (url == null) {
         return null;
       } else {
 
-        URLConnection connection = url.openConnection();
+        final URLConnection connection = url.openConnection();
         connection.setUseCaches(false);
+
         return connection.getInputStream();
       }
-    } catch (IOException var4) {
+    } catch (final IOException var4) {
       return null;
     }
   }

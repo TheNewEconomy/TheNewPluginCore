@@ -40,6 +40,7 @@ import revxrsal.commands.orphan.Orphans;
 import java.io.File;
 import java.util.UUID;
 import java.util.regex.Pattern;
+
 public class PluginCore {
 
   /*
@@ -79,7 +80,7 @@ public class PluginCore {
 
   protected UUID serverID;
 
-  public PluginCore(PluginEngine engine, ServerConnector server, LogProvider logger, TranslationProvider provider, CallbackProvider callbackProvider) {
+  public PluginCore(final PluginEngine engine, final ServerConnector server, final LogProvider logger, final TranslationProvider provider, final CallbackProvider callbackProvider) {
     this.server = server;
     this.logger = logger;
     this.engine = engine;
@@ -87,7 +88,7 @@ public class PluginCore {
     this.callbackManager = new CallbackManager(callbackProvider);
   }
 
-  public static void setInstance(PluginCore core) {
+  public static void setInstance(final PluginCore core) {
     if(instance == null) {
       instance = core;
     } else {
@@ -281,7 +282,7 @@ public class PluginCore {
     return level;
   }
 
-  public void setLevel(DebugLevel level) {
+  public void setLevel(final DebugLevel level) {
     this.level = level;
   }
 
@@ -301,11 +302,11 @@ public class PluginCore {
     return serverID;
   }
 
-  public void setServerID(UUID serverID) {
+  public void setServerID(final UUID serverID) {
     this.serverID = serverID;
   }
 
-  public void setCallbackManager(CallbackManager callbackManager) {
+  public void setCallbackManager(final CallbackManager callbackManager) {
     this.callbackManager = callbackManager;
   }
 
