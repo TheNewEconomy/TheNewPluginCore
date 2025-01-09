@@ -21,11 +21,17 @@ import net.tnemc.item.providers.HelperMethods;
 import net.tnemc.menu.core.MenuHandler;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.api.CallbackManager;
+import net.tnemc.plugincore.core.component.Component;
+import net.tnemc.plugincore.core.component.ComponentBuilder;
 import net.tnemc.plugincore.core.io.storage.StorageManager;
 import net.tnemc.plugincore.core.utils.UpdateChecker;
+import org.jetbrains.annotations.Nullable;
 import revxrsal.commands.CommandHandler;
 import revxrsal.commands.command.CommandActor;
 import revxrsal.commands.command.ExecutableCommand;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * PluginEngine
@@ -34,6 +40,9 @@ import revxrsal.commands.command.ExecutableCommand;
  * @since 0.0.1.0
  */
 public abstract class PluginEngine {
+
+  protected Map<String, Component> components = new HashMap<>();
+  protected Map<String, ComponentBuilder> builders = new HashMap<>();
 
   protected StorageManager storage;
   protected CommandHandler command;
@@ -61,6 +70,40 @@ public abstract class PluginEngine {
   public abstract String build();
 
   public abstract void registerConfigs();
+
+  /**
+   * Initializes all components with the provided platform and version.
+   *
+   * @param platform the platform to initialize the components for
+   * @param version the Minecraft version string to initialize the components with
+   */
+  public void initComponents(final Platform platform, final String version) {
+
+    for(final Component component : components.values()) {
+
+      component.initialize(platform, version);
+
+      //register our builders during initialization
+      for(final ComponentBuilder builder : component.initBuilders(platform, version)) {
+
+        builders.put(builder.identifier(), builder);
+      }
+    }
+  }
+
+  /**
+   * Initializes the registries for all components with the provided platform and version.
+   *
+   * @param platform the platform to initialize the registries for
+   * @param version the Minecraft version string to initialize the registries with
+   */
+  public void initRegistries(final Platform platform, final String version) {
+
+    for(final Component component : components.values()) {
+
+      component.initRegistries(platform, version);
+    }
+  }
 
   public abstract void registerPluginChannels();
 
@@ -93,6 +136,30 @@ public abstract class PluginEngine {
     if(this.updateChecker.needsUpdate()) {
       PluginCore.log().inform("Update Available! Latest: " + this.updateChecker.getBuild());
     }
+  }
+
+  public Map<String, Component> components() {
+    return components;
+  }
+
+  public Map<String, ComponentBuilder> builders() {
+    return builders;
+  }
+
+  /**
+   * Retrieves the ComponentBuilder associated with the provided name, and returns a new instance for
+   * building from.
+   *
+   * @param name the name of the ComponentBuilder to retrieve
+   * @return the new instance of the ComponentBuilder if present in the builders map to start building
+   * from, null otherwise
+   */
+  public @Nullable ComponentBuilder builder(final String name) {
+    if(builders.containsKey(name)) {
+
+      return builders.get(name).builder();
+    }
+    return null;
   }
 
   public StorageManager storage() {
