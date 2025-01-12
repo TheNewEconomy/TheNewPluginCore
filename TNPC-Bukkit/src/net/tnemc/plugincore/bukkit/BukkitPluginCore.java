@@ -20,10 +20,12 @@ package net.tnemc.plugincore.bukkit;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.bukkit.impl.BukkitLogProvider;
 import net.tnemc.plugincore.bukkit.impl.BukkitServerProvider;
+import net.tnemc.plugincore.core.Platform;
 import net.tnemc.plugincore.core.PluginEngine;
 import net.tnemc.plugincore.core.api.CallbackProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
 import net.tnemc.plugincore.core.io.message.TranslationProvider;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -42,7 +44,8 @@ public class BukkitPluginCore extends PluginCore {
 
   public BukkitPluginCore(final JavaPlugin plugin, final PluginEngine engine, final ServerConnector connector,
                           final TranslationProvider provider, final CallbackProvider callbackProvider) {
-    super(engine, connector, new BukkitLogProvider(plugin.getLogger()), provider, callbackProvider);
+    super(engine, connector, new BukkitLogProvider(plugin.getLogger()), provider, callbackProvider, Platform.BUKKIT,
+            Bukkit.getServer().getBukkitVersion().split("-")[0]);
 
     setInstance(this);
     this.plugin = plugin;

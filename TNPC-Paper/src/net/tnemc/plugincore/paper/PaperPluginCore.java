@@ -18,12 +18,14 @@ package net.tnemc.plugincore.paper;
  */
 
 import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.Platform;
 import net.tnemc.plugincore.core.PluginEngine;
 import net.tnemc.plugincore.core.api.CallbackProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
 import net.tnemc.plugincore.core.io.message.TranslationProvider;
 import net.tnemc.plugincore.paper.impl.PaperLogProvider;
 import net.tnemc.plugincore.paper.impl.PaperServerProvider;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -35,14 +37,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class PaperPluginCore extends PluginCore {
 
   private final JavaPlugin plugin;
-  public PaperPluginCore(JavaPlugin plugin, PluginEngine engine, TranslationProvider provider,
-                         CallbackProvider callbackProvider) {
+  public PaperPluginCore(final JavaPlugin plugin, final PluginEngine engine, final TranslationProvider provider,
+                         final CallbackProvider callbackProvider) {
     this(plugin, engine, new PaperServerProvider(), provider, callbackProvider);
   }
 
-  public PaperPluginCore(JavaPlugin plugin, PluginEngine engine, ServerConnector connector,
-                         TranslationProvider provider, CallbackProvider callbackProvider) {
-    super(engine, connector, new PaperLogProvider(plugin.getLogger()), provider, callbackProvider);
+  public PaperPluginCore(final JavaPlugin plugin, final PluginEngine engine, final ServerConnector connector,
+                         final TranslationProvider provider, final CallbackProvider callbackProvider) {
+
+    super(engine, connector, new PaperLogProvider(plugin.getLogger()), provider, callbackProvider, Platform.PAPER,
+            Bukkit.getServer().getBukkitVersion().split("-")[0]);
 
     setInstance(this);
     this.plugin = plugin;

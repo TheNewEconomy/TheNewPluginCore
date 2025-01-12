@@ -18,6 +18,7 @@ package net.tnemc.plugincore;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.tnemc.plugincore.core.Platform;
 import net.tnemc.plugincore.core.PluginEngine;
 import net.tnemc.plugincore.core.api.CallbackManager;
 import net.tnemc.plugincore.core.api.CallbackProvider;
@@ -80,12 +81,20 @@ public class PluginCore {
 
   protected UUID serverID;
 
-  public PluginCore(final PluginEngine engine, final ServerConnector server, final LogProvider logger, final TranslationProvider provider, final CallbackProvider callbackProvider) {
+  protected Platform platform;
+  protected String version;
+
+  public PluginCore(final PluginEngine engine, final ServerConnector server, final LogProvider logger,
+                    final TranslationProvider provider, final CallbackProvider callbackProvider,
+                    final Platform platform, final String version) {
     this.server = server;
     this.logger = logger;
     this.engine = engine;
     this.messenger = new MessageHandler(provider);
     this.callbackManager = new CallbackManager(callbackProvider);
+
+    this.platform = platform;
+    this.version = version;
   }
 
   public static void setInstance(final PluginCore core) {
@@ -127,6 +136,9 @@ public class PluginCore {
     this.uuidProvider = new BaseUUIDProvider();
 
     this.engine.registerConfigs();
+
+    this.engine.initComponents(platform, version);
+    this.engine.initRegistries(platform, version);
 
     //Load our modules
     loader.load();

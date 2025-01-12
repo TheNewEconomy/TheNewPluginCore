@@ -85,12 +85,15 @@ public abstract class PluginEngine {
 
     for(final Component component : components.values()) {
 
-      component.initialize(platform, version);
+      if(component.supports(platform, version)) {
 
-      //register our builders during initialization
-      for(final ComponentBuilder builder : component.initBuilders(platform, version)) {
+        component.initialize(platform, version);
 
-        builders.put(builder.identifier(), builder);
+        //register our builders during initialization
+        for(final ComponentBuilder builder : component.initBuilders(platform, version)) {
+
+          builders.put(builder.identifier(), builder);
+        }
       }
     }
   }

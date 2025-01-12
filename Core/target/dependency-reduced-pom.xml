@@ -3,13 +3,13 @@
   <parent>
     <artifactId>TNPC</artifactId>
     <groupId>net.tnemc</groupId>
-    <version>1.0.0.2-Pre-3</version>
+    <version>1.0.0.2-Pre-17</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>TNPC-Core</artifactId>
   <name>The New Plugin Core - Core</name>
-  <version>1.0.0.2-Pre-3</version>
+  <version>1.0.0.2-Pre-17</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <outputDirectory>target/classes</outputDirectory>
@@ -59,6 +59,22 @@
         <configuration>
           <dependencyReducedPomLocation>${project.build.directory}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
           <artifactSet>
+            <includes>
+              <include>net.tnemc:*</include>
+              <include>org.json.simple:*</include>
+              <include>com.zaxxer:*</include>
+              <include>com.github.Revxrsal.Lamp:*</include>
+              <include>net.kyori:adventure-key</include>
+              <include>net.kyori:adventure-text-minimessage</include>
+              <include>net.kyori:examination-api</include>
+              <include>net.kyori:examination-string</include>
+              <include>redis.clients:*</include>
+              <include>org.apache:*</include>
+              <include>org.apache.commons:*</include>
+              <include>org.apache.commons.pool2:*</include>
+              <include>dev.dejvokep:boosted-yaml</include>
+              <include>com.vdurmont:*</include>
+            </includes>
             <excludes>
               <exclude>net.kyori:adventure-api</exclude>
               <exclude>net.kyori:adventure-text-serializer-legacy</exclude>
@@ -69,6 +85,24 @@
     </plugins>
   </build>
   <dependencies>
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.3.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.32</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.googlecode.json-simple</groupId>
+      <artifactId>json-simple</artifactId>
+      <version>1.1.1</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>

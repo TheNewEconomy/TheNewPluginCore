@@ -18,6 +18,7 @@ package net.tnemc.plugincore.sponge;
  */
 
 import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.Platform;
 import net.tnemc.plugincore.core.PluginEngine;
 import net.tnemc.plugincore.core.api.CallbackProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
@@ -39,14 +40,14 @@ public class SpongePluginCore extends PluginCore {
 
   protected final PluginContainer container;
 
-  public SpongePluginCore(final PluginContainer container, PluginEngine engine, final Logger log,
-                          TranslationProvider provider, CallbackProvider callbackProvider) {
+  public SpongePluginCore(final PluginContainer container, final PluginEngine engine, final Logger log,
+                          final TranslationProvider provider, final CallbackProvider callbackProvider) {
     this(container, engine, new SpongeServerProvider(), log, provider, callbackProvider);
   }
 
-  public SpongePluginCore(final PluginContainer container, PluginEngine engine, ServerConnector connector,
-                          final Logger log, TranslationProvider provider, CallbackProvider callbackProvider) {
-    super(engine, connector, new SpongeLogProvider(log), provider, callbackProvider);
+  public SpongePluginCore(final PluginContainer container, final PluginEngine engine, final ServerConnector connector,
+                          final Logger log, final TranslationProvider provider, final CallbackProvider callbackProvider) {
+    super(engine, connector, new SpongeLogProvider(log), provider, callbackProvider, Platform.SPONGE_8, "1.16.5");
 
     setInstance(this);
     this.container = container;
