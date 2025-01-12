@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.component.transaction;
+package net.tnemc.plugincore.core.component.builder;
 /*
  * The New Plugin Core
  * Copyright (C) 2022 - 2025 Daniel "creatorfromhell" Vidmar
@@ -19,6 +19,9 @@ package net.tnemc.plugincore.core.component.transaction;
 
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.component.ComponentBuilder;
+import net.tnemc.plugincore.core.component.transaction.Transaction;
+import net.tnemc.plugincore.core.component.transaction.TransactionParameters;
+import net.tnemc.plugincore.core.component.transaction.TransactionResult;
 
 import java.util.concurrent.CompletableFuture;
 

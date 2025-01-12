@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.component.query;
+package net.tnemc.plugincore.core.component.builder;
 /*
  * The New Plugin Core
  * Copyright (C) 2022 - 2025 Daniel "creatorfromhell" Vidmar
@@ -19,6 +19,9 @@ package net.tnemc.plugincore.core.component.query;
 
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.component.ComponentBuilder;
+import net.tnemc.plugincore.core.component.query.Query;
+import net.tnemc.plugincore.core.component.query.QueryParameters;
+import net.tnemc.plugincore.core.component.query.QueryResult;
 import net.tnemc.plugincore.core.component.transaction.TransactionResult;
 
 import java.util.concurrent.CompletableFuture;
