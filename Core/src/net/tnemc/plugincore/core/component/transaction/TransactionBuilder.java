@@ -19,9 +19,6 @@ package net.tnemc.plugincore.core.component.transaction;
 
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.component.ComponentBuilder;
-import net.tnemc.plugincore.core.component.query.Query;
-import net.tnemc.plugincore.core.component.query.TransactionBuilder;
-import net.tnemc.plugincore.core.component.query.QueryParameters;
 
 import java.util.concurrent.CompletableFuture;
 
