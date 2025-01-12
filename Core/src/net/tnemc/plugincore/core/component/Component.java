@@ -35,12 +35,13 @@ public interface Component {
   String identifier();
 
   /**
-   * Checks if this component supports the given platform.
+   * Checks if this method supports the given platform and version.
    *
    * @param platform the Platform to check for support
-   * @return true if the platform is supported, false otherwise
+   * @param version the version string to check for support
+   * @return true if the platform and version are supported, false otherwise
    */
-  boolean supportsPlatform(final Platform platform);
+  boolean supports(final Platform platform, final String version);
 
   /**
    * Retrieves the array of dependencies required by this component.
@@ -48,6 +49,13 @@ public interface Component {
    * @return an array of strings representing the dependencies needed for this component
    */
   String[] dependencies();
+
+  /**
+   * Retrieves an array of library names that this Component requires.
+   *
+   * @return an array of strings representing the required libraries
+   */
+  String[] libraries();
 
   /**
    * Initializes the Component with the provided platform and version.
