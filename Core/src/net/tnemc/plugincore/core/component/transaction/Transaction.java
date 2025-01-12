@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.component.query;
+package net.tnemc.plugincore.core.component.transaction;
 /*
  * The New Plugin Core
  * Copyright (C) 2022 - 2025 Daniel "creatorfromhell" Vidmar
@@ -17,40 +17,37 @@ package net.tnemc.plugincore.core.component.query;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.core.component.transaction.TransactionResult;
-
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Query
+ * Transaction
  *
  * @author creatorfromhell
  * @since 1.0.0.2
  */
-public interface Query {
+public interface Transaction {
 
   /**
-   * Retrieves the identifier associated with this query.
+   * Retrieve the identifier associated with this transaction.
    *
-   * @return the identifier of the query
+   * @return The identifier of the transaction.
    */
   String identifier();
 
   /**
-   * Creates a new query using the provided QueryParameters.
+   * Creates a new transaction with the provided parameters.
    *
-   * @param parameters the parameters for the query
-   * @return a Query object representing the query with the specified parameters
+   * @param parameters The transaction parameters specifying the details of the new transaction.
+   * @return A new Transaction object with the given parameters.
    */
-  Query with(final QueryParameters parameters);
+  Transaction with(final TransactionParameters parameters);
 
   /**
+   * Executes the transaction and returns the result.
    *
-   * Executes the query and returns the result synchronously.
-   *
-   * @return the result of executing the query
+   * @return The result of executing the transaction.
    */
-  QueryResult execute();
+  TransactionResult execute();
 
   /**
    * Asynchronously executes the transaction and sets the result in the provided CompletableFuture.

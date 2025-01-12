@@ -23,6 +23,8 @@ import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.api.CallbackManager;
 import net.tnemc.plugincore.core.component.Component;
 import net.tnemc.plugincore.core.component.ComponentBuilder;
+import net.tnemc.plugincore.core.component.query.Query;
+import net.tnemc.plugincore.core.component.transaction.Transaction;
 import net.tnemc.plugincore.core.io.storage.StorageManager;
 import net.tnemc.plugincore.core.utils.UpdateChecker;
 import org.jetbrains.annotations.Nullable;
@@ -42,6 +44,8 @@ import java.util.Map;
 public abstract class PluginEngine {
 
   protected Map<String, Component> components = new HashMap<>();
+  protected Map<String, Query> queries = new HashMap<>();
+  protected Map<String, Transaction> transactions = new HashMap<>();
   protected Map<String, ComponentBuilder> builders = new HashMap<>();
 
   protected StorageManager storage;
@@ -144,6 +148,14 @@ public abstract class PluginEngine {
 
   public Map<String, ComponentBuilder> builders() {
     return builders;
+  }
+
+  public Map<String, Query> queries() {
+    return queries;
+  }
+
+  public Map<String, Transaction> transactions() {
+    return transactions;
   }
 
   /**
