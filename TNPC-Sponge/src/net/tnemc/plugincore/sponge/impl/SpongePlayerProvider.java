@@ -28,7 +28,9 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.plugin.PluginContainer;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * The Sponge implementation of the {@link PlayerProvider}.
@@ -37,7 +39,7 @@ import java.util.Optional;
  * @since 0.1.2.0
  */
 public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider {
-  public SpongePlayerProvider(User user, PluginContainer container) {
+  public SpongePlayerProvider(final User user, final PluginContainer container) {
     super(user, container);
   }
 
@@ -122,7 +124,7 @@ public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider
    * @param exp The amount of experience to set for this player.
    */
   @Override
-  public void setExp(int exp) {
+  public void setExp(final int exp) {
     if(user.player().isPresent()) {
       user.player().get().offer(Keys.EXPERIENCE, exp);
     }
@@ -147,7 +149,7 @@ public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider
    * @param level The amount of experience levels to set for this player.
    */
   @Override
-  public void setExpLevel(int level) {
+  public void setExpLevel(final int level) {
     if(user.player().isPresent()) {
       user.player().get().offer(Keys.EXPERIENCE_LEVEL, level);
     }
@@ -159,17 +161,29 @@ public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider
   }
 
   /**
+   * Method for retrieving player permissions.
+   *
+   * @return A list of permission strings.
+   */
+  @Override
+  public List<String> getEffectivePermissions() {
+    return user.subjectData().allPermissions().values().stream()
+            .flatMap(map -> map.keySet().stream())
+            .collect(Collectors.toList());
+  }
+
+  /**
    * Used to send a message to this command source.
    *
    * @param messageData The message data to utilize for this translation.
    */
   @Override
-  public void message(MessageData messageData) {
+  public void message(final MessageData messageData) {
 
   }
 
   @Override
-  public void message(String message) {
+  public void message(final String message) {
     message(new MessageData(message));
   }
 }

@@ -27,9 +27,14 @@ import net.tnemc.plugincore.core.io.message.MessageData;
 import net.tnemc.plugincore.core.io.message.MessageHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.permissions.PermissionAttachmentInfo;
+import org.checkerframework.checker.units.qual.A;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * BukkitPlayerProvider
@@ -41,7 +46,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
 
   private final OfflinePlayer player;
 
-  public BukkitPlayerProvider(OfflinePlayer player) {
+  public BukkitPlayerProvider(final OfflinePlayer player) {
     super(player, BukkitPluginCore.instance().getPlugin());
     this.player = player;
   }
@@ -138,7 +143,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    * @param exp The amount of experience to set for this player.
    */
   @Override
-  public void setExp(int exp) {
+  public void setExp(final int exp) {
     if(player.getPlayer() != null) {
       player.getPlayer().setTotalExperience(exp);
     }
@@ -163,7 +168,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    * @param level The amount of experience levels to set for this player.
    */
   @Override
-  public void setExpLevel(int level) {
+  public void setExpLevel(final int level) {
     if(player.getPlayer() != null) {
       player.getPlayer().setLevel(level);
     }
@@ -175,6 +180,23 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
   }
 
   /**
+   * Method for retrieving player permissions.
+   *
+   * @return A list of permission strings.
+   */
+  @Override
+  public List<String> getEffectivePermissions() {
+    if(player.getPlayer() == null) {
+
+      return new ArrayList<>();
+    }
+
+    return player.getPlayer().getEffectivePermissions().stream()
+            .map(PermissionAttachmentInfo::getPermission)
+            .collect(Collectors.toList());
+  }
+
+  /**
    * Used to determine if this player has the specified permission node.
    *
    * @param permission The node to check for.
@@ -182,7 +204,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    * @return True if the player has the permission, otherwise false.
    */
   @Override
-  public boolean hasPermission(String permission) {
+  public boolean hasPermission(final String permission) {
     if(player.getPlayer() == null) {
       return false;
     }
@@ -190,7 +212,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
   }
 
   @Override
-  public void message(String message) {
+  public void message(final String message) {
     if(player.getPlayer() != null) {
       message(new MessageData(message));
     }
@@ -207,7 +229,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
       return;
     }
 
-    try(BukkitAudiences provider = BukkitAudiences.create(BukkitPluginCore.instance().getPlugin())) {
+    try(final BukkitAudiences provider = BukkitAudiences.create(BukkitPluginCore.instance().getPlugin())) {
       MessageHandler.translate(messageData, player.getUniqueId(), provider.sender(player.getPlayer()));
     }
   }
@@ -215,7 +237,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
   public static BukkitPlayerProvider find(final String identifier) {
     try {
       return new BukkitPlayerProvider(Bukkit.getOfflinePlayer(UUID.fromString(identifier)));
-    } catch (Exception ignore) {
+    } catch (final Exception ignore) {
       return new BukkitPlayerProvider(Bukkit.getOfflinePlayer(identifier));
     }
   }

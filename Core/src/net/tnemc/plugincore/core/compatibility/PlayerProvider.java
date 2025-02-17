@@ -21,6 +21,7 @@ package net.tnemc.plugincore.core.compatibility;
 import net.tnemc.menu.core.compatibility.MenuPlayer;
 import net.tnemc.plugincore.core.io.message.MessageData;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -86,6 +87,13 @@ public interface PlayerProvider extends MenuPlayer {
   void setExpLevel(int level);
 
   InventoryProvider<?> inventory();
+
+  /**
+   * Method for retrieving player permissions.
+   *
+   * @return A list of permission strings.
+   */
+  List<String> getEffectivePermissions();
 
   /**
    * Used to determine if this player has the specified permission node.
