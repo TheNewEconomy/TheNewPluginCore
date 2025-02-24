@@ -25,7 +25,7 @@ import net.tnemc.plugincore.core.compatibility.CmdSource;
 import net.tnemc.plugincore.core.compatibility.PlayerProvider;
 import net.tnemc.plugincore.core.io.message.MessageData;
 import net.tnemc.plugincore.core.io.message.MessageHandler;
-import revxrsal.commands.bukkit.BukkitCommandActor;
+import revxrsal.commands.bukkit.actor.BukkitCommandActor;
 
 import java.util.Optional;
 
@@ -38,11 +38,11 @@ import java.util.Optional;
 public class BukkitCMDSource extends CmdSource<BukkitCommandActor> {
   private final PlayerProvider provider;
 
-  public BukkitCMDSource(BukkitCommandActor actor) {
+  public BukkitCMDSource(final BukkitCommandActor actor) {
     super(actor);
 
-    if(actor.isPlayer() && actor.getAsPlayer() != null) {
-      provider = PluginCore.server().initializePlayer(actor.getAsPlayer());
+    if(actor.isPlayer() && actor.asPlayer() != null) {
+      provider = PluginCore.server().initializePlayer(actor.asPlayer());
     } else {
       provider = null;
     }
@@ -77,12 +77,12 @@ public class BukkitCMDSource extends CmdSource<BukkitCommandActor> {
   @Override
   public void message(final MessageData messageData) {
 
-    try(BukkitAudiences provider = BukkitAudiences.create(BukkitPluginCore.instance().getPlugin())) {
+    try(final BukkitAudiences provider = BukkitAudiences.create(BukkitPluginCore.instance().getPlugin())) {
       if(identifier().isEmpty()) {
-        MessageHandler.translate(messageData, null, provider.sender(actor.getSender()));
+        MessageHandler.translate(messageData, null, provider.sender(actor.sender()));
         return;
       }
-      MessageHandler.translate(messageData, identifier().get(), provider.sender(actor.getSender()));
+      MessageHandler.translate(messageData, identifier().get(), provider.sender(actor.sender()));
     }
   }
 }

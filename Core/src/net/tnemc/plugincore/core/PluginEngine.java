@@ -28,7 +28,7 @@ import net.tnemc.plugincore.core.component.transaction.Transaction;
 import net.tnemc.plugincore.core.io.storage.StorageManager;
 import net.tnemc.plugincore.core.utils.UpdateChecker;
 import org.jetbrains.annotations.Nullable;
-import revxrsal.commands.CommandHandler;
+import revxrsal.commands.Lamp;
 import revxrsal.commands.command.CommandActor;
 import revxrsal.commands.command.ExecutableCommand;
 
@@ -49,7 +49,7 @@ public abstract class PluginEngine {
   protected Map<String, ComponentBuilder> builders = new HashMap<>();
 
   protected StorageManager storage;
-  protected CommandHandler command;
+  protected Lamp<?> command;
 
   protected MenuHandler menuHandler;
   protected HelperMethods helperMethods;
@@ -121,7 +121,7 @@ public abstract class PluginEngine {
    */
   public abstract void registerCommandHandler();
 
-  public abstract String commandHelpWriter(ExecutableCommand command, CommandActor actor);
+  public abstract <T extends CommandActor> String commandHelpWriter(ExecutableCommand<T> command, T actor);
 
   /**
    * Used to register commands.
@@ -181,7 +181,7 @@ public abstract class PluginEngine {
     return storage;
   }
 
-  public CommandHandler command() {
+  public Lamp<?> command() {
     return command;
   }
 

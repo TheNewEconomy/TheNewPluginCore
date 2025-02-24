@@ -23,7 +23,7 @@ import net.tnemc.plugincore.core.api.CallbackEntry;
 import net.tnemc.plugincore.core.api.CallbackManager;
 import net.tnemc.plugincore.core.api.callback.Callback;
 import net.tnemc.plugincore.core.io.storage.StorageManager;
-import revxrsal.commands.CommandHandler;
+import revxrsal.commands.Lamp;
 import revxrsal.commands.orphan.OrphanCommand;
 
 import java.io.File;
@@ -83,9 +83,9 @@ public interface Module {
 
   /**
    * Called after the default TNE Commands are registered.
-   * @param handler The {@link CommandHandler} that the commands are registered to.
+   * @param handler The {@link Lamp} that the commands are registered to.
    */
-  void registerCommands(CommandHandler handler);
+  void registerCommands(Lamp<?> handler);
 
   /**
    * Used to register sub commands onto the exist /money command set.

@@ -17,7 +17,6 @@ package net.tnemc.plugincore.core.io.storage.engine.nosql;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import com.mongodb.client.MongoDatabase;
 import net.tnemc.plugincore.core.io.storage.Datable;
 import net.tnemc.plugincore.core.io.storage.StorageConnector;
 import net.tnemc.plugincore.core.io.storage.StorageEngine;
