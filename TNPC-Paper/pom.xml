@@ -175,12 +175,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.github.revxrsal</groupId>
-            <artifactId>lamp.brigadier</artifactId>
-            <version>${lamp.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
             <version>3.0.2</version>

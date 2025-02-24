@@ -182,12 +182,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.github.revxrsal</groupId>
-            <artifactId>lamp.brigadier</artifactId>
-            <version>${lamp.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
             <version>2.11.3</version>
