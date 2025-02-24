@@ -35,7 +35,7 @@ import net.tnemc.plugincore.core.module.ModuleLoader;
 import net.tnemc.plugincore.core.module.cache.ModuleFileCache;
 import net.tnemc.plugincore.core.utils.UpdateChecker;
 import org.jetbrains.annotations.Nullable;
-import revxrsal.commands.CommandHandler;
+import revxrsal.commands.Lamp;
 import revxrsal.commands.orphan.Orphans;
 
 import java.io.File;
@@ -174,7 +174,7 @@ public class PluginCore {
     if(this.engine.storage() == null) {
       logger.warning("Storage engine not initialized, proceeding without storage!", DebugLevel.OFF);
     } else {
-      if(! this.storage().meetsRequirement()) {
+      if(!storage().meetsRequirement()) {
         logger.error("This server does not meet SQL requirements needed!", DebugLevel.OFF);
         return;
       }
@@ -189,7 +189,7 @@ public class PluginCore {
     this.engine.registerCommandHandler();
 
     //Register our help writer.
-    command().setHelpWriter(engine::commandHelpWriter);
+    //command().setHelpWriter(engine::commandHelpWriter);
 
     //Register our commands.
     this.engine.registerCommands();
@@ -298,7 +298,7 @@ public class PluginCore {
     this.level = level;
   }
 
-  public CommandHandler command() {
+  public Lamp<?> command() {
     return engine.command();
   }
 

@@ -35,7 +35,7 @@ public abstract class CmdSource<T extends CommandActor> {
 
   protected final T actor;
 
-  public CmdSource(T actor) {
+  public CmdSource(final T actor) {
     this.actor = actor;
   }
 
@@ -47,7 +47,7 @@ public abstract class CmdSource<T extends CommandActor> {
     if(!isPlayer()) {
       return Optional.empty();
     }
-    return Optional.of(actor.getUniqueId());
+    return Optional.of(actor.uniqueId());
   }
 
   /**
@@ -55,7 +55,7 @@ public abstract class CmdSource<T extends CommandActor> {
    * @return The name of this command source.
    */
   public String name() {
-    return actor.getName();
+    return actor.name();
   }
 
   /**

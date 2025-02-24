@@ -43,11 +43,11 @@ public abstract class StandardSQL implements SQLEngine {
   protected final Dialect dialect;
   protected final String prefix;
 
-  public StandardSQL(Dialect dialect) {
+  public StandardSQL(final Dialect dialect) {
     this(StorageManager.instance().settings().prefix(), dialect);
   }
 
-  public StandardSQL(final String prefix, Dialect dialect) {
+  public StandardSQL(final String prefix, final Dialect dialect) {
     this.dialect = dialect;
     this.prefix = prefix;
   }
@@ -57,7 +57,7 @@ public abstract class StandardSQL implements SQLEngine {
    * after connecting.
    */
   @Override
-  public void initialize(StorageConnector<?> connector) {
+  public void initialize(final StorageConnector<?> connector) {
   }
 
   /**
@@ -76,7 +76,7 @@ public abstract class StandardSQL implements SQLEngine {
    * @param connector The storage connector to use for this transaction.
    */
   @Override
-  public void reset(StorageConnector<?> connector) {
+  public void reset(final StorageConnector<?> connector) {
 
     @Language("SQL")
     final String truncateAll = "SELECT concat('TRUNCATE TABLE ',table_catalog,'.',table_schema,'.',table_name) AS query" +
@@ -84,12 +84,14 @@ public abstract class StandardSQL implements SQLEngine {
         "WHERE table_name LIKE '" + prefix + "%';";
 
     if(connector instanceof SQLConnector) {
-      try(ResultSet result = ((SQLConnector)connector).executeQuery(truncateAll, new Object[]{})) {
+
+      try(final ResultSet result = ((SQLConnector)connector).executeQuery(truncateAll, new Object[]{})) {
 
         while(result.next()) {
+
           ((SQLConnector)connector).executeUpdate(result.getString("query"), new Object[]{});
         }
-      } catch(SQLException e) {
+      } catch(final SQLException e) {
         e.printStackTrace();
       }
     }
@@ -101,7 +103,7 @@ public abstract class StandardSQL implements SQLEngine {
    * @param connector The storage connector to use for this transaction.
    */
   @Override
-  public void backup(StorageConnector<?> connector) {
+  public void backup(final StorageConnector<?> connector) {
 
   }
 

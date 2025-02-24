@@ -3,13 +3,13 @@
   <parent>
     <artifactId>TNPC</artifactId>
     <groupId>net.tnemc</groupId>
-    <version>1.0.0.2-Pre-17</version>
+    <version>1.0.0.2-Pre-18</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>TNPC-Core</artifactId>
   <name>The New Plugin Core - Core</name>
-  <version>1.0.0.2-Pre-17</version>
+  <version>1.0.0.2-Pre-18</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <outputDirectory>target/classes</outputDirectory>
@@ -24,6 +24,9 @@
         <configuration>
           <source>17</source>
           <target>17</target>
+          <compilerArgs>
+            <arg>-parameters</arg>
+          </compilerArgs>
         </configuration>
       </plugin>
       <plugin>
@@ -86,6 +89,12 @@
   </build>
   <dependencies>
     <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongodb-driver-sync</artifactId>
+      <version>5.3.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>javax.xml.bind</groupId>
       <artifactId>jaxb-api</artifactId>
       <version>2.3.1</version>
@@ -134,6 +143,12 @@
           <groupId>org.apiguardian</groupId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>io.github.revxrsal</groupId>
+      <artifactId>lamp.common</artifactId>
+      <version>4.0.0-rc.9</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
 </project>

@@ -22,7 +22,7 @@ import net.tnemc.plugincore.core.compatibility.PlayerProvider;
 import net.tnemc.plugincore.core.io.message.MessageData;
 import net.tnemc.plugincore.core.io.message.MessageHandler;
 import net.tnemc.plugincore.sponge.SpongePluginCore;
-import revxrsal.commands.sponge.SpongeCommandActor;
+import revxrsal.commands.sponge.actor.SpongeCommandActor;
 
 import java.util.Optional;
 
@@ -36,11 +36,11 @@ public class SpongeCMDSource extends CmdSource<SpongeCommandActor> {
 
   private final SpongePlayerProvider provider;
 
-  public SpongeCMDSource(SpongeCommandActor actor) {
+  public SpongeCMDSource(final SpongeCommandActor actor) {
     super(actor);
 
-    if(actor.isPlayer() && actor.getAsPlayer() != null) {
-      provider = new SpongePlayerProvider(actor.getAsPlayer().user(),
+    if(actor.isPlayer() && actor.asPlayer() != null) {
+      provider = new SpongePlayerProvider(actor.asPlayer().user(),
                                           SpongePluginCore.instance().getContainer());
     } else {
       provider = null;
@@ -76,9 +76,9 @@ public class SpongeCMDSource extends CmdSource<SpongeCommandActor> {
   @Override
   public void message(final MessageData messageData) {
     if(identifier().isEmpty()) {
-      MessageHandler.translate(messageData, null, actor.getSource().audience());
+      MessageHandler.translate(messageData, null, actor.cause().audience());
       return;
     }
-    MessageHandler.translate(messageData, identifier().get(), actor.getSource().audience());
+    MessageHandler.translate(messageData, identifier().get(), actor.cause().audience());
   }
 }

@@ -36,7 +36,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.world.DefaultWorldKeys;
 import revxrsal.commands.command.CommandActor;
-import revxrsal.commands.sponge.SpongeCommandActor;
+import revxrsal.commands.sponge.actor.SpongeCommandActor;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -81,7 +81,7 @@ public class SpongeServerProvider implements ServerConnector {
    * @return The string after placeholders have been replaced.
    */
   @Override
-  public String replacePlaceholder(UUID player, String message) {
+  public String replacePlaceholder(final UUID player, final String message) {
     return message;
   }
 
@@ -103,7 +103,7 @@ public class SpongeServerProvider implements ServerConnector {
    * @return The {@link CmdSource} for this actor.
    */
   @Override
-  public CmdSource<?> source(@NotNull CommandActor actor) {
+  public CmdSource<?> source(@NotNull final CommandActor actor) {
     return new SpongeCMDSource((SpongeCommandActor)actor);
   }
 
@@ -126,7 +126,7 @@ public class SpongeServerProvider implements ServerConnector {
    * Optional if no player is located.
    */
   @Override
-  public Optional<PlayerProvider> findPlayer(@NotNull UUID identifier) {
+  public Optional<PlayerProvider> findPlayer(@NotNull final UUID identifier) {
     final Optional<ServerPlayer> player = Sponge.server().player(identifier);
     return player.map(value->new SpongePlayerProvider(value.user(), SpongePluginCore.instance().getContainer()));
   }
@@ -140,8 +140,8 @@ public class SpongeServerProvider implements ServerConnector {
    * @return The initialized {@link PlayerProvider player object}.
    */
   @Override
-  public PlayerProvider initializePlayer(@NotNull Object player) {
-    if(player instanceof ServerPlayer playerObj) {
+  public PlayerProvider initializePlayer(@NotNull final Object player) {
+    if(player instanceof final ServerPlayer playerObj) {
       return new SpongePlayerProvider(playerObj.user(), SpongePluginCore.instance().getContainer());
     }
     return null;
@@ -155,7 +155,7 @@ public class SpongeServerProvider implements ServerConnector {
    * @return True if the player has played on the server before, otherwise false.
    */
   @Override
-  public boolean playedBefore(UUID identifier) {
+  public boolean playedBefore(final UUID identifier) {
     final Optional<ServerPlayer> player = Sponge.server().player(identifier);
     return player.map(ServerPlayer::hasPlayedBefore).orElse(false);
   }
@@ -170,7 +170,7 @@ public class SpongeServerProvider implements ServerConnector {
    * otherwise false.
    */
   @Override
-  public boolean playedBefore(String name) {
+  public boolean playedBefore(final String name) {
     final Optional<ServerPlayer> player = Sponge.server().player(name);
     return player.map(ServerPlayer::hasPlayedBefore).orElse(false);
   }
@@ -183,12 +183,12 @@ public class SpongeServerProvider implements ServerConnector {
    * @return True if someone with the specified username is online.
    */
   @Override
-  public boolean online(String name) {
+  public boolean online(final String name) {
     try {
 
       final Optional<ServerPlayer> player = Sponge.server().player(UUID.fromString(name));
       return player.map(ServerPlayer::isOnline).orElse(false);
-    } catch (Exception e) {
+    } catch (final Exception e) {
 
       final Optional<ServerPlayer> player = Sponge.server().player(name);
       return player.map(ServerPlayer::isOnline).orElse(false);
@@ -196,7 +196,7 @@ public class SpongeServerProvider implements ServerConnector {
   }
 
   @Override
-  public Optional<UUID> fromName(String name) {
+  public Optional<UUID> fromName(final String name) {
     return Optional.empty();
   }
 
@@ -209,7 +209,7 @@ public class SpongeServerProvider implements ServerConnector {
    * @return An optional containing the name if exists, otherwise false.
    */
   @Override
-  public Optional<String> fromID(UUID id) {
+  public Optional<String> fromID(final UUID id) {
     return Optional.empty();
   }
 
@@ -233,7 +233,7 @@ public class SpongeServerProvider implements ServerConnector {
    * @return The formatted string.
    */
   @Override
-  public String replaceColours(String string, boolean strip) {
+  public String replaceColours(final String string, final boolean strip) {
     return string;
   }
 
@@ -243,7 +243,7 @@ public class SpongeServerProvider implements ServerConnector {
   }
 
   @Override
-  public void saveResource(String resourcePath, boolean replace) {
+  public void saveResource(String resourcePath, final boolean replace) {
     if (resourcePath != null && ! resourcePath.isEmpty()) {
 
       resourcePath = resourcePath.replace('\\', '/');
@@ -256,8 +256,8 @@ public class SpongeServerProvider implements ServerConnector {
       } else {
 
         final File outFile = new File(SpongePluginCore.directory(), resourcePath);
-        int lastIndex = resourcePath.lastIndexOf(47);
-        File outDir = new File(SpongePluginCore.directory(), resourcePath.substring(0, Math.max(lastIndex, 0)));
+        final int lastIndex = resourcePath.lastIndexOf(47);
+        final File outDir = new File(SpongePluginCore.directory(), resourcePath.substring(0, Math.max(lastIndex, 0)));
         if (!outDir.exists()) {
           outDir.mkdirs();
         }
@@ -266,8 +266,8 @@ public class SpongeServerProvider implements ServerConnector {
           if (outFile.exists() && !replace) {
           } else {
 
-            OutputStream out = new FileOutputStream(outFile);
-            byte[] buf = new byte[1024];
+            final OutputStream out = new FileOutputStream(outFile);
+            final byte[] buf = new byte[1024];
 
             int len;
             while((len = in.read(buf)) > 0) {
@@ -277,7 +277,7 @@ public class SpongeServerProvider implements ServerConnector {
             out.close();
             in.close();
           }
-        } catch (IOException ignore) {
+        } catch (final IOException ignore) {
           logger.error("Could not save " + outFile.getName() + " to " + outFile);
         }
 
@@ -306,7 +306,7 @@ public class SpongeServerProvider implements ServerConnector {
    * @see CraftingRecipe
    */
   @Override
-  public void registerCrafting(@NotNull final String key, @NotNull CraftingRecipe recipe) {
+  public void registerCrafting(@NotNull final String key, @NotNull final CraftingRecipe recipe) {
     //TODO: Sponge Register crafting
   }
 
@@ -316,17 +316,17 @@ public class SpongeServerProvider implements ServerConnector {
   }
 
   @Override
-  public @Nullable InputStream getResource(@NotNull String filename) {
+  public @Nullable InputStream getResource(@NotNull final String filename) {
     try {
-      URL url = this.getClass().getClassLoader().getResource(filename);
+      final URL url = this.getClass().getClassLoader().getResource(filename);
       if (url == null) {
         return null;
       } else {
-        URLConnection connection = url.openConnection();
+        final URLConnection connection = url.openConnection();
         connection.setUseCaches(false);
         return connection.getInputStream();
       }
-    } catch (IOException var4) {
+    } catch (final IOException var4) {
       return null;
     }
   }
