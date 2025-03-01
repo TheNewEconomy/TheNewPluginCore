@@ -28,7 +28,6 @@ import net.tnemc.plugincore.core.io.storage.StorageEngine;
 import net.tnemc.plugincore.core.io.storage.StorageManager;
 import org.intellij.lang.annotations.Language;
 
-import javax.sql.DataSource;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -45,7 +44,7 @@ import java.util.Map;
  */
 public class SQLConnector implements StorageConnector<Connection> {
 
-  protected DataSource source;
+  protected HikariDataSource dataSource;
 
   protected String sourceClass;
   protected String driverClass;
@@ -81,11 +80,11 @@ public class SQLConnector implements StorageConnector<Connection> {
     config.setMaxLifetime(StorageManager.instance().settings().maxLife());
     config.setConnectionTimeout(StorageManager.instance().settings().timeout());
 
-    for(Map.Entry<String, Object> entry : ((SQLEngine)StorageManager.instance().getEngine()).properties().entrySet()) {
+    for(final Map.Entry<String, Object> entry : ((SQLEngine)StorageManager.instance().getEngine()).properties().entrySet()) {
       config.addDataSourceProperty(entry.getKey(), entry.getValue());
     }
 
-    this.source = new HikariDataSource(config);
+    this.dataSource = new HikariDataSource(config);
   }
 
   /**
@@ -95,8 +94,8 @@ public class SQLConnector implements StorageConnector<Connection> {
    */
   @Override
   public Connection connection() throws SQLException {
-    if(source == null) initialize();
-    return source.getConnection();
+    if(dataSource == null) initialize();
+    return dataSource.getConnection();
   }
 
   public boolean checkVersion() {
@@ -104,7 +103,7 @@ public class SQLConnector implements StorageConnector<Connection> {
 
     if(dialect().requirement().equalsIgnoreCase("none")) return true;
 
-    try(Connection connection = connection()) {
+    try(final Connection connection = connection()) {
       final DatabaseMetaData meta = connection.getMetaData();
       final String version = dialect().parseVersion(meta.getDatabaseProductVersion());
 
@@ -112,7 +111,7 @@ public class SQLConnector implements StorageConnector<Connection> {
       PluginCore.log().debug("SQL Version: " + version, DebugLevel.OFF);
       result = dialect().checkRequirement(version);
 
-    } catch(Exception ignore) {
+    } catch(final Exception ignore) {
       PluginCore.log().error("Issue attempting to access SQL Version.");
     }
     return result;
@@ -124,16 +123,16 @@ public class SQLConnector implements StorageConnector<Connection> {
    * @param variables An array of variables for the prepared statement.
    * @return The {@link ResultSet}.
    */
-  public ResultSet executeQuery(@Language("SQL") final String query, Object[] variables) {
-    try(Connection connection = connection();
-        PreparedStatement statement = connection.prepareStatement(query)) {
+  public ResultSet executeQuery(@Language("SQL") final String query, final Object[] variables) {
+    try(final Connection connection = connection();
+        final PreparedStatement statement = connection.prepareStatement(query)) {
 
       for(int i = 0; i < variables.length; i++) {
         statement.setObject((i + 1), variables[i]);
       }
       return statement.executeQuery();
 
-    } catch(SQLException e) {
+    } catch(final SQLException e) {
       PluginCore.log().sqlError("", e, query, variables, DebugLevel.OFF);
     }
     return null;
@@ -146,15 +145,15 @@ public class SQLConnector implements StorageConnector<Connection> {
    *
    * @return True to indicate that the statement has executed successfully, otherwise false.
    */
-  public int executeUpdate(@Language("SQL") final String query, Object[] variables) {
-    try(Connection connection = connection();
-        PreparedStatement statement = connection.prepareStatement(query)) {
+  public int executeUpdate(@Language("SQL") final String query, final Object[] variables) {
+    try(final Connection connection = connection();
+        final PreparedStatement statement = connection.prepareStatement(query)) {
 
       for(int i = 0; i < variables.length; i++) {
         statement.setObject((i + 1), variables[i]);
       }
       return statement.executeUpdate();
-    } catch(SQLException e) {
+    } catch(final SQLException e) {
       PluginCore.log().sqlError("", e, query, variables, DebugLevel.OFF);
     }
     return 0;
@@ -176,7 +175,7 @@ public class SQLConnector implements StorageConnector<Connection> {
         Class.forName(source);
 
         this.sourceClass = source;
-      } catch(Exception ignore) {}
+      } catch(final Exception ignore) {}
     }
 
     for(final String driver : engine.driver()) {
@@ -190,7 +189,7 @@ public class SQLConnector implements StorageConnector<Connection> {
         Class.forName(driver);
 
         this.driverClass = driver;
-      } catch(Exception ignore) {}
+      } catch(final Exception ignore) {}
     }
   }
 

@@ -111,6 +111,12 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.cassandra/java-driver-core -->
+        <dependency>
+            <groupId>org.apache.cassandra</groupId>
+            <artifactId>java-driver-core</artifactId>
+            <version>4.19.0</version>
+        </dependency>
         <!-- MongoDB Java Driver -->
         <dependency>
             <groupId>org.mongodb</groupId>
