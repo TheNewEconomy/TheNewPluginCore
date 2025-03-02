@@ -3,13 +3,13 @@
   <parent>
     <artifactId>TNPC</artifactId>
     <groupId>net.tnemc</groupId>
-    <version>1.0.0.2-Pre-18</version>
+    <version>1.0.0.2-SNAPSHOT-20</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>TNPC-Core</artifactId>
   <name>The New Plugin Core - Core</name>
-  <version>1.0.0.2-Pre-18</version>
+  <version>1.0.0.2-SNAPSHOT-20</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <outputDirectory>target/classes</outputDirectory>
@@ -89,6 +89,12 @@
   </build>
   <dependencies>
     <dependency>
+      <groupId>org.apache.cassandra</groupId>
+      <artifactId>java-driver-core</artifactId>
+      <version>4.19.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>org.mongodb</groupId>
       <artifactId>mongodb-driver-sync</artifactId>
       <version>5.3.1</version>
@@ -147,6 +153,12 @@
     <dependency>
       <groupId>io.github.revxrsal</groupId>
       <artifactId>lamp.common</artifactId>
+      <version>4.0.0-rc.9</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.github.revxrsal</groupId>
+      <artifactId>lamp.brigadier</artifactId>
       <version>4.0.0-rc.9</version>
       <scope>compile</scope>
     </dependency>

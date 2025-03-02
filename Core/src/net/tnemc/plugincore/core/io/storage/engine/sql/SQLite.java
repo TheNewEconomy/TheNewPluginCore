@@ -24,7 +24,7 @@ import net.tnemc.plugincore.core.io.storage.engine.StandardSQL;
  * SQLite
  *
  * @author creatorfromhell
- * @since 1.0.0.2-Pre-19
+ * @since 1.0.0.2-SNAPSHOT-20
  */
 public class SQLite extends StandardSQL {
 

@@ -49,7 +49,7 @@ public abstract class PluginEngine {
   protected Map<String, ComponentBuilder> builders = new HashMap<>();
 
   protected StorageManager storage;
-  protected Lamp<?> command;
+  protected Lamp.Builder<? extends CommandActor> command;
 
   protected MenuHandler menuHandler;
   protected HelperMethods helperMethods;
@@ -181,7 +181,7 @@ public abstract class PluginEngine {
     return storage;
   }
 
-  public Lamp<?> command() {
+  public Lamp.Builder<? extends CommandActor> command() {
     return command;
   }
 

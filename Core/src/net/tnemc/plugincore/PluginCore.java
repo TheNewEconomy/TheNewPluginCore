@@ -36,6 +36,7 @@ import net.tnemc.plugincore.core.module.cache.ModuleFileCache;
 import net.tnemc.plugincore.core.utils.UpdateChecker;
 import org.jetbrains.annotations.Nullable;
 import revxrsal.commands.Lamp;
+import revxrsal.commands.command.CommandActor;
 import revxrsal.commands.orphan.Orphans;
 
 import java.io.File;
@@ -202,20 +203,6 @@ public class PluginCore {
 
     this.engine.postCommands();
 
-    //Register our orphan commands from the modules.
-    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().registerAdminSub().forEach(orphanCommand -> {
-      this.engine.command().register(Orphans.path("tne").handler(orphanCommand));
-    })));
-
-    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().registerMoneySub().forEach(orphanCommand -> {
-      this.engine.command().register(Orphans.path("money").handler(orphanCommand));
-    })));
-
-    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().registerTransactionSub().forEach(orphanCommand -> {
-      this.engine.command().register(Orphans.path("transaction").handler(orphanCommand));
-    })));
-
-
     this.engine.registerMenuHandler();
 
     //Call enableMenu for all modules loaded.
@@ -226,6 +213,20 @@ public class PluginCore {
     this.engine.registerUpdateChecker();
 
     this.engine.postEnable();
+  }
+
+  public void registerModuleCommands(final Lamp<?> lamp) {
+    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().registerAdminSub().forEach(orphanCommand -> {
+      lamp.register(Orphans.path("tne").handler(orphanCommand));
+    })));
+
+    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().registerMoneySub().forEach(orphanCommand -> {
+      lamp.register(Orphans.path("money").handler(orphanCommand));
+    })));
+
+    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().registerTransactionSub().forEach(orphanCommand -> {
+      lamp.register(Orphans.path("transaction").handler(orphanCommand));
+    })));
   }
 
   public void onDisable() {
@@ -298,7 +299,7 @@ public class PluginCore {
     this.level = level;
   }
 
-  public Lamp<?> command() {
+  public Lamp.Builder<? extends CommandActor> command() {
     return engine.command();
   }
 
