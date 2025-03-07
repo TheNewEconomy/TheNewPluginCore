@@ -79,8 +79,8 @@ public class PasteeClient implements IPasteClient {
       for(final IPasteable pasteable : pasteables) {
 
         final JSONObject section = new JSONObject();
-        section.put("name", pasteable.fileName());
-        section.put("syntax", pasteable.extension());
+        section.put("name", pasteable.fileName() + "." + pasteable.extension());
+        section.put("syntax", pasteable.syntax());
         section.put("contents", pasteable.content());
         sectionsArray.put(section);
       }

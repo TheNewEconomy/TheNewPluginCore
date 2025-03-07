@@ -28,12 +28,14 @@ class PasteableText implements IPasteable {
   private final String identifier;
   private final String fileName;
   private final String extension;
+  private final String syntax;
   private final String content;
 
-  public PasteableText(final String identifier, final String fileName, final String extension, final String content) {
+  public PasteableText(final String identifier, final String fileName, final String extension, final String syntax, final String content) {
     this.identifier = identifier;
     this.fileName = fileName;
     this.extension = extension;
+    this.syntax = syntax;
     this.content = content;
   }
 
@@ -50,6 +52,16 @@ class PasteableText implements IPasteable {
   @Override
   public String extension() {
     return extension;
+  }
+
+  /**
+   * Retrieves the syntax associated with this object.
+   *
+   * @return The syntax as a String.
+   */
+  @Override
+  public String syntax() {
+    return syntax;
   }
 
   @Override
