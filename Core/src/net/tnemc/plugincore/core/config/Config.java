@@ -22,6 +22,7 @@ import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.settings.Settings;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
+import net.tnemc.plugincore.core.paste.IPasteable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,10 +41,11 @@ import java.util.List;
  * @author creatorfromhell
  * @since 0.1.2.0
  */
-public abstract class Config {
+public abstract class Config implements IPasteable {
 
   protected YamlDocument yaml;
 
+  protected final String fileName;
   protected final File file;
   protected final String defaults;
 
@@ -53,6 +55,7 @@ public abstract class Config {
 
   public Config(final String fileName, final String defaults, final List<String> nodes, final Settings... settings) {
     this.defaults = defaults;
+    this.fileName = fileName;
     this.nodes.addAll(nodes);
     file = new File(PluginCore.directory(), fileName);
 
@@ -126,5 +129,47 @@ public abstract class Config {
     } catch (final IOException var4) {
       return null;
     }
+  }
+
+  //PASTEABLE implementation
+
+  /**
+   * Retrieves the file name associated with this object.
+   *
+   * @return The file name as a String.
+   */
+  @Override
+  public String fileName() {
+    return fileName;
+  }
+
+  /**
+   * Retrieves the extension associated with this object.
+   *
+   * @return The extension as a String.
+   */
+  @Override
+  public String extension() {
+    return "yml";
+  }
+
+  /**
+   * Retrieves the syntax associated with this object.
+   *
+   * @return The syntax as a String.
+   */
+  @Override
+  public String syntax() {
+    return "YAML";
+  }
+
+  /**
+   * Retrieves the content of the object.
+   *
+   * @return The content as a String.
+   */
+  @Override
+  public String content() {
+    return getYaml().dump();
   }
 }

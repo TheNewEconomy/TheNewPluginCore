@@ -25,23 +25,16 @@ package net.tnemc.plugincore.core.paste;
  */
 class PasteableText implements IPasteable {
 
-  private final String identifier;
   private final String fileName;
   private final String extension;
   private final String syntax;
   private final String content;
 
-  public PasteableText(final String identifier, final String fileName, final String extension, final String syntax, final String content) {
-    this.identifier = identifier;
+  public PasteableText(final String fileName, final String extension, final String syntax, final String content) {
     this.fileName = fileName;
     this.extension = extension;
     this.syntax = syntax;
     this.content = content;
-  }
-
-  @Override
-  public String identifier() {
-    return identifier;
   }
 
   @Override

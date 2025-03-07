@@ -27,13 +27,6 @@ package net.tnemc.plugincore.core.paste;
 public interface IPasteable {
 
   /**
-   * Retrieves the identifier associated with this object.
-   *
-   * @return The identifier as a String.
-   */
-  String identifier();
-
-  /**
    * Retrieves the file name associated with this object.
    *
    * @return The file name as a String.
