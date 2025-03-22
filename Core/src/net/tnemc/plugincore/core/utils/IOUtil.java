@@ -29,11 +29,11 @@ public class IOUtil {
             return null;
           }
 
-          public void checkClientTrusted(X509Certificate[] certs, String authType) {
+          public void checkClientTrusted(final X509Certificate[] certs, final String authType) {
             //nothing to see here
           }
 
-          public void checkServerTrusted(X509Certificate[] certs, String authType) {
+          public void checkServerTrusted(final X509Certificate[] certs, final String authType) {
             //nothing to see here
           }
         }
@@ -47,18 +47,18 @@ public class IOUtil {
   public static Optional<String> readVersion() {
     String build = null;
     try {
-      SSLContext sc = SSLContext.getInstance("TLS");
+      final SSLContext sc = SSLContext.getInstance("TLS");
       sc.init(null, selfCertificates(), new SecureRandom());
       HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 
-      URL url = new URL(PluginCore.engine().versionCheckSite());
-      HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+      final URL url = new URL(PluginCore.engine().versionCheckSite());
+      final HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
       connection.setReadTimeout(3000);
 
-      BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+      final BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
       build = in.readLine();
       in.close();
-    } catch (Exception ignore) {
+    } catch (final Exception ignore) {
       PluginCore.log().warning("Unable to contact update server!", DebugLevel.OFF);
     }
     return Optional.ofNullable(build);
@@ -72,10 +72,10 @@ public class IOUtil {
    * the directory.
    */
   public static Optional<String> findFileInsensitive(final String file, final File directory) {
-    File[] jars = directory.listFiles((dir, name) -> name.endsWith(".jar"));
+    final File[] jars = directory.listFiles((dir, name) -> name.endsWith(".jar"));
 
     if(jars != null) {
-      for (File jar : jars) {
+      for (final File jar : jars) {
         if(jar.getAbsolutePath().toLowerCase().contains(file.toLowerCase() + ".jar")) {
           return Optional.of(jar.getAbsolutePath());
         }
@@ -85,11 +85,10 @@ public class IOUtil {
   }
 
   public static File[] getYAMLs(final File directory) {
-    if(!directory.exists()) {
+    if (!directory.exists()) {
       directory.mkdirs();
       return new File[0];
     }
-
-    return directory.listFiles((dir, name) -> name.endsWith(".yml"));
+    return directory.listFiles((dir, name) -> name.endsWith(".yml") || name.endsWith(".yaml"));
   }
 }
