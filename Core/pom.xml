@@ -74,10 +74,6 @@
                             <include>org.json.simple:*</include>
                             <include>com.zaxxer:*</include>
                             <include>com.github.Revxrsal.Lamp:*</include>
-                            <include>net.kyori:adventure-key</include>
-                            <include>net.kyori:adventure-text-minimessage</include>
-                            <include>net.kyori:examination-api</include>
-                            <include>net.kyori:examination-string</include>
                             <include>redis.clients:*</include>
                             <include>org.apache:*</include>
                             <include>org.apache.commons:*</include>
@@ -116,12 +112,14 @@
             <groupId>org.apache.cassandra</groupId>
             <artifactId>java-driver-core</artifactId>
             <version>4.19.0</version>
+            <scope>provided</scope>
         </dependency>
         <!-- MongoDB Java Driver -->
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-sync</artifactId>
             <version>5.3.1</version> <!-- Check for the latest version -->
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

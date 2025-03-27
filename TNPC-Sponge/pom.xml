@@ -105,10 +105,6 @@
                             <include>org.json.simple:*</include>
                             <include>com.zaxxer:*</include>
                             <include>com.github.Revxrsal.Lamp:*</include>
-                            <include>net.kyori:adventure-key</include>
-                            <include>net.kyori:adventure-text-minimessage</include>
-                            <include>net.kyori:examination-api</include>
-                            <include>net.kyori:examination-string</include>
                             <include>redis.clients:*</include>
                             <include>org.apache:*</include>
                             <include>org.apache.commons:*</include>
@@ -149,12 +145,6 @@
             <groupId>net.tnemc</groupId>
             <artifactId>TNPC-Core</artifactId>
             <version>1.0.0.2-SNAPSHOT-21</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.kyori</groupId>
-            <artifactId>adventure-platform-spongeapi</artifactId>
-            <version>4.3.2</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

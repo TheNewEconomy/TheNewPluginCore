@@ -12,5 +12,5 @@ fiotnh33.xot.txt
 *.lst
 /Core/target/maven-archiver/pom.properties
 *.jar
-/TNPC-Paper/target/dependency-reduced-pom.xml
+dependency-reduced-pom.xml
 /TNPC-Paper/target/maven-archiver/pom.properties
