@@ -16,7 +16,7 @@
     <properties>
         <tnil.version>0.1.7.6-LEGACY-16</tnil.version>
         <tnml.version>1.6.0.0-SNAPSHOT-6</tnml.version>
-        <lamp.version>4.0.0-rc.9</lamp.version>
+        <lamp.version>4.0.0-rc.10</lamp.version>
         <tne.relocation>net.tnpc.libs</tne.relocation>
         <maven.javadoc.plugin.version>3.0.1</maven.javadoc.plugin.version>
         <maven.source.version>3.2.0</maven.source.version>
