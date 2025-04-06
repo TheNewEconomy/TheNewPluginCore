@@ -52,6 +52,8 @@
                 <configuration>
                     <show>public</show>
                     <windowtitle>The New Plugin Core</windowtitle>
+                    <failOnWarnings>false</failOnWarnings>
+                    <failOnError>false</failOnError>
                     <verbose>false</verbose>
                     <author>true</author>
                     <version>true</version>

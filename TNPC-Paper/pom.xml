@@ -96,6 +96,8 @@
                     <show>public</show>
                     <windowtitle>The New Plugin Core</windowtitle>
                     <verbose>false</verbose>
+                    <failOnWarnings>false</failOnWarnings>
+                    <failOnError>false</failOnError>
                     <author>true</author>
                     <version>true</version>
                     <linksource>true</linksource>
