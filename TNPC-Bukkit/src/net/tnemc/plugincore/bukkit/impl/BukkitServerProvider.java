@@ -342,9 +342,9 @@ public class BukkitServerProvider implements ServerConnector {
       ShapedRecipe shaped;
 
       try {
-        shaped = new ShapedRecipe(new NamespacedKey(BukkitPluginCore.instance().getPlugin(), key), (ItemStack)recipe.getResult().locale());
+        shaped = new ShapedRecipe(new NamespacedKey(BukkitPluginCore.instance().getPlugin(), key), (ItemStack)recipe.getResult().cacheLocale());
       } catch(final Exception ignore) {
-        shaped = new ShapedRecipe((ItemStack)recipe.getResult().locale());
+        shaped = new ShapedRecipe((ItemStack)recipe.getResult().cacheLocale());
       }
 
       shaped.shape(recipe.getRows());
@@ -357,9 +357,9 @@ public class BukkitServerProvider implements ServerConnector {
       ShapelessRecipe shapeless;
 
       try {
-        shapeless = new ShapelessRecipe(new NamespacedKey(BukkitPluginCore.instance().getPlugin(), key), (ItemStack)recipe.getResult().locale());
+        shapeless = new ShapelessRecipe(new NamespacedKey(BukkitPluginCore.instance().getPlugin(), key), (ItemStack)recipe.getResult().cacheLocale());
       } catch(final Exception ignore) {
-        shapeless = new ShapelessRecipe((ItemStack)recipe.getResult().locale());
+        shapeless = new ShapelessRecipe((ItemStack)recipe.getResult().cacheLocale());
       }
 
       for(final Map.Entry<Character, String> ingredient : recipe.getIngredients().entrySet()) {

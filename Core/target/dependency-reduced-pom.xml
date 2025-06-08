@@ -3,13 +3,13 @@
   <parent>
     <artifactId>TNPC</artifactId>
     <groupId>net.tnemc</groupId>
-    <version>1.0.0.2-SNAPSHOT-22</version>
+    <version>1.1.0.0-SNAPSHOT-1</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>TNPC-Core</artifactId>
   <name>The New Plugin Core - Core</name>
-  <version>1.0.0.2-SNAPSHOT-22</version>
+  <version>1.1.0.0-SNAPSHOT-1</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <outputDirectory>target/classes</outputDirectory>
@@ -42,15 +42,23 @@
       </plugin>
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.3.1</version>
+        <version>3.11.2</version>
         <configuration>
           <show>public</show>
+          <windowtitle>The New Plugin Core</windowtitle>
+          <failOnWarnings>false</failOnWarnings>
           <failOnError>false</failOnError>
+          <verbose>false</verbose>
+          <author>true</author>
+          <version>true</version>
+          <linksource>true</linksource>
+          <notimestamp>true</notimestamp>
+          <bottom>&lt;b&gt;TheNewEconomy, 2025&lt;/b&gt;</bottom>
         </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.3.1-SNAPSHOT</version>
+        <version>3.6.0</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -84,6 +92,12 @@
     </plugins>
   </build>
   <dependencies>
+    <dependency>
+      <groupId>io.github.revxrsal</groupId>
+      <artifactId>lamp.common</artifactId>
+      <version>4.0.0-rc.12</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>org.apache.cassandra</groupId>
       <artifactId>java-driver-core</artifactId>
@@ -154,14 +168,8 @@
     </dependency>
     <dependency>
       <groupId>io.github.revxrsal</groupId>
-      <artifactId>lamp.common</artifactId>
-      <version>4.0.0-rc.9</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.github.revxrsal</groupId>
       <artifactId>lamp.brigadier</artifactId>
-      <version>4.0.0-rc.9</version>
+      <version>4.0.0-rc.12</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
