@@ -299,7 +299,7 @@ public class PluginCore {
     this.level = level;
   }
 
-  public Lamp.Builder<? extends CommandActor> command() {
+  public Lamp<? extends CommandActor> command() {
     return engine.command();
   }
 

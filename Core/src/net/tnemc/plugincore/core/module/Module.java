@@ -23,7 +23,9 @@ import net.tnemc.plugincore.core.api.CallbackEntry;
 import net.tnemc.plugincore.core.api.CallbackManager;
 import net.tnemc.plugincore.core.api.callback.Callback;
 import net.tnemc.plugincore.core.io.storage.StorageManager;
+import org.jetbrains.annotations.NotNull;
 import revxrsal.commands.Lamp;
+import revxrsal.commands.LampBuilderVisitor;
 import revxrsal.commands.command.CommandActor;
 import revxrsal.commands.orphan.OrphanCommand;
 
@@ -86,7 +88,9 @@ public interface Module {
    * Called after the default TNE Commands are registered.
    * @param handler The {@link Lamp} that the commands are registered to.
    */
-  void registerCommands(Lamp.Builder<? extends CommandActor> handler);
+  void registerCommands(Lamp<?> handler);
+
+  <A extends CommandActor> @NotNull LampBuilderVisitor<A> registerParameterTypes();
 
   /**
    * Used to register sub commands onto the exist /money command set.

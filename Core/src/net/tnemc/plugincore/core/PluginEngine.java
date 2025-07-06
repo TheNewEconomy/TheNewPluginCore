@@ -27,8 +27,10 @@ import net.tnemc.plugincore.core.component.query.Query;
 import net.tnemc.plugincore.core.component.transaction.Transaction;
 import net.tnemc.plugincore.core.io.storage.StorageManager;
 import net.tnemc.plugincore.core.utils.UpdateChecker;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import revxrsal.commands.Lamp;
+import revxrsal.commands.LampBuilderVisitor;
 import revxrsal.commands.command.CommandActor;
 import revxrsal.commands.command.ExecutableCommand;
 
@@ -49,7 +51,7 @@ public abstract class PluginEngine {
   protected Map<String, ComponentBuilder> builders = new HashMap<>();
 
   protected StorageManager storage;
-  protected Lamp.Builder<? extends CommandActor> command;
+  protected Lamp<? extends CommandActor> command;
 
   protected MenuHandler menuHandler;
   protected HelperMethods helperMethods;
@@ -124,6 +126,11 @@ public abstract class PluginEngine {
   public abstract <T extends CommandActor> String commandHelpWriter(ExecutableCommand<T> command, T actor);
 
   /**
+   * Used to register command parameter types.
+   */
+  public abstract <A extends CommandActor> @NotNull LampBuilderVisitor<A> registerParameters();
+
+  /**
    * Used to register commands.
    */
   public abstract void registerCommands();
@@ -181,7 +188,7 @@ public abstract class PluginEngine {
     return storage;
   }
 
-  public Lamp.Builder<? extends CommandActor> command() {
+  public Lamp<? extends CommandActor> command() {
     return command;
   }
 
