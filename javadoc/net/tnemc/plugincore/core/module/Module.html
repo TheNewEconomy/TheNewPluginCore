@@ -87,7 +87,7 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-42">Module</a></span></div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-44">Module</a></span></div>
 <div class="block">Module represents an add-on module for TNE.</div>
 <dl class="notes">
 <dt>Since:</dt>
@@ -150,7 +150,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Called after the <a href="../api/CallbackManager.html" title="class in net.tnemc.plugincore.core.api"><code>CallbackManager</code></a> is initialized.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#registerCommands(revxrsal.commands.Lamp.Builder)" class="member-name-link">registerCommands</a><wbr>(revxrsal.commands.Lamp.Builder&lt;? extends revxrsal.commands.command.CommandActor&gt;&nbsp;handler)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#registerCommands(revxrsal.commands.Lamp)" class="member-name-link">registerCommands</a><wbr>(revxrsal.commands.Lamp&lt;?&gt;&nbsp;handler)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Called after the default TNE Commands are registered.</div>
 </div>
@@ -164,14 +164,17 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to register sub commands onto the exist /money command set.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;revxrsal.commands.orphan.OrphanCommand&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#registerTransactionSub()" class="member-name-link">registerTransactionSub</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;A extends revxrsal.commands.command.CommandActor&gt;<br>@NotNull revxrsal.commands.LampBuilderVisitor<wbr>&lt;A&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#registerParameterTypes()" class="member-name-link">registerParameterTypes</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;revxrsal.commands.orphan.OrphanCommand&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#registerTransactionSub()" class="member-name-link">registerTransactionSub</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to register sub commands onto the exist /transaction command set.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#reset(net.tnemc.plugincore.core.io.storage.StorageManager)" class="member-name-link">reset</a><wbr>(<a href="../io/storage/StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage">StorageManager</a>&nbsp;manager)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#reset(net.tnemc.plugincore.core.io.storage.StorageManager)" class="member-name-link">reset</a><wbr>(<a href="../io/storage/StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage">StorageManager</a>&nbsp;manager)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Called when the <a href="../io/storage/StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage"><code>storage manager</code></a> runs its reset method.</div>
 </div>
 </div>
@@ -191,21 +194,21 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="enable(net.tnemc.plugincore.PluginCore)">
 <h3>enable</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-47">enable</a></span><wbr><span class="parameters">(<a href="../../PluginCore.html" title="class in net.tnemc.plugincore">PluginCore</a>&nbsp;core)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-49">enable</a></span><wbr><span class="parameters">(<a href="../../PluginCore.html" title="class in net.tnemc.plugincore">PluginCore</a>&nbsp;core)</span></div>
 <div class="block">Called after the <a href="../../PluginCore.html#enable()"><code>PluginCore.enable()</code></a> method is called.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="disable(net.tnemc.plugincore.PluginCore)">
 <h3>disable</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-52">disable</a></span><wbr><span class="parameters">(<a href="../../PluginCore.html" title="class in net.tnemc.plugincore">PluginCore</a>&nbsp;core)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-54">disable</a></span><wbr><span class="parameters">(<a href="../../PluginCore.html" title="class in net.tnemc.plugincore">PluginCore</a>&nbsp;core)</span></div>
 <div class="block">Called when the <a href="../../PluginCore.html#onDisable()"><code>PluginCore.onDisable()</code></a> method is called.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="initConfigurations(java.io.File)">
 <h3>initConfigurations</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-59">initConfigurations</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;directory)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-61">initConfigurations</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;directory)</span></div>
 <div class="block">Called when the configurations are initialized and loaded.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -216,7 +219,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="backup(net.tnemc.plugincore.core.io.storage.StorageManager)">
 <h3>backup</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-65">backup</a></span><wbr><span class="parameters">(<a href="../io/storage/StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage">StorageManager</a>&nbsp;manager)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-67">backup</a></span><wbr><span class="parameters">(<a href="../io/storage/StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage">StorageManager</a>&nbsp;manager)</span></div>
 <div class="block">Called when the <a href="../io/storage/StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage"><code>storage manager</code></a> runs its backup method.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -227,7 +230,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="reset(net.tnemc.plugincore.core.io.storage.StorageManager)">
 <h3>reset</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-71">reset</a></span><wbr><span class="parameters">(<a href="../io/storage/StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage">StorageManager</a>&nbsp;manager)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-73">reset</a></span><wbr><span class="parameters">(<a href="../io/storage/StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage">StorageManager</a>&nbsp;manager)</span></div>
 <div class="block">Called when the <a href="../io/storage/StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage"><code>storage manager</code></a> runs its reset method.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -238,7 +241,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="enableSave(net.tnemc.plugincore.core.io.storage.StorageManager)">
 <h3>enableSave</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-77">enableSave</a></span><wbr><span class="parameters">(<a href="../io/storage/StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage">StorageManager</a>&nbsp;manager)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-79">enableSave</a></span><wbr><span class="parameters">(<a href="../io/storage/StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage">StorageManager</a>&nbsp;manager)</span></div>
 <div class="block">Called when the <a href="../io/storage/StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage"><code>storage manager</code></a> is enabled, and a connection is established.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -249,7 +252,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="enableMenu(net.tnemc.menu.core.MenuHandler)">
 <h3>enableMenu</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-83">enableMenu</a></span><wbr><span class="parameters">(net.tnemc.menu.core.MenuHandler&nbsp;menuHandler)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-85">enableMenu</a></span><wbr><span class="parameters">(net.tnemc.menu.core.MenuHandler&nbsp;menuHandler)</span></div>
 <div class="block">Called when the <code>menu handler</code> is enabled.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -258,9 +261,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="registerCommands(revxrsal.commands.Lamp.Builder)">
+<section class="detail" id="registerCommands(revxrsal.commands.Lamp)">
 <h3>registerCommands</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-89">registerCommands</a></span><wbr><span class="parameters">(revxrsal.commands.Lamp.Builder&lt;? extends revxrsal.commands.command.CommandActor&gt;&nbsp;handler)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-91">registerCommands</a></span><wbr><span class="parameters">(revxrsal.commands.Lamp&lt;?&gt;&nbsp;handler)</span></div>
 <div class="block">Called after the default TNE Commands are registered.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -269,30 +272,38 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="registerParameterTypes()">
+<h3>registerParameterTypes</h3>
+<div class="member-signature"><span class="annotations">@NotNull
+</span><span class="type-parameters-long">&lt;A extends revxrsal.commands.command.CommandActor&gt;</span>
+<span class="return-type">@NotNull revxrsal.commands.LampBuilderVisitor&lt;A&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-93">registerParameterTypes</a></span>()</div>
+</section>
+</li>
+<li>
 <section class="detail" id="registerMoneySub()">
 <h3>registerMoneySub</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;revxrsal.commands.orphan.OrphanCommand&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-94">registerMoneySub</a></span>()</div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;revxrsal.commands.orphan.OrphanCommand&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-98">registerMoneySub</a></span>()</div>
 <div class="block">Used to register sub commands onto the exist /money command set.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="registerTransactionSub()">
 <h3>registerTransactionSub</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;revxrsal.commands.orphan.OrphanCommand&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-99">registerTransactionSub</a></span>()</div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;revxrsal.commands.orphan.OrphanCommand&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-103">registerTransactionSub</a></span>()</div>
 <div class="block">Used to register sub commands onto the exist /transaction command set.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="registerAdminSub()">
 <h3>registerAdminSub</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;revxrsal.commands.orphan.OrphanCommand&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-104">registerAdminSub</a></span>()</div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;revxrsal.commands.orphan.OrphanCommand&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-108">registerAdminSub</a></span>()</div>
 <div class="block">Used to register sub commands onto the exist /tne command set.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="registerCallbacks()">
 <h3>registerCallbacks</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="../api/CallbackEntry.html" title="class in net.tnemc.plugincore.core.api">CallbackEntry</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-113">registerCallbacks</a></span>()</div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="../api/CallbackEntry.html" title="class in net.tnemc.plugincore.core.api">CallbackEntry</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-117">registerCallbacks</a></span>()</div>
 <div class="block">Called after the <a href="../api/CallbackManager.html" title="class in net.tnemc.plugincore.core.api"><code>CallbackManager</code></a> is initialized. This method will
  register new callbacks with the manager automatically.</div>
 <dl class="notes">
@@ -305,7 +316,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="registerListeners()">
 <h3>registerListeners</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="../api/callback/Callback.html" title="interface in net.tnemc.plugincore.core.api.callback">Callback</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-124">registerListeners</a></span>()</div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="../api/callback/Callback.html" title="interface in net.tnemc.plugincore.core.api.callback">Callback</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/module/Module.html#line-128">registerListeners</a></span>()</div>
 <div class="block">Called after the <a href="../api/CallbackManager.html" title="class in net.tnemc.plugincore.core.api"><code>CallbackManager</code></a> is initialized. This method will
  register the callback listeners with the manager automatically.</div>
 <dl class="notes">
