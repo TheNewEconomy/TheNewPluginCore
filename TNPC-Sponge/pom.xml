@@ -36,6 +36,10 @@
             <url>https://repo.codemc.io/repository/maven-public/</url>
         </repository>
         <repository>
+            <id>codemc-creatorfromhell</id>
+            <url>https://repo.codemc.io/repository/creatorfromhell/</url>
+        </repository>
+        <repository>
             <id>luck-repo</id>
             <url>https://repo.lucko.me/</url>
         </repository>
