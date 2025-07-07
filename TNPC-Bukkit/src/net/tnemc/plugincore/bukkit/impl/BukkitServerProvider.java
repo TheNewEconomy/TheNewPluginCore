@@ -48,7 +48,9 @@ import revxrsal.commands.command.CommandActor;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * BukkitServerProvider
@@ -124,6 +126,18 @@ public class BukkitServerProvider implements ServerConnector {
   @Override
   public CmdSource<?> source(@NotNull final CommandActor actor) {
     return new BukkitCMDSource((BukkitCommandActor)actor);
+  }
+
+  /**
+   * Retrieves a set of online player names.
+   *
+   * @return Set of online player names.
+   */
+  @Override
+  public Set<String> onlinePlayersList() {
+    return Bukkit.getOnlinePlayers().stream()
+            .map(Player::getName)
+            .collect(Collectors.toSet());
   }
 
   /**

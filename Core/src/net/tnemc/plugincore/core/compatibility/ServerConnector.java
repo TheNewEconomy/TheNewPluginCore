@@ -28,6 +28,7 @@ import revxrsal.commands.command.CommandActor;
 
 import java.io.InputStream;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -65,6 +66,13 @@ public interface ServerConnector {
    * @return The {@link CmdSource} for this actor.
    */
   CmdSource<?> source(@NotNull CommandActor actor);
+
+  /**
+   * Retrieves a set of online player names.
+   *
+   * @return Set of online player names.
+   */
+  Set<String> onlinePlayersList();
 
   /**
    * Used to get the amount of online players.

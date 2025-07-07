@@ -34,6 +34,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.world.DefaultWorldKeys;
 import revxrsal.commands.command.CommandActor;
 import revxrsal.commands.sponge.actor.SpongeCommandActor;
@@ -46,7 +47,9 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * SpongeServerProvider
@@ -105,6 +108,18 @@ public class SpongeServerProvider implements ServerConnector {
   @Override
   public CmdSource<?> source(@NotNull final CommandActor actor) {
     return new SpongeCMDSource((SpongeCommandActor)actor);
+  }
+
+  /**
+   * Retrieves a set of online player names.
+   *
+   * @return Set of online player names.
+   */
+  @Override
+  public Set<String> onlinePlayersList() {
+    return Sponge.server().onlinePlayers().stream()
+            .map(Nameable::name)
+            .collect(Collectors.toSet());
   }
 
   /**
