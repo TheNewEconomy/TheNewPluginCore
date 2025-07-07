@@ -94,7 +94,7 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="../../core/compatibility/ServerConnector.html" title="interface in net.tnemc.plugincore.core.compatibility">ServerConnector</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public class </span><span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-57">SpongeServerProvider</a></span>
+<div class="type-signature"><span class="modifiers">public class </span><span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-60">SpongeServerProvider</a></span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="../../core/compatibility/ServerConnector.html" title="interface in net.tnemc.plugincore.core.compatibility">ServerConnector</a></span></div>
 <div class="block">SpongeServerProvider</div>
@@ -180,59 +180,64 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Used to get the amount of online players.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playedBefore(java.lang.String)" class="member-name-link">playedBefore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onlinePlayersList()" class="member-name-link">onlinePlayersList</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Retrieves a set of online player names.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playedBefore(java.lang.String)" class="member-name-link">playedBefore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Used to determine if a player with the specified username has played
  before.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playedBefore(java.util.UUID)" class="member-name-link">playedBefore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;identifier)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playedBefore(java.util.UUID)" class="member-name-link">playedBefore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;identifier)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Used to determine if this player has played on this server before.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../core/compatibility/ProxyProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ProxyProvider</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#proxy()" class="member-name-link">proxy</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../core/compatibility/ProxyProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ProxyProvider</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#proxy()" class="member-name-link">proxy</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">The proxy provider to use for this implementation.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#registerCrafting(java.lang.String,net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe)" class="member-name-link">registerCrafting</a><wbr>(@NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#registerCrafting(java.lang.String,net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe)" class="member-name-link">registerCrafting</a><wbr>(@NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  @NotNull <a href="../../core/compatibility/helper/CraftingRecipe.html" title="class in net.tnemc.plugincore.core.compatibility.helper">CraftingRecipe</a>&nbsp;recipe)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Used to register a crafting recipe to the server.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceColours(java.lang.String,boolean)" class="member-name-link">replaceColours</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;string,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceColours(java.lang.String,boolean)" class="member-name-link">replaceColours</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;string,
  boolean&nbsp;strip)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Used to replace colour codes in a string.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replacePlaceholder(java.util.UUID,java.lang.String)" class="member-name-link">replacePlaceholder</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replacePlaceholder(java.util.UUID,java.lang.String)" class="member-name-link">replacePlaceholder</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;message)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Used to replace placeholders from a string.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#saveResource(java.lang.String,boolean)" class="member-name-link">saveResource</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;resourcePath,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#saveResource(java.lang.String,boolean)" class="member-name-link">saveResource</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;resourcePath,
  boolean&nbsp;replace)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Used to save a resource from the plugin's jar file to the local system's storage.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="scheduler/SpongeScheduler.html" title="class in net.tnemc.plugincore.sponge.impl.scheduler">SpongeScheduler</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scheduler()" class="member-name-link">scheduler</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="scheduler/SpongeScheduler.html" title="class in net.tnemc.plugincore.sponge.impl.scheduler">SpongeScheduler</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scheduler()" class="member-name-link">scheduler</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Provides this implementation's <a href="../../core/compatibility/scheduler/SchedulerProvider.html" title="class in net.tnemc.plugincore.core.compatibility.scheduler"><code>scheduler</code></a>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../core/compatibility/CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility">CmdSource</a><wbr>&lt;?&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#source(revxrsal.commands.command.CommandActor)" class="member-name-link">source</a><wbr>(@NotNull revxrsal.commands.command.CommandActor&nbsp;actor)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../core/compatibility/CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility">CmdSource</a><wbr>&lt;?&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#source(revxrsal.commands.command.CommandActor)" class="member-name-link">source</a><wbr>(@NotNull revxrsal.commands.command.CommandActor&nbsp;actor)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Used to convert an <code>CommandActor</code> to a <a href="../../core/compatibility/CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility"><code>CmdSource</code></a>.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>net.tnemc.item.AbstractItemStack<wbr>&lt;?&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stackBuilder()" class="member-name-link">stackBuilder</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>net.tnemc.item.AbstractItemStack<wbr>&lt;?&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stackBuilder()" class="member-name-link">stackBuilder</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Provides direct access to the implementation's instance of TNIL's AbstractItemStack, which acts
  as a builder.</div>
 </div>
@@ -259,7 +264,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="&lt;init&gt;()">
 <h3>SpongeServerProvider</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-66">SpongeServerProvider</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-69">SpongeServerProvider</a></span>()</div>
 </section>
 </li>
 </ul>
@@ -273,7 +278,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="name()">
 <h3>name</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-70">name</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-73">name</a></span>()</div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../core/compatibility/ServerConnector.html#name()">ServerConnector</a></code></span></div>
 <div class="block">The name of this implementation.</div>
 <dl class="notes">
@@ -287,7 +292,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="replacePlaceholder(java.util.UUID,java.lang.String)">
 <h3>replacePlaceholder</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-83">replacePlaceholder</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-86">replacePlaceholder</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;message)</span></div>
 <div class="block">Used to replace placeholders from a string.</div>
 <dl class="notes">
@@ -304,7 +309,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="proxy()">
 <h3>proxy</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../core/compatibility/ProxyProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ProxyProvider</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-93">proxy</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../core/compatibility/ProxyProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ProxyProvider</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-96">proxy</a></span>()</div>
 <div class="block">The proxy provider to use for this implementation.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -317,7 +322,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="source(revxrsal.commands.command.CommandActor)">
 <h3>source</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../core/compatibility/CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility">CmdSource</a>&lt;?&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-105">source</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../core/compatibility/CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility">CmdSource</a>&lt;?&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-108">source</a></span><wbr><span class="parameters">(@NotNull
  @NotNull revxrsal.commands.command.CommandActor&nbsp;actor)</span></div>
 <div class="block">Used to convert an <code>CommandActor</code> to a <a href="../../core/compatibility/CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility"><code>CmdSource</code></a>.</div>
 <dl class="notes">
@@ -331,9 +336,22 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 </section>
 </li>
 <li>
+<section class="detail" id="onlinePlayersList()">
+<h3>onlinePlayersList</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-118">onlinePlayersList</a></span>()</div>
+<div class="block">Retrieves a set of online player names.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../core/compatibility/ServerConnector.html#onlinePlayersList()">onlinePlayersList</a></code>&nbsp;in interface&nbsp;<code><a href="../../core/compatibility/ServerConnector.html" title="interface in net.tnemc.plugincore.core.compatibility">ServerConnector</a></code></dd>
+<dt>Returns:</dt>
+<dd>Set of online player names.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="onlinePlayers()">
 <h3>onlinePlayers</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-115">onlinePlayers</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-130">onlinePlayers</a></span>()</div>
 <div class="block">Used to get the amount of online players.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -346,7 +364,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="findPlayer(java.util.UUID)">
 <h3>findPlayer</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../../core/compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-128">findPlayer</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../../core/compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-143">findPlayer</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;identifier)</span></div>
 <div class="block">Attempts to find a <a href="../../core/compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility"><code>player</code></a> based on an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link"><code>identifier</code></a>.</div>
 <dl class="notes">
@@ -363,7 +381,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="initializePlayer(java.lang.Object)">
 <h3>initializePlayer</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../core/compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-142">initializePlayer</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../core/compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-157">initializePlayer</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;player)</span></div>
 <div class="block">This is used to return an instance of an <a href="../../core/compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility"><code>player</code></a> based on the provided
  instance's player object.</div>
@@ -380,7 +398,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="playedBefore(java.util.UUID)">
 <h3>playedBefore</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-157">playedBefore</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;identifier)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-172">playedBefore</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;identifier)</span></div>
 <div class="block">Used to determine if this player has played on this server before.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -395,7 +413,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="playedBefore(java.lang.String)">
 <h3>playedBefore</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-172">playedBefore</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-187">playedBefore</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="block">Used to determine if a player with the specified username has played
  before.</div>
 <dl class="notes">
@@ -412,7 +430,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="online(java.lang.String)">
 <h3>online</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-185">online</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-200">online</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="block">Used to determine if a player with the specified username is online.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -427,7 +445,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="fromName(java.lang.String)">
 <h3>fromName</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-198">fromName</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-213">fromName</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../core/compatibility/ServerConnector.html#fromName(java.lang.String)">ServerConnector</a></code></span></div>
 <div class="block">Used to locate a UUID for a specific name. This could be called from either a primary or secondary thread, and
  should not call back to the Mojang API ever.</div>
@@ -444,7 +462,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="fromID(java.util.UUID)">
 <h3>fromID</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-211">fromID</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-226">fromID</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
 <div class="block">Used to locate a username for a specific name. This could be called from either a primary or
  secondary thread, and should not call back to the Mojang API ever.</div>
 <dl class="notes">
@@ -460,7 +478,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="defaultWorld()">
 <h3>defaultWorld</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-221">defaultWorld</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-236">defaultWorld</a></span>()</div>
 <div class="block">Returns the name of the default world.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -473,7 +491,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="replaceColours(java.lang.String,boolean)">
 <h3>replaceColours</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-235">replaceColours</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;string,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-250">replaceColours</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;string,
  boolean&nbsp;strip)</span></div>
 <div class="block">Used to replace colour codes in a string.</div>
 <dl class="notes">
@@ -490,7 +508,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="stackBuilder()">
 <h3>stackBuilder</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">net.tnemc.item.AbstractItemStack&lt;?&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-240">stackBuilder</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">net.tnemc.item.AbstractItemStack&lt;?&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-255">stackBuilder</a></span>()</div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../core/compatibility/ServerConnector.html#stackBuilder()">ServerConnector</a></code></span></div>
 <div class="block">Provides direct access to the implementation's instance of TNIL's AbstractItemStack, which acts
  as a builder.</div>
@@ -505,7 +523,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="saveResource(java.lang.String,boolean)">
 <h3>saveResource</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-245">saveResource</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;resourcePath,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-260">saveResource</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;resourcePath,
  boolean&nbsp;replace)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../core/compatibility/ServerConnector.html#saveResource(java.lang.String,boolean)">ServerConnector</a></code></span></div>
 <div class="block">Used to save a resource from the plugin's jar file to the local system's storage.</div>
@@ -521,7 +539,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="scheduler()">
 <h3>scheduler</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="scheduler/SpongeScheduler.html" title="class in net.tnemc.plugincore.sponge.impl.scheduler">SpongeScheduler</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-295">scheduler</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="scheduler/SpongeScheduler.html" title="class in net.tnemc.plugincore.sponge.impl.scheduler">SpongeScheduler</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-310">scheduler</a></span>()</div>
 <div class="block">Provides this implementation's <a href="../../core/compatibility/scheduler/SchedulerProvider.html" title="class in net.tnemc.plugincore.core.compatibility.scheduler"><code>scheduler</code></a>.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -534,7 +552,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="registerCrafting(java.lang.String,net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe)">
 <h3>registerCrafting</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-308">registerCrafting</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-323">registerCrafting</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  @NotNull
  @NotNull <a href="../../core/compatibility/helper/CraftingRecipe.html" title="class in net.tnemc.plugincore.core.compatibility.helper">CraftingRecipe</a>&nbsp;recipe)</span></div>
@@ -557,7 +575,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <li>
 <section class="detail" id="calculations()">
 <h3>calculations</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">net.tnemc.sponge.SpongeItemCalculationsProvider</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-313">calculations</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">net.tnemc.sponge.SpongeItemCalculationsProvider</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-328">calculations</a></span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../core/compatibility/ServerConnector.html#calculations()">calculations</a></code>&nbsp;in interface&nbsp;<code><a href="../../core/compatibility/ServerConnector.html" title="interface in net.tnemc.plugincore.core.compatibility">ServerConnector</a></code></dd>
@@ -568,7 +586,7 @@ implements <a href="../../core/compatibility/ServerConnector.html" title="interf
 <section class="detail" id="getResource(java.lang.String)">
 <h3>getResource</h3>
 <div class="member-signature"><span class="annotations">@Nullable
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/InputStream.html" title="class or interface in java.io" class="external-link">InputStream</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-318">getResource</a></span><wbr><span class="parameters">(@NotNull
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/InputStream.html" title="class or interface in java.io" class="external-link">InputStream</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeServerProvider.html#line-333">getResource</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filename)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../core/compatibility/ServerConnector.html#getResource(java.lang.String)">ServerConnector</a></code></span></div>
 <div class="block">Retrieves an input stream for the specified filename from the resources.</div>

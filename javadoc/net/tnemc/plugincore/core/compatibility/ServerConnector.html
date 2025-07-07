@@ -91,7 +91,7 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="../../bukkit/impl/BukkitServerProvider.html" title="class in net.tnemc.plugincore.bukkit.impl">BukkitServerProvider</a></code>, <code><a href="../../paper/impl/PaperServerProvider.html" title="class in net.tnemc.plugincore.paper.impl">PaperServerProvider</a></code>, <code><a href="../../sponge/impl/SpongeServerProvider.html" title="class in net.tnemc.plugincore.sponge.impl">SpongeServerProvider</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-41">ServerConnector</a></span></div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-42">ServerConnector</a></span></div>
 <div class="block">Acts like a bridge between various server software and classes specific to each
  server software such as opening menus, and sending messages.</div>
 <dl class="notes">
@@ -170,70 +170,75 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to get the amount of online players.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playedBefore(java.lang.String)" class="member-name-link">playedBefore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#onlinePlayersList()" class="member-name-link">onlinePlayersList</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Retrieves a set of online player names.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playedBefore(java.lang.String)" class="member-name-link">playedBefore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to determine if a player with the specified username has played
  before.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playedBefore(java.util.UUID)" class="member-name-link">playedBefore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playedBefore(java.util.UUID)" class="member-name-link">playedBefore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to determine if this player has played on this server before.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html" title="class or interface in java.util.regex" class="external-link">Pattern</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#playerMatcher()" class="member-name-link">playerMatcher</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html" title="class or interface in java.util.regex" class="external-link">Pattern</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#playerMatcher()" class="member-name-link">playerMatcher</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Returns the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html" title="class or interface in java.util.regex" class="external-link"><code>pattern</code></a> utilized to determine if a string is a valid
  player username.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#pluginAvailable(java.lang.String)" class="member-name-link">pluginAvailable</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#pluginAvailable(java.lang.String)" class="member-name-link">pluginAvailable</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Determines if a plugin with the correlating name is currently installed.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="ProxyProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ProxyProvider</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#proxy()" class="member-name-link">proxy</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="ProxyProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ProxyProvider</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#proxy()" class="member-name-link">proxy</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">The proxy provider to use for this implementation.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#registerCrafting(java.lang.String,net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe)" class="member-name-link">registerCrafting</a><wbr>(@NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#registerCrafting(java.lang.String,net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe)" class="member-name-link">registerCrafting</a><wbr>(@NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  @NotNull <a href="helper/CraftingRecipe.html" title="class in net.tnemc.plugincore.core.compatibility.helper">CraftingRecipe</a>&nbsp;recipe)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to register a crafting recipe to the server.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#replaceColours(java.lang.String,boolean)" class="member-name-link">replaceColours</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;string,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#replaceColours(java.lang.String,boolean)" class="member-name-link">replaceColours</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;string,
  boolean&nbsp;strip)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to replace colour codes in a string.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#replacePlaceholder(java.util.UUID,java.lang.String)" class="member-name-link">replacePlaceholder</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#replacePlaceholder(java.util.UUID,java.lang.String)" class="member-name-link">replacePlaceholder</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;message)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to replace placeholders from a string.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#saveResource(java.lang.String,boolean)" class="member-name-link">saveResource</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#saveResource(java.lang.String,boolean)" class="member-name-link">saveResource</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path,
  boolean&nbsp;replace)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to save a resource from the plugin's jar file to the local system's storage.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="scheduler/SchedulerProvider.html" title="class in net.tnemc.plugincore.core.compatibility.scheduler">SchedulerProvider</a><wbr>&lt;?&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#scheduler()" class="member-name-link">scheduler</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="scheduler/SchedulerProvider.html" title="class in net.tnemc.plugincore.core.compatibility.scheduler">SchedulerProvider</a><wbr>&lt;?&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#scheduler()" class="member-name-link">scheduler</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Provides this implementation's <a href="scheduler/SchedulerProvider.html" title="class in net.tnemc.plugincore.core.compatibility.scheduler"><code>scheduler</code></a>.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility">CmdSource</a><wbr>&lt;?&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#source(revxrsal.commands.command.CommandActor)" class="member-name-link">source</a><wbr>(@NotNull revxrsal.commands.command.CommandActor&nbsp;actor)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility">CmdSource</a><wbr>&lt;?&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#source(revxrsal.commands.command.CommandActor)" class="member-name-link">source</a><wbr>(@NotNull revxrsal.commands.command.CommandActor&nbsp;actor)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to convert an <code>CommandActor</code> to a <a href="CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility"><code>CmdSource</code></a>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>net.tnemc.item.AbstractItemStack<wbr>&lt;?&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#stackBuilder()" class="member-name-link">stackBuilder</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>net.tnemc.item.AbstractItemStack<wbr>&lt;?&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#stackBuilder()" class="member-name-link">stackBuilder</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Provides direct access to the implementation's instance of TNIL's AbstractItemStack, which acts
  as a builder.</div>
 </div>
@@ -254,7 +259,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="name()">
 <h3>name</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-47">name</a></span>()</div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-48">name</a></span>()</div>
 <div class="block">The name of this implementation.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -265,7 +270,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="replacePlaceholder(java.util.UUID,java.lang.String)">
 <h3>replacePlaceholder</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-55">replacePlaceholder</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player,
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-56">replacePlaceholder</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;player,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;message)</span></div>
 <div class="block">Used to replace placeholders from a string.</div>
 <dl class="notes">
@@ -280,7 +285,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="proxy()">
 <h3>proxy</h3>
-<div class="member-signature"><span class="return-type"><a href="ProxyProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ProxyProvider</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-61">proxy</a></span>()</div>
+<div class="member-signature"><span class="return-type"><a href="ProxyProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ProxyProvider</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-62">proxy</a></span>()</div>
 <div class="block">The proxy provider to use for this implementation.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -291,7 +296,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="source(revxrsal.commands.command.CommandActor)">
 <h3>source</h3>
-<div class="member-signature"><span class="return-type"><a href="CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility">CmdSource</a>&lt;?&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-67">source</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="return-type"><a href="CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility">CmdSource</a>&lt;?&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-68">source</a></span><wbr><span class="parameters">(@NotNull
  @NotNull revxrsal.commands.command.CommandActor&nbsp;actor)</span></div>
 <div class="block">Used to convert an <code>CommandActor</code> to a <a href="CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility"><code>CmdSource</code></a>.</div>
 <dl class="notes">
@@ -301,9 +306,20 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 </section>
 </li>
 <li>
+<section class="detail" id="onlinePlayersList()">
+<h3>onlinePlayersList</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-75">onlinePlayersList</a></span>()</div>
+<div class="block">Retrieves a set of online player names.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>Set of online player names.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="onlinePlayers()">
 <h3>onlinePlayers</h3>
-<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-73">onlinePlayers</a></span>()</div>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-81">onlinePlayers</a></span>()</div>
 <div class="block">Used to get the amount of online players.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -314,7 +330,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="findPlayer(java.util.UUID)">
 <h3>findPlayer</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-81">findPlayer</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-89">findPlayer</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;identifier)</span></div>
 <div class="block">Attempts to find a <a href="PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility"><code>player</code></a> based on an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link"><code>identifier</code></a>.</div>
 <dl class="notes">
@@ -329,7 +345,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="initializePlayer(java.lang.Object)">
 <h3>initializePlayer</h3>
-<div class="member-signature"><span class="return-type"><a href="PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-89">initializePlayer</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="return-type"><a href="PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-97">initializePlayer</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;player)</span></div>
 <div class="block">This is used to return an instance of an <a href="PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility"><code>player</code></a> based on the provided
  instance's player object.</div>
@@ -344,7 +360,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="getCached(java.lang.String)">
 <h3>getCached</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-97">getCached</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-105">getCached</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="block">Used to get a cached UUID based on a username.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -358,7 +374,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="playedBefore(java.util.UUID)">
 <h3>playedBefore</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-107">playedBefore</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid)</span></div>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-115">playedBefore</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;uuid)</span></div>
 <div class="block">Used to determine if this player has played on this server before.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -371,7 +387,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="playedBefore(java.lang.String)">
 <h3>playedBefore</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-116">playedBefore</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-124">playedBefore</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="block">Used to determine if a player with the specified username has played
  before.</div>
 <dl class="notes">
@@ -386,7 +402,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="online(java.lang.String)">
 <h3>online</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-123">online</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-131">online</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="block">Used to determine if a player with the specified username is online.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -399,7 +415,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="fromName(java.lang.String)">
 <h3>fromName</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-131">fromName</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-139">fromName</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="block">Used to locate a UUID for a specific name. This could be called from either a primary or secondary thread, and
  should not call back to the Mojang API ever.</div>
 <dl class="notes">
@@ -413,7 +429,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="fromID(java.util.UUID)">
 <h3>fromID</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-139">fromID</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-147">fromID</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
 <div class="block">Used to locate a username for a specific name. This could be called from either a primary or secondary thread, and
  should not call back to the Mojang API ever.</div>
 <dl class="notes">
@@ -427,7 +443,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="playerMatcher()">
 <h3>playerMatcher</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html" title="class or interface in java.util.regex" class="external-link">Pattern</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-150">playerMatcher</a></span>()</div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html" title="class or interface in java.util.regex" class="external-link">Pattern</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-158">playerMatcher</a></span>()</div>
 <div class="block">Returns the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html" title="class or interface in java.util.regex" class="external-link"><code>pattern</code></a> utilized to determine if a string is a valid
  player username.</div>
 <dl class="notes">
@@ -446,7 +462,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="defaultWorld()">
 <h3>defaultWorld</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-159">defaultWorld</a></span>()</div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-167">defaultWorld</a></span>()</div>
 <div class="block">Returns the name of the default world.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -457,7 +473,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="pluginAvailable(java.lang.String)">
 <h3>pluginAvailable</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-167">pluginAvailable</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-175">pluginAvailable</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="block">Determines if a plugin with the correlating name is currently installed.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -470,7 +486,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="replaceColours(java.lang.String,boolean)">
 <h3>replaceColours</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-177">replaceColours</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;string,
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-185">replaceColours</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;string,
  boolean&nbsp;strip)</span></div>
 <div class="block">Used to replace colour codes in a string.</div>
 <dl class="notes">
@@ -485,7 +501,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="stackBuilder()">
 <h3>stackBuilder</h3>
-<div class="member-signature"><span class="return-type">net.tnemc.item.AbstractItemStack&lt;?&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-184">stackBuilder</a></span>()</div>
+<div class="member-signature"><span class="return-type">net.tnemc.item.AbstractItemStack&lt;?&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-192">stackBuilder</a></span>()</div>
 <div class="block">Provides direct access to the implementation's instance of TNIL's AbstractItemStack, which acts
  as a builder.</div>
 <dl class="notes">
@@ -497,7 +513,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="saveResource(java.lang.String,boolean)">
 <h3>saveResource</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-191">saveResource</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path,
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-199">saveResource</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path,
  boolean&nbsp;replace)</span></div>
 <div class="block">Used to save a resource from the plugin's jar file to the local system's storage.</div>
 <dl class="notes">
@@ -511,7 +527,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <section class="detail" id="getResource(java.lang.String)">
 <h3>getResource</h3>
 <div class="member-signature"><span class="annotations">@Nullable
-</span><span class="return-type">@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/InputStream.html" title="class or interface in java.io" class="external-link">InputStream</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-199">getResource</a></span><wbr><span class="parameters">(@NotNull
+</span><span class="return-type">@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/InputStream.html" title="class or interface in java.io" class="external-link">InputStream</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-207">getResource</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filename)</span></div>
 <div class="block">Retrieves an input stream for the specified filename from the resources.</div>
 <dl class="notes">
@@ -525,7 +541,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="scheduler()">
 <h3>scheduler</h3>
-<div class="member-signature"><span class="return-type"><a href="scheduler/SchedulerProvider.html" title="class in net.tnemc.plugincore.core.compatibility.scheduler">SchedulerProvider</a>&lt;?&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-205">scheduler</a></span>()</div>
+<div class="member-signature"><span class="return-type"><a href="scheduler/SchedulerProvider.html" title="class in net.tnemc.plugincore.core.compatibility.scheduler">SchedulerProvider</a>&lt;?&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-213">scheduler</a></span>()</div>
 <div class="block">Provides this implementation's <a href="scheduler/SchedulerProvider.html" title="class in net.tnemc.plugincore.core.compatibility.scheduler"><code>scheduler</code></a>.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -536,7 +552,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <li>
 <section class="detail" id="registerCrafting(java.lang.String,net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe)">
 <h3>registerCrafting</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-214">registerCrafting</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-222">registerCrafting</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  @NotNull
  @NotNull <a href="helper/CraftingRecipe.html" title="class in net.tnemc.plugincore.core.compatibility.helper">CraftingRecipe</a>&nbsp;recipe)</span></div>
@@ -560,7 +576,7 @@ INV&gt;<br>net.tnemc.item.providers.CalculationsProvider<wbr>&lt;T,<wbr>S,<wbr>I
 <div class="member-signature"><span class="type-parameters-long">&lt;S,<wbr>
 T extends net.tnemc.item.AbstractItemStack&lt;S&gt;,<wbr>
 INV&gt;</span>
-<span class="return-type">net.tnemc.item.providers.CalculationsProvider&lt;T,<wbr>S,<wbr>INV&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-216">calculations</a></span>()</div>
+<span class="return-type">net.tnemc.item.providers.CalculationsProvider&lt;T,<wbr>S,<wbr>INV&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ServerConnector.html#line-224">calculations</a></span>()</div>
 </section>
 </li>
 </ul>
