@@ -3,13 +3,13 @@
   <parent>
     <artifactId>TNPC</artifactId>
     <groupId>net.tnemc</groupId>
-    <version>1.1.0.0-SNAPSHOT-3</version>
+    <version>1.1.0.0-SNAPSHOT-4</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>TNPC-Core</artifactId>
   <name>The New Plugin Core - Core</name>
-  <version>1.1.0.0-SNAPSHOT-3</version>
+  <version>1.1.0.0-SNAPSHOT-4</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <outputDirectory>target/classes</outputDirectory>
@@ -75,6 +75,7 @@
               <include>org.json.simple:*</include>
               <include>com.zaxxer:*</include>
               <include>com.github.Revxrsal.Lamp:*</include>
+              <include>io.github.revxrsal:*</include>
               <include>redis.clients:*</include>
               <include>org.apache:*</include>
               <include>org.apache.commons:*</include>
@@ -92,12 +93,6 @@
     </plugins>
   </build>
   <dependencies>
-    <dependency>
-      <groupId>io.github.revxrsal</groupId>
-      <artifactId>lamp.common</artifactId>
-      <version>4.0.0-rc.12</version>
-      <scope>compile</scope>
-    </dependency>
     <dependency>
       <groupId>org.apache.cassandra</groupId>
       <artifactId>java-driver-core</artifactId>
@@ -165,12 +160,6 @@
           <groupId>org.apiguardian</groupId>
         </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>io.github.revxrsal</groupId>
-      <artifactId>lamp.brigadier</artifactId>
-      <version>4.0.0-rc.12</version>
-      <scope>compile</scope>
     </dependency>
   </dependencies>
 </project>

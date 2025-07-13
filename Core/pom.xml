@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>TNPC-Core</artifactId>
-    <version>1.1.0.0-SNAPSHOT-4</version>
+    <version>1.1.0.0-SNAPSHOT-5</version>
     <packaging>jar</packaging>
     <name>The New Plugin Core - Core</name>
 
     <parent>
         <groupId>net.tnemc</groupId>
         <artifactId>TNPC</artifactId>
-        <version>1.1.0.0-SNAPSHOT-4</version>
+        <version>1.1.0.0-SNAPSHOT-5</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -82,6 +82,7 @@
                             <include>org.json.simple:*</include>
                             <include>com.zaxxer:*</include>
                             <include>com.github.Revxrsal.Lamp:*</include>
+                            <include>io.github.revxrsal:*</include>
                             <include>redis.clients:*</include>
                             <include>org.apache:*</include>
                             <include>org.apache.commons:*</include>
