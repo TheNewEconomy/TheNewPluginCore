@@ -198,7 +198,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="identifier()">
 <h3>identifier</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/CmdSource.html#line-46">identifier</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/CmdSource.html#line-48">identifier</a></span>()</div>
 <div class="block">The UUID of this command source.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -209,7 +209,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="name()">
 <h3>name</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/CmdSource.html#line-57">name</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/CmdSource.html#line-61">name</a></span>()</div>
 <div class="block">The name of this command source.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -220,18 +220,19 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="isPlayer()">
 <h3>isPlayer</h3>
-<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/CmdSource.html#line-65">isPlayer</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/CmdSource.html#line-72">isPlayer</a></span>()</div>
 <div class="block">Determines if this <a href="CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility"><code>CmdSource</code></a> is an instance of a player.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>True if this represents a player, otherwise false if it's a non-player such as the console.</dd>
+<dd>True if this represents a player, otherwise false if it's a non-player such as the
+ console.</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="player()">
 <h3>player</h3>
-<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/CmdSource.html#line-72">player</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/CmdSource.html#line-80">player</a></span>()</div>
 <div class="block">Used to get the related <a href="PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility"><code>PlayerProvider</code></a> for this command source.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -243,7 +244,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="message(net.tnemc.plugincore.core.io.message.MessageData)">
 <h3>message</h3>
-<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/CmdSource.html#line-78">message</a></span><wbr><span class="parameters">(<a href="../io/message/MessageData.html" title="class in net.tnemc.plugincore.core.io.message">MessageData</a>&nbsp;messageData)</span></div>
+<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/CmdSource.html#line-87">message</a></span><wbr><span class="parameters">(<a href="../io/message/MessageData.html" title="class in net.tnemc.plugincore.core.io.message">MessageData</a>&nbsp;messageData)</span></div>
 <div class="block">Used to send a message to this command source.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -254,7 +255,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getActor()">
 <h3>getActor</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="CmdSource.html" title="type parameter in CmdSource">T</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/CmdSource.html#line-80">getActor</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="CmdSource.html" title="type parameter in CmdSource">T</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/CmdSource.html#line-89">getActor</a></span>()</div>
 </section>
 </li>
 </ul>

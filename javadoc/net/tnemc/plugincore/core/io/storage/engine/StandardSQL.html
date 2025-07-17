@@ -196,7 +196,7 @@ implements <a href="../SQLEngine.html" title="interface in net.tnemc.plugincore.
 <li>
 <section class="detail" id="&lt;init&gt;(java.lang.String,net.tnemc.plugincore.core.io.storage.Dialect)">
 <h3>StandardSQL</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/engine/StandardSQL.html#line-50">StandardSQL</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;prefix,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/engine/StandardSQL.html#line-51">StandardSQL</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;prefix,
  <a href="../Dialect.html" title="interface in net.tnemc.plugincore.core.io.storage">Dialect</a>&nbsp;dialect)</span></div>
 </section>
 </li>
@@ -211,7 +211,7 @@ implements <a href="../SQLEngine.html" title="interface in net.tnemc.plugincore.
 <li>
 <section class="detail" id="initialize(net.tnemc.plugincore.core.io.storage.StorageConnector)">
 <h3>initialize</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/engine/StandardSQL.html#line-59">initialize</a></span><wbr><span class="parameters">(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/engine/StandardSQL.html#line-61">initialize</a></span><wbr><span class="parameters">(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</span></div>
 <div class="block">Called after the connection is initialized, so we can do any actions that need done immediately
  after connecting.</div>
 <dl class="notes">
@@ -225,7 +225,7 @@ implements <a href="../SQLEngine.html" title="interface in net.tnemc.plugincore.
 <li>
 <section class="detail" id="dialect()">
 <h3>dialect</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Dialect.html" title="interface in net.tnemc.plugincore.core.io.storage">Dialect</a></span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/engine/StandardSQL.html#line-68">dialect</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Dialect.html" title="interface in net.tnemc.plugincore.core.io.storage">Dialect</a></span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/engine/StandardSQL.html#line-71">dialect</a></span>()</div>
 <div class="block">The dialiect for this engine. This will be used for query purposes.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -238,7 +238,7 @@ implements <a href="../SQLEngine.html" title="interface in net.tnemc.plugincore.
 <li>
 <section class="detail" id="reset(net.tnemc.plugincore.core.io.storage.StorageConnector)">
 <h3>reset</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/engine/StandardSQL.html#line-78">reset</a></span><wbr><span class="parameters">(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/engine/StandardSQL.html#line-82">reset</a></span><wbr><span class="parameters">(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</span></div>
 <div class="block">Used to reset all data for this engine.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -251,7 +251,7 @@ implements <a href="../SQLEngine.html" title="interface in net.tnemc.plugincore.
 <li>
 <section class="detail" id="backup(net.tnemc.plugincore.core.io.storage.StorageConnector)">
 <h3>backup</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/engine/StandardSQL.html#line-105">backup</a></span><wbr><span class="parameters">(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/engine/StandardSQL.html#line-108">backup</a></span><wbr><span class="parameters">(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</span></div>
 <div class="block">Used to back up all data in the database for this engine.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -264,7 +264,7 @@ implements <a href="../SQLEngine.html" title="interface in net.tnemc.plugincore.
 <li>
 <section class="detail" id="datables()">
 <h3>datables</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;?&gt;,<wbr><a href="../Datable.html" title="interface in net.tnemc.plugincore.core.io.storage">Datable</a>&lt;?&gt;&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/engine/StandardSQL.html#line-115">datables</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;?&gt;,<wbr><a href="../Datable.html" title="interface in net.tnemc.plugincore.core.io.storage">Datable</a>&lt;?&gt;&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/engine/StandardSQL.html#line-118">datables</a></span>()</div>
 <div class="block">Used to get the <a href="../Datable.html" title="interface in net.tnemc.plugincore.core.io.storage"><code>Datable</code></a> classes for this engine.</div>
 <dl class="notes">
 <dt>Specified by:</dt>

@@ -212,7 +212,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getExperience(net.tnemc.plugincore.core.compatibility.PlayerProvider)">
 <h3>getExperience</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-29">getExperience</a></span><wbr><span class="parameters">(<a href="../compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&nbsp;player)</span></div>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-30">getExperience</a></span><wbr><span class="parameters">(<a href="../compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&nbsp;player)</span></div>
 <div class="block">Calculates a player's total exp based on level and progress to next.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -225,13 +225,12 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getExperienceFromLevel(int)">
 <h3>getExperienceFromLevel</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-46">getExperienceFromLevel</a></span><wbr><span class="parameters">(int&nbsp;level)</span></div>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-47">getExperienceFromLevel</a></span><wbr><span class="parameters">(int&nbsp;level)</span></div>
 <div class="block">Calculates total experience based on level.
 
  "One can determine how much experience has been collected to reach a level using the equations:
-  Total Experience = [Level]2 + 6[Level] (at levels 0-15)
-                     2.5[Level]2 - 40.5[Level] + 360 (at levels 16-30)
-                     4.5[Level]2 - 162.5[Level] + 2220 (at level 31+)"</div>
+ Total Experience = [Level]2 + 6[Level] (at levels 0-15) 2.5[Level]2 - 40.5[Level] + 360 (at
+ levels 16-30) 4.5[Level]2 - 162.5[Level] + 2220 (at level 31+)"</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>level</code> - the level</dd>
@@ -243,7 +242,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getLevelFromExperience(long)">
 <h3>getLevelFromExperience</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-63">getLevelFromExperience</a></span><wbr><span class="parameters">(long&nbsp;exp)</span></div>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-65">getLevelFromExperience</a></span><wbr><span class="parameters">(long&nbsp;exp)</span></div>
 <div class="block">Calculates level based on total experience.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -256,12 +255,12 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="setExperience(net.tnemc.plugincore.core.compatibility.PlayerProvider,int)">
 <h3>setExperience</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-102">setExperience</a></span><wbr><span class="parameters">(<a href="../compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&nbsp;player,
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-104">setExperience</a></span><wbr><span class="parameters">(<a href="../compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&nbsp;player,
  int&nbsp;exp)</span></div>
 <div class="block">Change a Player's exp.
  <p>
- This method should be used in place of built-in player experience methods, which does not properly
- account for different levels requiring different amounts of experience.</div>
+ This method should be used in place of built-in player experience methods, which does not
+ properly account for different levels requiring different amounts of experience.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>player</code> - the Player affected</dd>
@@ -272,7 +271,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="setLevel(net.tnemc.plugincore.core.compatibility.PlayerProvider,int)">
 <h3>setLevel</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-116">setLevel</a></span><wbr><span class="parameters">(<a href="../compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&nbsp;player,
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-120">setLevel</a></span><wbr><span class="parameters">(<a href="../compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&nbsp;player,
  int&nbsp;level)</span></div>
 <div class="block">Change a player's exp level.</div>
 <dl class="notes">
@@ -285,7 +284,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="changeLevel(net.tnemc.plugincore.core.compatibility.PlayerProvider,int,boolean)">
 <h3>changeLevel</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-126">changeLevel</a></span><wbr><span class="parameters">(<a href="../compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&nbsp;player,
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-132">changeLevel</a></span><wbr><span class="parameters">(<a href="../compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&nbsp;player,
  int&nbsp;level,
  boolean&nbsp;remove)</span></div>
 <div class="block">Change a player's exp level.</div>
@@ -300,13 +299,13 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="changeExperience(net.tnemc.plugincore.core.compatibility.PlayerProvider,int,boolean)">
 <h3>changeExperience</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-140">changeExperience</a></span><wbr><span class="parameters">(<a href="../compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&nbsp;player,
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/utils/Experience.html#line-147">changeExperience</a></span><wbr><span class="parameters">(<a href="../compatibility/PlayerProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">PlayerProvider</a>&nbsp;player,
  int&nbsp;exp,
  boolean&nbsp;remove)</span></div>
 <div class="block">Change a Player's exp.
  <p>
- This method should be used in place of built-in player experience methods, which does not properly
- account for different levels requiring different amounts of experience.</div>
+ This method should be used in place of built-in player experience methods, which does not
+ properly account for different levels requiring different amounts of experience.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>player</code> - the Player affected</dd>

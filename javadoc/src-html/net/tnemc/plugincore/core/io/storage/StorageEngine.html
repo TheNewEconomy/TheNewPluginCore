@@ -43,37 +43,40 @@
 <span class="source-line-no">030</span><span id="line-30"></span>
 <span class="source-line-no">031</span><span id="line-31">  /**</span>
 <span class="source-line-no">032</span><span id="line-32">   * The name of this engine.</span>
-<span class="source-line-no">033</span><span id="line-33">   * @return The engine name.</span>
-<span class="source-line-no">034</span><span id="line-34">   */</span>
-<span class="source-line-no">035</span><span id="line-35">  String name();</span>
-<span class="source-line-no">036</span><span id="line-36"></span>
-<span class="source-line-no">037</span><span id="line-37">  /**</span>
-<span class="source-line-no">038</span><span id="line-38">   * Called after the connection is initialized, so we can do any actions that need done immediately</span>
-<span class="source-line-no">039</span><span id="line-39">   * after connecting.</span>
-<span class="source-line-no">040</span><span id="line-40">   * @param connector The {@link StorageConnector connector} used for initialization.</span>
-<span class="source-line-no">041</span><span id="line-41">   */</span>
-<span class="source-line-no">042</span><span id="line-42">  void initialize(StorageConnector&lt;?&gt; connector);</span>
-<span class="source-line-no">043</span><span id="line-43"></span>
-<span class="source-line-no">044</span><span id="line-44">  /**</span>
-<span class="source-line-no">045</span><span id="line-45">   * Used to reset all data for this engine.</span>
-<span class="source-line-no">046</span><span id="line-46">   *</span>
-<span class="source-line-no">047</span><span id="line-47">   * @param connector The storage connector to use for this transaction.</span>
-<span class="source-line-no">048</span><span id="line-48">   */</span>
-<span class="source-line-no">049</span><span id="line-49">  void reset(StorageConnector&lt;?&gt; connector);</span>
-<span class="source-line-no">050</span><span id="line-50"></span>
-<span class="source-line-no">051</span><span id="line-51">  /**</span>
-<span class="source-line-no">052</span><span id="line-52">   * Used to back up all data in the database for this engine.</span>
-<span class="source-line-no">053</span><span id="line-53">   *</span>
-<span class="source-line-no">054</span><span id="line-54">   * @param connector The storage connector to use for this transaction.</span>
-<span class="source-line-no">055</span><span id="line-55">   */</span>
-<span class="source-line-no">056</span><span id="line-56">  void backup(StorageConnector&lt;?&gt; connector);</span>
-<span class="source-line-no">057</span><span id="line-57"></span>
-<span class="source-line-no">058</span><span id="line-58">  /**</span>
-<span class="source-line-no">059</span><span id="line-59">   * Used to get the {@link Datable} classes for this engine.</span>
-<span class="source-line-no">060</span><span id="line-60">   * @return A map with the datables.</span>
-<span class="source-line-no">061</span><span id="line-61">   */</span>
-<span class="source-line-no">062</span><span id="line-62">  Map&lt;Class&lt;?&gt;, Datable&lt;?&gt;&gt; datables();</span>
-<span class="source-line-no">063</span><span id="line-63">}</span>
+<span class="source-line-no">033</span><span id="line-33">   *</span>
+<span class="source-line-no">034</span><span id="line-34">   * @return The engine name.</span>
+<span class="source-line-no">035</span><span id="line-35">   */</span>
+<span class="source-line-no">036</span><span id="line-36">  String name();</span>
+<span class="source-line-no">037</span><span id="line-37"></span>
+<span class="source-line-no">038</span><span id="line-38">  /**</span>
+<span class="source-line-no">039</span><span id="line-39">   * Called after the connection is initialized, so we can do any actions that need done immediately</span>
+<span class="source-line-no">040</span><span id="line-40">   * after connecting.</span>
+<span class="source-line-no">041</span><span id="line-41">   *</span>
+<span class="source-line-no">042</span><span id="line-42">   * @param connector The {@link StorageConnector connector} used for initialization.</span>
+<span class="source-line-no">043</span><span id="line-43">   */</span>
+<span class="source-line-no">044</span><span id="line-44">  void initialize(StorageConnector&lt;?&gt; connector);</span>
+<span class="source-line-no">045</span><span id="line-45"></span>
+<span class="source-line-no">046</span><span id="line-46">  /**</span>
+<span class="source-line-no">047</span><span id="line-47">   * Used to reset all data for this engine.</span>
+<span class="source-line-no">048</span><span id="line-48">   *</span>
+<span class="source-line-no">049</span><span id="line-49">   * @param connector The storage connector to use for this transaction.</span>
+<span class="source-line-no">050</span><span id="line-50">   */</span>
+<span class="source-line-no">051</span><span id="line-51">  void reset(StorageConnector&lt;?&gt; connector);</span>
+<span class="source-line-no">052</span><span id="line-52"></span>
+<span class="source-line-no">053</span><span id="line-53">  /**</span>
+<span class="source-line-no">054</span><span id="line-54">   * Used to back up all data in the database for this engine.</span>
+<span class="source-line-no">055</span><span id="line-55">   *</span>
+<span class="source-line-no">056</span><span id="line-56">   * @param connector The storage connector to use for this transaction.</span>
+<span class="source-line-no">057</span><span id="line-57">   */</span>
+<span class="source-line-no">058</span><span id="line-58">  void backup(StorageConnector&lt;?&gt; connector);</span>
+<span class="source-line-no">059</span><span id="line-59"></span>
+<span class="source-line-no">060</span><span id="line-60">  /**</span>
+<span class="source-line-no">061</span><span id="line-61">   * Used to get the {@link Datable} classes for this engine.</span>
+<span class="source-line-no">062</span><span id="line-62">   *</span>
+<span class="source-line-no">063</span><span id="line-63">   * @return A map with the datables.</span>
+<span class="source-line-no">064</span><span id="line-64">   */</span>
+<span class="source-line-no">065</span><span id="line-65">  Map&lt;Class&lt;?&gt;, Datable&lt;?&gt;&gt; datables();</span>
+<span class="source-line-no">066</span><span id="line-66">}</span>
 
 
 

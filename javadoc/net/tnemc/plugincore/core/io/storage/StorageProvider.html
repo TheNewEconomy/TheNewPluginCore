@@ -172,13 +172,9 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="initialize(java.lang.String)">
 <h3>initialize</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-35">initialize</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;engine)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-34">initialize</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;engine)</span></div>
 <div class="block">Initialize the <a href="StorageProvider.html" title="interface in net.tnemc.plugincore.core.io.storage"><code>StorageProvider</code></a>. This is where the <a href="StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage"><code>connector</code></a>
  and the <a href="StorageEngine.html" title="interface in net.tnemc.plugincore.core.io.storage"><code>engine</code></a> should be initialized.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>engine</code> - </dd>
-</dl>
 </section>
 </li>
 <li>
@@ -195,7 +191,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="engine()">
 <h3>engine</h3>
-<div class="member-signature"><span class="return-type"><a href="StorageEngine.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageEngine</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-47">engine</a></span>()</div>
+<div class="member-signature"><span class="return-type"><a href="StorageEngine.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageEngine</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-48">engine</a></span>()</div>
 <div class="block">Used to retrieve the storage engine.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -206,7 +202,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="initialize()">
 <h3>initialize</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-53">initialize</a></span>()</div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-54">initialize</a></span>()</div>
 <div class="block">Called after the connection is initialized, so we can do any actions that need done immediately
  after connecting.</div>
 </section>
@@ -214,37 +210,37 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="storeAll(java.lang.String)">
 <h3>storeAll</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-59">storeAll</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-60">storeAll</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</span></div>
-<div class="block">Used to store all data for an identifier in TNE. This method is not switched over to a secondary
- thread automatically. Please make sure to use wisely.</div>
+<div class="block">Used to store all data for an identifier in TNE. This method is not switched over to a
+ secondary thread automatically. Please make sure to use wisely.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="storeAll()">
 <h3>storeAll</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-64">storeAll</a></span>()</div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-65">storeAll</a></span>()</div>
 <div class="block">Used to store all data in TNE.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="purge()">
 <h3>purge</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-69">purge</a></span>()</div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-70">purge</a></span>()</div>
 <div class="block">Used to purge TNE data.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="reset()">
 <h3>reset</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-74">reset</a></span>()</div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-75">reset</a></span>()</div>
 <div class="block">Used to reset all data in TNE.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="backup()">
 <h3>backup</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-80">backup</a></span>()</div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageProvider.html#line-82">backup</a></span>()</div>
 <div class="block">Used to back up data that is currently in the database.</div>
 </section>
 </li>

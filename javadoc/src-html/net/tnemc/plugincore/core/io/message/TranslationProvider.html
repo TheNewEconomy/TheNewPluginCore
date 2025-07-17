@@ -44,34 +44,40 @@
 <span class="source-line-no">031</span><span id="line-31"></span>
 <span class="source-line-no">032</span><span id="line-32">  /**</span>
 <span class="source-line-no">033</span><span id="line-33">   * Used to get the language of a player with the associated identifier.</span>
-<span class="source-line-no">034</span><span id="line-34">   * @param identifier The identifier of the player.</span>
-<span class="source-line-no">035</span><span id="line-35">   * @return The language that should be used for this player.</span>
-<span class="source-line-no">036</span><span id="line-36">   */</span>
-<span class="source-line-no">037</span><span id="line-37">  String getLang(final UUID identifier);</span>
-<span class="source-line-no">038</span><span id="line-38"></span>
-<span class="source-line-no">039</span><span id="line-39">  /**</span>
-<span class="source-line-no">040</span><span id="line-40">   * Used to translate a node for the given language. This should resort to the default if the</span>
-<span class="source-line-no">041</span><span id="line-41">   * specified language doesn't exist.</span>
-<span class="source-line-no">042</span><span id="line-42">   *</span>
-<span class="source-line-no">043</span><span id="line-43">   * @param messageData The message data to utilize for this translation.</span>
-<span class="source-line-no">044</span><span id="line-44">   * @param language The language to translate the node to.</span>
-<span class="source-line-no">045</span><span id="line-45">   * @return The translated message represented by the node, or the default for if the node doesn't</span>
-<span class="source-line-no">046</span><span id="line-46">   * exist.</span>
-<span class="source-line-no">047</span><span id="line-47">   */</span>
-<span class="source-line-no">048</span><span id="line-48">  String translateNode(final MessageData messageData, final String language);</span>
-<span class="source-line-no">049</span><span id="line-49"></span>
-<span class="source-line-no">050</span><span id="line-50">  /**</span>
-<span class="source-line-no">051</span><span id="line-51">   * Used to translate a node for the given language for the given player. This should resort to the</span>
-<span class="source-line-no">052</span><span id="line-52">   * default if the specified language doesn't exist.</span>
-<span class="source-line-no">053</span><span id="line-53">   * @param identifier The identifier of the given player.</span>
-<span class="source-line-no">054</span><span id="line-54">   * @param messageData The message data to utilize for this translation.</span>
-<span class="source-line-no">055</span><span id="line-55">   * @return The translated message represented by the node, or the default for if the node doesn't</span>
-<span class="source-line-no">056</span><span id="line-56">   * exist.</span>
-<span class="source-line-no">057</span><span id="line-57">   */</span>
-<span class="source-line-no">058</span><span id="line-58">  default String translate(final UUID identifier, final MessageData messageData) {</span>
-<span class="source-line-no">059</span><span id="line-59">    return translateNode(messageData, getLang(identifier));</span>
-<span class="source-line-no">060</span><span id="line-60">  }</span>
-<span class="source-line-no">061</span><span id="line-61">}</span>
+<span class="source-line-no">034</span><span id="line-34">   *</span>
+<span class="source-line-no">035</span><span id="line-35">   * @param identifier The identifier of the player.</span>
+<span class="source-line-no">036</span><span id="line-36">   *</span>
+<span class="source-line-no">037</span><span id="line-37">   * @return The language that should be used for this player.</span>
+<span class="source-line-no">038</span><span id="line-38">   */</span>
+<span class="source-line-no">039</span><span id="line-39">  String getLang(final UUID identifier);</span>
+<span class="source-line-no">040</span><span id="line-40"></span>
+<span class="source-line-no">041</span><span id="line-41">  /**</span>
+<span class="source-line-no">042</span><span id="line-42">   * Used to translate a node for the given language. This should resort to the default if the</span>
+<span class="source-line-no">043</span><span id="line-43">   * specified language doesn't exist.</span>
+<span class="source-line-no">044</span><span id="line-44">   *</span>
+<span class="source-line-no">045</span><span id="line-45">   * @param messageData The message data to utilize for this translation.</span>
+<span class="source-line-no">046</span><span id="line-46">   * @param language    The language to translate the node to.</span>
+<span class="source-line-no">047</span><span id="line-47">   *</span>
+<span class="source-line-no">048</span><span id="line-48">   * @return The translated message represented by the node, or the default for if the node doesn't</span>
+<span class="source-line-no">049</span><span id="line-49">   * exist.</span>
+<span class="source-line-no">050</span><span id="line-50">   */</span>
+<span class="source-line-no">051</span><span id="line-51">  String translateNode(final MessageData messageData, final String language);</span>
+<span class="source-line-no">052</span><span id="line-52"></span>
+<span class="source-line-no">053</span><span id="line-53">  /**</span>
+<span class="source-line-no">054</span><span id="line-54">   * Used to translate a node for the given language for the given player. This should resort to the</span>
+<span class="source-line-no">055</span><span id="line-55">   * default if the specified language doesn't exist.</span>
+<span class="source-line-no">056</span><span id="line-56">   *</span>
+<span class="source-line-no">057</span><span id="line-57">   * @param identifier  The identifier of the given player.</span>
+<span class="source-line-no">058</span><span id="line-58">   * @param messageData The message data to utilize for this translation.</span>
+<span class="source-line-no">059</span><span id="line-59">   *</span>
+<span class="source-line-no">060</span><span id="line-60">   * @return The translated message represented by the node, or the default for if the node doesn't</span>
+<span class="source-line-no">061</span><span id="line-61">   * exist.</span>
+<span class="source-line-no">062</span><span id="line-62">   */</span>
+<span class="source-line-no">063</span><span id="line-63">  default String translate(final UUID identifier, final MessageData messageData) {</span>
+<span class="source-line-no">064</span><span id="line-64"></span>
+<span class="source-line-no">065</span><span id="line-65">    return translateNode(messageData, getLang(identifier));</span>
+<span class="source-line-no">066</span><span id="line-66">  }</span>
+<span class="source-line-no">067</span><span id="line-67">}</span>
 
 
 

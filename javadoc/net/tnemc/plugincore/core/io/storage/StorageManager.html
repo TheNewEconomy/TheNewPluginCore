@@ -90,14 +90,10 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <hr>
-<div class="type-signature"><span class="modifiers">public class </span><span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-47">StorageManager</a></span>
+<div class="type-signature"><span class="modifiers">public class </span><span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-43">StorageManager</a></span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">The manager, which manages everything related to storage.
- Manages:
- - Loading
- - Saving
- - Caching
- - Connections</div>
+<div class="block">The manager, which manages everything related to storage. Manages: - Loading - Saving - Caching -
+ Connections</div>
 <dl class="notes">
 <dt>Since:</dt>
 <dd>0.1.2.0</dd>
@@ -219,7 +215,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="&lt;init&gt;(java.lang.String,net.tnemc.plugincore.core.io.storage.StorageProvider,net.tnemc.plugincore.core.io.storage.engine.StorageSettings,redis.clients.jedis.JedisPool)">
 <h3>StorageManager</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-57">StorageManager</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;engine,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-51">StorageManager</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;engine,
  <a href="StorageProvider.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageProvider</a>&nbsp;provider,
  <a href="engine/StorageSettings.html" title="class in net.tnemc.plugincore.core.io.storage.engine">StorageSettings</a>&nbsp;settings,
  redis.clients.jedis.JedisPool&nbsp;pool)</span></div>
@@ -234,6 +230,12 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="instance()">
+<h3>instance</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage">StorageManager</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-68">instance</a></span>()</div>
+</section>
+</li>
+<li>
 <section class="detail" id="meetsRequirement()">
 <h3>meetsRequirement</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-73">meetsRequirement</a></span>()</div>
@@ -242,19 +244,13 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="initialize(java.lang.String)">
 <h3>initialize</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-80">initialize</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;engine)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="instance()">
-<h3>instance</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="StorageManager.html" title="class in net.tnemc.plugincore.core.io.storage">StorageManager</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-89">instance</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-81">initialize</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;engine)</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="sendProxyMessage(java.lang.String,byte[])">
 <h3>sendProxyMessage</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-93">sendProxyMessage</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;channel,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-90">sendProxyMessage</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;channel,
  byte[]&nbsp;data)</span></div>
 </section>
 </li>
@@ -277,15 +273,15 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="loadAll(java.lang.Class,java.lang.String)">
 <h3>loadAll</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;T&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-125">loadAll</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;? extends T&gt;&nbsp;object,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;T&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-128">loadAll</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;? extends T&gt;&nbsp;object,
  @Nullable
  @Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</span></div>
 <div class="block">Used to load all objects of this type.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>object</code> - The class of the object to be loaded.</dd>
-<dd><code>identifier</code> - The identifier used to load objects, if they relate to a specific
-                   identifier, otherwise this will be null.</dd>
+<dd><code>identifier</code> - The identifier used to load objects, if they relate to a specific identifier,
+                   otherwise this will be null.</dd>
 <dt>Returns:</dt>
 <dd>A collection containing the objects loaded.</dd>
 </dl>
@@ -294,52 +290,52 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="store(T,java.lang.String)">
 <h3 id="store(java.lang.Object,java.lang.String)">store</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-140">store</a></span><wbr><span class="parameters">(T&nbsp;object,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-145">store</a></span><wbr><span class="parameters">(T&nbsp;object,
  @Nullable
  @Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</span></div>
 <div class="block">Used to store this object.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>object</code> - The object to be stored.</dd>
-<dd><code>identifier</code> - An optional identifier for loading this object. Note: some Datables may require
-                   this identifier.</dd>
+<dd><code>identifier</code> - An optional identifier for loading this object. Note: some Datables may
+                   require this identifier.</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="storeAll(java.lang.String)">
 <h3>storeAll</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-154">storeAll</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-159">storeAll</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</span></div>
-<div class="block">Used to store all data for an identifier in TNE. This method is not switched over to a secondary
- thread automatically. Please make sure to use wisely.</div>
+<div class="block">Used to store all data for an identifier in TNE. This method is not switched over to a
+ secondary thread automatically. Please make sure to use wisely.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="storeAll()">
 <h3>storeAll</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-161">storeAll</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-167">storeAll</a></span>()</div>
 <div class="block">Used to store all data in TNE.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="purge()">
 <h3>purge</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-168">purge</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-175">purge</a></span>()</div>
 <div class="block">Used to purge TNE data.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="reset()">
 <h3>reset</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-179">reset</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-187">reset</a></span>()</div>
 <div class="block">Used to reset all data in TNE.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="backup()">
 <h3>backup</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-192">backup</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-201">backup</a></span>()</div>
 <div class="block">Used to back up data that is currently in the database.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -350,19 +346,19 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getEngine()">
 <h3>getEngine</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="StorageEngine.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageEngine</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-202">getEngine</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="StorageEngine.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageEngine</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-211">getEngine</a></span>()</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getConnector()">
 <h3>getConnector</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-206">getConnector</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-216">getConnector</a></span>()</div>
 </section>
 </li>
 <li>
 <section class="detail" id="settings()">
 <h3>settings</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="engine/StorageSettings.html" title="class in net.tnemc.plugincore.core.io.storage.engine">StorageSettings</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-210">settings</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="engine/StorageSettings.html" title="class in net.tnemc.plugincore.core.io.storage.engine">StorageSettings</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/StorageManager.html#line-221">settings</a></span>()</div>
 </section>
 </li>
 </ul>

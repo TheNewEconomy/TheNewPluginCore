@@ -65,18 +65,23 @@
 <span class="source-line-no">052</span><span id="line-52">   * Creates a single paste based on the provided IPasteable object.</span>
 <span class="source-line-no">053</span><span id="line-53">   *</span>
 <span class="source-line-no">054</span><span id="line-54">   * @param pasteable the IPasteable object containing the details of the paste to create</span>
-<span class="source-line-no">055</span><span id="line-55">   * @return an Optional of String representing the URL of the created paste, or an empty Optional if creation fails</span>
-<span class="source-line-no">056</span><span id="line-56">   */</span>
-<span class="source-line-no">057</span><span id="line-57">  Optional&lt;String&gt; createSingle(IPasteable pasteable);</span>
-<span class="source-line-no">058</span><span id="line-58"></span>
-<span class="source-line-no">059</span><span id="line-59">  /**</span>
-<span class="source-line-no">060</span><span id="line-60">   * Creates multiple pastes based on the provided IPasteable objects.</span>
-<span class="source-line-no">061</span><span id="line-61">   *</span>
-<span class="source-line-no">062</span><span id="line-62">   * @param pasteables an array of IPasteable objects containing the details of the pastes to create</span>
-<span class="source-line-no">063</span><span id="line-63">   * @return an Optional of String representing the URL of the last created paste, or an empty Optional if creation fails or no pastes were created</span>
-<span class="source-line-no">064</span><span id="line-64">   */</span>
-<span class="source-line-no">065</span><span id="line-65">  Optional&lt;String&gt; createMultiple(IPasteable... pasteables);</span>
-<span class="source-line-no">066</span><span id="line-66">}</span>
+<span class="source-line-no">055</span><span id="line-55">   *</span>
+<span class="source-line-no">056</span><span id="line-56">   * @return an Optional of String representing the URL of the created paste, or an empty Optional</span>
+<span class="source-line-no">057</span><span id="line-57">   * if creation fails</span>
+<span class="source-line-no">058</span><span id="line-58">   */</span>
+<span class="source-line-no">059</span><span id="line-59">  Optional&lt;String&gt; createSingle(IPasteable pasteable);</span>
+<span class="source-line-no">060</span><span id="line-60"></span>
+<span class="source-line-no">061</span><span id="line-61">  /**</span>
+<span class="source-line-no">062</span><span id="line-62">   * Creates multiple pastes based on the provided IPasteable objects.</span>
+<span class="source-line-no">063</span><span id="line-63">   *</span>
+<span class="source-line-no">064</span><span id="line-64">   * @param pasteables an array of IPasteable objects containing the details of the pastes to</span>
+<span class="source-line-no">065</span><span id="line-65">   *                   create</span>
+<span class="source-line-no">066</span><span id="line-66">   *</span>
+<span class="source-line-no">067</span><span id="line-67">   * @return an Optional of String representing the URL of the last created paste, or an empty</span>
+<span class="source-line-no">068</span><span id="line-68">   * Optional if creation fails or no pastes were created</span>
+<span class="source-line-no">069</span><span id="line-69">   */</span>
+<span class="source-line-no">070</span><span id="line-70">  Optional&lt;String&gt; createMultiple(IPasteable... pasteables);</span>
+<span class="source-line-no">071</span><span id="line-71">}</span>
 
 
 

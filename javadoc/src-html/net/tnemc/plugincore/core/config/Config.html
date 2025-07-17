@@ -56,136 +56,141 @@
 <span class="source-line-no">043</span><span id="line-43"> */</span>
 <span class="source-line-no">044</span><span id="line-44">public abstract class Config implements IPasteable {</span>
 <span class="source-line-no">045</span><span id="line-45"></span>
-<span class="source-line-no">046</span><span id="line-46">  protected YamlDocument yaml;</span>
-<span class="source-line-no">047</span><span id="line-47"></span>
-<span class="source-line-no">048</span><span id="line-48">  protected final String fileName;</span>
-<span class="source-line-no">049</span><span id="line-49">  protected final File file;</span>
-<span class="source-line-no">050</span><span id="line-50">  protected final String defaults;</span>
-<span class="source-line-no">051</span><span id="line-51"></span>
-<span class="source-line-no">052</span><span id="line-52">  protected final List&lt;String&gt; nodes = new ArrayList&lt;&gt;();</span>
-<span class="source-line-no">053</span><span id="line-53"></span>
-<span class="source-line-no">054</span><span id="line-54">  protected Settings[] settings;</span>
-<span class="source-line-no">055</span><span id="line-55"></span>
-<span class="source-line-no">056</span><span id="line-56">  public Config(final String fileName, final String defaults, final List&lt;String&gt; nodes, final Settings... settings) {</span>
-<span class="source-line-no">057</span><span id="line-57">    this.defaults = defaults;</span>
-<span class="source-line-no">058</span><span id="line-58">    this.fileName = fileName;</span>
-<span class="source-line-no">059</span><span id="line-59">    this.nodes.addAll(nodes);</span>
-<span class="source-line-no">060</span><span id="line-60">    file = new File(PluginCore.directory(), fileName);</span>
+<span class="source-line-no">046</span><span id="line-46">  protected final String fileName;</span>
+<span class="source-line-no">047</span><span id="line-47">  protected final File file;</span>
+<span class="source-line-no">048</span><span id="line-48">  protected final String defaults;</span>
+<span class="source-line-no">049</span><span id="line-49">  protected final List&lt;String&gt; nodes = new ArrayList&lt;&gt;();</span>
+<span class="source-line-no">050</span><span id="line-50">  protected YamlDocument yaml;</span>
+<span class="source-line-no">051</span><span id="line-51">  protected Settings[] settings;</span>
+<span class="source-line-no">052</span><span id="line-52"></span>
+<span class="source-line-no">053</span><span id="line-53">  public Config(final String fileName, final String defaults, final List&lt;String&gt; nodes, final Settings... settings) {</span>
+<span class="source-line-no">054</span><span id="line-54"></span>
+<span class="source-line-no">055</span><span id="line-55">    this.defaults = defaults;</span>
+<span class="source-line-no">056</span><span id="line-56">    this.fileName = fileName;</span>
+<span class="source-line-no">057</span><span id="line-57">    this.nodes.addAll(nodes);</span>
+<span class="source-line-no">058</span><span id="line-58">    file = new File(PluginCore.directory(), fileName);</span>
+<span class="source-line-no">059</span><span id="line-59"></span>
+<span class="source-line-no">060</span><span id="line-60">    this.settings = settings;</span>
 <span class="source-line-no">061</span><span id="line-61"></span>
-<span class="source-line-no">062</span><span id="line-62">    this.settings = settings;</span>
-<span class="source-line-no">063</span><span id="line-63"></span>
-<span class="source-line-no">064</span><span id="line-64">    if(!file.exists()) {</span>
-<span class="source-line-no">065</span><span id="line-65">      PluginCore.log().error("Configuration doesn't exist! File Name:" + fileName, DebugLevel.OFF);</span>
-<span class="source-line-no">066</span><span id="line-66">    }</span>
-<span class="source-line-no">067</span><span id="line-67">  }</span>
+<span class="source-line-no">062</span><span id="line-62">    if(!file.exists()) {</span>
+<span class="source-line-no">063</span><span id="line-63">      PluginCore.log().error("Configuration doesn't exist! File Name:" + fileName, DebugLevel.OFF);</span>
+<span class="source-line-no">064</span><span id="line-64">    }</span>
+<span class="source-line-no">065</span><span id="line-65">  }</span>
+<span class="source-line-no">066</span><span id="line-66"></span>
+<span class="source-line-no">067</span><span id="line-67">  public boolean load() {</span>
 <span class="source-line-no">068</span><span id="line-68"></span>
-<span class="source-line-no">069</span><span id="line-69">  public boolean load() {</span>
+<span class="source-line-no">069</span><span id="line-69">    try(final InputStream in = getResource(defaults)) {</span>
 <span class="source-line-no">070</span><span id="line-70"></span>
-<span class="source-line-no">071</span><span id="line-71">    try(final InputStream in = getResource(defaults)) {</span>
-<span class="source-line-no">072</span><span id="line-72"></span>
-<span class="source-line-no">073</span><span id="line-73">      if(in != null) {</span>
-<span class="source-line-no">074</span><span id="line-74">        this.yaml = YamlDocument.create(file, in, settings);</span>
-<span class="source-line-no">075</span><span id="line-75"></span>
-<span class="source-line-no">076</span><span id="line-76">        return true;</span>
-<span class="source-line-no">077</span><span id="line-77">      }</span>
-<span class="source-line-no">078</span><span id="line-78">    } catch (final IOException e) {</span>
-<span class="source-line-no">079</span><span id="line-79"></span>
-<span class="source-line-no">080</span><span id="line-80">      PluginCore.log().error("Error while creating config \"" + file.getName() + "\".", e, DebugLevel.OFF);</span>
-<span class="source-line-no">081</span><span id="line-81">      return false;</span>
-<span class="source-line-no">082</span><span id="line-82">    }</span>
-<span class="source-line-no">083</span><span id="line-83">    return false;</span>
-<span class="source-line-no">084</span><span id="line-84">  }</span>
+<span class="source-line-no">071</span><span id="line-71">      if(in != null) {</span>
+<span class="source-line-no">072</span><span id="line-72">        this.yaml = YamlDocument.create(file, in, settings);</span>
+<span class="source-line-no">073</span><span id="line-73"></span>
+<span class="source-line-no">074</span><span id="line-74">        return true;</span>
+<span class="source-line-no">075</span><span id="line-75">      }</span>
+<span class="source-line-no">076</span><span id="line-76">    } catch(final IOException e) {</span>
+<span class="source-line-no">077</span><span id="line-77"></span>
+<span class="source-line-no">078</span><span id="line-78">      PluginCore.log().error("Error while creating config \"" + file.getName() + "\".", e, DebugLevel.OFF);</span>
+<span class="source-line-no">079</span><span id="line-79">      return false;</span>
+<span class="source-line-no">080</span><span id="line-80">    }</span>
+<span class="source-line-no">081</span><span id="line-81">    return false;</span>
+<span class="source-line-no">082</span><span id="line-82">  }</span>
+<span class="source-line-no">083</span><span id="line-83"></span>
+<span class="source-line-no">084</span><span id="line-84">  public YamlDocument getYaml() {</span>
 <span class="source-line-no">085</span><span id="line-85"></span>
-<span class="source-line-no">086</span><span id="line-86">  public YamlDocument getYaml() {</span>
-<span class="source-line-no">087</span><span id="line-87">    return yaml;</span>
-<span class="source-line-no">088</span><span id="line-88">  }</span>
-<span class="source-line-no">089</span><span id="line-89"></span>
-<span class="source-line-no">090</span><span id="line-90">  public void setYaml(final YamlDocument yaml) {</span>
+<span class="source-line-no">086</span><span id="line-86">    return yaml;</span>
+<span class="source-line-no">087</span><span id="line-87">  }</span>
+<span class="source-line-no">088</span><span id="line-88"></span>
+<span class="source-line-no">089</span><span id="line-89">  public void setYaml(final YamlDocument yaml) {</span>
+<span class="source-line-no">090</span><span id="line-90"></span>
 <span class="source-line-no">091</span><span id="line-91">    this.yaml = yaml;</span>
 <span class="source-line-no">092</span><span id="line-92">  }</span>
 <span class="source-line-no">093</span><span id="line-93"></span>
 <span class="source-line-no">094</span><span id="line-94">  public boolean save() {</span>
-<span class="source-line-no">095</span><span id="line-95">    try {</span>
-<span class="source-line-no">096</span><span id="line-96">      yaml.save(file);</span>
-<span class="source-line-no">097</span><span id="line-97">      return true;</span>
-<span class="source-line-no">098</span><span id="line-98">    } catch(final IOException e) {</span>
-<span class="source-line-no">099</span><span id="line-99">      PluginCore.log().error("Error while saving config \"" + nodes.get(0) + "\".", e, DebugLevel.OFF);</span>
-<span class="source-line-no">100</span><span id="line-100">      return false;</span>
-<span class="source-line-no">101</span><span id="line-101">    }</span>
-<span class="source-line-no">102</span><span id="line-102">  }</span>
-<span class="source-line-no">103</span><span id="line-103"></span>
-<span class="source-line-no">104</span><span id="line-104">  public void setComment(final String route, final List&lt;String&gt; comments) {</span>
-<span class="source-line-no">105</span><span id="line-105"></span>
-<span class="source-line-no">106</span><span id="line-106">    if(yaml.contains(route)) {</span>
-<span class="source-line-no">107</span><span id="line-107">      yaml.getBlock(route).setComments(comments);</span>
-<span class="source-line-no">108</span><span id="line-108">    }</span>
-<span class="source-line-no">109</span><span id="line-109">  }</span>
-<span class="source-line-no">110</span><span id="line-110"></span>
-<span class="source-line-no">111</span><span id="line-111">  public void setComment(final String route, final String comment) {</span>
-<span class="source-line-no">112</span><span id="line-112"></span>
-<span class="source-line-no">113</span><span id="line-113">    setComment(route, Collections.singletonList(comment));</span>
-<span class="source-line-no">114</span><span id="line-114">  }</span>
-<span class="source-line-no">115</span><span id="line-115"></span>
-<span class="source-line-no">116</span><span id="line-116">  public @Nullable InputStream getResource(@NotNull final String filename) {</span>
-<span class="source-line-no">117</span><span id="line-117"></span>
-<span class="source-line-no">118</span><span id="line-118">    try {</span>
-<span class="source-line-no">119</span><span id="line-119">      final URL url = this.getClass().getClassLoader().getResource(filename);</span>
-<span class="source-line-no">120</span><span id="line-120">      if (url == null) {</span>
-<span class="source-line-no">121</span><span id="line-121">        return null;</span>
-<span class="source-line-no">122</span><span id="line-122">      } else {</span>
-<span class="source-line-no">123</span><span id="line-123"></span>
-<span class="source-line-no">124</span><span id="line-124">        final URLConnection connection = url.openConnection();</span>
-<span class="source-line-no">125</span><span id="line-125">        connection.setUseCaches(false);</span>
-<span class="source-line-no">126</span><span id="line-126"></span>
-<span class="source-line-no">127</span><span id="line-127">        return connection.getInputStream();</span>
-<span class="source-line-no">128</span><span id="line-128">      }</span>
-<span class="source-line-no">129</span><span id="line-129">    } catch (final IOException var4) {</span>
-<span class="source-line-no">130</span><span id="line-130">      return null;</span>
-<span class="source-line-no">131</span><span id="line-131">    }</span>
-<span class="source-line-no">132</span><span id="line-132">  }</span>
-<span class="source-line-no">133</span><span id="line-133"></span>
-<span class="source-line-no">134</span><span id="line-134">  //PASTEABLE implementation</span>
-<span class="source-line-no">135</span><span id="line-135"></span>
-<span class="source-line-no">136</span><span id="line-136">  /**</span>
-<span class="source-line-no">137</span><span id="line-137">   * Retrieves the file name associated with this object.</span>
-<span class="source-line-no">138</span><span id="line-138">   *</span>
-<span class="source-line-no">139</span><span id="line-139">   * @return The file name as a String.</span>
-<span class="source-line-no">140</span><span id="line-140">   */</span>
-<span class="source-line-no">141</span><span id="line-141">  @Override</span>
-<span class="source-line-no">142</span><span id="line-142">  public String fileName() {</span>
-<span class="source-line-no">143</span><span id="line-143">    return fileName;</span>
-<span class="source-line-no">144</span><span id="line-144">  }</span>
-<span class="source-line-no">145</span><span id="line-145"></span>
-<span class="source-line-no">146</span><span id="line-146">  /**</span>
-<span class="source-line-no">147</span><span id="line-147">   * Retrieves the extension associated with this object.</span>
-<span class="source-line-no">148</span><span id="line-148">   *</span>
-<span class="source-line-no">149</span><span id="line-149">   * @return The extension as a String.</span>
-<span class="source-line-no">150</span><span id="line-150">   */</span>
-<span class="source-line-no">151</span><span id="line-151">  @Override</span>
-<span class="source-line-no">152</span><span id="line-152">  public String extension() {</span>
-<span class="source-line-no">153</span><span id="line-153">    return "yml";</span>
-<span class="source-line-no">154</span><span id="line-154">  }</span>
+<span class="source-line-no">095</span><span id="line-95"></span>
+<span class="source-line-no">096</span><span id="line-96">    try {</span>
+<span class="source-line-no">097</span><span id="line-97">      yaml.save(file);</span>
+<span class="source-line-no">098</span><span id="line-98">      return true;</span>
+<span class="source-line-no">099</span><span id="line-99">    } catch(final IOException e) {</span>
+<span class="source-line-no">100</span><span id="line-100">      PluginCore.log().error("Error while saving config \"" + nodes.get(0) + "\".", e, DebugLevel.OFF);</span>
+<span class="source-line-no">101</span><span id="line-101">      return false;</span>
+<span class="source-line-no">102</span><span id="line-102">    }</span>
+<span class="source-line-no">103</span><span id="line-103">  }</span>
+<span class="source-line-no">104</span><span id="line-104"></span>
+<span class="source-line-no">105</span><span id="line-105">  public void setComment(final String route, final List&lt;String&gt; comments) {</span>
+<span class="source-line-no">106</span><span id="line-106"></span>
+<span class="source-line-no">107</span><span id="line-107">    if(yaml.contains(route)) {</span>
+<span class="source-line-no">108</span><span id="line-108">      yaml.getBlock(route).setComments(comments);</span>
+<span class="source-line-no">109</span><span id="line-109">    }</span>
+<span class="source-line-no">110</span><span id="line-110">  }</span>
+<span class="source-line-no">111</span><span id="line-111"></span>
+<span class="source-line-no">112</span><span id="line-112">  public void setComment(final String route, final String comment) {</span>
+<span class="source-line-no">113</span><span id="line-113"></span>
+<span class="source-line-no">114</span><span id="line-114">    setComment(route, Collections.singletonList(comment));</span>
+<span class="source-line-no">115</span><span id="line-115">  }</span>
+<span class="source-line-no">116</span><span id="line-116"></span>
+<span class="source-line-no">117</span><span id="line-117">  public @Nullable InputStream getResource(@NotNull final String filename) {</span>
+<span class="source-line-no">118</span><span id="line-118"></span>
+<span class="source-line-no">119</span><span id="line-119">    try {</span>
+<span class="source-line-no">120</span><span id="line-120">      final URL url = this.getClass().getClassLoader().getResource(filename);</span>
+<span class="source-line-no">121</span><span id="line-121">      if(url == null) {</span>
+<span class="source-line-no">122</span><span id="line-122">        return null;</span>
+<span class="source-line-no">123</span><span id="line-123">      } else {</span>
+<span class="source-line-no">124</span><span id="line-124"></span>
+<span class="source-line-no">125</span><span id="line-125">        final URLConnection connection = url.openConnection();</span>
+<span class="source-line-no">126</span><span id="line-126">        connection.setUseCaches(false);</span>
+<span class="source-line-no">127</span><span id="line-127"></span>
+<span class="source-line-no">128</span><span id="line-128">        return connection.getInputStream();</span>
+<span class="source-line-no">129</span><span id="line-129">      }</span>
+<span class="source-line-no">130</span><span id="line-130">    } catch(final IOException var4) {</span>
+<span class="source-line-no">131</span><span id="line-131">      return null;</span>
+<span class="source-line-no">132</span><span id="line-132">    }</span>
+<span class="source-line-no">133</span><span id="line-133">  }</span>
+<span class="source-line-no">134</span><span id="line-134"></span>
+<span class="source-line-no">135</span><span id="line-135">  //PASTEABLE implementation</span>
+<span class="source-line-no">136</span><span id="line-136"></span>
+<span class="source-line-no">137</span><span id="line-137">  /**</span>
+<span class="source-line-no">138</span><span id="line-138">   * Retrieves the file name associated with this object.</span>
+<span class="source-line-no">139</span><span id="line-139">   *</span>
+<span class="source-line-no">140</span><span id="line-140">   * @return The file name as a String.</span>
+<span class="source-line-no">141</span><span id="line-141">   */</span>
+<span class="source-line-no">142</span><span id="line-142">  @Override</span>
+<span class="source-line-no">143</span><span id="line-143">  public String fileName() {</span>
+<span class="source-line-no">144</span><span id="line-144"></span>
+<span class="source-line-no">145</span><span id="line-145">    return fileName;</span>
+<span class="source-line-no">146</span><span id="line-146">  }</span>
+<span class="source-line-no">147</span><span id="line-147"></span>
+<span class="source-line-no">148</span><span id="line-148">  /**</span>
+<span class="source-line-no">149</span><span id="line-149">   * Retrieves the extension associated with this object.</span>
+<span class="source-line-no">150</span><span id="line-150">   *</span>
+<span class="source-line-no">151</span><span id="line-151">   * @return The extension as a String.</span>
+<span class="source-line-no">152</span><span id="line-152">   */</span>
+<span class="source-line-no">153</span><span id="line-153">  @Override</span>
+<span class="source-line-no">154</span><span id="line-154">  public String extension() {</span>
 <span class="source-line-no">155</span><span id="line-155"></span>
-<span class="source-line-no">156</span><span id="line-156">  /**</span>
-<span class="source-line-no">157</span><span id="line-157">   * Retrieves the syntax associated with this object.</span>
-<span class="source-line-no">158</span><span id="line-158">   *</span>
-<span class="source-line-no">159</span><span id="line-159">   * @return The syntax as a String.</span>
-<span class="source-line-no">160</span><span id="line-160">   */</span>
-<span class="source-line-no">161</span><span id="line-161">  @Override</span>
-<span class="source-line-no">162</span><span id="line-162">  public String syntax() {</span>
-<span class="source-line-no">163</span><span id="line-163">    return "YAML";</span>
-<span class="source-line-no">164</span><span id="line-164">  }</span>
-<span class="source-line-no">165</span><span id="line-165"></span>
-<span class="source-line-no">166</span><span id="line-166">  /**</span>
-<span class="source-line-no">167</span><span id="line-167">   * Retrieves the content of the object.</span>
-<span class="source-line-no">168</span><span id="line-168">   *</span>
-<span class="source-line-no">169</span><span id="line-169">   * @return The content as a String.</span>
-<span class="source-line-no">170</span><span id="line-170">   */</span>
-<span class="source-line-no">171</span><span id="line-171">  @Override</span>
-<span class="source-line-no">172</span><span id="line-172">  public String content() {</span>
-<span class="source-line-no">173</span><span id="line-173">    return getYaml().dump();</span>
-<span class="source-line-no">174</span><span id="line-174">  }</span>
-<span class="source-line-no">175</span><span id="line-175">}</span>
+<span class="source-line-no">156</span><span id="line-156">    return "yml";</span>
+<span class="source-line-no">157</span><span id="line-157">  }</span>
+<span class="source-line-no">158</span><span id="line-158"></span>
+<span class="source-line-no">159</span><span id="line-159">  /**</span>
+<span class="source-line-no">160</span><span id="line-160">   * Retrieves the syntax associated with this object.</span>
+<span class="source-line-no">161</span><span id="line-161">   *</span>
+<span class="source-line-no">162</span><span id="line-162">   * @return The syntax as a String.</span>
+<span class="source-line-no">163</span><span id="line-163">   */</span>
+<span class="source-line-no">164</span><span id="line-164">  @Override</span>
+<span class="source-line-no">165</span><span id="line-165">  public String syntax() {</span>
+<span class="source-line-no">166</span><span id="line-166"></span>
+<span class="source-line-no">167</span><span id="line-167">    return "YAML";</span>
+<span class="source-line-no">168</span><span id="line-168">  }</span>
+<span class="source-line-no">169</span><span id="line-169"></span>
+<span class="source-line-no">170</span><span id="line-170">  /**</span>
+<span class="source-line-no">171</span><span id="line-171">   * Retrieves the content of the object.</span>
+<span class="source-line-no">172</span><span id="line-172">   *</span>
+<span class="source-line-no">173</span><span id="line-173">   * @return The content as a String.</span>
+<span class="source-line-no">174</span><span id="line-174">   */</span>
+<span class="source-line-no">175</span><span id="line-175">  @Override</span>
+<span class="source-line-no">176</span><span id="line-176">  public String content() {</span>
+<span class="source-line-no">177</span><span id="line-177"></span>
+<span class="source-line-no">178</span><span id="line-178">    return getYaml().dump();</span>
+<span class="source-line-no">179</span><span id="line-179">  }</span>
+<span class="source-line-no">180</span><span id="line-180">}</span>
 
 
 

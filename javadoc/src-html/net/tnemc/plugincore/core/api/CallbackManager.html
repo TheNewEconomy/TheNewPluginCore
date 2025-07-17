@@ -53,46 +53,51 @@
 <span class="source-line-no">040</span><span id="line-40">  }</span>
 <span class="source-line-no">041</span><span id="line-41"></span>
 <span class="source-line-no">042</span><span id="line-42">  protected void initDefaultCallbacks() {</span>
-<span class="source-line-no">043</span><span id="line-43">  }</span>
-<span class="source-line-no">044</span><span id="line-44"></span>
-<span class="source-line-no">045</span><span id="line-45">  /**</span>
-<span class="source-line-no">046</span><span id="line-46">   * Used to add a new callback into the system.</span>
-<span class="source-line-no">047</span><span id="line-47">   * @param identifier The identifier of the callback to add.</span>
-<span class="source-line-no">048</span><span id="line-48">   * @param entry The {@link CallbackEntry}, which manages the consumers.</span>
-<span class="source-line-no">049</span><span id="line-49">   */</span>
-<span class="source-line-no">050</span><span id="line-50">  public void addCallback(final String identifier, CallbackEntry entry) {</span>
-<span class="source-line-no">051</span><span id="line-51">    this.callbacks.put(identifier, entry);</span>
-<span class="source-line-no">052</span><span id="line-52">  }</span>
+<span class="source-line-no">043</span><span id="line-43"></span>
+<span class="source-line-no">044</span><span id="line-44">  }</span>
+<span class="source-line-no">045</span><span id="line-45"></span>
+<span class="source-line-no">046</span><span id="line-46">  /**</span>
+<span class="source-line-no">047</span><span id="line-47">   * Used to add a new callback into the system.</span>
+<span class="source-line-no">048</span><span id="line-48">   *</span>
+<span class="source-line-no">049</span><span id="line-49">   * @param identifier The identifier of the callback to add.</span>
+<span class="source-line-no">050</span><span id="line-50">   * @param entry      The {@link CallbackEntry}, which manages the consumers.</span>
+<span class="source-line-no">051</span><span id="line-51">   */</span>
+<span class="source-line-no">052</span><span id="line-52">  public void addCallback(final String identifier, CallbackEntry entry) {</span>
 <span class="source-line-no">053</span><span id="line-53"></span>
-<span class="source-line-no">054</span><span id="line-54">  /**</span>
-<span class="source-line-no">055</span><span id="line-55">   * Used to add a consumer for this callback.</span>
-<span class="source-line-no">056</span><span id="line-56">   * @param name The name of the callback to attach this consumer to.</span>
-<span class="source-line-no">057</span><span id="line-57">   * @param consumer The consumer to add for this callback. This is an implementation of the</span>
-<span class="source-line-no">058</span><span id="line-58">   *                 {@link Function} interface, which accepts an {@link Callback} parameter and</span>
-<span class="source-line-no">059</span><span id="line-59">   *                 returns a boolean value, which indicates if the "event" should be cancelled or</span>
-<span class="source-line-no">060</span><span id="line-60">   *                 not.</span>
-<span class="source-line-no">061</span><span id="line-61">   */</span>
-<span class="source-line-no">062</span><span id="line-62">  public void addConsumer(final String name, Function&lt;Callback, Boolean&gt; consumer) {</span>
-<span class="source-line-no">063</span><span id="line-63"></span>
-<span class="source-line-no">064</span><span id="line-64">    if(this.callbacks.containsKey(name)) {</span>
-<span class="source-line-no">065</span><span id="line-65">      this.callbacks.get(name).addConsumer(consumer);</span>
-<span class="source-line-no">066</span><span id="line-66">    }</span>
-<span class="source-line-no">067</span><span id="line-67">  }</span>
-<span class="source-line-no">068</span><span id="line-68"></span>
-<span class="source-line-no">069</span><span id="line-69">  /**</span>
-<span class="source-line-no">070</span><span id="line-70">   * Used to call all the consumers for this callback.</span>
-<span class="source-line-no">071</span><span id="line-71">   * @param callback The callback class for this consumer.</span>
-<span class="source-line-no">072</span><span id="line-72">   *</span>
-<span class="source-line-no">073</span><span id="line-73">   * @return This returns a boolean value, which equates to whether this event is cancelled or not.</span>
-<span class="source-line-no">074</span><span id="line-74">   */</span>
-<span class="source-line-no">075</span><span id="line-75">  public boolean call(Callback callback) {</span>
-<span class="source-line-no">076</span><span id="line-76"></span>
-<span class="source-line-no">077</span><span id="line-77">    if(this.callbacks.containsKey(callback.name())) {</span>
-<span class="source-line-no">078</span><span id="line-78">      return this.callbacks.get(callback.name()).call(callback);</span>
-<span class="source-line-no">079</span><span id="line-79">    }</span>
-<span class="source-line-no">080</span><span id="line-80">    return false;</span>
-<span class="source-line-no">081</span><span id="line-81">  }</span>
-<span class="source-line-no">082</span><span id="line-82">}</span>
+<span class="source-line-no">054</span><span id="line-54">    this.callbacks.put(identifier, entry);</span>
+<span class="source-line-no">055</span><span id="line-55">  }</span>
+<span class="source-line-no">056</span><span id="line-56"></span>
+<span class="source-line-no">057</span><span id="line-57">  /**</span>
+<span class="source-line-no">058</span><span id="line-58">   * Used to add a consumer for this callback.</span>
+<span class="source-line-no">059</span><span id="line-59">   *</span>
+<span class="source-line-no">060</span><span id="line-60">   * @param name     The name of the callback to attach this consumer to.</span>
+<span class="source-line-no">061</span><span id="line-61">   * @param consumer The consumer to add for this callback. This is an implementation of the</span>
+<span class="source-line-no">062</span><span id="line-62">   *                 {@link Function} interface, which accepts an {@link Callback} parameter and</span>
+<span class="source-line-no">063</span><span id="line-63">   *                 returns a boolean value, which indicates if the "event" should be cancelled or</span>
+<span class="source-line-no">064</span><span id="line-64">   *                 not.</span>
+<span class="source-line-no">065</span><span id="line-65">   */</span>
+<span class="source-line-no">066</span><span id="line-66">  public void addConsumer(final String name, Function&lt;Callback, Boolean&gt; consumer) {</span>
+<span class="source-line-no">067</span><span id="line-67"></span>
+<span class="source-line-no">068</span><span id="line-68">    if(this.callbacks.containsKey(name)) {</span>
+<span class="source-line-no">069</span><span id="line-69">      this.callbacks.get(name).addConsumer(consumer);</span>
+<span class="source-line-no">070</span><span id="line-70">    }</span>
+<span class="source-line-no">071</span><span id="line-71">  }</span>
+<span class="source-line-no">072</span><span id="line-72"></span>
+<span class="source-line-no">073</span><span id="line-73">  /**</span>
+<span class="source-line-no">074</span><span id="line-74">   * Used to call all the consumers for this callback.</span>
+<span class="source-line-no">075</span><span id="line-75">   *</span>
+<span class="source-line-no">076</span><span id="line-76">   * @param callback The callback class for this consumer.</span>
+<span class="source-line-no">077</span><span id="line-77">   *</span>
+<span class="source-line-no">078</span><span id="line-78">   * @return This returns a boolean value, which equates to whether this event is cancelled or not.</span>
+<span class="source-line-no">079</span><span id="line-79">   */</span>
+<span class="source-line-no">080</span><span id="line-80">  public boolean call(Callback callback) {</span>
+<span class="source-line-no">081</span><span id="line-81"></span>
+<span class="source-line-no">082</span><span id="line-82">    if(this.callbacks.containsKey(callback.name())) {</span>
+<span class="source-line-no">083</span><span id="line-83">      return this.callbacks.get(callback.name()).call(callback);</span>
+<span class="source-line-no">084</span><span id="line-84">    }</span>
+<span class="source-line-no">085</span><span id="line-85">    return false;</span>
+<span class="source-line-no">086</span><span id="line-86">  }</span>
+<span class="source-line-no">087</span><span id="line-87">}</span>
 
 
 

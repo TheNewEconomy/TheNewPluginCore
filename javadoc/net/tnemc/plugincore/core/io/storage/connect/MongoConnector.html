@@ -186,7 +186,7 @@ implements <a href="../StorageConnector.html" title="interface in net.tnemc.plug
 <li>
 <section class="detail" id="initialize()">
 <h3>initialize</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/connect/MongoConnector.html#line-51">initialize</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/connect/MongoConnector.html#line-52">initialize</a></span>()</div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../StorageConnector.html#initialize()">StorageConnector</a></code></span></div>
 <div class="block">Used to initialize a connection to the specified <a href="../StorageEngine.html" title="interface in net.tnemc.plugincore.core.io.storage"><code>StorageEngine</code></a></div>
 <dl class="notes">
@@ -198,7 +198,7 @@ implements <a href="../StorageConnector.html" title="interface in net.tnemc.plug
 <li>
 <section class="detail" id="connection()">
 <h3>connection</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.mongodb.client.MongoDatabase</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/connect/MongoConnector.html#line-68">connection</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.mongodb.client.MongoDatabase</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/connect/MongoConnector.html#line-70">connection</a></span>()</div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../StorageConnector.html#connection()">StorageConnector</a></code></span></div>
 <div class="block">Used to get the connection from the</div>
 <dl class="notes">
@@ -212,14 +212,14 @@ implements <a href="../StorageConnector.html" title="interface in net.tnemc.plug
 <li>
 <section class="detail" id="insertData(java.lang.String,org.bson.Document)">
 <h3>insertData</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;com.mongodb.client.result.InsertOneResult&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/connect/MongoConnector.html#line-73">insertData</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;collectionName,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;com.mongodb.client.result.InsertOneResult&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/connect/MongoConnector.html#line-76">insertData</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;collectionName,
  org.bson.Document&nbsp;document)</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="getData(java.lang.String,java.lang.String,java.lang.Object)">
 <h3>getData</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;org.bson.Document&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/connect/MongoConnector.html#line-84">getData</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;collectionName,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;org.bson.Document&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../../src-html/net/tnemc/plugincore/core/io/storage/connect/MongoConnector.html#line-88">getData</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;collectionName,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;value)</span></div>
 </section>

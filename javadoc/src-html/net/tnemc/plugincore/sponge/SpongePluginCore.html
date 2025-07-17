@@ -55,36 +55,41 @@
 <span class="source-line-no">042</span><span id="line-42"></span>
 <span class="source-line-no">043</span><span id="line-43">  public SpongePluginCore(final PluginContainer container, final PluginEngine engine, final Logger log,</span>
 <span class="source-line-no">044</span><span id="line-44">                          final TranslationProvider provider, final CallbackProvider callbackProvider) {</span>
-<span class="source-line-no">045</span><span id="line-45">    this(container, engine, new SpongeServerProvider(), log, provider, callbackProvider);</span>
-<span class="source-line-no">046</span><span id="line-46">  }</span>
-<span class="source-line-no">047</span><span id="line-47"></span>
-<span class="source-line-no">048</span><span id="line-48">  public SpongePluginCore(final PluginContainer container, final PluginEngine engine, final ServerConnector connector,</span>
-<span class="source-line-no">049</span><span id="line-49">                          final Logger log, final TranslationProvider provider, final CallbackProvider callbackProvider) {</span>
-<span class="source-line-no">050</span><span id="line-50">    super(engine, connector, new SpongeLogProvider(log), provider, callbackProvider, Platform.SPONGE_8, "1.16.5");</span>
+<span class="source-line-no">045</span><span id="line-45"></span>
+<span class="source-line-no">046</span><span id="line-46">    this(container, engine, new SpongeServerProvider(), log, provider, callbackProvider);</span>
+<span class="source-line-no">047</span><span id="line-47">  }</span>
+<span class="source-line-no">048</span><span id="line-48"></span>
+<span class="source-line-no">049</span><span id="line-49">  public SpongePluginCore(final PluginContainer container, final PluginEngine engine, final ServerConnector connector,</span>
+<span class="source-line-no">050</span><span id="line-50">                          final Logger log, final TranslationProvider provider, final CallbackProvider callbackProvider) {</span>
 <span class="source-line-no">051</span><span id="line-51"></span>
-<span class="source-line-no">052</span><span id="line-52">    setInstance(this);</span>
-<span class="source-line-no">053</span><span id="line-53">    this.container = container;</span>
-<span class="source-line-no">054</span><span id="line-54">    this.logger = new SpongeLogProvider(log);</span>
-<span class="source-line-no">055</span><span id="line-55">    engine.registerCommandHandler();</span>
-<span class="source-line-no">056</span><span id="line-56">    engine.registerCommands();</span>
-<span class="source-line-no">057</span><span id="line-57">  }</span>
-<span class="source-line-no">058</span><span id="line-58"></span>
-<span class="source-line-no">059</span><span id="line-59">  public static SpongePluginCore instance() {</span>
-<span class="source-line-no">060</span><span id="line-60">    return (SpongePluginCore)PluginCore.instance();</span>
-<span class="source-line-no">061</span><span id="line-61">  }</span>
+<span class="source-line-no">052</span><span id="line-52">    super(engine, connector, new SpongeLogProvider(log), provider, callbackProvider, Platform.SPONGE_8, "1.16.5");</span>
+<span class="source-line-no">053</span><span id="line-53"></span>
+<span class="source-line-no">054</span><span id="line-54">    setInstance(this);</span>
+<span class="source-line-no">055</span><span id="line-55">    this.container = container;</span>
+<span class="source-line-no">056</span><span id="line-56">    this.logger = new SpongeLogProvider(log);</span>
+<span class="source-line-no">057</span><span id="line-57">    engine.registerCommandHandler();</span>
+<span class="source-line-no">058</span><span id="line-58">    engine.registerCommands();</span>
+<span class="source-line-no">059</span><span id="line-59">  }</span>
+<span class="source-line-no">060</span><span id="line-60"></span>
+<span class="source-line-no">061</span><span id="line-61">  public static SpongePluginCore instance() {</span>
 <span class="source-line-no">062</span><span id="line-62"></span>
-<span class="source-line-no">063</span><span id="line-63">  public PluginContainer getContainer() {</span>
-<span class="source-line-no">064</span><span id="line-64">    return container;</span>
-<span class="source-line-no">065</span><span id="line-65">  }</span>
-<span class="source-line-no">066</span><span id="line-66"></span>
-<span class="source-line-no">067</span><span id="line-67">  public static ResourceKey key(final String key) {</span>
+<span class="source-line-no">063</span><span id="line-63">    return (SpongePluginCore)PluginCore.instance();</span>
+<span class="source-line-no">064</span><span id="line-64">  }</span>
+<span class="source-line-no">065</span><span id="line-65"></span>
+<span class="source-line-no">066</span><span id="line-66">  public static ResourceKey key(final String key) {</span>
+<span class="source-line-no">067</span><span id="line-67"></span>
 <span class="source-line-no">068</span><span id="line-68">    final String[] split = key.split("\\:");</span>
 <span class="source-line-no">069</span><span id="line-69"></span>
 <span class="source-line-no">070</span><span id="line-70">    final String namespace = (split.length &gt;= 2)? split[0] : "minecraft";</span>
 <span class="source-line-no">071</span><span id="line-71">    final String value = (split.length &gt;= 2)? split[1] : split[0];</span>
 <span class="source-line-no">072</span><span id="line-72">    return ResourceKey.of(namespace, value);</span>
 <span class="source-line-no">073</span><span id="line-73">  }</span>
-<span class="source-line-no">074</span><span id="line-74">}</span>
+<span class="source-line-no">074</span><span id="line-74"></span>
+<span class="source-line-no">075</span><span id="line-75">  public PluginContainer getContainer() {</span>
+<span class="source-line-no">076</span><span id="line-76"></span>
+<span class="source-line-no">077</span><span id="line-77">    return container;</span>
+<span class="source-line-no">078</span><span id="line-78">  }</span>
+<span class="source-line-no">079</span><span id="line-79">}</span>
 
 
 

@@ -188,26 +188,29 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="createSingle(net.tnemc.plugincore.core.paste.IPasteable)">
 <h3>createSingle</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/paste/IPasteClient.html#line-57">createSingle</a></span><wbr><span class="parameters">(<a href="IPasteable.html" title="interface in net.tnemc.plugincore.core.paste">IPasteable</a>&nbsp;pasteable)</span></div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/paste/IPasteClient.html#line-59">createSingle</a></span><wbr><span class="parameters">(<a href="IPasteable.html" title="interface in net.tnemc.plugincore.core.paste">IPasteable</a>&nbsp;pasteable)</span></div>
 <div class="block">Creates a single paste based on the provided IPasteable object.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>pasteable</code> - the IPasteable object containing the details of the paste to create</dd>
 <dt>Returns:</dt>
-<dd>an Optional of String representing the URL of the created paste, or an empty Optional if creation fails</dd>
+<dd>an Optional of String representing the URL of the created paste, or an empty Optional
+ if creation fails</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createMultiple(net.tnemc.plugincore.core.paste.IPasteable...)">
 <h3>createMultiple</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/paste/IPasteClient.html#line-65">createMultiple</a></span><wbr><span class="parameters">(<a href="IPasteable.html" title="interface in net.tnemc.plugincore.core.paste">IPasteable</a>...&nbsp;pasteables)</span></div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/paste/IPasteClient.html#line-70">createMultiple</a></span><wbr><span class="parameters">(<a href="IPasteable.html" title="interface in net.tnemc.plugincore.core.paste">IPasteable</a>...&nbsp;pasteables)</span></div>
 <div class="block">Creates multiple pastes based on the provided IPasteable objects.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>pasteables</code> - an array of IPasteable objects containing the details of the pastes to create</dd>
+<dd><code>pasteables</code> - an array of IPasteable objects containing the details of the pastes to
+                   create</dd>
 <dt>Returns:</dt>
-<dd>an Optional of String representing the URL of the last created paste, or an empty Optional if creation fails or no pastes were created</dd>
+<dd>an Optional of String representing the URL of the last created paste, or an empty
+ Optional if creation fails or no pastes were created</dd>
 </dl>
 </section>
 </li>

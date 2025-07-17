@@ -49,30 +49,32 @@
 <span class="source-line-no">036</span><span id="line-36"> */</span>
 <span class="source-line-no">037</span><span id="line-37">public class SpongeInventoryProvider extends SpongeInventory implements InventoryProvider&lt;Inventory&gt; {</span>
 <span class="source-line-no">038</span><span id="line-38"></span>
-<span class="source-line-no">039</span><span id="line-39">  public SpongeInventoryProvider(UUID id, PluginContainer container) {</span>
-<span class="source-line-no">040</span><span id="line-40">    super(id, container);</span>
-<span class="source-line-no">041</span><span id="line-41">  }</span>
-<span class="source-line-no">042</span><span id="line-42"></span>
-<span class="source-line-no">043</span><span id="line-43">  /**</span>
-<span class="source-line-no">044</span><span id="line-44">   * Used to get an inventory object.</span>
-<span class="source-line-no">045</span><span id="line-45">   *</span>
-<span class="source-line-no">046</span><span id="line-46">   * @param ender True if the ender chest object should be returned, otherwise false.</span>
-<span class="source-line-no">047</span><span id="line-47">   *</span>
-<span class="source-line-no">048</span><span id="line-48">   * @return The inventory object.</span>
-<span class="source-line-no">049</span><span id="line-49">   */</span>
-<span class="source-line-no">050</span><span id="line-50">  @Override</span>
-<span class="source-line-no">051</span><span id="line-51">  public Inventory getInventory(boolean ender) {</span>
-<span class="source-line-no">052</span><span id="line-52">    final Optional&lt;ServerPlayer&gt; player = Sponge.server().player(this.id);</span>
-<span class="source-line-no">053</span><span id="line-53">    if(player.isPresent()) {</span>
-<span class="source-line-no">054</span><span id="line-54"></span>
-<span class="source-line-no">055</span><span id="line-55">      if(ender) {</span>
-<span class="source-line-no">056</span><span id="line-56">        return player.get().enderChestInventory();</span>
-<span class="source-line-no">057</span><span id="line-57">      }</span>
-<span class="source-line-no">058</span><span id="line-58">      return player.get().inventory();</span>
-<span class="source-line-no">059</span><span id="line-59">    }</span>
-<span class="source-line-no">060</span><span id="line-60">    return null;</span>
-<span class="source-line-no">061</span><span id="line-61">  }</span>
-<span class="source-line-no">062</span><span id="line-62">}</span>
+<span class="source-line-no">039</span><span id="line-39">  public SpongeInventoryProvider(final UUID id, final PluginContainer container) {</span>
+<span class="source-line-no">040</span><span id="line-40"></span>
+<span class="source-line-no">041</span><span id="line-41">    super(id, container);</span>
+<span class="source-line-no">042</span><span id="line-42">  }</span>
+<span class="source-line-no">043</span><span id="line-43"></span>
+<span class="source-line-no">044</span><span id="line-44">  /**</span>
+<span class="source-line-no">045</span><span id="line-45">   * Used to get an inventory object.</span>
+<span class="source-line-no">046</span><span id="line-46">   *</span>
+<span class="source-line-no">047</span><span id="line-47">   * @param ender True if the ender chest object should be returned, otherwise false.</span>
+<span class="source-line-no">048</span><span id="line-48">   *</span>
+<span class="source-line-no">049</span><span id="line-49">   * @return The inventory object.</span>
+<span class="source-line-no">050</span><span id="line-50">   */</span>
+<span class="source-line-no">051</span><span id="line-51">  @Override</span>
+<span class="source-line-no">052</span><span id="line-52">  public Inventory getInventory(final boolean ender) {</span>
+<span class="source-line-no">053</span><span id="line-53"></span>
+<span class="source-line-no">054</span><span id="line-54">    final Optional&lt;ServerPlayer&gt; player = Sponge.server().player(this.id);</span>
+<span class="source-line-no">055</span><span id="line-55">    if(player.isPresent()) {</span>
+<span class="source-line-no">056</span><span id="line-56"></span>
+<span class="source-line-no">057</span><span id="line-57">      if(ender) {</span>
+<span class="source-line-no">058</span><span id="line-58">        return player.get().enderChestInventory();</span>
+<span class="source-line-no">059</span><span id="line-59">      }</span>
+<span class="source-line-no">060</span><span id="line-60">      return player.get().inventory();</span>
+<span class="source-line-no">061</span><span id="line-61">    }</span>
+<span class="source-line-no">062</span><span id="line-62">    return null;</span>
+<span class="source-line-no">063</span><span id="line-63">  }</span>
+<span class="source-line-no">064</span><span id="line-64">}</span>
 
 
 

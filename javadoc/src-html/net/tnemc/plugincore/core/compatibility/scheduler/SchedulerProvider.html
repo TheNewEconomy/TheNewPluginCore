@@ -36,10 +36,10 @@
 <span class="source-line-no">023</span><span id="line-23"> * SchedulerProvider represents a bridge between the core and the implementation's scheduling</span>
 <span class="source-line-no">024</span><span id="line-24"> * system.</span>
 <span class="source-line-no">025</span><span id="line-25"> *</span>
-<span class="source-line-no">026</span><span id="line-26"> * @author creatorfromhell</span>
-<span class="source-line-no">027</span><span id="line-27"> * @since 0.1.2.0</span>
-<span class="source-line-no">028</span><span id="line-28"> *</span>
-<span class="source-line-no">029</span><span id="line-29"> * @param &lt;C&gt; Represents the implementation's {@link Chore} object.</span>
+<span class="source-line-no">026</span><span id="line-26"> * @param &lt;C&gt; Represents the implementation's {@link Chore} object.</span>
+<span class="source-line-no">027</span><span id="line-27"> *</span>
+<span class="source-line-no">028</span><span id="line-28"> * @author creatorfromhell</span>
+<span class="source-line-no">029</span><span id="line-29"> * @since 0.1.2.0</span>
 <span class="source-line-no">030</span><span id="line-30"> */</span>
 <span class="source-line-no">031</span><span id="line-31">public abstract class SchedulerProvider&lt;C extends Chore&lt;?&gt;&gt; {</span>
 <span class="source-line-no">032</span><span id="line-32"></span>
@@ -47,47 +47,52 @@
 <span class="source-line-no">034</span><span id="line-34"></span>
 <span class="source-line-no">035</span><span id="line-35">  /**</span>
 <span class="source-line-no">036</span><span id="line-36">   * Used to create a task, which will execute after the specified delay.</span>
-<span class="source-line-no">037</span><span id="line-37">   * @param task The task to run.</span>
-<span class="source-line-no">038</span><span id="line-38">   * @param delay The delay, in ticks.</span>
-<span class="source-line-no">039</span><span id="line-39">   * @param environment The execution environment for the task.</span>
-<span class="source-line-no">040</span><span id="line-40">   */</span>
-<span class="source-line-no">041</span><span id="line-41">  public abstract void createDelayedTask(Runnable task, ChoreTime delay, ChoreExecution environment);</span>
-<span class="source-line-no">042</span><span id="line-42"></span>
-<span class="source-line-no">043</span><span id="line-43">  /**</span>
-<span class="source-line-no">044</span><span id="line-44">   * Used to create a task, which repeats after a specified period.</span>
-<span class="source-line-no">045</span><span id="line-45">   *</span>
-<span class="source-line-no">046</span><span id="line-46">   * @param task The task to run.</span>
-<span class="source-line-no">047</span><span id="line-47">   * @param delay The delay to run the task, in ticks.</span>
-<span class="source-line-no">048</span><span id="line-48">   * @param period The period to run the task.</span>
-<span class="source-line-no">049</span><span id="line-49">   * @param environment The execution environment for the task.</span>
-<span class="source-line-no">050</span><span id="line-50">   *</span>
-<span class="source-line-no">051</span><span id="line-51">   * @return The associated {@link Chore} with this task.</span>
-<span class="source-line-no">052</span><span id="line-52">   */</span>
-<span class="source-line-no">053</span><span id="line-53">  public abstract C createRepeatingTask(Runnable task, ChoreTime delay, ChoreTime period, ChoreExecution environment);</span>
-<span class="source-line-no">054</span><span id="line-54"></span>
-<span class="source-line-no">055</span><span id="line-55">  /**</span>
-<span class="source-line-no">056</span><span id="line-56">   * Used to create a task, which repeats after a specified period.</span>
-<span class="source-line-no">057</span><span id="line-57">   * @param task The task to run.</span>
-<span class="source-line-no">058</span><span id="line-58">   * @param delay The delay to run the task, in ticks.</span>
-<span class="source-line-no">059</span><span id="line-59">   * @param period The period to run the task.</span>
-<span class="source-line-no">060</span><span id="line-60">   *</span>
-<span class="source-line-no">061</span><span id="line-61">   * @return The id, or -1 if no id can be returned.</span>
-<span class="source-line-no">062</span><span id="line-62">   */</span>
-<span class="source-line-no">063</span><span id="line-63">  public int createRepeatingTaskID(Runnable task, ChoreTime delay, ChoreTime period, ChoreExecution environment) {</span>
-<span class="source-line-no">064</span><span id="line-64">    return createRepeatingTask(task, delay, period, environment).id();</span>
-<span class="source-line-no">065</span><span id="line-65">  }</span>
+<span class="source-line-no">037</span><span id="line-37">   *</span>
+<span class="source-line-no">038</span><span id="line-38">   * @param task        The task to run.</span>
+<span class="source-line-no">039</span><span id="line-39">   * @param delay       The delay, in ticks.</span>
+<span class="source-line-no">040</span><span id="line-40">   * @param environment The execution environment for the task.</span>
+<span class="source-line-no">041</span><span id="line-41">   */</span>
+<span class="source-line-no">042</span><span id="line-42">  public abstract void createDelayedTask(Runnable task, ChoreTime delay, ChoreExecution environment);</span>
+<span class="source-line-no">043</span><span id="line-43"></span>
+<span class="source-line-no">044</span><span id="line-44">  /**</span>
+<span class="source-line-no">045</span><span id="line-45">   * Used to create a task, which repeats after a specified period.</span>
+<span class="source-line-no">046</span><span id="line-46">   *</span>
+<span class="source-line-no">047</span><span id="line-47">   * @param task        The task to run.</span>
+<span class="source-line-no">048</span><span id="line-48">   * @param delay       The delay to run the task, in ticks.</span>
+<span class="source-line-no">049</span><span id="line-49">   * @param period      The period to run the task.</span>
+<span class="source-line-no">050</span><span id="line-50">   * @param environment The execution environment for the task.</span>
+<span class="source-line-no">051</span><span id="line-51">   *</span>
+<span class="source-line-no">052</span><span id="line-52">   * @return The associated {@link Chore} with this task.</span>
+<span class="source-line-no">053</span><span id="line-53">   */</span>
+<span class="source-line-no">054</span><span id="line-54">  public abstract C createRepeatingTask(Runnable task, ChoreTime delay, ChoreTime period, ChoreExecution environment);</span>
+<span class="source-line-no">055</span><span id="line-55"></span>
+<span class="source-line-no">056</span><span id="line-56">  /**</span>
+<span class="source-line-no">057</span><span id="line-57">   * Used to create a task, which repeats after a specified period.</span>
+<span class="source-line-no">058</span><span id="line-58">   *</span>
+<span class="source-line-no">059</span><span id="line-59">   * @param task   The task to run.</span>
+<span class="source-line-no">060</span><span id="line-60">   * @param delay  The delay to run the task, in ticks.</span>
+<span class="source-line-no">061</span><span id="line-61">   * @param period The period to run the task.</span>
+<span class="source-line-no">062</span><span id="line-62">   *</span>
+<span class="source-line-no">063</span><span id="line-63">   * @return The id, or -1 if no id can be returned.</span>
+<span class="source-line-no">064</span><span id="line-64">   */</span>
+<span class="source-line-no">065</span><span id="line-65">  public int createRepeatingTaskID(Runnable task, ChoreTime delay, ChoreTime period, ChoreExecution environment) {</span>
 <span class="source-line-no">066</span><span id="line-66"></span>
-<span class="source-line-no">067</span><span id="line-67">  /**</span>
-<span class="source-line-no">068</span><span id="line-68">   * Used to cancel a task.</span>
-<span class="source-line-no">069</span><span id="line-69">   * @param id The id of the task to cancel.</span>
-<span class="source-line-no">070</span><span id="line-70">   */</span>
-<span class="source-line-no">071</span><span id="line-71">  public void cancelTask(final int id) {</span>
-<span class="source-line-no">072</span><span id="line-72">    if(chores.containsKey(id)) {</span>
-<span class="source-line-no">073</span><span id="line-73">      chores.get(id).cancel();</span>
-<span class="source-line-no">074</span><span id="line-74">      chores.remove(id);</span>
-<span class="source-line-no">075</span><span id="line-75">    }</span>
-<span class="source-line-no">076</span><span id="line-76">  }</span>
-<span class="source-line-no">077</span><span id="line-77">}</span>
+<span class="source-line-no">067</span><span id="line-67">    return createRepeatingTask(task, delay, period, environment).id();</span>
+<span class="source-line-no">068</span><span id="line-68">  }</span>
+<span class="source-line-no">069</span><span id="line-69"></span>
+<span class="source-line-no">070</span><span id="line-70">  /**</span>
+<span class="source-line-no">071</span><span id="line-71">   * Used to cancel a task.</span>
+<span class="source-line-no">072</span><span id="line-72">   *</span>
+<span class="source-line-no">073</span><span id="line-73">   * @param id The id of the task to cancel.</span>
+<span class="source-line-no">074</span><span id="line-74">   */</span>
+<span class="source-line-no">075</span><span id="line-75">  public void cancelTask(final int id) {</span>
+<span class="source-line-no">076</span><span id="line-76"></span>
+<span class="source-line-no">077</span><span id="line-77">    if(chores.containsKey(id)) {</span>
+<span class="source-line-no">078</span><span id="line-78">      chores.get(id).cancel();</span>
+<span class="source-line-no">079</span><span id="line-79">      chores.remove(id);</span>
+<span class="source-line-no">080</span><span id="line-80">    }</span>
+<span class="source-line-no">081</span><span id="line-81">  }</span>
+<span class="source-line-no">082</span><span id="line-82">}</span>
 
 
 

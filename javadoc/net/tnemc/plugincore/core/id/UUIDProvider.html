@@ -161,9 +161,35 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="validate(java.lang.String)">
+<h3>validate</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-35">validate</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Used to determine if a string is a valid minecraft username or not.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - The name to check.</dd>
+<dt>Returns:</dt>
+<dd>True if the name is a valid minecraft username, otherwise false.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isUUID(java.lang.String)">
+<h3>isUUID</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-50">isUUID</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</span></div>
+<div class="block">Used to determine if a string is a valid UUID.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>identifier</code> - The string to check.</dd>
+<dt>Returns:</dt>
+<dd>True if the name is a valid UUID, otherwise false.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="api()">
 <h3>api</h3>
-<div class="member-signature"><span class="return-type"><a href="UUIDAPI.html" title="interface in net.tnemc.plugincore.core.id">UUIDAPI</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-34">api</a></span>()</div>
+<div class="member-signature"><span class="return-type"><a href="UUIDAPI.html" title="interface in net.tnemc.plugincore.core.id">UUIDAPI</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-67">api</a></span>()</div>
 <div class="block">Returns the associated <a href="UUIDAPI.html" title="interface in net.tnemc.plugincore.core.id"><code>uuid api</code></a> associated with this provider.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -180,21 +206,20 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="retrieve(java.lang.String)">
 <h3>retrieve</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-43">retrieve</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-76">retrieve</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="block">Used to retrieve a <a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id"><code>UUIDPair</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>name</code> - The username of the pair.</dd>
 <dt>Returns:</dt>
-<dd>An optional containing the pair if found, otherwise an empty
- optional.</dd>
+<dd>An optional containing the pair if found, otherwise an empty optional.</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="retrieveName(java.util.UUID)">
 <h3>retrieveName</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-50">retrieveName</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-85">retrieveName</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
 <div class="block">Used to retrieve a name from its associated <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link"><code>UUID</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -207,9 +232,9 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="store(net.tnemc.plugincore.core.id.UUIDPair)">
 <h3>store</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-57">store</a></span><wbr><span class="parameters">(<a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&nbsp;pair)</span></div>
-<div class="block">Used to store a Username <span class="invalid-tag">invalid input: '&amp;'</span> UUID pair. This could be to a map, or to
- a database for persistent usage or to both.</div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-93">store</a></span><wbr><span class="parameters">(<a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&nbsp;pair)</span></div>
+<div class="block">Used to store a Username <span class="invalid-tag">invalid input: '&amp;'</span> UUID pair. This could be to a map, or to a database for persistent
+ usage or to both.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>pair</code> - The <a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id"><code>UUIDPair</code></a></dd>
@@ -219,33 +244,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="generateOffline(java.lang.String)">
 <h3>generateOffline</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-59">generateOffline</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="validate(java.lang.String)">
-<h3>validate</h3>
-<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-68">validate</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
-<div class="block">Used to determine if a string is a valid minecraft username or not.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>name</code> - The name to check.</dd>
-<dt>Returns:</dt>
-<dd>True if the name is a valid minecraft username, otherwise false.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="isUUID(java.lang.String)">
-<h3>isUUID</h3>
-<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-80">isUUID</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</span></div>
-<div class="block">Used to determine if a string is a valid UUID.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>identifier</code> - The string to check.</dd>
-<dt>Returns:</dt>
-<dd>True if the name is a valid UUID, otherwise false.</dd>
-</dl>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-95">generateOffline</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 </section>
 </li>
 </ul>

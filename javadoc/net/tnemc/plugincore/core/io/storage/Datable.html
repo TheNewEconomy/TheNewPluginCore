@@ -91,7 +91,7 @@ loadScripts(document, 'script');</script>
 <dd><code>O</code> - The object that is going to be stored/loaded from the database.</dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/Datable.html#line-35">Datable</a>&lt;O&gt;</span></div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/Datable.html#line-34">Datable</a>&lt;O&gt;</span></div>
 <div class="block">Datable</div>
 <dl class="notes">
 <dt>Since:</dt>
@@ -176,7 +176,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="purge(net.tnemc.plugincore.core.io.storage.StorageConnector)">
 <h3>purge</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/Datable.html#line-47">purge</a></span><wbr><span class="parameters">(<a href="StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/Datable.html#line-48">purge</a></span><wbr><span class="parameters">(<a href="StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</span></div>
 <div class="block">USed to purge the objects of this datable.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -187,7 +187,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="store(net.tnemc.plugincore.core.io.storage.StorageConnector,O,java.lang.String)">
 <h3 id="store(net.tnemc.plugincore.core.io.storage.StorageConnector,java.lang.Object,java.lang.String)">store</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/Datable.html#line-56">store</a></span><wbr><span class="parameters">(<a href="StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/Datable.html#line-58">store</a></span><wbr><span class="parameters">(<a href="StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
  @NotNull
  <a href="Datable.html" title="type parameter in Datable">O</a>&nbsp;object,
  @Nullable
@@ -197,30 +197,30 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>connector</code> - The storage connector to use for this transaction.</dd>
 <dd><code>object</code> - The object to be stored.</dd>
-<dd><code>identifier</code> - An optional identifier for loading this object. Note: some Datables may require
-                   this identifier.</dd>
+<dd><code>identifier</code> - An optional identifier for loading this object. Note: some Datables may
+                   require this identifier.</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="storeAll(net.tnemc.plugincore.core.io.storage.StorageConnector,java.lang.String)">
 <h3>storeAll</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/Datable.html#line-64">storeAll</a></span><wbr><span class="parameters">(<a href="StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/Datable.html#line-67">storeAll</a></span><wbr><span class="parameters">(<a href="StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
  @Nullable
  @Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</span></div>
 <div class="block">Used to store all objects of this type.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>connector</code> - The storage connector to use for this transaction.</dd>
-<dd><code>identifier</code> - The identifier used to load objects, if they relate to a specific
-                   identifier, otherwise this will be null.</dd>
+<dd><code>identifier</code> - The identifier used to load objects, if they relate to a specific identifier,
+                   otherwise this will be null.</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="load(net.tnemc.plugincore.core.io.storage.StorageConnector,java.lang.String)">
 <h3>load</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="Datable.html" title="type parameter in Datable">O</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/Datable.html#line-72">load</a></span><wbr><span class="parameters">(<a href="StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="Datable.html" title="type parameter in Datable">O</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/Datable.html#line-77">load</a></span><wbr><span class="parameters">(<a href="StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
  @NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</span></div>
 <div class="block">Used to load this object.</div>
@@ -236,15 +236,15 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="loadAll(net.tnemc.plugincore.core.io.storage.StorageConnector,java.lang.String)">
 <h3>loadAll</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="Datable.html" title="type parameter in Datable">O</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/Datable.html#line-81">loadAll</a></span><wbr><span class="parameters">(<a href="StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="Datable.html" title="type parameter in Datable">O</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/io/storage/Datable.html#line-88">loadAll</a></span><wbr><span class="parameters">(<a href="StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
  @Nullable
  @Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</span></div>
 <div class="block">Used to load all objects of this type.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>connector</code> - The storage connector to use for this transaction.</dd>
-<dd><code>identifier</code> - The identifier used to load objects, if they relate to a specific
-                   identifier, otherwise this will be null.</dd>
+<dd><code>identifier</code> - The identifier used to load objects, if they relate to a specific identifier,
+                   otherwise this will be null.</dd>
 <dt>Returns:</dt>
 <dd>A collection containing the objects loaded.</dd>
 </dl>

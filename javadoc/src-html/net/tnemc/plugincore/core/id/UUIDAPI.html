@@ -48,78 +48,85 @@
 <span class="source-line-no">035</span><span id="line-35"> */</span>
 <span class="source-line-no">036</span><span id="line-36">public interface UUIDAPI {</span>
 <span class="source-line-no">037</span><span id="line-37"></span>
-<span class="source-line-no">038</span><span id="line-38">  /**</span>
-<span class="source-line-no">039</span><span id="line-39">   * @return The URL for this UUID API Service.</span>
-<span class="source-line-no">040</span><span id="line-40">   */</span>
-<span class="source-line-no">041</span><span id="line-41">  String url();</span>
+<span class="source-line-no">038</span><span id="line-38">  static String dashUUIDString(String uuid) {</span>
+<span class="source-line-no">039</span><span id="line-39"></span>
+<span class="source-line-no">040</span><span id="line-40">    return uuid.replaceAll(PluginCore.UUID_MATCHER_PATTERN.pattern(), "$1-$2-$3-$4-$5");</span>
+<span class="source-line-no">041</span><span id="line-41">  }</span>
 <span class="source-line-no">042</span><span id="line-42"></span>
 <span class="source-line-no">043</span><span id="line-43">  /**</span>
-<span class="source-line-no">044</span><span id="line-44">   * @return True if the site uses SSL technology, otherwise false.</span>
+<span class="source-line-no">044</span><span id="line-44">   * @return The URL for this UUID API Service.</span>
 <span class="source-line-no">045</span><span id="line-45">   */</span>
-<span class="source-line-no">046</span><span id="line-46">  default boolean isSSL() {</span>
-<span class="source-line-no">047</span><span id="line-47">    return url().contains("https");</span>
-<span class="source-line-no">048</span><span id="line-48">  }</span>
-<span class="source-line-no">049</span><span id="line-49"></span>
-<span class="source-line-no">050</span><span id="line-50">  default UUID getUUID(String username) {</span>
-<span class="source-line-no">051</span><span id="line-51">    JSONObject object = sendRequestJSON(username);</span>
+<span class="source-line-no">046</span><span id="line-46">  String url();</span>
+<span class="source-line-no">047</span><span id="line-47"></span>
+<span class="source-line-no">048</span><span id="line-48">  /**</span>
+<span class="source-line-no">049</span><span id="line-49">   * @return True if the site uses SSL technology, otherwise false.</span>
+<span class="source-line-no">050</span><span id="line-50">   */</span>
+<span class="source-line-no">051</span><span id="line-51">  default boolean isSSL() {</span>
 <span class="source-line-no">052</span><span id="line-52"></span>
-<span class="source-line-no">053</span><span id="line-53">    UUID id = (object != null &amp;&amp; object.containsKey("uuid"))? UUID.fromString(object.get("uuid").toString())</span>
-<span class="source-line-no">054</span><span id="line-54">        : null;</span>
+<span class="source-line-no">053</span><span id="line-53">    return url().contains("https");</span>
+<span class="source-line-no">054</span><span id="line-54">  }</span>
 <span class="source-line-no">055</span><span id="line-55"></span>
-<span class="source-line-no">056</span><span id="line-56">    if(id != null) {</span>
-<span class="source-line-no">057</span><span id="line-57">      PluginCore.uuidProvider().store(new UUIDPair(id, username));</span>
-<span class="source-line-no">058</span><span id="line-58">    }</span>
-<span class="source-line-no">059</span><span id="line-59">    return id;</span>
-<span class="source-line-no">060</span><span id="line-60">  }</span>
-<span class="source-line-no">061</span><span id="line-61"></span>
-<span class="source-line-no">062</span><span id="line-62">  static String dashUUIDString(String uuid) {</span>
-<span class="source-line-no">063</span><span id="line-63">    return uuid.replaceAll(PluginCore.UUID_MATCHER_PATTERN.pattern(), "$1-$2-$3-$4-$5");</span>
-<span class="source-line-no">064</span><span id="line-64">  }</span>
-<span class="source-line-no">065</span><span id="line-65"></span>
-<span class="source-line-no">066</span><span id="line-66">  default JSONObject sendRequestJSON(final String linkAddition) {</span>
-<span class="source-line-no">067</span><span id="line-67">    return (JSONObject) JSONValue.parse(sendRequest(linkAddition));</span>
-<span class="source-line-no">068</span><span id="line-68">  }</span>
-<span class="source-line-no">069</span><span id="line-69"></span>
-<span class="source-line-no">070</span><span id="line-70">  default String sendRequest(final String linkAddition) {</span>
-<span class="source-line-no">071</span><span id="line-71">    StringBuilder builder = new StringBuilder();</span>
-<span class="source-line-no">072</span><span id="line-72">    HttpsURLConnection connection = null;</span>
-<span class="source-line-no">073</span><span id="line-73">    try {</span>
-<span class="source-line-no">074</span><span id="line-74"></span>
-<span class="source-line-no">075</span><span id="line-75">      TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager(){</span>
-<span class="source-line-no">076</span><span id="line-76">        public X509Certificate[] getAcceptedIssuers(){return null;}</span>
-<span class="source-line-no">077</span><span id="line-77">        public void checkClientTrusted(X509Certificate[] certs, String authType){</span>
-<span class="source-line-no">078</span><span id="line-78">          //empty</span>
-<span class="source-line-no">079</span><span id="line-79">        }</span>
-<span class="source-line-no">080</span><span id="line-80">        public void checkServerTrusted(X509Certificate[] certs, String authType){</span>
-<span class="source-line-no">081</span><span id="line-81">          //empty</span>
-<span class="source-line-no">082</span><span id="line-82">        }</span>
-<span class="source-line-no">083</span><span id="line-83">      }};</span>
-<span class="source-line-no">084</span><span id="line-84"></span>
-<span class="source-line-no">085</span><span id="line-85">      SSLContext sc = SSLContext.getInstance("TLS");</span>
-<span class="source-line-no">086</span><span id="line-86">      sc.init(null, trustAllCerts, new SecureRandom());</span>
-<span class="source-line-no">087</span><span id="line-87">      HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());</span>
-<span class="source-line-no">088</span><span id="line-88"></span>
-<span class="source-line-no">089</span><span id="line-89">      connection = (HttpsURLConnection) new URL(url() + linkAddition).openConnection();</span>
-<span class="source-line-no">090</span><span id="line-90">      connection.setConnectTimeout(15000);</span>
-<span class="source-line-no">091</span><span id="line-91">      connection.setReadTimeout(60000);</span>
-<span class="source-line-no">092</span><span id="line-92">      connection.setRequestMethod("GET");</span>
-<span class="source-line-no">093</span><span id="line-93">      connection.setRequestProperty("Accept", "application/json");</span>
-<span class="source-line-no">094</span><span id="line-94">      BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));</span>
-<span class="source-line-no">095</span><span id="line-95">      String response;</span>
-<span class="source-line-no">096</span><span id="line-96">      while((response = reader.readLine()) != null) {</span>
-<span class="source-line-no">097</span><span id="line-97">        builder.append(response);</span>
-<span class="source-line-no">098</span><span id="line-98">      }</span>
-<span class="source-line-no">099</span><span id="line-99">      reader.close();</span>
-<span class="source-line-no">100</span><span id="line-100">    } catch (Exception e) {</span>
-<span class="source-line-no">101</span><span id="line-101">      return "";</span>
-<span class="source-line-no">102</span><span id="line-102">    } finally {</span>
-<span class="source-line-no">103</span><span id="line-103">      if(connection != null) {</span>
-<span class="source-line-no">104</span><span id="line-104">        connection.disconnect();</span>
+<span class="source-line-no">056</span><span id="line-56">  default UUID getUUID(String username) {</span>
+<span class="source-line-no">057</span><span id="line-57"></span>
+<span class="source-line-no">058</span><span id="line-58">    JSONObject object = sendRequestJSON(username);</span>
+<span class="source-line-no">059</span><span id="line-59"></span>
+<span class="source-line-no">060</span><span id="line-60">    UUID id = (object != null &amp;&amp; object.containsKey("uuid"))? UUID.fromString(object.get("uuid").toString())</span>
+<span class="source-line-no">061</span><span id="line-61">                                                            : null;</span>
+<span class="source-line-no">062</span><span id="line-62"></span>
+<span class="source-line-no">063</span><span id="line-63">    if(id != null) {</span>
+<span class="source-line-no">064</span><span id="line-64">      PluginCore.uuidProvider().store(new UUIDPair(id, username));</span>
+<span class="source-line-no">065</span><span id="line-65">    }</span>
+<span class="source-line-no">066</span><span id="line-66">    return id;</span>
+<span class="source-line-no">067</span><span id="line-67">  }</span>
+<span class="source-line-no">068</span><span id="line-68"></span>
+<span class="source-line-no">069</span><span id="line-69">  default JSONObject sendRequestJSON(final String linkAddition) {</span>
+<span class="source-line-no">070</span><span id="line-70"></span>
+<span class="source-line-no">071</span><span id="line-71">    return (JSONObject)JSONValue.parse(sendRequest(linkAddition));</span>
+<span class="source-line-no">072</span><span id="line-72">  }</span>
+<span class="source-line-no">073</span><span id="line-73"></span>
+<span class="source-line-no">074</span><span id="line-74">  default String sendRequest(final String linkAddition) {</span>
+<span class="source-line-no">075</span><span id="line-75"></span>
+<span class="source-line-no">076</span><span id="line-76">    StringBuilder builder = new StringBuilder();</span>
+<span class="source-line-no">077</span><span id="line-77">    HttpsURLConnection connection = null;</span>
+<span class="source-line-no">078</span><span id="line-78">    try {</span>
+<span class="source-line-no">079</span><span id="line-79"></span>
+<span class="source-line-no">080</span><span id="line-80">      TrustManager[] trustAllCerts = new TrustManager[]{ new X509TrustManager() {</span>
+<span class="source-line-no">081</span><span id="line-81">        public X509Certificate[] getAcceptedIssuers() { return null; }</span>
+<span class="source-line-no">082</span><span id="line-82"></span>
+<span class="source-line-no">083</span><span id="line-83">        public void checkClientTrusted(X509Certificate[] certs, String authType) {</span>
+<span class="source-line-no">084</span><span id="line-84">          //empty</span>
+<span class="source-line-no">085</span><span id="line-85">        }</span>
+<span class="source-line-no">086</span><span id="line-86"></span>
+<span class="source-line-no">087</span><span id="line-87">        public void checkServerTrusted(X509Certificate[] certs, String authType) {</span>
+<span class="source-line-no">088</span><span id="line-88">          //empty</span>
+<span class="source-line-no">089</span><span id="line-89">        }</span>
+<span class="source-line-no">090</span><span id="line-90">      } };</span>
+<span class="source-line-no">091</span><span id="line-91"></span>
+<span class="source-line-no">092</span><span id="line-92">      SSLContext sc = SSLContext.getInstance("TLS");</span>
+<span class="source-line-no">093</span><span id="line-93">      sc.init(null, trustAllCerts, new SecureRandom());</span>
+<span class="source-line-no">094</span><span id="line-94">      HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());</span>
+<span class="source-line-no">095</span><span id="line-95"></span>
+<span class="source-line-no">096</span><span id="line-96">      connection = (HttpsURLConnection)new URL(url() + linkAddition).openConnection();</span>
+<span class="source-line-no">097</span><span id="line-97">      connection.setConnectTimeout(15000);</span>
+<span class="source-line-no">098</span><span id="line-98">      connection.setReadTimeout(60000);</span>
+<span class="source-line-no">099</span><span id="line-99">      connection.setRequestMethod("GET");</span>
+<span class="source-line-no">100</span><span id="line-100">      connection.setRequestProperty("Accept", "application/json");</span>
+<span class="source-line-no">101</span><span id="line-101">      BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));</span>
+<span class="source-line-no">102</span><span id="line-102">      String response;</span>
+<span class="source-line-no">103</span><span id="line-103">      while((response = reader.readLine()) != null) {</span>
+<span class="source-line-no">104</span><span id="line-104">        builder.append(response);</span>
 <span class="source-line-no">105</span><span id="line-105">      }</span>
-<span class="source-line-no">106</span><span id="line-106">    }</span>
-<span class="source-line-no">107</span><span id="line-107">    return builder.toString();</span>
-<span class="source-line-no">108</span><span id="line-108">  }</span>
-<span class="source-line-no">109</span><span id="line-109">}</span>
+<span class="source-line-no">106</span><span id="line-106">      reader.close();</span>
+<span class="source-line-no">107</span><span id="line-107">    } catch(Exception e) {</span>
+<span class="source-line-no">108</span><span id="line-108">      return "";</span>
+<span class="source-line-no">109</span><span id="line-109">    } finally {</span>
+<span class="source-line-no">110</span><span id="line-110">      if(connection != null) {</span>
+<span class="source-line-no">111</span><span id="line-111">        connection.disconnect();</span>
+<span class="source-line-no">112</span><span id="line-112">      }</span>
+<span class="source-line-no">113</span><span id="line-113">    }</span>
+<span class="source-line-no">114</span><span id="line-114">    return builder.toString();</span>
+<span class="source-line-no">115</span><span id="line-115">  }</span>
+<span class="source-line-no">116</span><span id="line-116">}</span>
 
 
 

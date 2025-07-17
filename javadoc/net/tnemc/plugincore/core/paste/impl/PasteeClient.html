@@ -190,7 +190,7 @@ implements <a href="../IPasteClient.html" title="interface in net.tnemc.pluginco
 <li>
 <section class="detail" id="identifier()">
 <h3>identifier</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/paste/impl/PasteeClient.html#line-48">identifier</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/paste/impl/PasteeClient.html#line-49">identifier</a></span>()</div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../IPasteClient.html#identifier()">IPasteClient</a></code></span></div>
 <div class="block">Retrieves the identifier associated with this object.</div>
 <dl class="notes">
@@ -204,7 +204,7 @@ implements <a href="../IPasteClient.html" title="interface in net.tnemc.pluginco
 <li>
 <section class="detail" id="endpoint()">
 <h3>endpoint</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/paste/impl/PasteeClient.html#line-53">endpoint</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/paste/impl/PasteeClient.html#line-55">endpoint</a></span>()</div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../IPasteClient.html#endpoint()">IPasteClient</a></code></span></div>
 <div class="block">Retrieves the endpoint associated with this client.</div>
 <dl class="notes">
@@ -218,7 +218,7 @@ implements <a href="../IPasteClient.html" title="interface in net.tnemc.pluginco
 <li>
 <section class="detail" id="apiKey()">
 <h3>apiKey</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/paste/impl/PasteeClient.html#line-58">apiKey</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/paste/impl/PasteeClient.html#line-61">apiKey</a></span>()</div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../IPasteClient.html#apiKey()">IPasteClient</a></code></span></div>
 <div class="block">Provides the API key associated with this client.</div>
 <dl class="notes">
@@ -232,7 +232,7 @@ implements <a href="../IPasteClient.html" title="interface in net.tnemc.pluginco
 <li>
 <section class="detail" id="createSingle(net.tnemc.plugincore.core.paste.IPasteable)">
 <h3>createSingle</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/paste/impl/PasteeClient.html#line-63">createSingle</a></span><wbr><span class="parameters">(<a href="../IPasteable.html" title="interface in net.tnemc.plugincore.core.paste">IPasteable</a>&nbsp;pasteable)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/paste/impl/PasteeClient.html#line-67">createSingle</a></span><wbr><span class="parameters">(<a href="../IPasteable.html" title="interface in net.tnemc.plugincore.core.paste">IPasteable</a>&nbsp;pasteable)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../IPasteClient.html#createSingle(net.tnemc.plugincore.core.paste.IPasteable)">IPasteClient</a></code></span></div>
 <div class="block">Creates a single paste based on the provided IPasteable object.</div>
 <dl class="notes">
@@ -241,23 +241,26 @@ implements <a href="../IPasteClient.html" title="interface in net.tnemc.pluginco
 <dt>Parameters:</dt>
 <dd><code>pasteable</code> - the IPasteable object containing the details of the paste to create</dd>
 <dt>Returns:</dt>
-<dd>an Optional of String representing the URL of the created paste, or an empty Optional if creation fails</dd>
+<dd>an Optional of String representing the URL of the created paste, or an empty Optional
+ if creation fails</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createMultiple(net.tnemc.plugincore.core.paste.IPasteable...)">
 <h3>createMultiple</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/paste/impl/PasteeClient.html#line-68">createMultiple</a></span><wbr><span class="parameters">(<a href="../IPasteable.html" title="interface in net.tnemc.plugincore.core.paste">IPasteable</a>...&nbsp;pasteables)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../../src-html/net/tnemc/plugincore/core/paste/impl/PasteeClient.html#line-73">createMultiple</a></span><wbr><span class="parameters">(<a href="../IPasteable.html" title="interface in net.tnemc.plugincore.core.paste">IPasteable</a>...&nbsp;pasteables)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../IPasteClient.html#createMultiple(net.tnemc.plugincore.core.paste.IPasteable...)">IPasteClient</a></code></span></div>
 <div class="block">Creates multiple pastes based on the provided IPasteable objects.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../IPasteClient.html#createMultiple(net.tnemc.plugincore.core.paste.IPasteable...)">createMultiple</a></code>&nbsp;in interface&nbsp;<code><a href="../IPasteClient.html" title="interface in net.tnemc.plugincore.core.paste">IPasteClient</a></code></dd>
 <dt>Parameters:</dt>
-<dd><code>pasteables</code> - an array of IPasteable objects containing the details of the pastes to create</dd>
+<dd><code>pasteables</code> - an array of IPasteable objects containing the details of the pastes to
+                   create</dd>
 <dt>Returns:</dt>
-<dd>an Optional of String representing the URL of the last created paste, or an empty Optional if creation fails or no pastes were created</dd>
+<dd>an Optional of String representing the URL of the last created paste, or an empty
+ Optional if creation fails or no pastes were created</dd>
 </dl>
 </section>
 </li>
