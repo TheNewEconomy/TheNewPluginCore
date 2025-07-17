@@ -23,9 +23,8 @@ import java.util.concurrent.TimeUnit;
  * ChoreTime represents a time for a {@link Chore}.
  *
  * @author creatorfromhell
- * @since 0.1.2.0
- *
  * @see Chore
+ * @since 0.1.2.0
  */
 public class ChoreTime {
 
@@ -33,6 +32,7 @@ public class ChoreTime {
   private final TimeUnit unit;
 
   public ChoreTime(int ticks) {
+
     this.time = ticks;
 
     //We set our unit to null for ticks.
@@ -40,11 +40,13 @@ public class ChoreTime {
   }
 
   public ChoreTime(int time, TimeUnit unit) {
+
     this.time = time;
     this.unit = unit;
   }
 
   public long asSeconds() {
+
     if(unit == null) {
       //this is ticks since our unit is null, so we have to divide by 20
       return (time / 20);
@@ -53,6 +55,7 @@ public class ChoreTime {
   }
 
   public long asTicks() {
+
     if(unit == null) {
       //this is ticks since our unit is null, so we just return it
       return time;
@@ -61,6 +64,7 @@ public class ChoreTime {
   }
 
   public int getTime() {
+
     return time;
   }
 }

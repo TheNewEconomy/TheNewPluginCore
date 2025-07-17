@@ -30,6 +30,7 @@ import java.util.Map;
 public class MariaDB extends StandardSQL {
 
   public MariaDB(final String prefix, Dialect dialect) {
+
     super(prefix, dialect);
   }
 
@@ -40,20 +41,23 @@ public class MariaDB extends StandardSQL {
    */
   @Override
   public String name() {
+
     return "maria";
   }
 
   @Override
   public String[] driver() {
-    return new String[] {
-        "org.mariadb.jdbc.Driver"
+
+    return new String[]{
+            "org.mariadb.jdbc.Driver"
     };
   }
 
   @Override
   public String[] dataSource() {
-    return new String[] {
-        "org.mariadb.jdbc.MariaDbDataSource"
+
+    return new String[]{
+            "org.mariadb.jdbc.MariaDbDataSource"
     };
   }
 
@@ -76,10 +80,12 @@ public class MariaDB extends StandardSQL {
 
   /**
    * Used to get addition hikari properties for this {@link SQLEngine}.
+   *
    * @return A map containing the additional properties.
    */
   @Override
   public Map<String, Object> properties() {
+
     return new HashMap<>();
   }
 }

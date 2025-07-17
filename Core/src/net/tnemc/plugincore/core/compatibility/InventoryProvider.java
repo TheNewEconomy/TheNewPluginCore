@@ -22,9 +22,11 @@ import net.tnemc.menu.core.compatibility.PlayerInventory;
 
 
 /**
- * A class that acts as a bridge between various inventory objects on different server software providers.
+ * A class that acts as a bridge between various inventory objects on different server software
+ * providers.
  *
  * @param <I> Represents the platform's Inventory object.
+ *
  * @author creatorfromhell
  * @since 0.1.2.0
  */
@@ -34,6 +36,7 @@ public interface InventoryProvider<I> extends PlayerInventory<I> {
    * Used to get an inventory object.
    *
    * @param ender True if the ender chest object should be returned, otherwise false.
+   *
    * @return The inventory object.
    */
   I getInventory(boolean ender);

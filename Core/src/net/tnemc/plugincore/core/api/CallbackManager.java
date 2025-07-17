@@ -40,20 +40,24 @@ public class CallbackManager {
   }
 
   protected void initDefaultCallbacks() {
+
   }
 
   /**
    * Used to add a new callback into the system.
+   *
    * @param identifier The identifier of the callback to add.
-   * @param entry The {@link CallbackEntry}, which manages the consumers.
+   * @param entry      The {@link CallbackEntry}, which manages the consumers.
    */
   public void addCallback(final String identifier, CallbackEntry entry) {
+
     this.callbacks.put(identifier, entry);
   }
 
   /**
    * Used to add a consumer for this callback.
-   * @param name The name of the callback to attach this consumer to.
+   *
+   * @param name     The name of the callback to attach this consumer to.
    * @param consumer The consumer to add for this callback. This is an implementation of the
    *                 {@link Function} interface, which accepts an {@link Callback} parameter and
    *                 returns a boolean value, which indicates if the "event" should be cancelled or
@@ -68,6 +72,7 @@ public class CallbackManager {
 
   /**
    * Used to call all the consumers for this callback.
+   *
    * @param callback The callback class for this consumer.
    *
    * @return This returns a boolean value, which equates to whether this event is cancelled or not.

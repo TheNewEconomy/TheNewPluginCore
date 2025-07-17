@@ -45,46 +45,14 @@ public class ModuleUpdateChecker {
   private String jarURL = "";
 
   public ModuleUpdateChecker(String module, String updateURL, String oldVersion) {
+
     this.module = module;
     this.updateURL = updateURL;
     this.oldVersion = oldVersion;
   }
-  public void check() {
-    PluginCore.log().inform("Checking module for update: " + module);
-    if(readInformation()) {
-      if(!upToDate()) {
-        PluginCore.log().inform("Updating module: " + module);
-        if(download(module, jarURL)) {
-          PluginCore.log().inform("Downloaded module update for " + module);
-        } else {
-          PluginCore.log().inform("Failed to download module update for " + module);
-        }
-        PluginCore.loader().load(module);
-      } else {
-        PluginCore.log().inform("ModuleOld " + module + " is up to date.");
-      }
-    }
-  }
-
-  public boolean upToDate() {
-    if(current.trim().equalsIgnoreCase("")) {
-      return true;
-    }
-
-    String[] oldSplit = oldVersion.split("\\.");
-    String[] currentSplit = current.split("\\.");
-
-    for(int i = 0; i < currentSplit.length; i++) {
-
-      if(i >= oldSplit.length && !currentSplit[i].equalsIgnoreCase("0")) return false;
-      if(i >= oldSplit.length && currentSplit[i].equalsIgnoreCase("0")) continue;
-
-      if(Integer.parseInt(currentSplit[i]) > Integer.parseInt(oldSplit[i])) return false;
-    }
-    return true;
-  }
 
   public static boolean download(String module, String jarURL) {
+
     if(jarURL.trim().equalsIgnoreCase("")) {
       return false;
     }
@@ -100,9 +68,9 @@ public class ModuleUpdateChecker {
       HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 
       final URL url = new URL(jarURL);
-      final HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+      final HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
       final int responseCode = connection.getResponseCode();
-      if (responseCode == HttpURLConnection.HTTP_OK) {
+      if(responseCode == HttpURLConnection.HTTP_OK) {
         String fileName = jarURL.substring(jarURL.lastIndexOf("/") + 1);
 
         try(InputStream in = connection.getInputStream()) {
@@ -128,13 +96,73 @@ public class ModuleUpdateChecker {
           }
         }
       }
-    } catch (Exception ignore) {
+    } catch(Exception ignore) {
       return false;
     }
     return false;
   }
 
+  public static Optional<Document> readUpdateURL(String updateURL) {
+
+    try {
+
+      SSLContext sc = SSLContext.getInstance("TLS");
+      sc.init(null, IOUtil.selfCertificates(), new SecureRandom());
+      HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+
+      final URL url = new URL(updateURL);
+      final HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
+
+      final DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+      final DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+      final Document document = documentBuilder.parse(connection.getInputStream());
+
+      return Optional.of(document);
+
+    } catch(Exception e) {
+      return Optional.empty();
+    }
+  }
+
+  public void check() {
+
+    PluginCore.log().inform("Checking module for update: " + module);
+    if(readInformation()) {
+      if(!upToDate()) {
+        PluginCore.log().inform("Updating module: " + module);
+        if(download(module, jarURL)) {
+          PluginCore.log().inform("Downloaded module update for " + module);
+        } else {
+          PluginCore.log().inform("Failed to download module update for " + module);
+        }
+        PluginCore.loader().load(module);
+      } else {
+        PluginCore.log().inform("ModuleOld " + module + " is up to date.");
+      }
+    }
+  }
+
+  public boolean upToDate() {
+
+    if(current.trim().equalsIgnoreCase("")) {
+      return true;
+    }
+
+    String[] oldSplit = oldVersion.split("\\.");
+    String[] currentSplit = current.split("\\.");
+
+    for(int i = 0; i < currentSplit.length; i++) {
+
+      if(i >= oldSplit.length && !currentSplit[i].equalsIgnoreCase("0")) return false;
+      if(i >= oldSplit.length && currentSplit[i].equalsIgnoreCase("0")) continue;
+
+      if(Integer.parseInt(currentSplit[i]) > Integer.parseInt(oldSplit[i])) return false;
+    }
+    return true;
+  }
+
   public boolean readInformation() {
+
     final Optional<Document> document = readUpdateURL(updateURL);
     if(document.isPresent()) {
       final Document doc = document.get();
@@ -152,12 +180,12 @@ public class ModuleUpdateChecker {
           if(moduleNode.hasAttributes()) {
 
             final Node nameNode = moduleNode.getAttributes().getNamedItem("name");
-            if (nameNode != null) {
+            if(nameNode != null) {
 
-              if (nameNode.getTextContent().equalsIgnoreCase(module)) {
+              if(nameNode.getTextContent().equalsIgnoreCase(module)) {
 
                 final Node releasedNode = moduleNode.getAttributes().getNamedItem("released");
-                if (releasedNode != null) {
+                if(releasedNode != null) {
                   if(releasedNode.getTextContent().equalsIgnoreCase("yes")) {
 
                     //We have the correct name, and this module is released.
@@ -180,7 +208,7 @@ public class ModuleUpdateChecker {
                           final Node versionReleased = versionNode.getAttributes().getNamedItem("released");
 
                           if(latest != null && latest.getTextContent().equalsIgnoreCase("yes") &&
-                          versionReleased != null && versionReleased.getTextContent().equalsIgnoreCase("yes")) {
+                             versionReleased != null && versionReleased.getTextContent().equalsIgnoreCase("yes")) {
 
                             //We have the latest module version
                             final NodeList name = versionElement.getElementsByTagName("name");
@@ -212,64 +240,53 @@ public class ModuleUpdateChecker {
     return false;
   }
 
-  public static Optional<Document> readUpdateURL(String updateURL) {
-    try {
-
-      SSLContext sc = SSLContext.getInstance("TLS");
-      sc.init(null, IOUtil.selfCertificates(), new SecureRandom());
-      HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-
-      final URL url = new URL(updateURL);
-      final HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-
-      final DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-      final DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-      final Document document = documentBuilder.parse(connection.getInputStream());
-
-      return Optional.of(document);
-
-    } catch(Exception e) {
-      return Optional.empty();
-    }
-  }
-
   public String getModule() {
+
     return module;
   }
 
   public void setModule(String module) {
+
     this.module = module;
   }
 
   public String getURL() {
+
     return updateURL;
   }
 
   public void setURL(String updateURL) {
+
     this.updateURL = updateURL;
   }
 
   public String getOldVersion() {
+
     return oldVersion;
   }
 
   public void setOldVersion(String oldVersion) {
+
     this.oldVersion = oldVersion;
   }
 
   public String getCurrent() {
+
     return current;
   }
 
   public void setCurrent(String current) {
+
     this.current = current;
   }
 
   public String getJarURL() {
+
     return jarURL;
   }
 
   public void setJarURL(String jarURL) {
+
     this.jarURL = jarURL;
   }
 }

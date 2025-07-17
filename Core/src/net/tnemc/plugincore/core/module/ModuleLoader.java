@@ -41,30 +41,35 @@ public class ModuleLoader {
   private final Map<String, ModuleWrapper> modules = new HashMap<>();
 
   public boolean hasModule(String moduleName) {
+
     return modules.containsKey(moduleName);
   }
 
   public boolean hasModuleWithoutCase(String moduleName) {
-    for (String key : modules.keySet()) {
+
+    for(String key : modules.keySet()) {
       if(key.equalsIgnoreCase(moduleName)) return true;
     }
     return false;
   }
 
   public ModuleWrapper getModule(String name) {
+
     return modules.get(name);
   }
 
   public Map<String, ModuleWrapper> getModules() {
+
     return modules;
   }
 
   public void load() {
+
     final File directory = new File(PluginCore.directory(), "modules");
 
     if(directory.exists()) {
 
-      final File[] jars = directory.listFiles((dir, name) -> name.endsWith(".jar"));
+      final File[] jars = directory.listFiles((dir, name)->name.endsWith(".jar"));
 
       if(jars != null) {
         for(File jar : jars) {
@@ -88,7 +93,7 @@ public class ModuleLoader {
             PluginCore.log().inform("Found module: " + wrapper.name() + " version: " + wrapper.version());
             modules.put(wrapper.name(), wrapper);
 
-            if (!wrapper.getInfo().updateURL().trim().equalsIgnoreCase("")) {
+            if(!wrapper.getInfo().updateURL().trim().equalsIgnoreCase("")) {
               PluginCore.log().inform("Checking for updates for module " + wrapper.info.name());
               ModuleUpdateChecker checker = new ModuleUpdateChecker(wrapper.info.name(), wrapper.info.updateURL(), wrapper.version());
               checker.check();
@@ -106,6 +111,7 @@ public class ModuleLoader {
   }
 
   public boolean load(String moduleName) {
+
     final String path = findPath(moduleName);
     if(path != null) {
       try {
@@ -141,6 +147,7 @@ public class ModuleLoader {
   }
 
   public void unload(String moduleName) {
+
     if(hasModule(moduleName)) {
       ModuleWrapper wrapper = getModule(moduleName);
       //TODO: Command and configuration unloading.
@@ -150,11 +157,11 @@ public class ModuleLoader {
         Field f = ClassLoader.class.getDeclaredField("classes");
         f.setAccessible(true);
 
-        Vector<Class> classes =  (Vector<Class>) f.get(PluginCore.loader().getModule(moduleName).getLoader());
+        Vector<Class> classes = (Vector<Class>)f.get(PluginCore.loader().getModule(moduleName).getLoader());
         for(Class clazz : classes) {
           PluginCore.log().debug("Loaded: " + clazz.getName());
         }
-      } catch (Exception e) {
+      } catch(Exception e) {
         e.printStackTrace();
       }
       wrapper.unload();
@@ -169,8 +176,9 @@ public class ModuleLoader {
   }
 
   protected String findPath(String moduleName) {
+
     final File directory = new File(PluginCore.directory(), "modules");
-    final File[] jars = directory.listFiles((dir, name) -> name.endsWith(".jar"));
+    final File[] jars = directory.listFiles((dir, name)->name.endsWith(".jar"));
 
     if(jars != null) {
       for(File jar : jars) {
@@ -183,6 +191,7 @@ public class ModuleLoader {
   }
 
   private ModuleWrapper loadModuleWrapper(String modulePath) {
+
     ModuleWrapper wrapper;
 
     Module module = null;
@@ -195,7 +204,7 @@ public class ModuleLoader {
       classLoader = new URLClassLoader(new URL[]{ file.toURI().toURL() }, PluginCore.instance().getClass().getClassLoader());
       moduleClass = classLoader.loadClass(getModuleMain(new File(modulePath))).asSubclass(Module.class);
       module = moduleClass.newInstance();
-    } catch (Exception ignore) {
+    } catch(Exception ignore) {
       PluginCore.log().inform("Unable to locate module main class for file " + file.getName());
     }
     wrapper = new ModuleWrapper(module);
@@ -204,11 +213,12 @@ public class ModuleLoader {
   }
 
   public boolean downloadModule(String module) {
+
     if(modules.containsKey(module)) {
       try {
         final String fileURL = modules.get(module).info.updateURL();
         final URL url = new URL(fileURL);
-        final HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+        final HttpURLConnection httpConn = (HttpURLConnection)url.openConnection();
         final int responseCode = httpConn.getResponseCode();
         if(responseCode == HttpURLConnection.HTTP_OK) {
           final String fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1, fileURL.length());
@@ -226,7 +236,7 @@ public class ModuleLoader {
 
           int bytesRead = -1;
           final byte[] buffer = new byte[4096];
-          while ((bytesRead = in.read(buffer)) != -1) {
+          while((bytesRead = in.read(buffer)) != -1) {
             out.write(buffer, 0, bytesRead);
           }
 
@@ -242,6 +252,7 @@ public class ModuleLoader {
   }
 
   private String getModuleMain(File jarFile) {
+
     String main = "";
     JarFile jar = null;
     InputStream in = null;

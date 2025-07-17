@@ -23,8 +23,8 @@ package net.tnemc.plugincore.core.io.storage;
  * @param <C> Represents the connection object for this connector.
  *
  * @author creatorfromhell
- * @since 0.1.2.0
  * @see StorageEngine
+ * @since 0.1.2.0
  */
 public interface StorageConnector<C> {
 

@@ -33,6 +33,7 @@ public class TNESubscriber extends BinaryJedisPubSub {
 
   @Override
   public void onMessage(byte[] channel, byte[] message) {
+
     super.onMessage(channel, message);
 
     final String channelStr = new String(channel, StandardCharsets.UTF_8);

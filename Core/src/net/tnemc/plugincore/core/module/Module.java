@@ -62,30 +62,36 @@ public interface Module {
 
   /**
    * Called when the {@link StorageManager storage manager} runs its backup method.
+   *
    * @param manager The {@link StorageManager storage manager} instance.
    */
   void backup(StorageManager manager);
 
   /**
    * Called when the {@link StorageManager storage manager} runs its reset method.
+   *
    * @param manager The {@link StorageManager storage manager} instance.
    */
   void reset(StorageManager manager);
 
   /**
-   * Called when the {@link StorageManager storage manager} is enabled, and a connection is established.
+   * Called when the {@link StorageManager storage manager} is enabled, and a connection is
+   * established.
+   *
    * @param manager The {@link StorageManager storage manager} instance.
    */
   void enableSave(StorageManager manager);
 
   /**
    * Called when the {@link MenuHandler menu handler} is enabled.
+   *
    * @param menuHandler The menu handler.
    */
   void enableMenu(MenuHandler menuHandler);
 
   /**
    * Called after the default TNE Commands are registered.
+   *
    * @param handler The {@link Lamp} that the commands are registered to.
    */
   void registerCommands(Lamp<?> handler);
@@ -106,26 +112,28 @@ public interface Module {
    * Used to register sub commands onto the exist /tne command set.
    */
   List<OrphanCommand> registerAdminSub();
-  
+
   /**
-   * Called after the {@link CallbackManager} is initialized. This method will
-   * register new callbacks with the manager automatically.
+   * Called after the {@link CallbackManager} is initialized. This method will register new
+   * callbacks with the manager automatically.
    *
    * @return A map containing the callbacks to register where the key is the callback name and the
    * value is the {@link CallbackEntry} function.
    */
   default Map<String, CallbackEntry> registerCallbacks() {
+
     return new HashMap<>();
   }
 
   /**
-   * Called after the {@link CallbackManager} is initialized. This method will
-   * register the callback listeners with the manager automatically.
+   * Called after the {@link CallbackManager} is initialized. This method will register the callback
+   * listeners with the manager automatically.
    *
    * @return A map containing the listeners to register where the key is the callback name and the
    * value is the listener function.
    */
   default Map<String, Function<Callback, Boolean>> registerListeners() {
+
     return new HashMap<>();
   }
 }

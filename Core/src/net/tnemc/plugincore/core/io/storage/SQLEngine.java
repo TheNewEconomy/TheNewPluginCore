@@ -45,25 +45,29 @@ public interface SQLEngine extends StorageEngine {
   /**
    * Generates the connection URL String based on the provided details.
    *
-   * @param file The file name, if applicable.
-   * @param host The host to connect to.
-   * @param port The port to connect to.
+   * @param file     The file name, if applicable.
+   * @param host     The host to connect to.
+   * @param port     The port to connect to.
    * @param database The database name to connect to.
+   *
    * @return The generated connection URL using the details provided.
    */
   String url(String file, String host, int port, String database);
 
   /**
    * The dialiect for this engine. This will be used for query purposes.
+   *
    * @return The dialect for the engine.
    */
   Dialect dialect();
 
   /**
    * Used to get addition hikari properties for this {@link SQLEngine}.
+   *
    * @return A map containing the additional properties.
    */
   default Map<String, Object> properties() {
+
     return new HashMap<>();
   }
 }

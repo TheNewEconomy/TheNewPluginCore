@@ -34,19 +34,19 @@ import java.nio.charset.StandardCharsets;
  */
 public class TNEJedisManager {
 
+  private static TNEJedisManager instance;
   protected final JedisPool pool;
   protected final TNESubscriber subscriber = new TNESubscriber();
   protected final byte[] channel = "tne:balance".getBytes(StandardCharsets.UTF_8);
   final Thread redisThread;
 
-  private static TNEJedisManager instance;
-
   public TNEJedisManager(final JedisPool pool) {
+
     this.pool = pool;
 
     if(connectionTest()) {
 
-      redisThread = new Thread(() -> {
+      redisThread = new Thread(()->{
         try(Jedis jedis = pool.getResource()) {
           jedis.subscribe(subscriber, channel);
         }
@@ -62,29 +62,8 @@ public class TNEJedisManager {
     instance = this;
   }
 
-  public boolean connectionTest() {
-    try(Jedis jedis = pool.getResource()) {
-      jedis.ping();
-      return true;
-    } catch(Exception e) {
-      PluginCore.log().error("Redis Connection Test Failed!", e, DebugLevel.STANDARD);
-      return false;
-    }
-  }
-
-  public void publish(final byte[] data) {
-    try(Jedis jedis = pool.getResource()) {
-      jedis.publish(channel, data);
-    }
-  }
-
-  public void publish(final String channel, final byte[] data) {
-    try(Jedis jedis = pool.getResource()) {
-      jedis.publish(channel.getBytes(StandardCharsets.UTF_8), data);
-    }
-  }
-
   public static TNEJedisManager instance() {
+
     return instance;
   }
 
@@ -96,5 +75,30 @@ public class TNEJedisManager {
     out.write(data);
 
     instance.publish(out.toByteArray());
+  }
+
+  public boolean connectionTest() {
+
+    try(Jedis jedis = pool.getResource()) {
+      jedis.ping();
+      return true;
+    } catch(Exception e) {
+      PluginCore.log().error("Redis Connection Test Failed!", e, DebugLevel.STANDARD);
+      return false;
+    }
+  }
+
+  public void publish(final byte[] data) {
+
+    try(Jedis jedis = pool.getResource()) {
+      jedis.publish(channel, data);
+    }
+  }
+
+  public void publish(final String channel, final byte[] data) {
+
+    try(Jedis jedis = pool.getResource()) {
+      jedis.publish(channel.getBytes(StandardCharsets.UTF_8), data);
+    }
   }
 }

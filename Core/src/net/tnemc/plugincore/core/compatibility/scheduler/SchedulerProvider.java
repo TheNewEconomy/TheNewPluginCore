@@ -23,10 +23,10 @@ import java.util.concurrent.ConcurrentHashMap;
  * SchedulerProvider represents a bridge between the core and the implementation's scheduling
  * system.
  *
+ * @param <C> Represents the implementation's {@link Chore} object.
+ *
  * @author creatorfromhell
  * @since 0.1.2.0
- *
- * @param <C> Represents the implementation's {@link Chore} object.
  */
 public abstract class SchedulerProvider<C extends Chore<?>> {
 
@@ -34,8 +34,9 @@ public abstract class SchedulerProvider<C extends Chore<?>> {
 
   /**
    * Used to create a task, which will execute after the specified delay.
-   * @param task The task to run.
-   * @param delay The delay, in ticks.
+   *
+   * @param task        The task to run.
+   * @param delay       The delay, in ticks.
    * @param environment The execution environment for the task.
    */
   public abstract void createDelayedTask(Runnable task, ChoreTime delay, ChoreExecution environment);
@@ -43,9 +44,9 @@ public abstract class SchedulerProvider<C extends Chore<?>> {
   /**
    * Used to create a task, which repeats after a specified period.
    *
-   * @param task The task to run.
-   * @param delay The delay to run the task, in ticks.
-   * @param period The period to run the task.
+   * @param task        The task to run.
+   * @param delay       The delay to run the task, in ticks.
+   * @param period      The period to run the task.
    * @param environment The execution environment for the task.
    *
    * @return The associated {@link Chore} with this task.
@@ -54,21 +55,25 @@ public abstract class SchedulerProvider<C extends Chore<?>> {
 
   /**
    * Used to create a task, which repeats after a specified period.
-   * @param task The task to run.
-   * @param delay The delay to run the task, in ticks.
+   *
+   * @param task   The task to run.
+   * @param delay  The delay to run the task, in ticks.
    * @param period The period to run the task.
    *
    * @return The id, or -1 if no id can be returned.
    */
   public int createRepeatingTaskID(Runnable task, ChoreTime delay, ChoreTime period, ChoreExecution environment) {
+
     return createRepeatingTask(task, delay, period, environment).id();
   }
 
   /**
    * Used to cancel a task.
+   *
    * @param id The id of the task to cancel.
    */
   public void cancelTask(final int id) {
+
     if(chores.containsKey(id)) {
       chores.get(id).cancel();
       chores.remove(id);

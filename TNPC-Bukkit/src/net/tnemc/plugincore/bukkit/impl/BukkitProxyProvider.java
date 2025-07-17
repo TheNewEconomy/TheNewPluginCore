@@ -38,7 +38,8 @@ public class BukkitProxyProvider implements ProxyProvider {
    * @param channel The channel to register.
    */
   @Override
-  public void registerChannel(String channel) {
+  public void registerChannel(final String channel) {
+
     Bukkit.getMessenger().registerIncomingPluginChannel(BukkitPluginCore.instance().getPlugin(), channel, listener);
     Bukkit.getMessenger().registerOutgoingPluginChannel(BukkitPluginCore.instance().getPlugin(), channel);
   }
@@ -50,7 +51,8 @@ public class BukkitProxyProvider implements ProxyProvider {
    * @param bytes   The byte data to send.
    */
   @Override
-  public void send(String channel, byte[] bytes) {
+  public void send(final String channel, final byte[] bytes) {
+
     if(Bukkit.getServer().getOnlinePlayers().size() == 0) {
       return;
     }

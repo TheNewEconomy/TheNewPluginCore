@@ -34,6 +34,7 @@ public class Location {
   private double z;
 
   public Location(String world, double x, double y, double z) {
+
     this.world = world;
     this.x = x;
     this.y = y;
@@ -41,46 +42,57 @@ public class Location {
   }
 
   public String getWorld() {
+
     return world;
   }
 
   public void setWorld(String world) {
+
     this.world = world;
   }
 
   public int getChunkX() {
+
     return (int)(x / 16);
   }
 
   public int getChunkZ() {
+
     return (int)(z / 16);
   }
 
   public double distance(@NotNull final Location location) {
+
     return Math.sqrt(Math.pow(x - location.x, 2) + Math.pow(y - location.y, 2) + Math.pow(z - location.z, 2));
   }
 
   public double getX() {
+
     return x;
   }
 
   public void setX(double x) {
+
     this.x = x;
   }
 
   public double getY() {
+
     return y;
   }
 
   public void setY(double y) {
+
     this.y = y;
   }
 
   public double getZ() {
+
     return z;
   }
 
   public void setZ(double z) {
+
     this.z = z;
   }
 }

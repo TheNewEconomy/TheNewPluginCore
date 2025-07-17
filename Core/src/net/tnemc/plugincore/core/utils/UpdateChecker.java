@@ -31,18 +31,22 @@ public class UpdateChecker {
   private final Semver ver;
 
   public UpdateChecker() {
+
     ver = IOUtil.readVersion().map(Semver::new).orElseGet(()->new Semver("0.0.0.0"));
   }
 
   public boolean isEarlyBuild() {
+
     return ver.isLowerThan(PluginCore.engine().version());
   }
 
   public boolean needsUpdate() {
+
     return ver.isGreaterThan(PluginCore.engine().version());
   }
 
   public String stable() {
+
     if(new Semver(PluginCore.engine().version() + "-" + PluginCore.engine().build(), Semver.SemverType.LOOSE).isStable()) {
       return "Stable";
     }
@@ -50,6 +54,7 @@ public class UpdateChecker {
   }
 
   public String getBuild() {
+
     return ver.getValue();
   }
 }

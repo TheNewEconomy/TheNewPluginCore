@@ -37,6 +37,7 @@ public class SpongeCMDSource extends CmdSource<SpongeCommandActor> {
   private final SpongePlayerProvider provider;
 
   public SpongeCMDSource(final SpongeCommandActor actor) {
+
     super(actor);
 
     if(actor.isPlayer() && actor.asPlayer() != null) {
@@ -50,10 +51,12 @@ public class SpongeCMDSource extends CmdSource<SpongeCommandActor> {
   /**
    * Determines if this {@link CmdSource} is an instance of a player.
    *
-   * @return True if this represents a player, otherwise false if it's a non-player such as the console.
+   * @return True if this represents a player, otherwise false if it's a non-player such as the
+   * console.
    */
   @Override
   public boolean isPlayer() {
+
     return actor.isPlayer();
   }
 
@@ -65,6 +68,7 @@ public class SpongeCMDSource extends CmdSource<SpongeCommandActor> {
    */
   @Override
   public Optional<PlayerProvider> player() {
+
     return Optional.ofNullable(provider);
   }
 
@@ -75,6 +79,7 @@ public class SpongeCMDSource extends CmdSource<SpongeCommandActor> {
    */
   @Override
   public void message(final MessageData messageData) {
+
     if(identifier().isEmpty()) {
       MessageHandler.translate(messageData, null, actor.cause().audience());
       return;

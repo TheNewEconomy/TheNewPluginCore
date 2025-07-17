@@ -36,7 +36,8 @@ import java.util.UUID;
  */
 public class SpongeInventoryProvider extends SpongeInventory implements InventoryProvider<Inventory> {
 
-  public SpongeInventoryProvider(UUID id, PluginContainer container) {
+  public SpongeInventoryProvider(final UUID id, final PluginContainer container) {
+
     super(id, container);
   }
 
@@ -48,7 +49,8 @@ public class SpongeInventoryProvider extends SpongeInventory implements Inventor
    * @return The inventory object.
    */
   @Override
-  public Inventory getInventory(boolean ender) {
+  public Inventory getInventory(final boolean ender) {
+
     final Optional<ServerPlayer> player = Sponge.server().player(this.id);
     if(player.isPresent()) {
 

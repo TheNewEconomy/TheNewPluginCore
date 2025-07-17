@@ -24,6 +24,7 @@ import net.tnemc.plugincore.core.io.storage.engine.StandardSQL;
 public class DB2 extends StandardSQL {
 
   public DB2(Dialect dialect) {
+
     super(dialect);
   }
 
@@ -34,25 +35,29 @@ public class DB2 extends StandardSQL {
    */
   @Override
   public String name() {
+
     return "db2";
   }
 
   @Override
   public String[] driver() {
-    return new String[] {
-      "com.ibm.db2.jcc.DB2Driver"
+
+    return new String[]{
+            "com.ibm.db2.jcc.DB2Driver"
     };
   }
 
   @Override
   public String[] dataSource() {
-    return new String[] {
-      "com.ibm.db2.jcc.DB2SimpleDataSource"
+
+    return new String[]{
+            "com.ibm.db2.jcc.DB2SimpleDataSource"
     };
   }
 
   @Override
   public String url(String file, String host, int port, String database) {
+
     return "jdbc:db2://" + host + ":" + port + "/" + database;
   }
 }

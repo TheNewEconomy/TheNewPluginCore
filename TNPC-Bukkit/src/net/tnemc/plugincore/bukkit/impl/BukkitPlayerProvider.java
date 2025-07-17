@@ -46,8 +46,18 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
   private final OfflinePlayer player;
 
   public BukkitPlayerProvider(final OfflinePlayer player) {
+
     super(player, BukkitPluginCore.instance().getPlugin());
     this.player = player;
+  }
+
+  public static BukkitPlayerProvider find(final String identifier) {
+
+    try {
+      return new BukkitPlayerProvider(Bukkit.getOfflinePlayer(UUID.fromString(identifier)));
+    } catch(final Exception ignore) {
+      return new BukkitPlayerProvider(Bukkit.getOfflinePlayer(identifier));
+    }
   }
 
   /**
@@ -57,10 +67,12 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    */
   @Override
   public UUID identifier() {
+
     return player.getUniqueId();
   }
 
   public OfflinePlayer getPlayer() {
+
     return player;
   }
 
@@ -71,6 +83,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    */
   @Override
   public String getName() {
+
     return player.getName();
   }
 
@@ -81,6 +94,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    */
   @Override
   public Optional<Location> getLocation() {
+
     if(player.getPlayer() == null) {
       return Optional.empty();
     }
@@ -100,6 +114,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    */
   @Override
   public String world() {
+
     String world = BukkitPluginCore.instance().getPlugin().getServer().getWorlds().get(0).getName();
 
     if(player.getPlayer() != null) {
@@ -115,6 +130,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    */
   @Override
   public String biome() {
+
     String biome = BukkitPluginCore.instance().getPlugin().getServer().getWorlds().get(0).getName();
 
     if(player.getPlayer() != null) {
@@ -130,6 +146,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    */
   @Override
   public int getExp() {
+
     if(player.getPlayer() == null) {
       return 0;
     }
@@ -143,6 +160,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    */
   @Override
   public void setExp(final int exp) {
+
     if(player.getPlayer() != null) {
       player.getPlayer().setTotalExperience(exp);
     }
@@ -155,6 +173,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    */
   @Override
   public int getExpLevel() {
+
     if(player.getPlayer() == null) {
       return 0;
     }
@@ -168,6 +187,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    */
   @Override
   public void setExpLevel(final int level) {
+
     if(player.getPlayer() != null) {
       player.getPlayer().setLevel(level);
     }
@@ -175,6 +195,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
 
   @Override
   public BukkitInventoryProvider inventory() {
+
     return new BukkitInventoryProvider(identifier(), BukkitPluginCore.instance().getPlugin());
   }
 
@@ -185,6 +206,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    */
   @Override
   public List<String> getEffectivePermissions() {
+
     if(player.getPlayer() == null) {
 
       return new ArrayList<>();
@@ -204,6 +226,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    */
   @Override
   public boolean hasPermission(final String permission) {
+
     if(player.getPlayer() == null) {
       return false;
     }
@@ -212,6 +235,7 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
 
   @Override
   public void message(final String message) {
+
     if(player.getPlayer() != null) {
       message(new MessageData(message));
     }
@@ -224,20 +248,13 @@ public class BukkitPlayerProvider extends BukkitPlayer implements PlayerProvider
    */
   @Override
   public void message(final MessageData messageData) {
+
     if(player.getPlayer() == null) {
       return;
     }
 
     try(final BukkitAudiences provider = BukkitAudiences.create(BukkitPluginCore.instance().getPlugin())) {
       MessageHandler.translate(messageData, player.getUniqueId(), provider.sender(player.getPlayer()));
-    }
-  }
-
-  public static BukkitPlayerProvider find(final String identifier) {
-    try {
-      return new BukkitPlayerProvider(Bukkit.getOfflinePlayer(UUID.fromString(identifier)));
-    } catch (final Exception ignore) {
-      return new BukkitPlayerProvider(Bukkit.getOfflinePlayer(identifier));
     }
   }
 }

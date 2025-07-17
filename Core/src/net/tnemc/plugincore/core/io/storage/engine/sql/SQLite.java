@@ -29,6 +29,7 @@ import net.tnemc.plugincore.core.io.storage.engine.StandardSQL;
 public class SQLite extends StandardSQL {
 
   public SQLite(final Dialect dialect) {
+
     super(dialect);
   }
 
@@ -39,23 +40,27 @@ public class SQLite extends StandardSQL {
    */
   @Override
   public String name() {
+
     return "sqlite";
   }
 
   @Override
   public String[] driver() {
-    return new String[] {
+
+    return new String[]{
             "org.sqlite.JDBC"
     };
   }
 
   @Override
   public String[] dataSource() {
+
     return new String[0];
   }
 
   @Override
   public String url(final String file, final String host, final int port, final String database) {
+
     final String finalFile = (file.contains(".db"))? file : file + ".db";
     return "jdbc:sqlite:" + finalFile;
   }

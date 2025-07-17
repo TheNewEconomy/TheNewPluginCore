@@ -30,52 +30,59 @@ import java.util.Optional;
  *
  * @author creatorfromhell
  * @since 0.1.2.0
- *
  */
 public interface Datable<O> {
 
   /**
    * The class that is represented by the O parameter.
+   *
    * @return The class that represents the parameter.
    */
   Class<? extends O> clazz();
 
   /**
    * USed to purge the objects of this datable.
+   *
    * @param connector The storage connector to use for this transaction.
    */
   void purge(StorageConnector<?> connector);
 
   /**
    * Used to store this object.
-   * @param connector The storage connector to use for this transaction.
-   * @param object The object to be stored.
-   * @param identifier An optional identifier for loading this object. Note: some Datables may require
-   *                   this identifier.
+   *
+   * @param connector  The storage connector to use for this transaction.
+   * @param object     The object to be stored.
+   * @param identifier An optional identifier for loading this object. Note: some Datables may
+   *                   require this identifier.
    */
   void store(StorageConnector<?> connector, @NotNull O object, @Nullable String identifier);
 
   /**
    * Used to store all objects of this type.
-   * @param connector The storage connector to use for this transaction.
-   * @param identifier The identifier used to load objects, if they relate to a specific
-   *                   identifier, otherwise this will be null.
+   *
+   * @param connector  The storage connector to use for this transaction.
+   * @param identifier The identifier used to load objects, if they relate to a specific identifier,
+   *                   otherwise this will be null.
    */
   void storeAll(StorageConnector<?> connector, @Nullable String identifier);
 
   /**
    * Used to load this object.
-   * @param connector The storage connector to use for this transaction.
+   *
+   * @param connector  The storage connector to use for this transaction.
    * @param identifier The identifier used to identify the object to load.
+   *
    * @return The object to load.
    */
   Optional<O> load(StorageConnector<?> connector, @NotNull final String identifier);
 
   /**
    * Used to load all objects of this type.
-   * @param connector The storage connector to use for this transaction.
-   * @param identifier The identifier used to load objects, if they relate to a specific
-   *                   identifier, otherwise this will be null.
+   *
+   * @param connector  The storage connector to use for this transaction.
+   * @param identifier The identifier used to load objects, if they relate to a specific identifier,
+   *                   otherwise this will be null.
+   *
    * @return A collection containing the objects loaded.
    */
   Collection<O> loadAll(StorageConnector<?> connector, @Nullable final String identifier);

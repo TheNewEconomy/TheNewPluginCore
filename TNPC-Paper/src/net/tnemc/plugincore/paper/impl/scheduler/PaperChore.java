@@ -30,6 +30,7 @@ import org.bukkit.scheduler.BukkitTask;
 public class PaperChore extends Chore<BukkitTask> {
 
   public PaperChore(BukkitTask task, ChoreExecution execution) {
+
     super(task.getTaskId(), task, execution);
   }
 
@@ -38,6 +39,7 @@ public class PaperChore extends Chore<BukkitTask> {
    */
   @Override
   public void cancel() {
+
     this.task.cancel();
   }
 }

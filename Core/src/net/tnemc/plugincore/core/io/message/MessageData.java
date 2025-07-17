@@ -40,34 +40,42 @@ public class MessageData {
   private final String node;
 
   public MessageData(String node) {
+
     this.node = node;
   }
 
   public void addReplacement(final String search, final String replacement) {
+
     this.replacements.put(search, replacement);
   }
 
   public void addReplacement(final String search, final BigDecimal replacement) {
+
     this.replacements.put(search, replacement.toPlainString());
   }
 
   public void addReplacement(final String search, final Integer replacement) {
+
     this.replacements.put(search, String.valueOf(replacement));
   }
 
   public void addReplacement(final String search, final Double replacement) {
+
     this.replacements.put(search, String.valueOf(replacement));
   }
 
   public void addReplacement(final String search, final Boolean replacement) {
+
     this.replacements.put(search, String.valueOf(replacement));
   }
 
   public void addReplacement(final String search, final UUID replacement) {
+
     this.replacements.put(search, replacement.toString());
   }
 
   public void addReplacements(final String[] search, final String[] replacements) {
+
     if(search.length != replacements.length) return;
 
     for(int i = 0; i < search.length; i++) {
@@ -85,6 +93,7 @@ public class MessageData {
    * the given player.
    */
   public Component grab(@NotNull PlayerProvider player) {
+
     return MessageHandler.grab(this, player);
   }
 
@@ -98,14 +107,17 @@ public class MessageData {
    * the given player.
    */
   public Component grab(@NotNull UUID id) {
+
     return MessageHandler.grab(this, id);
   }
 
   public Map<String, String> getReplacements() {
+
     return replacements;
   }
 
   public String getNode() {
+
     return node;
   }
 }

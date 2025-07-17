@@ -17,8 +17,8 @@ package net.tnemc.plugincore.core.paste.impl;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.core.paste.IPasteable;
 import net.tnemc.plugincore.core.paste.IPasteClient;
+import net.tnemc.plugincore.core.paste.IPasteable;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -42,35 +42,42 @@ public class PasteeClient implements IPasteClient {
   private final String apiKey;
 
   public PasteeClient(final String apiKey) {
+
     this.apiKey = apiKey;
   }
 
   @Override
   public String identifier() {
+
     return "paste.ee";
   }
 
   @Override
   public String endpoint() {
+
     return PASTEEE_API_URL;
   }
 
   @Override
   public String apiKey() {
+
     return apiKey;
   }
 
   @Override
   public Optional<String> createSingle(final IPasteable pasteable) {
+
     return createBatchPaste(pasteable);
   }
 
   @Override
   public Optional<String> createMultiple(final IPasteable... pasteables) {
+
     return createBatchPaste(pasteables);
   }
 
   private Optional<String> createBatchPaste(final IPasteable... pasteables) {
+
     try {
       final JSONObject requestBody = new JSONObject();
       requestBody.put("description", "Batch Paste");
@@ -87,7 +94,7 @@ public class PasteeClient implements IPasteClient {
 
       requestBody.put("sections", sectionsArray);
 
-      final HttpURLConnection connection = (HttpURLConnection) new URL(PASTEEE_API_URL).openConnection();
+      final HttpURLConnection connection = (HttpURLConnection)new URL(PASTEEE_API_URL).openConnection();
       connection.setRequestMethod("POST");
       connection.setRequestProperty("Content-Type", "application/json");
       connection.setRequestProperty("X-Auth-Token", apiKey);

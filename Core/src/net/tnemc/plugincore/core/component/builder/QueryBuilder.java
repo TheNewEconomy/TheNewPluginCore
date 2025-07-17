@@ -37,9 +37,11 @@ public class QueryBuilder implements ComponentBuilder {
   protected Query query;
 
   public QueryBuilder() {
+
   }
 
   public QueryBuilder(final Query query) {
+
     this.query = query;
   }
 
@@ -47,9 +49,11 @@ public class QueryBuilder implements ComponentBuilder {
    * Creates a QueryBuilder instance with the provided query string.
    *
    * @param query the query string to create the QueryBuilder with
+   *
    * @return a new QueryBuilder instance
    */
   public static QueryBuilder of(final String query) {
+
     return new QueryBuilder(PluginCore.engine().queries().get(query));
   }
 
@@ -57,9 +61,11 @@ public class QueryBuilder implements ComponentBuilder {
    * Adds the provided QueryParameters to the current query being built.
    *
    * @param parameters the QueryParameters to be added to the query
+   *
    * @return a reference to this QueryBuilder instance
    */
   public QueryBuilder with(final QueryParameters parameters) {
+
     query.with(parameters);
     return this;
   }
@@ -68,20 +74,22 @@ public class QueryBuilder implements ComponentBuilder {
    * Sets the query for this QueryBuilder instance.
    *
    * @param query the query to be set for this QueryBuilder
+   *
    * @return a reference to this QueryBuilder instance
    */
   public QueryBuilder with(final Query query) {
+
     this.query = query;
     return this;
   }
 
   /**
-   *
    * Executes the query and returns the result synchronously.
    *
    * @return the result of executing the query
    */
   QueryResult execute() {
+
     return query.execute();
   }
 
@@ -91,6 +99,7 @@ public class QueryBuilder implements ComponentBuilder {
    * @param result The CompletableFuture to hold the result of executing the transaction.
    */
   void execute(final CompletableFuture<TransactionResult> result) {
+
     query.execute(result);
   }
 
@@ -101,6 +110,7 @@ public class QueryBuilder implements ComponentBuilder {
    */
   @Override
   public String identifier() {
+
     return "query";
   }
 
@@ -111,6 +121,7 @@ public class QueryBuilder implements ComponentBuilder {
    */
   @Override
   public ComponentBuilder builder() {
+
     return new QueryBuilder();
   }
 }

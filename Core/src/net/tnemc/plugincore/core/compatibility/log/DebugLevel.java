@@ -14,8 +14,8 @@ package net.tnemc.plugincore.core.compatibility.log;
 /**
  * Used to outline the various debugging levels that could be utilized within the logging layer.
  *
- * @since 0.1.2.0
  * @author creatorfromhell
+ * @since 0.1.2.0
  */
 public enum DebugLevel {
   /**
@@ -23,7 +23,8 @@ public enum DebugLevel {
    */
   OFF((byte)0, "Off"),
   /**
-   * Standard debug level. This should include any inform calls and any error calls containing exceptions.
+   * Standard debug level. This should include any inform calls and any error calls containing
+   * exceptions.
    */
   STANDARD((byte)1, "Standard"),
 
@@ -41,34 +42,41 @@ public enum DebugLevel {
   private String identifier;
 
   DebugLevel(byte priority, String identifier) {
+
     this.priority = priority;
     this.identifier = identifier;
   }
 
-  public boolean compare(DebugLevel compare) {
-    return priority <= compare.priority;
-  }
-
-  public byte getPriority() {
-    return priority;
-  }
-
-  public void setPriority(byte priority) {
-    this.priority = priority;
-  }
-
-  public String getIdentifier() {
-    return identifier;
-  }
-
   public static DebugLevel fromID(final String identifier) {
+
     for(DebugLevel level : values()) {
       if(level.identifier.equalsIgnoreCase(identifier)) return level;
     }
     return STANDARD;
   }
 
+  public boolean compare(DebugLevel compare) {
+
+    return priority <= compare.priority;
+  }
+
+  public byte getPriority() {
+
+    return priority;
+  }
+
+  public void setPriority(byte priority) {
+
+    this.priority = priority;
+  }
+
+  public String getIdentifier() {
+
+    return identifier;
+  }
+
   public void setIdentifier(String identifier) {
+
     this.identifier = identifier;
   }
 }

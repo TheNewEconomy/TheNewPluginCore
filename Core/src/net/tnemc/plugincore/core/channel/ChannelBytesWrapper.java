@@ -36,47 +36,54 @@ public class ChannelBytesWrapper implements AutoCloseable {
   private DataInputStream in;
 
   public ChannelBytesWrapper(byte[] data) {
+
     this.data = data;
     open();
   }
 
   public void open() {
+
     this.in = new DataInputStream(new ByteArrayInputStream(data));
   }
 
   @Override
   public void close() {
+
     try {
       in.close();
-    } catch (IOException e) {
+    } catch(IOException e) {
       e.printStackTrace();
     }
   }
 
   public short readShort() throws IOException {
+
     return in.readShort();
   }
 
   public String readUTF() throws IOException {
+
     return in.readUTF();
   }
 
   public Optional<UUID> readUUID() throws IOException {
+
     final String str = readUTF();
 
     try {
       return Optional.of(UUID.fromString(str));
-    } catch (Exception ignore) {
+    } catch(Exception ignore) {
       return Optional.empty();
     }
   }
 
   public Optional<BigDecimal> readBigDecimal() throws IOException {
+
     final String str = readUTF();
 
     try {
       return Optional.of(new BigDecimal(str));
-    } catch (Exception ignore) {
+    } catch(Exception ignore) {
       return Optional.empty();
     }
   }

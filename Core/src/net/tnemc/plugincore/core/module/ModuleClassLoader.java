@@ -25,20 +25,23 @@ import java.net.URLClassLoader;
 public class ModuleClassLoader extends URLClassLoader {
 
   public ModuleClassLoader(URL url) {
-    super(new URL[]{url}, PluginCore.instance().getClass().getClassLoader());
+
+    super(new URL[]{ url }, PluginCore.instance().getClass().getClassLoader());
   }
 
   @Override
   protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+
     try {
       return super.loadClass(name, resolve);
-    } catch (ClassNotFoundException e) {
+    } catch(ClassNotFoundException e) {
       return null;
     }
   }
 
   @Override
   protected void finalize() throws Throwable {
+
     super.finalize();
 
     PluginCore.log().debug("ModuleOld Class Loader has been GC'd");

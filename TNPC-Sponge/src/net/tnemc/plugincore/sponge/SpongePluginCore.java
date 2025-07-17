@@ -42,11 +42,13 @@ public class SpongePluginCore extends PluginCore {
 
   public SpongePluginCore(final PluginContainer container, final PluginEngine engine, final Logger log,
                           final TranslationProvider provider, final CallbackProvider callbackProvider) {
+
     this(container, engine, new SpongeServerProvider(), log, provider, callbackProvider);
   }
 
   public SpongePluginCore(final PluginContainer container, final PluginEngine engine, final ServerConnector connector,
                           final Logger log, final TranslationProvider provider, final CallbackProvider callbackProvider) {
+
     super(engine, connector, new SpongeLogProvider(log), provider, callbackProvider, Platform.SPONGE_8, "1.16.5");
 
     setInstance(this);
@@ -57,18 +59,21 @@ public class SpongePluginCore extends PluginCore {
   }
 
   public static SpongePluginCore instance() {
+
     return (SpongePluginCore)PluginCore.instance();
   }
 
-  public PluginContainer getContainer() {
-    return container;
-  }
-
   public static ResourceKey key(final String key) {
+
     final String[] split = key.split("\\:");
 
     final String namespace = (split.length >= 2)? split[0] : "minecraft";
     final String value = (split.length >= 2)? split[1] : split[0];
     return ResourceKey.of(namespace, value);
+  }
+
+  public PluginContainer getContainer() {
+
+    return container;
   }
 }

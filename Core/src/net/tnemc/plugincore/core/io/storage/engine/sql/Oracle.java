@@ -25,6 +25,7 @@ import net.tnemc.plugincore.core.io.storage.engine.StandardSQL;
 public class Oracle extends StandardSQL {
 
   public Oracle(Dialect dialect) {
+
     super(dialect);
   }
 
@@ -35,25 +36,29 @@ public class Oracle extends StandardSQL {
    */
   @Override
   public String name() {
+
     return "oracle";
   }
 
   @Override
   public String[] driver() {
-    return new String[] {
-      "oracle.jdbc.driver.OracleDriver"
+
+    return new String[]{
+            "oracle.jdbc.driver.OracleDriver"
     };
   }
 
   @Override
   public String[] dataSource() {
-    return new String[] {
-      "oracle.jdbc.pool.OracleDataSource"
+
+    return new String[]{
+            "oracle.jdbc.pool.OracleDataSource"
     };
   }
 
   @Override
   public String url(String file, String host, int port, String database) {
+
     return "jdbc:oracle:thin:@" + host + ":" + port + ":" + database;
   }
 }

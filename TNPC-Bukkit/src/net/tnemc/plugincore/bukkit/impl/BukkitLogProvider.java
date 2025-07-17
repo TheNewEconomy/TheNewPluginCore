@@ -39,7 +39,8 @@ public record BukkitLogProvider(Logger logger) implements LogProvider {
    * @param level   The {@link DebugLevel} to log this message at.
    */
   @Override
-  public void inform(String message, DebugLevel level) {
+  public void inform(final String message, final DebugLevel level) {
+
     if(level.compare(PluginCore.instance().getLevel())) {
       logger.info(message);
     }
@@ -52,7 +53,8 @@ public record BukkitLogProvider(Logger logger) implements LogProvider {
    * @param level   The {@link DebugLevel} to log this message at.
    */
   @Override
-  public void debug(String message, DebugLevel level) {
+  public void debug(final String message, final DebugLevel level) {
+
     if(level.compare(PluginCore.instance().getLevel())) {
       logger.warning("[DEBUG]: " + message);
     }
@@ -65,7 +67,8 @@ public record BukkitLogProvider(Logger logger) implements LogProvider {
    * @param level   The {@link DebugLevel} to log this message at.
    */
   @Override
-  public void warning(String message, DebugLevel level) {
+  public void warning(final String message, final DebugLevel level) {
+
     if(level.compare(PluginCore.instance().getLevel())) {
       logger.warning(message);
     }
@@ -78,7 +81,8 @@ public record BukkitLogProvider(Logger logger) implements LogProvider {
    * @param level   The {@link DebugLevel} to log this message at.
    */
   @Override
-  public void error(String message, DebugLevel level) {
+  public void error(final String message, final DebugLevel level) {
+
     if(level.compare(PluginCore.instance().getLevel())) {
       logger.warning(message);
     }
@@ -92,7 +96,8 @@ public record BukkitLogProvider(Logger logger) implements LogProvider {
    * @param level     The {@link DebugLevel} to log this message at.
    */
   @Override
-  public void error(String message, Exception exception, DebugLevel level) {
+  public void error(final String message, final Exception exception, final DebugLevel level) {
+
     if(level.compare(PluginCore.instance().getLevel())) {
       logger.warning("====== Exception Occurred ======");
       exception.printStackTrace();

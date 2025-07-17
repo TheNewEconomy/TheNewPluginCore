@@ -43,17 +43,15 @@ import java.util.List;
  */
 public abstract class Config implements IPasteable {
 
-  protected YamlDocument yaml;
-
   protected final String fileName;
   protected final File file;
   protected final String defaults;
-
   protected final List<String> nodes = new ArrayList<>();
-
+  protected YamlDocument yaml;
   protected Settings[] settings;
 
   public Config(final String fileName, final String defaults, final List<String> nodes, final Settings... settings) {
+
     this.defaults = defaults;
     this.fileName = fileName;
     this.nodes.addAll(nodes);
@@ -75,7 +73,7 @@ public abstract class Config implements IPasteable {
 
         return true;
       }
-    } catch (final IOException e) {
+    } catch(final IOException e) {
 
       PluginCore.log().error("Error while creating config \"" + file.getName() + "\".", e, DebugLevel.OFF);
       return false;
@@ -84,14 +82,17 @@ public abstract class Config implements IPasteable {
   }
 
   public YamlDocument getYaml() {
+
     return yaml;
   }
 
   public void setYaml(final YamlDocument yaml) {
+
     this.yaml = yaml;
   }
 
   public boolean save() {
+
     try {
       yaml.save(file);
       return true;
@@ -117,7 +118,7 @@ public abstract class Config implements IPasteable {
 
     try {
       final URL url = this.getClass().getClassLoader().getResource(filename);
-      if (url == null) {
+      if(url == null) {
         return null;
       } else {
 
@@ -126,7 +127,7 @@ public abstract class Config implements IPasteable {
 
         return connection.getInputStream();
       }
-    } catch (final IOException var4) {
+    } catch(final IOException var4) {
       return null;
     }
   }
@@ -140,6 +141,7 @@ public abstract class Config implements IPasteable {
    */
   @Override
   public String fileName() {
+
     return fileName;
   }
 
@@ -150,6 +152,7 @@ public abstract class Config implements IPasteable {
    */
   @Override
   public String extension() {
+
     return "yml";
   }
 
@@ -160,6 +163,7 @@ public abstract class Config implements IPasteable {
    */
   @Override
   public String syntax() {
+
     return "YAML";
   }
 
@@ -170,6 +174,7 @@ public abstract class Config implements IPasteable {
    */
   @Override
   public String content() {
+
     return getYaml().dump();
   }
 }

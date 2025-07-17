@@ -27,6 +27,7 @@ public interface Callback {
 
   /**
    * The name of this callback.
+   *
    * @return The name of this callback.
    */
   String name();

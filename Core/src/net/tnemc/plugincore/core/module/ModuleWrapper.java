@@ -29,56 +29,67 @@ public class ModuleWrapper {
   URLClassLoader loader;
 
   public ModuleWrapper(Module module) {
+
     this.module = module;
   }
 
   public void unload() {
+
     try {
       loader.close();
       loader = null;
       System.gc();
-    } catch (IOException ignore) {
+    } catch(IOException ignore) {
       PluginCore.log().inform("ModuleOld " + info.name() + " unloaded incorrectly.");
     }
     info = null;
   }
 
   public String name() {
+
     if(info == null) return "unknown";
     return info.name();
   }
 
   public String version() {
+
     if(info == null) return "unknown";
     return info.version();
   }
 
   public String author() {
+
     if(info == null) return "unknown";
     return info.author();
   }
 
   public ModuleInfo getInfo() {
+
     return info;
   }
 
   public void setInfo(ModuleInfo info) {
+
     this.info = info;
   }
 
   public Module getModule() {
+
     return module;
   }
 
   public void setModule(Module module) {
+
     this.module = module;
   }
 
   public URLClassLoader getLoader() {
+
     return loader;
   }
 
   public void setLoader(URLClassLoader loader) {
+
     this.loader = loader;
   }
 }

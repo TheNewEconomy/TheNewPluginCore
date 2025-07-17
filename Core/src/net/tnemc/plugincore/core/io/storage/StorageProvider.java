@@ -30,18 +30,19 @@ public interface StorageProvider {
   /**
    * Initialize the {@link StorageProvider}. This is where the {@link StorageConnector connector}
    * and the {@link StorageEngine engine} should be initialized.
-   * @param engine
    */
   void initialize(final String engine);
 
   /**
    * Used to get the storage connector.
+   *
    * @return The {@link StorageConnector connector} that should be used.
    */
   StorageConnector<?> connector();
 
   /**
    * Used to retrieve the storage engine.
+   *
    * @return The {@link StorageEngine engine} that should be used.
    */
   StorageEngine engine();
@@ -53,8 +54,8 @@ public interface StorageProvider {
   void initialize();
 
   /**
-   * Used to store all data for an identifier in TNE. This method is not switched over to a secondary
-   * thread automatically. Please make sure to use wisely.
+   * Used to store all data for an identifier in TNE. This method is not switched over to a
+   * secondary thread automatically. Please make sure to use wisely.
    */
   void storeAll(@NotNull final String identifier);
 
@@ -75,6 +76,7 @@ public interface StorageProvider {
 
   /**
    * Used to back up data that is currently in the database.
+   *
    * @return True if the backup was successful, otherwise false.
    */
   void backup();

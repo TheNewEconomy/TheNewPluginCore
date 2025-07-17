@@ -1,8 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.tnemc</groupId>
     <artifactId>TNPC</artifactId>
-    <version>1.1.0.0-SNAPSHOT-9</version>
+    <version>1.1.0.1-SNAPSHOT-1</version>
     <packaging>pom</packaging>
     <name>The New Plugin Core</name>
 
@@ -14,8 +16,8 @@
     </modules>
 
     <properties>
-        <tnil.version>0.1.2.0-SNAPSHOT-17</tnil.version>
-        <tnml.version>1.7.0.0-SNAPSHOT-5</tnml.version>
+        <tnil.version>0.1.2.1-SNAPSHOT-1</tnil.version>
+        <tnml.version>1.7.0.1-SNAPSHOT-1</tnml.version>
         <lamp.version>4.0.0-rc.12</lamp.version>
         <tne.relocation>net.tnpc.libs</tne.relocation>
         <maven.javadoc.plugin.version>3.0.1</maven.javadoc.plugin.version>

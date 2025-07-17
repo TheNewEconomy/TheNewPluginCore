@@ -25,21 +25,24 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * A class that acts as a bridge between various player objects on different server software providers.
+ * A class that acts as a bridge between various player objects on different server software
+ * providers.
  *
- * @since 0.1.2.0
  * @author creatorfromhell
+ * @since 0.1.2.0
  */
 public interface PlayerProvider extends MenuPlayer {
 
   /**
    * Used to get the name of this player.
+   *
    * @return The name of this player.
    */
   String getName();
 
   /**
    * Used to get the location of this player.
+   *
    * @return The location of this player.
    */
   Optional<Location> getLocation();
@@ -99,12 +102,14 @@ public interface PlayerProvider extends MenuPlayer {
    * Used to determine if this player has the specified permission node.
    *
    * @param permission The node to check for.
+   *
    * @return True if the player has the permission, otherwise false.
    */
   boolean hasPermission(String permission);
 
   /**
    * Used to send a message to this command source.
+   *
    * @param messageData The message data to utilize for this translation.
    */
   void message(final MessageData messageData);

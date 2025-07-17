@@ -29,6 +29,7 @@ import net.tnemc.plugincore.paper.impl.PaperPlayerProvider;
 public class PAPIParser {
 
   public static String parse(final PaperPlayerProvider provider, final String message) {
+
     return PlaceholderAPI.setPlaceholders(provider.getPlayer(), message);
   }
 }

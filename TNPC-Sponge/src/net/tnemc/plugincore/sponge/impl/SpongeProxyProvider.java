@@ -38,7 +38,8 @@ public class SpongeProxyProvider implements ProxyProvider {
    * @param channel The channel to register.
    */
   @Override
-  public void registerChannel(String channel) {
+  public void registerChannel(final String channel) {
+
     final Optional<Channel> spongeChannel = Sponge.game().channelManager().get(SpongePluginCore.key(channel));
 
     if(spongeChannel.isPresent()) {
@@ -54,7 +55,7 @@ public class SpongeProxyProvider implements ProxyProvider {
    * @param bytes   The byte data to send.
    */
   @Override
-  public void send(String channel, byte[] bytes) {
+  public void send(final String channel, final byte[] bytes) {
 
     final Optional<Channel> spongeChannel = Sponge.game().channelManager().get(SpongePluginCore.key(channel));
 

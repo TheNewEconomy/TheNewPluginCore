@@ -36,9 +36,11 @@ import java.util.Optional;
  * @since 0.1.2.0
  */
 public class PaperCMDSource extends CmdSource<BukkitCommandActor> {
+
   private final PlayerProvider provider;
 
   public PaperCMDSource(final BukkitCommandActor actor) {
+
     super(actor);
 
     if(actor.isPlayer() && actor.asPlayer() != null) {
@@ -51,10 +53,12 @@ public class PaperCMDSource extends CmdSource<BukkitCommandActor> {
   /**
    * Determines if this {@link CmdSource} is an instance of a player.
    *
-   * @return True if this represents a player, otherwise false if it's a non-player such as the console.
+   * @return True if this represents a player, otherwise false if it's a non-player such as the
+   * console.
    */
   @Override
   public boolean isPlayer() {
+
     return actor.isPlayer();
   }
 
@@ -66,6 +70,7 @@ public class PaperCMDSource extends CmdSource<BukkitCommandActor> {
    */
   @Override
   public Optional<PlayerProvider> player() {
+
     return Optional.ofNullable(provider);
   }
 

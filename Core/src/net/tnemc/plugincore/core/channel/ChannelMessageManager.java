@@ -38,30 +38,36 @@ public class ChannelMessageManager {
   private final List<String> accountsMessage = new ArrayList<>();
 
   public void register(final ChannelMessageHandler handler) {
+
     handlers.put("tne:" + handler.tag, handler);
   }
 
   public void register() {
+
     handlers.keySet().forEach(channel->{
       PluginCore.server().proxy().registerChannel(channel);
     });
   }
 
   public void handle(String channel, byte[] bytes) {
+
     if(handlers.containsKey(channel)) {
       handlers.get(channel).handle(bytes);
     }
   }
 
   public boolean isAffected(final String account) {
+
     return accountsMessage.contains(account);
   }
 
   public void removeAccount(final String account) {
+
     accountsMessage.remove(account);
   }
 
   public void addAccount(final String account) {
+
     accountsMessage.add(account);
   }
 }

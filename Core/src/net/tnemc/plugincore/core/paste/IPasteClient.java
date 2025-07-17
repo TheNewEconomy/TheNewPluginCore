@@ -52,15 +52,20 @@ public interface IPasteClient {
    * Creates a single paste based on the provided IPasteable object.
    *
    * @param pasteable the IPasteable object containing the details of the paste to create
-   * @return an Optional of String representing the URL of the created paste, or an empty Optional if creation fails
+   *
+   * @return an Optional of String representing the URL of the created paste, or an empty Optional
+   * if creation fails
    */
   Optional<String> createSingle(IPasteable pasteable);
 
   /**
    * Creates multiple pastes based on the provided IPasteable objects.
    *
-   * @param pasteables an array of IPasteable objects containing the details of the pastes to create
-   * @return an Optional of String representing the URL of the last created paste, or an empty Optional if creation fails or no pastes were created
+   * @param pasteables an array of IPasteable objects containing the details of the pastes to
+   *                   create
+   *
+   * @return an Optional of String representing the URL of the last created paste, or an empty
+   * Optional if creation fails or no pastes were created
    */
   Optional<String> createMultiple(IPasteable... pasteables);
 }

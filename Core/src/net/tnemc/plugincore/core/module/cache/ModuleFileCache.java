@@ -34,6 +34,7 @@ public class ModuleFileCache {
   protected final Map<String, List<ModuleFile>> moduleFiles = new HashMap<>();
 
   public Optional<ModuleFile> getModule(String url, String module) {
+
     for(ModuleFile file : moduleFiles.getOrDefault(url, new ArrayList<>())) {
       if(file.getName().equalsIgnoreCase(module)) return Optional.of(file);
     }
@@ -41,6 +42,7 @@ public class ModuleFileCache {
   }
 
   public List<ModuleFile> getModules(String url) {
+
     if(!moduleFiles.containsKey(url)) {
       populateModules(url);
     }
@@ -69,10 +71,10 @@ public class ModuleFileCache {
           if(moduleNode.hasAttributes()) {
 
             Node nameNode = moduleNode.getAttributes().getNamedItem("name");
-            if (nameNode != null) {
+            if(nameNode != null) {
 
               Node releasedNode = moduleNode.getAttributes().getNamedItem("released");
-              if (releasedNode != null) {
+              if(releasedNode != null) {
                 if(releasedNode.getTextContent().equalsIgnoreCase("yes")) {
 
                   //We have the correct name, and this module is released.
@@ -95,7 +97,7 @@ public class ModuleFileCache {
                         Node versionReleased = versionNode.getAttributes().getNamedItem("released");
 
                         if(latest != null && latest.getTextContent().equalsIgnoreCase("yes") &&
-                            versionReleased != null && versionReleased.getTextContent().equalsIgnoreCase("yes")) {
+                           versionReleased != null && versionReleased.getTextContent().equalsIgnoreCase("yes")) {
 
                           //We have the latest module version
                           NodeList name = versionElement.getElementsByTagName("name");

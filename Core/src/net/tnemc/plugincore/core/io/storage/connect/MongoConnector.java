@@ -38,18 +38,20 @@ import java.util.Optional;
  */
 public class MongoConnector implements StorageConnector<MongoDatabase> {
 
-  private MongoClient client;
-  private MongoDatabase database;
   private final String connectionString;
   private final String databaseName;
+  private MongoClient client;
+  private MongoDatabase database;
 
   public MongoConnector(final String connectionString, final String databaseName) {
+
     this.connectionString = connectionString;
     this.databaseName = databaseName;
   }
 
   @Override
   public void initialize() {
+
     if(client != null) {
 
       return;
@@ -67,15 +69,17 @@ public class MongoConnector implements StorageConnector<MongoDatabase> {
 
   @Override
   public MongoDatabase connection() {
+
     return database;
   }
 
   public Optional<InsertOneResult> insertData(final String collectionName, final Document document) {
+
     try {
 
       final MongoCollection<Document> collection = database.getCollection(collectionName);
       return Optional.of(collection.insertOne(document));
-    } catch (final MongoWriteException e) {
+    } catch(final MongoWriteException e) {
 
       return Optional.empty();
     }

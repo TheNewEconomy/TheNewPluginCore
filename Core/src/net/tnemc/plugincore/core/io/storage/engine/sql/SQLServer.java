@@ -25,6 +25,7 @@ import net.tnemc.plugincore.core.io.storage.engine.StandardSQL;
 public class SQLServer extends StandardSQL {
 
   public SQLServer(Dialect dialect) {
+
     super(dialect);
   }
 
@@ -35,25 +36,29 @@ public class SQLServer extends StandardSQL {
    */
   @Override
   public String name() {
+
     return "sqlserver";
   }
 
   @Override
   public String[] driver() {
-    return new String[] {
-      "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+
+    return new String[]{
+            "com.microsoft.sqlserver.jdbc.SQLServerDriver"
     };
   }
 
   @Override
   public String[] dataSource() {
-    return new String[] {
-      "com.microsoft.sqlserver.jdbc.SQLServerDataSource"
+
+    return new String[]{
+            "com.microsoft.sqlserver.jdbc.SQLServerDataSource"
     };
   }
 
   @Override
   public String url(String file, String host, int port, String database) {
+
     return "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + database + ";";
   }
 }

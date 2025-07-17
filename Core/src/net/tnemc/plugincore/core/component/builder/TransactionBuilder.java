@@ -36,9 +36,11 @@ public class TransactionBuilder implements ComponentBuilder {
   protected Transaction transaction;
 
   public TransactionBuilder() {
+
   }
 
   public TransactionBuilder(final Transaction transaction) {
+
     this.transaction = transaction;
   }
 
@@ -46,9 +48,11 @@ public class TransactionBuilder implements ComponentBuilder {
    * Returns a new TransactionBuilder instance for the specified type.
    *
    * @param type the type of transaction
+   *
    * @return a new TransactionBuilder instance
    */
   public static TransactionBuilder of(final String type) {
+
     return new TransactionBuilder(PluginCore.engine().transactions().get(type));
   }
 
@@ -56,9 +60,11 @@ public class TransactionBuilder implements ComponentBuilder {
    * Sets the provided TransactionParameters for the current TransactionBuilder instance.
    *
    * @param parameters the TransactionParameters to set for the builder
+   *
    * @return the current TransactionBuilder instance with the provided parameters set
    */
   public TransactionBuilder with(final TransactionParameters parameters) {
+
     transaction.with(parameters);
     return this;
   }
@@ -67,9 +73,11 @@ public class TransactionBuilder implements ComponentBuilder {
    * Sets the provided transaction for the current TransactionBuilder instance.
    *
    * @param transaction the transaction to set for the builder
+   *
    * @return the current TransactionBuilder instance with the provided transaction set
    */
   public TransactionBuilder with(final Transaction transaction) {
+
     this.transaction = transaction;
     return this;
   }
@@ -80,6 +88,7 @@ public class TransactionBuilder implements ComponentBuilder {
    * @return The result of executing the transaction.
    */
   TransactionResult execute() {
+
     return transaction.execute();
   }
 
@@ -89,6 +98,7 @@ public class TransactionBuilder implements ComponentBuilder {
    * @param result The CompletableFuture to hold the result of executing the transaction.
    */
   void execute(final CompletableFuture<TransactionResult> result) {
+
     transaction.execute(result);
   }
 
@@ -99,6 +109,7 @@ public class TransactionBuilder implements ComponentBuilder {
    */
   @Override
   public String identifier() {
+
     return "transaction";
   }
 
@@ -109,6 +120,7 @@ public class TransactionBuilder implements ComponentBuilder {
    */
   @Override
   public ComponentBuilder builder() {
+
     return new TransactionBuilder();
   }
 }

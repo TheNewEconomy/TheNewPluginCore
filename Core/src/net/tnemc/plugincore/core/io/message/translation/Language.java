@@ -29,10 +29,12 @@ import dev.dejvokep.boostedyaml.YamlDocument;
 public record Language(String name, YamlDocument config) {
 
   public boolean hasTranslation(String node) {
+
     return config.contains(node);
   }
 
   public String getTranslation(String node) {
+
     return config.getString(node);
   }
 }

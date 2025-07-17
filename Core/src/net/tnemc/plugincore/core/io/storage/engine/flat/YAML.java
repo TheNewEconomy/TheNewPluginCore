@@ -35,6 +35,7 @@ public class YAML implements StorageEngine {
   protected final Map<Class<?>, Datable<?>> datables = new HashMap<>();
 
   public YAML() {
+
   }
 
   /**
@@ -44,6 +45,7 @@ public class YAML implements StorageEngine {
    */
   @Override
   public String name() {
+
     return "yaml";
   }
 
@@ -65,6 +67,7 @@ public class YAML implements StorageEngine {
    */
   @Override
   public void reset(StorageConnector<?> connector) {
+
   }
 
   /**
@@ -84,6 +87,7 @@ public class YAML implements StorageEngine {
    */
   @Override
   public Map<Class<?>, Datable<?>> datables() {
+
     return datables;
   }
 }

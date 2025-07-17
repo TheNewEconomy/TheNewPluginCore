@@ -31,15 +31,18 @@ import java.sql.SQLException;
  * @since 1.0.0.2
  */
 public class SQLiteConnector implements StorageConnector<Connection> {
-  private HikariDataSource dataSource;
+
   private final String dbPath;
+  private HikariDataSource dataSource;
 
   public SQLiteConnector(final String dbPath) {
+
     this.dbPath = dbPath;
   }
 
   @Override
   public void initialize() {
+
     final HikariConfig config = new HikariConfig();
     config.setJdbcUrl("jdbc:sqlite:" + dbPath);
     config.setMaximumPoolSize(10);
@@ -49,6 +52,7 @@ public class SQLiteConnector implements StorageConnector<Connection> {
 
   @Override
   public Connection connection() throws SQLException {
+
     if(dataSource == null) initialize();
 
     return dataSource.getConnection();

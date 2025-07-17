@@ -34,15 +34,16 @@ import java.util.concurrent.TimeUnit;
  * @since 0.1.2.0
  */
 public class SpongeScheduler extends SchedulerProvider<SpongeChore> {
+
   /**
    * Used to create a task, which will execute after the specified delay.
    *
-   * @param task  The task to run.
-   * @param delay The delay, in ticks.
+   * @param task        The task to run.
+   * @param delay       The delay, in ticks.
    * @param environment The execution environment for the task.
    */
   @Override
-  public void createDelayedTask(Runnable task, ChoreTime delay, ChoreExecution environment) {
+  public void createDelayedTask(final Runnable task, final ChoreTime delay, final ChoreExecution environment) {
     //divide by 20 because the delay will be coming in tick for.
     Sponge.asyncScheduler().executor(SpongePluginCore.instance().getContainer()).schedule(task, delay.asSeconds(), TimeUnit.SECONDS);
   }
@@ -50,15 +51,15 @@ public class SpongeScheduler extends SchedulerProvider<SpongeChore> {
   /**
    * Used to create a task, which repeats after a specified period.
    *
-   * @param task The task to run.
-   * @param delay The delay to run the task, in ticks.
-   * @param period The period to run the task.
+   * @param task        The task to run.
+   * @param delay       The delay to run the task, in ticks.
+   * @param period      The period to run the task.
    * @param environment The execution environment for the task.
    *
    * @return The associated {@link Chore} with this task.
    */
   @Override
-  public SpongeChore createRepeatingTask(Runnable task, ChoreTime delay, ChoreTime period, ChoreExecution environment) {
+  public SpongeChore createRepeatingTask(final Runnable task, final ChoreTime delay, final ChoreTime period, final ChoreExecution environment) {
 
     final TaskExecutorService service = Sponge.asyncScheduler().executor(SpongePluginCore.instance().getContainer());
 

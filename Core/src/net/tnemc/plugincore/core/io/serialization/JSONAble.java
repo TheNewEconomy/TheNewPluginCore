@@ -23,8 +23,8 @@ import org.json.simple.JSONObject;
 /**
  * A class which represents an object that can be parsed to or from JSON.
  *
- * @since 0.1.2.0
  * @author creatorfromhell
+ * @since 0.1.2.0
  */
 public interface JSONAble<T> {
 
@@ -32,13 +32,16 @@ public interface JSONAble<T> {
    * Used to serialize this object to a JSON-valid string.
    *
    * @param object The object to serialize.
+   *
    * @return The {@link JSONObject} associated with the JSON-valid String.
    */
   JSONObject toJSON(T object);
 
   /**
    * Used to generate information for this object from
+   *
    * @param serialized The JSON-valid String that we are going to deserialize.
+   *
    * @return The object that was deserialized from the JSON string.
    */
   T fromJSON(String serialized);

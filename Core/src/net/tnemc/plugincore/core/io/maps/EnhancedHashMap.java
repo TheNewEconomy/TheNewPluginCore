@@ -35,9 +35,12 @@ public class EnhancedHashMap<K, V> extends ConcurrentHashMap<K, V> {
    * annotation on a method.
    *
    * @param value The value to add to this map.
+   *
    * @return The value that is being replaced in the map if exists, otherwise null.
+   *
    * @throws UnsupportedOperationException If a value does not have a valid method with the
-   * {@link MapKey} annotation, which matches the value type of the key for this map.
+   *                                       {@link MapKey} annotation, which matches the value type
+   *                                       of the key for this map.
    */
   @SuppressWarnings("unchecked")
   public V put(V value) throws UnsupportedOperationException {

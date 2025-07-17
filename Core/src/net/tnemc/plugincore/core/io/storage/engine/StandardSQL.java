@@ -44,10 +44,12 @@ public abstract class StandardSQL implements SQLEngine {
   protected final String prefix;
 
   public StandardSQL(final Dialect dialect) {
+
     this(StorageManager.instance().settings().prefix(), dialect);
   }
 
   public StandardSQL(final String prefix, final Dialect dialect) {
+
     this.dialect = dialect;
     this.prefix = prefix;
   }
@@ -58,6 +60,7 @@ public abstract class StandardSQL implements SQLEngine {
    */
   @Override
   public void initialize(final StorageConnector<?> connector) {
+
   }
 
   /**
@@ -67,6 +70,7 @@ public abstract class StandardSQL implements SQLEngine {
    */
   @Override
   public Dialect dialect() {
+
     return dialect;
   }
 
@@ -78,10 +82,9 @@ public abstract class StandardSQL implements SQLEngine {
   @Override
   public void reset(final StorageConnector<?> connector) {
 
-    @Language("SQL")
-    final String truncateAll = "SELECT concat('TRUNCATE TABLE ',table_catalog,'.',table_schema,'.',table_name) AS query" +
-        "FROM information_schema.tables " +
-        "WHERE table_name LIKE '" + prefix + "%';";
+    @Language("SQL") final String truncateAll = "SELECT concat('TRUNCATE TABLE ',table_catalog,'.',table_schema,'.',table_name) AS query" +
+                                                "FROM information_schema.tables " +
+                                                "WHERE table_name LIKE '" + prefix + "%';";
 
     if(connector instanceof SQLConnector) {
 
@@ -114,6 +117,7 @@ public abstract class StandardSQL implements SQLEngine {
    */
   @Override
   public Map<Class<?>, Datable<?>> datables() {
+
     return datables;
   }
 }

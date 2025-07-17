@@ -35,15 +35,16 @@ import java.util.regex.Pattern;
 public class PlayerHelper {
 
   /**
-   * Returns the {@link Pattern pattern} utilized to determine if a string is a valid
-   * player username.
+   * Returns the {@link Pattern pattern} utilized to determine if a string is a valid player
+   * username.
    *
-   * @return The {@link Pattern pattern} to use for determining if a string is a valid
-   * player username.
+   * @return The {@link Pattern pattern} to use for determining if a string is a valid player
+   * username.
    *
    * @see Pattern
    */
   public static Pattern playerMatcher() {
+
     return Pattern.compile("^\\w*$");
   }
 

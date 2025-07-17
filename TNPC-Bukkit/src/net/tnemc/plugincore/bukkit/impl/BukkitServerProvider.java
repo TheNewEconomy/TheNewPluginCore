@@ -68,26 +68,30 @@ public class BukkitServerProvider implements ServerConnector {
   protected String world = null;
 
   public BukkitServerProvider() {
+
     this.scheduler = new BukkitScheduler();
   }
 
   public BukkitServerProvider(final BukkitScheduler scheduler) {
+
     this.scheduler = scheduler;
   }
 
   public void setDefaultWorld(final String world) {
+
     this.world = world;
   }
 
   @Override
   public String name() {
+
     return "bukkit";
   }
 
   /**
    * Used to replace placeholders from a string.
    *
-   * @param player The player to use for the placeholder replacement.
+   * @param player  The player to use for the placeholder replacement.
    * @param message The message to replace placeholders in.
    *
    * @return The string after placeholders have been replaced.
@@ -99,7 +103,7 @@ public class BukkitServerProvider implements ServerConnector {
 
     final Optional<PlayerProvider> playerOpt = PluginCore.server().findPlayer(player);
     if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI") && playerOpt.isPresent()
-            && playerOpt.get() instanceof final BukkitPlayerProvider bukkitPlayer) {
+       && playerOpt.get() instanceof final BukkitPlayerProvider bukkitPlayer) {
 
       return PAPIParser.parse(bukkitPlayer, message);
     }
@@ -113,6 +117,7 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public ProxyProvider proxy() {
+
     return proxy;
   }
 
@@ -125,6 +130,7 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public CmdSource<?> source(@NotNull final CommandActor actor) {
+
     return new BukkitCMDSource((BukkitCommandActor)actor);
   }
 
@@ -135,6 +141,7 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public Set<String> onlinePlayersList() {
+
     return Bukkit.getOnlinePlayers().stream()
             .map(Player::getName)
             .collect(Collectors.toSet());
@@ -147,6 +154,7 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public int onlinePlayers() {
+
     return Bukkit.getOnlinePlayers().size();
   }
 
@@ -155,8 +163,8 @@ public class BukkitServerProvider implements ServerConnector {
    *
    * @param identifier The identifier
    *
-   * @return An Optional containing the located {@link PlayerProvider player}, or an empty
-   * Optional if no player is located.
+   * @return An Optional containing the located {@link PlayerProvider player}, or an empty Optional
+   * if no player is located.
    */
   @Override
   public Optional<PlayerProvider> findPlayer(@NotNull final UUID identifier) {
@@ -174,6 +182,7 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public PlayerProvider initializePlayer(@NotNull final Object player) {
+
     if(player instanceof final Player playerObj) {
       return new BukkitPlayerProvider(playerObj);
     }
@@ -195,13 +204,11 @@ public class BukkitServerProvider implements ServerConnector {
   }
 
   /**
-   * Used to determine if a player with the specified username has played
-   * before.
+   * Used to determine if a player with the specified username has played before.
    *
    * @param name The username to search for.
    *
-   * @return True if someone with the specified username has played before,
-   * otherwise false.
+   * @return True if someone with the specified username has played before, otherwise false.
    */
   @Override
   public boolean playedBefore(final String name) {
@@ -219,6 +226,7 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public boolean online(final String name) {
+
     try {
 
       final UUID id = UUID.fromString(name);
@@ -230,6 +238,7 @@ public class BukkitServerProvider implements ServerConnector {
 
   @Override
   public Optional<UUID> fromName(final String name) {
+
     for(final OfflinePlayer player : Bukkit.getServer().getOfflinePlayers()) {
       if(player.getName() == null) continue;
       if(player.getName().equalsIgnoreCase(name)) {
@@ -249,6 +258,7 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public Optional<String> fromID(final UUID id) {
+
     for(final OfflinePlayer player : Bukkit.getServer().getOfflinePlayers()) {
       if(player.getUniqueId().equals(id)) {
         return Optional.ofNullable(player.getName());
@@ -264,6 +274,7 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public String defaultWorld() {
+
     if(world == null) {
       world = Bukkit.getServer().getWorlds().get(0).getName();
     }
@@ -292,17 +303,21 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public boolean pluginAvailable(final String name) {
+
     return Bukkit.getPluginManager().isPluginEnabled(name);
   }
 
   /**
    * Used to replace colour codes in a string.
+   *
    * @param string The string to format.
-   * @param strip If true, the color codes are striped from the string.
+   * @param strip  If true, the color codes are striped from the string.
+   *
    * @return The formatted string.
    */
   @Override
   public String replaceColours(final String string, final boolean strip) {
+
     if(strip) {
       return ChatColor.stripColor(string);
     }
@@ -311,11 +326,13 @@ public class BukkitServerProvider implements ServerConnector {
 
   @Override
   public AbstractItemStack<?> stackBuilder() {
+
     return new BukkitItemStack();
   }
 
   @Override
   public void saveResource(final String path, final boolean replace) {
+
     BukkitPluginCore.instance().getPlugin().saveResource(path, replace);
   }
 
@@ -329,6 +346,7 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public @Nullable InputStream getResource(@NotNull final String filename) {
+
     return BukkitPluginCore.instance().getPlugin().getResource(filename);
   }
 
@@ -339,19 +357,21 @@ public class BukkitServerProvider implements ServerConnector {
    */
   @Override
   public SchedulerProvider<?> scheduler() {
+
     return scheduler;
   }
 
   /**
    * Used to register a crafting recipe to the server.
    *
-   * @param key The key for the crafting recipe to be registered.
+   * @param key    The key for the crafting recipe to be registered.
    * @param recipe The crafting recipe to register.
    *
    * @see CraftingRecipe
    */
   @Override
   public void registerCrafting(@NotNull final String key, @NotNull final CraftingRecipe recipe) {
+
     if(recipe.isShaped()) {
       ShapedRecipe shaped;
 
@@ -385,6 +405,7 @@ public class BukkitServerProvider implements ServerConnector {
 
   @Override
   public BukkitCalculationsProvider calculations() {
+
     return calc;
   }
 }

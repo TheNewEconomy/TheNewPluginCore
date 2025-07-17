@@ -54,6 +54,7 @@ public class SQLConnector implements StorageConnector<Connection> {
    */
   @Override
   public void initialize() {
+
     findDriverSource();
 
     final HikariConfig config = new HikariConfig();
@@ -64,15 +65,15 @@ public class SQLConnector implements StorageConnector<Connection> {
 
     //String file, String host, int port, String database
     config.addDataSourceProperty("url",
-                                 ((SQLEngine) StorageManager.instance().getEngine()).url(
-                                     new File(PluginCore.directory(), StorageManager.instance().settings().fileName()).getAbsolutePath(),
+                                 ((SQLEngine)StorageManager.instance().getEngine()).url(
+                                         new File(PluginCore.directory(), StorageManager.instance().settings().fileName()).getAbsolutePath(),
                                          StorageManager.instance().settings().host(),
                                          StorageManager.instance().settings().port(),
                                          StorageManager.instance().settings().database()
-                                 ));
+                                                                                       ));
 
-    config.addDataSourceProperty("user",  StorageManager.instance().settings().user());
-    config.addDataSourceProperty("password",  StorageManager.instance().settings().password());
+    config.addDataSourceProperty("user", StorageManager.instance().settings().user());
+    config.addDataSourceProperty("password", StorageManager.instance().settings().password());
 
     config.setPoolName(StorageManager.instance().settings().poolName());
     config.setConnectionTestQuery("SELECT 1");
@@ -94,11 +95,13 @@ public class SQLConnector implements StorageConnector<Connection> {
    */
   @Override
   public Connection connection() throws SQLException {
+
     if(dataSource == null) initialize();
     return dataSource.getConnection();
   }
 
   public boolean checkVersion() {
+
     boolean result = true;
 
     if(dialect().requirement().equalsIgnoreCase("none")) return true;
@@ -119,11 +122,14 @@ public class SQLConnector implements StorageConnector<Connection> {
 
   /**
    * Used to execute a prepared query.
-   * @param query The query string.
+   *
+   * @param query     The query string.
    * @param variables An array of variables for the prepared statement.
+   *
    * @return The {@link ResultSet}.
    */
   public ResultSet executeQuery(@Language("SQL") final String query, final Object[] variables) {
+
     try(final Connection connection = connection();
         final PreparedStatement statement = connection.prepareStatement(query)) {
 
@@ -140,12 +146,14 @@ public class SQLConnector implements StorageConnector<Connection> {
 
   /**
    * Used to execute a prepared update.
-   * @param query The query string.
+   *
+   * @param query     The query string.
    * @param variables An array of variables for the prepared statement.
    *
    * @return True to indicate that the statement has executed successfully, otherwise false.
    */
   public int executeUpdate(@Language("SQL") final String query, final Object[] variables) {
+
     try(final Connection connection = connection();
         final PreparedStatement statement = connection.prepareStatement(query)) {
 
@@ -160,10 +168,12 @@ public class SQLConnector implements StorageConnector<Connection> {
   }
 
   public Dialect dialect() {
+
     return ((SQLEngine)StorageManager.instance().getEngine()).dialect();
   }
 
   protected void findDriverSource(final SQLEngine engine) {
+
     for(final String source : engine.dataSource()) {
 
       if(sourceClass != null) {
@@ -175,7 +185,7 @@ public class SQLConnector implements StorageConnector<Connection> {
         Class.forName(source);
 
         this.sourceClass = source;
-      } catch(final Exception ignore) {}
+      } catch(final Exception ignore) { }
     }
 
     for(final String driver : engine.driver()) {
@@ -189,11 +199,12 @@ public class SQLConnector implements StorageConnector<Connection> {
         Class.forName(driver);
 
         this.driverClass = driver;
-      } catch(final Exception ignore) {}
+      } catch(final Exception ignore) { }
     }
   }
 
   protected void findDriverSource() {
+
     findDriverSource((SQLEngine)StorageManager.instance().getEngine());
   }
 }

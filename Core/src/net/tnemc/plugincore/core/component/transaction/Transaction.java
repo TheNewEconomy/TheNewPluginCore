@@ -38,6 +38,7 @@ public interface Transaction {
    * Creates a new transaction with the provided parameters.
    *
    * @param parameters The transaction parameters specifying the details of the new transaction.
+   *
    * @return A new Transaction object with the given parameters.
    */
   Transaction with(final TransactionParameters parameters);

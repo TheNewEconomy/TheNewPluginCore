@@ -40,12 +40,12 @@ public interface Query {
    * Creates a new query using the provided QueryParameters.
    *
    * @param parameters the parameters for the query
+   *
    * @return a Query object representing the query with the specified parameters
    */
   Query with(final QueryParameters parameters);
 
   /**
-   *
    * Executes the query and returns the result synchronously.
    *
    * @return the result of executing the query

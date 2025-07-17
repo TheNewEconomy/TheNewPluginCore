@@ -30,6 +30,7 @@ public interface StorageEngine {
 
   /**
    * The name of this engine.
+   *
    * @return The engine name.
    */
   String name();
@@ -37,6 +38,7 @@ public interface StorageEngine {
   /**
    * Called after the connection is initialized, so we can do any actions that need done immediately
    * after connecting.
+   *
    * @param connector The {@link StorageConnector connector} used for initialization.
    */
   void initialize(StorageConnector<?> connector);
@@ -57,6 +59,7 @@ public interface StorageEngine {
 
   /**
    * Used to get the {@link Datable} classes for this engine.
+   *
    * @return A map with the datables.
    */
   Map<Class<?>, Datable<?>> datables();

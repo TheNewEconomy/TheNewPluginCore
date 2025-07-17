@@ -50,44 +50,35 @@ public class PluginCore {
    */
   public static final Pattern UUID_MATCHER_PATTERN = Pattern.compile("(\\w{8})(\\w{4})(\\w{4})(\\w{4})(\\w{12})");
   public static final Pattern USERNAME_MATCHER_PATTERN = Pattern.compile("^\\w*$");
-
-  /* Core non-final variables utilized within TNPC as settings */
-  protected File directory;
-
-  //The DebugLevel that the server is currently running in.
-  protected DebugLevel level = DebugLevel.STANDARD;
+  /* Plugin Instance */
+  private static PluginCore instance;
+  private final MessageHandler messenger;
 
   /* Key Managers and Object instances utilized with TNE */
-
+  /* Core non-final variables utilized within TNPC as settings */
+  protected File directory;
+  //The DebugLevel that the server is currently running in.
+  protected DebugLevel level = DebugLevel.STANDARD;
   //General Key Object Instances
   protected LogProvider logger;
-
   protected PluginEngine engine;
-
   //Manager Instances
   protected ServerConnector server;
   protected UUIDProvider uuidProvider;
-  private final MessageHandler messenger;
-
-  /* Plugin Instance */
-  private static PluginCore instance;
-
   protected CallbackManager callbackManager;
   protected ChannelMessageManager channelMessageManager;
 
   protected ModuleLoader loader;
   protected ModuleFileCache moduleCache;
-
-  private boolean enabled = false;
-
   protected UUID serverID;
-
   protected Platform platform;
   protected String version;
+  private boolean enabled = false;
 
   public PluginCore(final PluginEngine engine, final ServerConnector server, final LogProvider logger,
                     final TranslationProvider provider, final CallbackProvider callbackProvider,
                     final Platform platform, final String version) {
+
     this.server = server;
     this.logger = logger;
     this.engine = engine;
@@ -99,15 +90,88 @@ public class PluginCore {
   }
 
   public static void setInstance(final PluginCore core) {
+
     if(instance == null) {
       instance = core;
     } else {
       throw new IllegalStateException("PluginCore has already been initiated. Please refrain from attempting" +
-              "to modify the instance variable.");
+                                      "to modify the instance variable.");
     }
   }
 
+  /**
+   * The implementation's {@link LogProvider}.
+   *
+   * @return The log provider.
+   */
+  public static LogProvider log() {
+
+    return instance.logger;
+  }
+
+  /**
+   * The {@link StorageManager} we are utilizing.
+   *
+   * @return The {@link StorageManager}.
+   */
+  public static StorageManager storage() {
+
+    return instance.engine.storage();
+  }
+
+  /**
+   * The {@link ServerConnector} for the implementation.
+   *
+   * @return The {@link ServerConnector} for the implementation.
+   */
+  public static ServerConnector server() {
+
+    return instance.server;
+  }
+
+  public static MessageHandler messenger() {
+
+    return instance.messenger;
+  }
+
+  public static File directory() {
+
+    return instance.directory;
+  }
+
+  public static CallbackManager callbacks() {
+
+    return instance.callbackManager;
+  }
+
+  public static ModuleLoader loader() {
+
+    return instance.loader;
+  }
+
+  @Nullable
+  public static UpdateChecker update() {
+
+    return instance.engine.update();
+  }
+
+  public static PluginCore instance() {
+
+    return instance;
+  }
+
+  public static UUIDProvider uuidProvider() {
+
+    return instance.uuidProvider;
+  }
+
+  public static PluginEngine engine() {
+
+    return instance.engine;
+  }
+
   public void enable() {
+
     if(!enabled) {
 
       this.enabled = true;
@@ -145,15 +209,15 @@ public class PluginCore {
     loader.load();
 
     //Call onEnable for all modules loaded.
-    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enable(this)));
+    loader.getModules().values().forEach((moduleWrapper->moduleWrapper.getModule().enable(this)));
 
     //Call initConfigurations for all modules loaded.
-    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().initConfigurations(directory)));
+    loader.getModules().values().forEach((moduleWrapper->moduleWrapper.getModule().initConfigurations(directory)));
 
     this.engine.registerCallbacks(callbackManager);
 
     //Register the callback listeners and callbacks for the modules
-    loader.getModules().values().forEach((moduleWrapper ->{
+    loader.getModules().values().forEach((moduleWrapper->{
       moduleWrapper.getModule().registerCallbacks().forEach((key, entry)->{
         callbackManager.addCallback(key, entry);
       });
@@ -184,7 +248,7 @@ public class PluginCore {
     this.engine.postStorage();
 
     //Call the enableSave method for all modules loaded.
-    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableSave(this.engine.storage())));
+    loader.getModules().values().forEach((moduleWrapper->moduleWrapper.getModule().enableSave(this.engine.storage())));
 
     //register our commands
     this.engine.registerCommandHandler();
@@ -196,7 +260,7 @@ public class PluginCore {
     this.engine.registerCommands();
 
     //Call our command methods for the modules.
-    loader.getModules().values().forEach((moduleWrapper ->{
+    loader.getModules().values().forEach((moduleWrapper->{
       moduleWrapper.getModule().registerCommands(this.engine.command());
     }));
 
@@ -206,7 +270,7 @@ public class PluginCore {
     this.engine.registerMenuHandler();
 
     //Call enableMenu for all modules loaded.
-    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().enableMenu(this.engine.menu())));
+    loader.getModules().values().forEach((moduleWrapper->moduleWrapper.getModule().enableMenu(this.engine.menu())));
 
     this.moduleCache = new ModuleFileCache();
 
@@ -216,114 +280,64 @@ public class PluginCore {
   }
 
   public void registerModuleCommands(final Lamp<?> lamp) {
-    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().registerAdminSub().forEach(orphanCommand -> {
+
+    loader.getModules().values().forEach((moduleWrapper->moduleWrapper.getModule().registerAdminSub().forEach(orphanCommand->{
       lamp.register(Orphans.path("tne").handler(orphanCommand));
     })));
 
-    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().registerMoneySub().forEach(orphanCommand -> {
+    loader.getModules().values().forEach((moduleWrapper->moduleWrapper.getModule().registerMoneySub().forEach(orphanCommand->{
       lamp.register(Orphans.path("money").handler(orphanCommand));
     })));
 
-    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().registerTransactionSub().forEach(orphanCommand -> {
+    loader.getModules().values().forEach((moduleWrapper->moduleWrapper.getModule().registerTransactionSub().forEach(orphanCommand->{
       lamp.register(Orphans.path("transaction").handler(orphanCommand));
     })));
   }
 
   public void onDisable() {
 
-    loader.getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().disable(this)));
+    loader.getModules().values().forEach((moduleWrapper->moduleWrapper.getModule().disable(this)));
 
     this.engine.postDisable();
   }
 
-  /**
-   * The implementation's {@link LogProvider}.
-   *
-   * @return The log provider.
-   */
-  public static LogProvider log() {
-    return instance.logger;
-  }
-
-  /**
-   * The {@link StorageManager} we are utilizing.
-   *
-   * @return The {@link StorageManager}.
-   */
-  public static StorageManager storage() {
-    return instance.engine.storage();
-  }
-
-  /**
-   * The {@link ServerConnector} for the implementation.
-   * @return The {@link ServerConnector} for the implementation.
-   */
-  public static ServerConnector server() {
-    return instance.server;
-  }
-
-  public static MessageHandler messenger() {
-    return instance.messenger;
-  }
-
-  public static File directory() {
-    return instance.directory;
-  }
-
-  public static CallbackManager callbacks() {
-    return instance.callbackManager;
-  }
-
   public ChannelMessageManager getChannelMessageManager() {
+
     return channelMessageManager;
   }
 
-  public static ModuleLoader loader() {
-    return instance.loader;
-  }
-
-  @Nullable
-  public static UpdateChecker update() {
-    return instance.engine.update();
-  }
-
   public ModuleFileCache moduleCache() {
+
     return moduleCache;
   }
 
   public DebugLevel getLevel() {
+
     return level;
   }
 
   public void setLevel(final DebugLevel level) {
+
     this.level = level;
   }
 
   public Lamp<? extends CommandActor> command() {
+
     return engine.command();
   }
 
-  public static PluginCore instance() {
-    return instance;
-  }
-
-  public static UUIDProvider uuidProvider() {
-    return instance.uuidProvider;
-  }
-
   public UUID getServerID() {
+
     return serverID;
   }
 
   public void setServerID(final UUID serverID) {
+
     this.serverID = serverID;
   }
 
   public void setCallbackManager(final CallbackManager callbackManager) {
-    this.callbackManager = callbackManager;
-  }
 
-  public static PluginEngine engine() {
-    return instance.engine;
+    this.callbackManager = callbackManager;
   }
 }

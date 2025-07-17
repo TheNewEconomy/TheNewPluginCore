@@ -28,14 +28,16 @@ public interface ProxyProvider {
 
   /**
    * Used to register a plugin message channel.
+   *
    * @param channel The channel to register.
    */
   void registerChannel(final String channel);
 
   /**
    * Used to send a message through a specific plugin message channel.
+   *
    * @param channel The channel to send the message through.
-   * @param bytes The byte data to send.
+   * @param bytes   The byte data to send.
    */
   void send(final String channel, final byte[] bytes);
 }

@@ -20,11 +20,13 @@ import net.tnemc.plugincore.core.id.UUIDAPI;
  * @since 0.1.2.0
  */
 public class AshconAPI implements UUIDAPI {
+
   /**
    * @return The URL for this UUID API Service.
    */
   @Override
   public String url() {
+
     return "https://api.ashcon.app/mojang/v2/user/";
   }
 }

@@ -39,6 +39,7 @@ public class PaperProxyProvider implements ProxyProvider {
    */
   @Override
   public void registerChannel(String channel) {
+
     Bukkit.getMessenger().registerIncomingPluginChannel(PaperPluginCore.instance().getPlugin(), channel, listener);
     Bukkit.getMessenger().registerOutgoingPluginChannel(PaperPluginCore.instance().getPlugin(), channel);
   }
@@ -51,6 +52,7 @@ public class PaperProxyProvider implements ProxyProvider {
    */
   @Override
   public void send(String channel, byte[] bytes) {
+
     if(Bukkit.getServer().getOnlinePlayers().isEmpty()) {
       return;
     }

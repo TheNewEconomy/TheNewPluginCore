@@ -28,7 +28,9 @@ import org.spongepowered.api.scheduler.ScheduledTask;
  * @since 0.1.2.0
  */
 public class SpongeChore extends Chore<ScheduledTask> {
-  public SpongeChore(ScheduledTask task, ChoreExecution execution) {
+
+  public SpongeChore(final ScheduledTask task, final ChoreExecution execution) {
+
     super(task, execution);
   }
 
@@ -37,6 +39,7 @@ public class SpongeChore extends Chore<ScheduledTask> {
    */
   @Override
   public void cancel() {
+
     task.cancel();
   }
 }

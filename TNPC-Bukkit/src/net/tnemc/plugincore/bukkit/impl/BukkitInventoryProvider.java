@@ -35,7 +35,8 @@ import java.util.UUID;
  */
 public class BukkitInventoryProvider extends BukkitInventory implements InventoryProvider<Inventory> {
 
-  public BukkitInventoryProvider(UUID id, JavaPlugin plugin) {
+  public BukkitInventoryProvider(final UUID id, final JavaPlugin plugin) {
+
     super(id, plugin);
   }
 
@@ -47,7 +48,8 @@ public class BukkitInventoryProvider extends BukkitInventory implements Inventor
    * @return The inventory object.
    */
   @Override
-  public Inventory getInventory(boolean ender) {
+  public Inventory getInventory(final boolean ender) {
+
     final OfflinePlayer player = Bukkit.getOfflinePlayer(player());
     if(player.getPlayer() == null) return null;
 

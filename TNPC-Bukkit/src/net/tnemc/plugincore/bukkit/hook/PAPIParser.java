@@ -29,6 +29,7 @@ import net.tnemc.plugincore.bukkit.impl.BukkitPlayerProvider;
 public class PAPIParser {
 
   public static String parse(final BukkitPlayerProvider provider, final String message) {
+
     return PlaceholderAPI.setPlaceholders(provider.getPlayer(), message);
   }
 }

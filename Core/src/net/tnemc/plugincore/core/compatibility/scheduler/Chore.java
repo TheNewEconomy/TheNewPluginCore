@@ -20,23 +20,25 @@ package net.tnemc.plugincore.core.compatibility.scheduler;
 /**
  * Chore represents a task for the implementation's {@link SchedulerProvider}
  *
+ * @param <T> Represents the implementation's Task object.
+ *
  * @author creatorfromhell
  * @since 0.1.2.0
- *
- * @param <T> Represents the implementation's Task object.
  */
 public abstract class Chore<T> {
 
-  protected int id;
   protected final T task;
   protected final ChoreExecution execution;
+  protected int id;
 
   public Chore(T task, ChoreExecution execution) {
+
     this.task = task;
     this.execution = execution;
   }
 
   public Chore(int id, T task, ChoreExecution execution) {
+
     this.id = id;
     this.task = task;
     this.execution = execution;
@@ -44,25 +46,31 @@ public abstract class Chore<T> {
 
   /**
    * Used to get the id for this Task.
+   *
    * @return The id for this Task.
    */
   public int id() {
+
     return id;
   }
 
   /**
    * Used to get the locale Task object.
+   *
    * @return The locale Task object.
    */
   public T locale() {
+
     return task;
   }
 
   /**
    * Returns this Chore's execution environment.
+   *
    * @return The {@link ChoreExecution environment} for this Chore.
    */
   public ChoreExecution execution() {
+
     return execution;
   }
 

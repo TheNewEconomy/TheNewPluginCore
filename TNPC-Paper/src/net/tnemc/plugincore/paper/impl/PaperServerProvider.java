@@ -60,39 +60,42 @@ import java.util.stream.Collectors;
  */
 public class PaperServerProvider implements ServerConnector {
 
-  protected PaperCalculationsProvider calc;
   protected final PaperProxyProvider proxy = new PaperProxyProvider();
-
   protected final PaperScheduler scheduler;
-
+  protected PaperCalculationsProvider calc;
   protected String world = null;
 
   public PaperServerProvider() {
+
     this(new PaperCalculationsProvider());
   }
 
   public PaperServerProvider(final PaperCalculationsProvider calc) {
+
     this.calc = calc;
     this.scheduler = new PaperScheduler();
   }
 
   public PaperServerProvider(final PaperScheduler scheduler) {
+
     this.scheduler = scheduler;
   }
 
   public void setDefaultWorld(final String world) {
+
     this.world = world;
   }
 
   @Override
   public String name() {
+
     return "paper";
   }
 
   /**
    * Used to replace placeholders from a string.
    *
-   * @param player The player to use for the placeholder replacement.
+   * @param player  The player to use for the placeholder replacement.
    * @param message The message to replace placeholders in.
    *
    * @return The string after placeholders have been replaced.
@@ -104,7 +107,7 @@ public class PaperServerProvider implements ServerConnector {
 
     final Optional<PlayerProvider> playerOpt = PluginCore.server().findPlayer(player);
     if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI") && playerOpt.isPresent()
-            && playerOpt.get() instanceof final PaperPlayerProvider bukkitPlayer) {
+       && playerOpt.get() instanceof final PaperPlayerProvider bukkitPlayer) {
 
       return PAPIParser.parse(bukkitPlayer, message);
     }
@@ -118,6 +121,7 @@ public class PaperServerProvider implements ServerConnector {
    */
   @Override
   public ProxyProvider proxy() {
+
     return proxy;
   }
 
@@ -130,6 +134,7 @@ public class PaperServerProvider implements ServerConnector {
    */
   @Override
   public CmdSource<?> source(@NotNull final CommandActor actor) {
+
     return new PaperCMDSource((BukkitCommandActor)actor);
   }
 
@@ -140,6 +145,7 @@ public class PaperServerProvider implements ServerConnector {
    */
   @Override
   public Set<String> onlinePlayersList() {
+
     return Bukkit.getOnlinePlayers().stream()
             .map(Player::getName)
             .collect(Collectors.toSet());
@@ -152,6 +158,7 @@ public class PaperServerProvider implements ServerConnector {
    */
   @Override
   public int onlinePlayers() {
+
     return Bukkit.getOnlinePlayers().size();
   }
 
@@ -160,8 +167,8 @@ public class PaperServerProvider implements ServerConnector {
    *
    * @param identifier The identifier
    *
-   * @return An Optional containing the located {@link PlayerProvider player}, or an empty
-   * Optional if no player is located.
+   * @return An Optional containing the located {@link PlayerProvider player}, or an empty Optional
+   * if no player is located.
    */
   @Override
   public Optional<PlayerProvider> findPlayer(@NotNull final UUID identifier) {
@@ -179,6 +186,7 @@ public class PaperServerProvider implements ServerConnector {
    */
   @Override
   public PlayerProvider initializePlayer(@NotNull final Object player) {
+
     if(player instanceof final Player playerObj) {
       return new PaperPlayerProvider(playerObj);
     }
@@ -200,13 +208,11 @@ public class PaperServerProvider implements ServerConnector {
   }
 
   /**
-   * Used to determine if a player with the specified username has played
-   * before.
+   * Used to determine if a player with the specified username has played before.
    *
    * @param name The username to search for.
    *
-   * @return True if someone with the specified username has played before,
-   * otherwise false.
+   * @return True if someone with the specified username has played before, otherwise false.
    */
   @Override
   public boolean playedBefore(final String name) {
@@ -224,6 +230,7 @@ public class PaperServerProvider implements ServerConnector {
    */
   @Override
   public boolean online(final String name) {
+
     try {
 
       final UUID id = UUID.fromString(name);
@@ -235,6 +242,7 @@ public class PaperServerProvider implements ServerConnector {
 
   @Override
   public Optional<UUID> fromName(final String name) {
+
     for(final OfflinePlayer player : Bukkit.getServer().getOfflinePlayers()) {
       if(player.getName() == null) continue;
       if(player.getName().equalsIgnoreCase(name)) {
@@ -254,6 +262,7 @@ public class PaperServerProvider implements ServerConnector {
    */
   @Override
   public Optional<String> fromID(final UUID id) {
+
     for(final OfflinePlayer player : Bukkit.getServer().getOfflinePlayers()) {
       if(player.getUniqueId().equals(id)) {
         return Optional.ofNullable(player.getName());
@@ -269,6 +278,7 @@ public class PaperServerProvider implements ServerConnector {
    */
   @Override
   public String defaultWorld() {
+
     if(world == null) {
       world = Bukkit.getServer().getWorlds().get(0).getName();
     }
@@ -297,17 +307,21 @@ public class PaperServerProvider implements ServerConnector {
    */
   @Override
   public boolean pluginAvailable(final String name) {
+
     return Bukkit.getPluginManager().isPluginEnabled(name);
   }
 
   /**
    * Used to replace colour codes in a string.
+   *
    * @param string The string to format.
-   * @param strip If true, the color codes are striped from the string.
+   * @param strip  If true, the color codes are striped from the string.
+   *
    * @return The formatted string.
    */
   @Override
   public String replaceColours(final String string, final boolean strip) {
+
     if(strip) {
       return ChatColor.stripColor(string);
     }
@@ -316,11 +330,13 @@ public class PaperServerProvider implements ServerConnector {
 
   @Override
   public AbstractItemStack<?> stackBuilder() {
+
     return new PaperItemStack();
   }
 
   @Override
   public void saveResource(final String path, final boolean replace) {
+
     PaperPluginCore.instance().getPlugin().saveResource(path, replace);
   }
 
@@ -334,6 +350,7 @@ public class PaperServerProvider implements ServerConnector {
    */
   @Override
   public @Nullable InputStream getResource(@NotNull final String filename) {
+
     return PaperPluginCore.instance().getPlugin().getResource(filename);
   }
 
@@ -344,19 +361,21 @@ public class PaperServerProvider implements ServerConnector {
    */
   @Override
   public SchedulerProvider<?> scheduler() {
+
     return scheduler;
   }
 
   /**
    * Used to register a crafting recipe to the server.
    *
-   * @param key The key for the crafting recipe to be registered.
+   * @param key    The key for the crafting recipe to be registered.
    * @param recipe The crafting recipe to register.
    *
    * @see CraftingRecipe
    */
   @Override
   public void registerCrafting(@NotNull final String key, @NotNull final CraftingRecipe recipe) {
+
     if(recipe.isShaped()) {
       ShapedRecipe shaped;
 
@@ -390,6 +409,7 @@ public class PaperServerProvider implements ServerConnector {
 
   @Override
   public PaperCalculationsProvider calculations() {
+
     return calc;
   }
 }

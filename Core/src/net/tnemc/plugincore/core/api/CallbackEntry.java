@@ -37,11 +37,13 @@ public class CallbackEntry {
   private final Class<? extends Callback> clazz;
 
   public CallbackEntry(Class<? extends Callback> clazz) {
+
     this.clazz = clazz;
   }
 
   /**
    * Used to add a consumer for this callback.
+   *
    * @param consumer The consumer to add for this callback. This is an implementation of the
    *                 {@link Function} interface, which accepts an {@link Callback} parameter and
    *                 returns a boolean value, which indicates if the "event" should be cancelled or
@@ -54,11 +56,13 @@ public class CallbackEntry {
 
   /**
    * Used to call all the consumers for this callback.
+   *
    * @param callback The callback class for this consumer.
    *
    * @return This returns a boolean value, which equates to whether this event is cancelled or not.
    */
   public boolean call(final Callback callback) {
+
     if(!clazz.isInstance(callback)) {
       return false;
     }

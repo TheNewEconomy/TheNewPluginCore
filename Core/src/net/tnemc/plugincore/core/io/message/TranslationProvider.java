@@ -31,7 +31,9 @@ public interface TranslationProvider {
 
   /**
    * Used to get the language of a player with the associated identifier.
+   *
    * @param identifier The identifier of the player.
+   *
    * @return The language that should be used for this player.
    */
   String getLang(final UUID identifier);
@@ -41,7 +43,8 @@ public interface TranslationProvider {
    * specified language doesn't exist.
    *
    * @param messageData The message data to utilize for this translation.
-   * @param language The language to translate the node to.
+   * @param language    The language to translate the node to.
+   *
    * @return The translated message represented by the node, or the default for if the node doesn't
    * exist.
    */
@@ -50,12 +53,15 @@ public interface TranslationProvider {
   /**
    * Used to translate a node for the given language for the given player. This should resort to the
    * default if the specified language doesn't exist.
-   * @param identifier The identifier of the given player.
+   *
+   * @param identifier  The identifier of the given player.
    * @param messageData The message data to utilize for this translation.
+   *
    * @return The translated message represented by the node, or the default for if the node doesn't
    * exist.
    */
   default String translate(final UUID identifier, final MessageData messageData) {
+
     return translateNode(messageData, getLang(identifier));
   }
 }

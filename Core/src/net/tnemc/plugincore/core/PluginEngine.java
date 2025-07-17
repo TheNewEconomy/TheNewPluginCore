@@ -81,7 +81,7 @@ public abstract class PluginEngine {
    * Initializes all components with the provided platform and version.
    *
    * @param platform the platform to initialize the components for
-   * @param version the Minecraft version string to initialize the components with
+   * @param version  the Minecraft version string to initialize the components with
    */
   public void initComponents(final Platform platform, final String version) {
 
@@ -104,7 +104,7 @@ public abstract class PluginEngine {
    * Initializes the registries for all components with the provided platform and version.
    *
    * @param platform the platform to initialize the registries for
-   * @param version the Minecraft version string to initialize the registries with
+   * @param version  the Minecraft version string to initialize the registries with
    */
   public void initRegistries(final Platform platform, final String version) {
 
@@ -138,11 +138,13 @@ public abstract class PluginEngine {
   public abstract void registerMenuHandler();
 
   /**
-   * Used to register {@link net.tnemc.plugincore.core.api.callback.Callback Callbacks} during initialization.
+   * Used to register {@link net.tnemc.plugincore.core.api.callback.Callback Callbacks} during
+   * initialization.
    */
   public abstract void registerCallbacks(CallbackManager callbackManager);
 
   public void registerUpdateChecker() {
+
     this.updateChecker = new UpdateChecker();
 
     PluginCore.log().inform("Build Stability: " + this.updateChecker.stable());
@@ -153,30 +155,36 @@ public abstract class PluginEngine {
   }
 
   public Map<String, Component> components() {
+
     return components;
   }
 
   public Map<String, ComponentBuilder> builders() {
+
     return builders;
   }
 
   public Map<String, Query> queries() {
+
     return queries;
   }
 
   public Map<String, Transaction> transactions() {
+
     return transactions;
   }
 
   /**
-   * Retrieves the ComponentBuilder associated with the provided name, and returns a new instance for
-   * building from.
+   * Retrieves the ComponentBuilder associated with the provided name, and returns a new instance
+   * for building from.
    *
    * @param name the name of the ComponentBuilder to retrieve
-   * @return the new instance of the ComponentBuilder if present in the builders map to start building
-   * from, null otherwise
+   *
+   * @return the new instance of the ComponentBuilder if present in the builders map to start
+   * building from, null otherwise
    */
   public @Nullable ComponentBuilder builder(final String name) {
+
     if(builders.containsKey(name)) {
 
       return builders.get(name).builder();
@@ -185,37 +193,47 @@ public abstract class PluginEngine {
   }
 
   public StorageManager storage() {
+
     return storage;
   }
 
   public Lamp<? extends CommandActor> command() {
+
     return command;
   }
 
   public MenuHandler menu() {
+
     return menuHandler;
   }
 
   public HelperMethods helper() {
+
     return helperMethods;
   }
 
   public UpdateChecker update() {
+
     return updateChecker;
   }
 
   public void postConfigs() {
+
   }
 
   public void postStorage() {
+
   }
 
   public void postCommands() {
+
   }
 
   public void postEnable() {
+
   }
 
   public void postDisable() {
+
   }
 }

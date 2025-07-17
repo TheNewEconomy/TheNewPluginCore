@@ -17,8 +17,8 @@ package net.tnemc.plugincore.core.paste.impl;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.core.paste.IPasteable;
 import net.tnemc.plugincore.core.paste.IPasteClient;
+import net.tnemc.plugincore.core.paste.IPasteable;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -37,44 +37,51 @@ import java.util.Scanner;
  * @since 1.0.0.2
  */
 public class MclogsClient implements IPasteClient {
+
   private static final String MCLOGS_API_URL = "https://api.mclo.gs/1/log";
 
   @Override
   public String identifier() {
+
     return "mclo.gs";
   }
 
   @Override
   public String endpoint() {
+
     return MCLOGS_API_URL;
   }
 
   @Override
   public String apiKey() {
+
     return "N/A"; // mclo.gs does not require an API key
   }
 
   @Override
   public Optional<String> createSingle(final IPasteable pasteable) {
+
     return createPaste(pasteable);
   }
 
   @Override
   public Optional<String> createMultiple(final IPasteable... pasteables) {
+
     return Arrays.stream(pasteables)
             .map(this::createPaste)
             .filter(Optional::isPresent)
             .map(Optional::get)
-            .reduce((first, second) -> second); // Return the last created paste's URL
+            .reduce((first, second)->second); // Return the last created paste's URL
   }
 
   private Optional<String> createPaste(final IPasteable pasteable) {
+
     try {
 
       final JSONObject requestBody = new JSONObject();
       requestBody.put("content", pasteable.content());
 
-      final HttpURLConnection connection = (HttpURLConnection) new URL(MCLOGS_API_URL).openConnection();
+      final HttpURLConnection connection = (HttpURLConnection)new URL(MCLOGS_API_URL).openConnection();
       connection.setRequestMethod("POST");
       connection.setRequestProperty("Content-Type", "application/json");
       connection.setDoOutput(true);

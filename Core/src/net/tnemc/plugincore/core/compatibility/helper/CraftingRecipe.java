@@ -41,28 +41,34 @@ public class CraftingRecipe {
   private final AbstractItemStack<?> result;
 
   public CraftingRecipe(boolean shaped, int amount, AbstractItemStack<?> result) {
+
     this.shaped = shaped;
     this.amount = amount;
     this.result = result;
   }
 
   public Map<Character, String> getIngredients() {
+
     return ingredients;
   }
 
   public AbstractItemStack<?> getResult() {
+
     return result;
   }
 
   public String[] getRows() {
+
     return rows;
   }
 
   public boolean isShaped() {
+
     return shaped;
   }
 
   public int getAmount() {
+
     return amount;
   }
 }

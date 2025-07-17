@@ -67,24 +67,27 @@ public class SpongeServerProvider implements ServerConnector {
   protected String world = null;
 
   public SpongeServerProvider() {
+
     this.scheduler = new SpongeScheduler();
   }
 
   @Override
   public String name() {
+
     return "sponge";
   }
 
   /**
    * Used to replace placeholders from a string.
    *
-   * @param player The player to use for the placeholder replacement.
+   * @param player  The player to use for the placeholder replacement.
    * @param message The message to replace placeholders in.
    *
    * @return The string after placeholders have been replaced.
    */
   @Override
   public String replacePlaceholder(final UUID player, final String message) {
+
     return message;
   }
 
@@ -95,6 +98,7 @@ public class SpongeServerProvider implements ServerConnector {
    */
   @Override
   public ProxyProvider proxy() {
+
     return proxy;
   }
 
@@ -107,6 +111,7 @@ public class SpongeServerProvider implements ServerConnector {
    */
   @Override
   public CmdSource<?> source(@NotNull final CommandActor actor) {
+
     return new SpongeCMDSource((SpongeCommandActor)actor);
   }
 
@@ -117,6 +122,7 @@ public class SpongeServerProvider implements ServerConnector {
    */
   @Override
   public Set<String> onlinePlayersList() {
+
     return Sponge.server().onlinePlayers().stream()
             .map(Nameable::name)
             .collect(Collectors.toSet());
@@ -129,6 +135,7 @@ public class SpongeServerProvider implements ServerConnector {
    */
   @Override
   public int onlinePlayers() {
+
     return Sponge.server().onlinePlayers().size();
   }
 
@@ -137,11 +144,12 @@ public class SpongeServerProvider implements ServerConnector {
    *
    * @param identifier The identifier
    *
-   * @return An Optional containing the located {@link PlayerProvider player}, or an empty
-   * Optional if no player is located.
+   * @return An Optional containing the located {@link PlayerProvider player}, or an empty Optional
+   * if no player is located.
    */
   @Override
   public Optional<PlayerProvider> findPlayer(@NotNull final UUID identifier) {
+
     final Optional<ServerPlayer> player = Sponge.server().player(identifier);
     return player.map(value->new SpongePlayerProvider(value.user(), SpongePluginCore.instance().getContainer()));
   }
@@ -156,6 +164,7 @@ public class SpongeServerProvider implements ServerConnector {
    */
   @Override
   public PlayerProvider initializePlayer(@NotNull final Object player) {
+
     if(player instanceof final ServerPlayer playerObj) {
       return new SpongePlayerProvider(playerObj.user(), SpongePluginCore.instance().getContainer());
     }
@@ -171,21 +180,21 @@ public class SpongeServerProvider implements ServerConnector {
    */
   @Override
   public boolean playedBefore(final UUID identifier) {
+
     final Optional<ServerPlayer> player = Sponge.server().player(identifier);
     return player.map(ServerPlayer::hasPlayedBefore).orElse(false);
   }
 
   /**
-   * Used to determine if a player with the specified username has played
-   * before.
+   * Used to determine if a player with the specified username has played before.
    *
    * @param name The username to search for.
    *
-   * @return True if someone with the specified username has played before,
-   * otherwise false.
+   * @return True if someone with the specified username has played before, otherwise false.
    */
   @Override
   public boolean playedBefore(final String name) {
+
     final Optional<ServerPlayer> player = Sponge.server().player(name);
     return player.map(ServerPlayer::hasPlayedBefore).orElse(false);
   }
@@ -199,11 +208,12 @@ public class SpongeServerProvider implements ServerConnector {
    */
   @Override
   public boolean online(final String name) {
+
     try {
 
       final Optional<ServerPlayer> player = Sponge.server().player(UUID.fromString(name));
       return player.map(ServerPlayer::isOnline).orElse(false);
-    } catch (final Exception e) {
+    } catch(final Exception e) {
 
       final Optional<ServerPlayer> player = Sponge.server().player(name);
       return player.map(ServerPlayer::isOnline).orElse(false);
@@ -212,6 +222,7 @@ public class SpongeServerProvider implements ServerConnector {
 
   @Override
   public Optional<UUID> fromName(final String name) {
+
     return Optional.empty();
   }
 
@@ -225,6 +236,7 @@ public class SpongeServerProvider implements ServerConnector {
    */
   @Override
   public Optional<String> fromID(final UUID id) {
+
     return Optional.empty();
   }
 
@@ -235,6 +247,7 @@ public class SpongeServerProvider implements ServerConnector {
    */
   @Override
   public String defaultWorld() {
+
     if(world == null) {
       world = Sponge.server().worldManager().world(DefaultWorldKeys.DEFAULT).get().key().asString();
     }
@@ -243,29 +256,34 @@ public class SpongeServerProvider implements ServerConnector {
 
   /**
    * Used to replace colour codes in a string.
+   *
    * @param string The string to format.
-   * @param strip If true, the color codes are striped from the string.
+   * @param strip  If true, the color codes are striped from the string.
+   *
    * @return The formatted string.
    */
   @Override
   public String replaceColours(final String string, final boolean strip) {
+
     return string;
   }
 
   @Override
   public AbstractItemStack<?> stackBuilder() {
+
     return new SpongeItemStack();
   }
 
   @Override
   public void saveResource(String resourcePath, final boolean replace) {
-    if (resourcePath != null && ! resourcePath.isEmpty()) {
+
+    if(resourcePath != null && !resourcePath.isEmpty()) {
 
       resourcePath = resourcePath.replace('\\', '/');
 
       final LogProvider logger = SpongePluginCore.log();
       final InputStream in = this.getResource(resourcePath);
-      if (in == null) {
+      if(in == null) {
 
         throw new IllegalArgumentException("The embedded resource '" + resourcePath + "' cannot be found in the jar.");
       } else {
@@ -273,12 +291,12 @@ public class SpongeServerProvider implements ServerConnector {
         final File outFile = new File(SpongePluginCore.directory(), resourcePath);
         final int lastIndex = resourcePath.lastIndexOf(47);
         final File outDir = new File(SpongePluginCore.directory(), resourcePath.substring(0, Math.max(lastIndex, 0)));
-        if (!outDir.exists()) {
+        if(!outDir.exists()) {
           outDir.mkdirs();
         }
 
         try {
-          if (outFile.exists() && !replace) {
+          if(outFile.exists() && !replace) {
           } else {
 
             final OutputStream out = new FileOutputStream(outFile);
@@ -292,7 +310,7 @@ public class SpongeServerProvider implements ServerConnector {
             out.close();
             in.close();
           }
-        } catch (final IOException ignore) {
+        } catch(final IOException ignore) {
           logger.error("Could not save " + outFile.getName() + " to " + outFile);
         }
 
@@ -309,13 +327,14 @@ public class SpongeServerProvider implements ServerConnector {
    */
   @Override
   public SpongeScheduler scheduler() {
+
     return scheduler;
   }
 
   /**
    * Used to register a crafting recipe to the server.
    *
-   * @param key The key for the crafting recipe to be registered.
+   * @param key    The key for the crafting recipe to be registered.
    * @param recipe The crafting recipe to register.
    *
    * @see CraftingRecipe
@@ -327,21 +346,23 @@ public class SpongeServerProvider implements ServerConnector {
 
   @Override
   public SpongeItemCalculationsProvider calculations() {
+
     return calc;
   }
 
   @Override
   public @Nullable InputStream getResource(@NotNull final String filename) {
+
     try {
       final URL url = this.getClass().getClassLoader().getResource(filename);
-      if (url == null) {
+      if(url == null) {
         return null;
       } else {
         final URLConnection connection = url.openConnection();
         connection.setUseCaches(false);
         return connection.getInputStream();
       }
-    } catch (final IOException var4) {
+    } catch(final IOException var4) {
       return null;
     }
   }

@@ -23,89 +23,104 @@ import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
 /**
  * Provides a compatibility layer for logging purposes.
  *
- * @since 0.1.2.0
  * @author creatorfromhell
+ * @since 0.1.2.0
  */
 public interface LogProvider {
 
   /**
    * Sends an informative message, which doesn't contain an error or debug message.
+   *
    * @param message The message to send.
    */
   default void inform(String message) {
+
     inform(message, DebugLevel.STANDARD);
   }
 
   /**
    * Sends an informative message, which doesn't contain an error or debug message.
+   *
    * @param message The message to send.
-   * @param level The {@link DebugLevel} to log this message at.
+   * @param level   The {@link DebugLevel} to log this message at.
    */
   void inform(String message, DebugLevel level);
 
   /**
    * Sends a message related to debug purposes.
+   *
    * @param message The message to send.
    */
   default void debug(String message) {
+
     debug(message, DebugLevel.STANDARD);
   }
 
   /**
    * Sends a message related to debug purposes.
+   *
    * @param message The message to send.
-   * @param level The {@link DebugLevel} to log this message at.
+   * @param level   The {@link DebugLevel} to log this message at.
    */
   void debug(String message, DebugLevel level);
 
   /**
    * Sends a warning message.
+   *
    * @param message The message to send.
    */
   default void warning(String message) {
+
     warning(message, DebugLevel.STANDARD);
   }
 
   /**
    * Sends a warning message.
+   *
    * @param message The message to send.
-   * @param level The {@link DebugLevel} to log this message at.
+   * @param level   The {@link DebugLevel} to log this message at.
    */
   void warning(String message, DebugLevel level);
 
   /**
    * Sends an error-related message.
+   *
    * @param message The message to send.
    */
   default void error(String message) {
+
     error(message, DebugLevel.STANDARD);
   }
 
   /**
    * Sends an error-related message.
+   *
    * @param message The message to send.
-   * @param level The {@link DebugLevel} to log this message at.
+   * @param level   The {@link DebugLevel} to log this message at.
    */
   void error(String message, DebugLevel level);
 
   /**
    * Sends an error-related message.
-   * @param message The message to send.
+   *
+   * @param message   The message to send.
    * @param exception The error's {@link Exception}.
-   * @param level The {@link DebugLevel} to log this message at.
+   * @param level     The {@link DebugLevel} to log this message at.
    */
   void error(String message, Exception exception, DebugLevel level);
 
 
   /**
    * Sends an error that is SQL-related.
-   * @param message The message to send.
+   *
+   * @param message   The message to send.
    * @param exception The error's {@link Exception}.
-   * @param query The query string.
+   * @param query     The query string.
    * @param variables An array of variables for the prepared statement.
-   * @param level The {@link DebugLevel} to log this message at.
+   * @param level     The {@link DebugLevel} to log this message at.
    */
   default void sqlError(String message, Exception exception, String query, Object[] variables, DebugLevel level) {
+
     error("======= Query Error =======", level);
     error(message, exception, level);
 

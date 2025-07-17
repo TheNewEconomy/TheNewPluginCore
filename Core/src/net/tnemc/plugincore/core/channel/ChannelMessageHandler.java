@@ -36,6 +36,7 @@ public abstract class ChannelMessageHandler {
   protected UUID server;
 
   public ChannelMessageHandler(String tag) {
+
     this.tag = tag;
   }
 
@@ -46,7 +47,7 @@ public abstract class ChannelMessageHandler {
       Optional<UUID> serverID = Optional.empty();
       try {
         serverID = wrapper.readUUID();
-      } catch (IOException e) {
+      } catch(IOException e) {
         e.printStackTrace();
       }
 

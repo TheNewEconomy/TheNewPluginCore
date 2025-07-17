@@ -25,6 +25,7 @@ import net.tnemc.plugincore.core.io.storage.engine.StandardSQL;
 public class PostgreSQL extends StandardSQL {
 
   public PostgreSQL(Dialect dialect) {
+
     super(dialect);
   }
 
@@ -35,25 +36,29 @@ public class PostgreSQL extends StandardSQL {
    */
   @Override
   public String name() {
+
     return "postgre";
   }
 
   @Override
   public String[] driver() {
-    return new String[] {
-        "org.postgresql.Driver"
+
+    return new String[]{
+            "org.postgresql.Driver"
     };
   }
 
   @Override
   public String[] dataSource() {
+
     return new String[]{
-        "org.postgresql.ds.PGSimpleDataSource"
+            "org.postgresql.ds.PGSimpleDataSource"
     };
   }
 
   @Override
   public String url(String file, String host, int port, String database) {
+
     return "jdbc:postgresql://" + host + ":" + port + "/" + database;
   }
 }

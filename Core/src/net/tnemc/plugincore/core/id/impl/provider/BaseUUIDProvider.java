@@ -41,10 +41,12 @@ public class BaseUUIDProvider implements UUIDProvider {
    * Returns the associated {@link UUIDAPI uuid api} associated with this provider.
    *
    * @return The associated {@link UUIDAPI uuid api} associated with this provider.
+   *
    * @see UUIDAPI
    */
   @Override
   public UUIDAPI api() {
+
     return new AshconAPI();
   }
 
@@ -53,11 +55,11 @@ public class BaseUUIDProvider implements UUIDProvider {
    *
    * @param name The username of the pair.
    *
-   * @return An optional containing the pair if found, otherwise an empty
-   * optional.
+   * @return An optional containing the pair if found, otherwise an empty optional.
    */
   @Override
   public Optional<UUIDPair> retrieve(String name) {
+
     for(UUIDPair pair : pairs.values()) {
       if(pair.getUsername().equalsIgnoreCase(name)) {
         return Optional.of(pair);
@@ -68,11 +70,14 @@ public class BaseUUIDProvider implements UUIDProvider {
 
   /**
    * Used to retrieve a name from its associated {@link UUID}.
+   *
    * @param id The {@link UUID} to use in the search.
+   *
    * @return An optional containing the name if found, otherwise an empty optional.
    */
   @Override
   public Optional<String> retrieveName(final UUID id) {
+
     if(pairs.containsKey(id)) {
       return Optional.ofNullable(pairs.get(id).getUsername());
     }
@@ -80,13 +85,14 @@ public class BaseUUIDProvider implements UUIDProvider {
   }
 
   /**
-   * Used to store a Username & UUID pair. This could be to a map, or to
-   * a database for persistent usage or to both.
+   * Used to store a Username & UUID pair. This could be to a map, or to a database for persistent
+   * usage or to both.
    *
    * @param pair The {@link UUIDPair}
    */
   @Override
   public void store(UUIDPair pair) {
+
     pairs.put(pair.getIdentifier(), pair);
   }
 }

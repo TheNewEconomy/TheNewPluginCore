@@ -30,19 +30,22 @@ import java.net.InetSocketAddress;
  * @since 1.0.0.2
  */
 public class CassandraConnector implements StorageConnector<CqlSession> {
+
   private CqlSession session;
 
   @Override
   public void initialize() {
+
     session = CqlSession.builder()
             .addContactPoint(new InetSocketAddress(StorageManager.instance().settings().host(),
-                    StorageManager.instance().settings().port()))
+                                                   StorageManager.instance().settings().port()))
             .withLocalDatacenter("datacenter1")
             .build();
   }
 
   @Override
   public CqlSession connection() {
+
     return session;
   }
 }

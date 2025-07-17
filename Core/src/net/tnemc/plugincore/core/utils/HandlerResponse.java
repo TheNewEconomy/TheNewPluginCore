@@ -30,23 +30,28 @@ public class HandlerResponse {
   private boolean cancelled;
 
   public HandlerResponse(String response, boolean cancelled) {
+
     this.response = response;
     this.cancelled = cancelled;
   }
 
   public String getResponse() {
+
     return response;
   }
 
   public void setResponse(String response) {
+
     this.response = response;
   }
 
   public boolean isCancelled() {
+
     return cancelled;
   }
 
   public void setCancelled(boolean cancelled) {
+
     this.cancelled = cancelled;
   }
 }

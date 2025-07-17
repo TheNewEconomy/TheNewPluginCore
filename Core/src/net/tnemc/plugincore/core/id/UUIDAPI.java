@@ -35,6 +35,11 @@ import java.util.UUID;
  */
 public interface UUIDAPI {
 
+  static String dashUUIDString(String uuid) {
+
+    return uuid.replaceAll(PluginCore.UUID_MATCHER_PATTERN.pattern(), "$1-$2-$3-$4-$5");
+  }
+
   /**
    * @return The URL for this UUID API Service.
    */
@@ -44,14 +49,16 @@ public interface UUIDAPI {
    * @return True if the site uses SSL technology, otherwise false.
    */
   default boolean isSSL() {
+
     return url().contains("https");
   }
 
   default UUID getUUID(String username) {
+
     JSONObject object = sendRequestJSON(username);
 
     UUID id = (object != null && object.containsKey("uuid"))? UUID.fromString(object.get("uuid").toString())
-        : null;
+                                                            : null;
 
     if(id != null) {
       PluginCore.uuidProvider().store(new UUIDPair(id, username));
@@ -59,34 +66,34 @@ public interface UUIDAPI {
     return id;
   }
 
-  static String dashUUIDString(String uuid) {
-    return uuid.replaceAll(PluginCore.UUID_MATCHER_PATTERN.pattern(), "$1-$2-$3-$4-$5");
-  }
-
   default JSONObject sendRequestJSON(final String linkAddition) {
-    return (JSONObject) JSONValue.parse(sendRequest(linkAddition));
+
+    return (JSONObject)JSONValue.parse(sendRequest(linkAddition));
   }
 
   default String sendRequest(final String linkAddition) {
+
     StringBuilder builder = new StringBuilder();
     HttpsURLConnection connection = null;
     try {
 
-      TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager(){
-        public X509Certificate[] getAcceptedIssuers(){return null;}
-        public void checkClientTrusted(X509Certificate[] certs, String authType){
+      TrustManager[] trustAllCerts = new TrustManager[]{ new X509TrustManager() {
+        public X509Certificate[] getAcceptedIssuers() { return null; }
+
+        public void checkClientTrusted(X509Certificate[] certs, String authType) {
           //empty
         }
-        public void checkServerTrusted(X509Certificate[] certs, String authType){
+
+        public void checkServerTrusted(X509Certificate[] certs, String authType) {
           //empty
         }
-      }};
+      } };
 
       SSLContext sc = SSLContext.getInstance("TLS");
       sc.init(null, trustAllCerts, new SecureRandom());
       HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 
-      connection = (HttpsURLConnection) new URL(url() + linkAddition).openConnection();
+      connection = (HttpsURLConnection)new URL(url() + linkAddition).openConnection();
       connection.setConnectTimeout(15000);
       connection.setReadTimeout(60000);
       connection.setRequestMethod("GET");
@@ -97,7 +104,7 @@ public interface UUIDAPI {
         builder.append(response);
       }
       reader.close();
-    } catch (Exception e) {
+    } catch(Exception e) {
       return "";
     } finally {
       if(connection != null) {

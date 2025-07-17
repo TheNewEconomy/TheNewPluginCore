@@ -37,8 +37,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class PaperPluginCore extends PluginCore {
 
   private final JavaPlugin plugin;
+
   public PaperPluginCore(final JavaPlugin plugin, final PluginEngine engine, final TranslationProvider provider,
                          final CallbackProvider callbackProvider) {
+
     this(plugin, engine, new PaperServerProvider(), provider, callbackProvider);
   }
 
@@ -46,10 +48,15 @@ public class PaperPluginCore extends PluginCore {
                          final TranslationProvider provider, final CallbackProvider callbackProvider) {
 
     super(engine, connector, new PaperLogProvider(plugin.getLogger()), provider, callbackProvider, Platform.PAPER,
-            Bukkit.getServer().getBukkitVersion().split("-")[0]);
+          Bukkit.getServer().getBukkitVersion().split("-")[0]);
 
     setInstance(this);
     this.plugin = plugin;
+  }
+
+  public static PaperPluginCore instance() {
+
+    return (PaperPluginCore)PluginCore.instance();
   }
 
   /**
@@ -58,16 +65,14 @@ public class PaperPluginCore extends PluginCore {
    */
   @Override
   protected void onEnable() {
+
     this.directory = plugin.getDataFolder();
 
     super.onEnable();
   }
 
-  public static PaperPluginCore instance() {
-    return (PaperPluginCore)PluginCore.instance();
-  }
-
   public JavaPlugin getPlugin() {
+
     return plugin;
   }
 }

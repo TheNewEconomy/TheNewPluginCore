@@ -39,7 +39,9 @@ import java.util.stream.Collectors;
  * @since 0.1.2.0
  */
 public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider {
+
   public SpongePlayerProvider(final User user, final PluginContainer container) {
+
     super(user, container);
   }
 
@@ -50,6 +52,7 @@ public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider
    */
   @Override
   public String getName() {
+
     return user.name();
   }
 
@@ -60,6 +63,7 @@ public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider
    */
   @Override
   public Optional<net.tnemc.plugincore.core.compatibility.Location> getLocation() {
+
     if(user.isOnline()) {
 
       final Optional<ServerPlayer> player = user.player();
@@ -67,8 +71,8 @@ public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider
         final Location<?, ?> locale = player.get().location();
 
         return Optional.of(new net.tnemc.plugincore.core.compatibility.Location(((ServerWorld)locale.world()).key().value(),
-                                        locale.x(), locale.y(),
-                                        locale.z()));
+                                                                                locale.x(), locale.y(),
+                                                                                locale.z()));
       }
     }
     return Optional.empty();
@@ -112,6 +116,7 @@ public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider
    */
   @Override
   public int getExp() {
+
     if(user.player().isPresent()) {
       return user.player().get().get(Keys.EXPERIENCE).orElse(0);
     }
@@ -125,6 +130,7 @@ public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider
    */
   @Override
   public void setExp(final int exp) {
+
     if(user.player().isPresent()) {
       user.player().get().offer(Keys.EXPERIENCE, exp);
     }
@@ -137,6 +143,7 @@ public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider
    */
   @Override
   public int getExpLevel() {
+
     if(user.player().isPresent()) {
       return user.player().get().get(Keys.EXPERIENCE_LEVEL).orElse(0);
     }
@@ -150,6 +157,7 @@ public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider
    */
   @Override
   public void setExpLevel(final int level) {
+
     if(user.player().isPresent()) {
       user.player().get().offer(Keys.EXPERIENCE_LEVEL, level);
     }
@@ -157,6 +165,7 @@ public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider
 
   @Override
   public SpongeInventoryProvider inventory() {
+
     return new SpongeInventoryProvider(identifier(), container);
   }
 
@@ -167,8 +176,9 @@ public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider
    */
   @Override
   public List<String> getEffectivePermissions() {
+
     return user.subjectData().allPermissions().values().stream()
-            .flatMap(map -> map.keySet().stream())
+            .flatMap(map->map.keySet().stream())
             .collect(Collectors.toList());
   }
 
@@ -184,6 +194,7 @@ public class SpongePlayerProvider extends SpongePlayer implements PlayerProvider
 
   @Override
   public void message(final String message) {
+
     message(new MessageData(message));
   }
 }

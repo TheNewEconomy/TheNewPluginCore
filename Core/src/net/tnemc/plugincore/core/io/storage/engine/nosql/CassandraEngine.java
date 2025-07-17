@@ -32,30 +32,36 @@ import java.util.Map;
  * @since 1.0.0.2
  */
 public class CassandraEngine implements StorageEngine {
+
   private final Map<Class<?>, Datable<?>> datables = new HashMap<>();
 
   @Override
   public String name() {
+
     return "cassandra";
   }
 
   @Override
   public void initialize(final StorageConnector<?> connector) {
+
     PluginCore.log().debug("Cassandra Storage Engine initialized.");
   }
 
   @Override
   public void reset(final StorageConnector<?> connector) {
+
     PluginCore.log().debug("Cassandra Storage reset logic needs implementation.");
   }
 
   @Override
   public void backup(final StorageConnector<?> connector) {
+
     PluginCore.log().debug("Cassandra Backup logic needs implementation.");
   }
 
   @Override
   public Map<Class<?>, Datable<?>> datables() {
+
     return datables;
   }
 }

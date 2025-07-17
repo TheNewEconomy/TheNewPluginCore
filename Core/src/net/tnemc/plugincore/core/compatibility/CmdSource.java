@@ -28,22 +28,25 @@ import java.util.UUID;
  * CmdSource
  *
  * @author creatorfromhell
- * @since 0.1.2.0
  * @see PlayerProvider
+ * @since 0.1.2.0
  */
 public abstract class CmdSource<T extends CommandActor> {
 
   protected final T actor;
 
   public CmdSource(final T actor) {
+
     this.actor = actor;
   }
 
   /**
    * The UUID of this command source.
+   *
    * @return The UUID of this command source.
    */
   public Optional<UUID> identifier() {
+
     if(!isPlayer()) {
       return Optional.empty();
     }
@@ -52,20 +55,25 @@ public abstract class CmdSource<T extends CommandActor> {
 
   /**
    * The name of this command source.
+   *
    * @return The name of this command source.
    */
   public String name() {
+
     return actor.name();
   }
 
   /**
    * Determines if this {@link CmdSource} is an instance of a player.
-   * @return True if this represents a player, otherwise false if it's a non-player such as the console.
+   *
+   * @return True if this represents a player, otherwise false if it's a non-player such as the
+   * console.
    */
   public abstract boolean isPlayer();
 
   /**
    * Used to get the related {@link PlayerProvider} for this command source.
+   *
    * @return An optional containing the related {@link PlayerProvider} if this command source is a
    * player, otherwise an empty {@link Optional}.
    */
@@ -73,11 +81,13 @@ public abstract class CmdSource<T extends CommandActor> {
 
   /**
    * Used to send a message to this command source.
+   *
    * @param messageData The message data to utilize for this translation.
    */
   public abstract void message(final MessageData messageData);
 
   public T getActor() {
+
     return actor;
   }
 }

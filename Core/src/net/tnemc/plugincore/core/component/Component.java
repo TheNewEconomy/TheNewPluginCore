@@ -38,7 +38,8 @@ public interface Component {
    * Checks if this method supports the given platform and version.
    *
    * @param platform the Platform to check for support
-   * @param version the version string to check for support
+   * @param version  the version string to check for support
+   *
    * @return true if the platform and version are supported, false otherwise
    */
   boolean supports(final Platform platform, final String version);
@@ -61,7 +62,7 @@ public interface Component {
    * Initializes the Component with the provided platform and version.
    *
    * @param platform the platform to initialize the Component for
-   * @param version the Minecraft version string to initialize the Component with
+   * @param version  the Minecraft version string to initialize the Component with
    */
   void initialize(final Platform platform, final String version);
 
@@ -69,17 +70,17 @@ public interface Component {
    * Initializes the registries for the given platform and version.
    *
    * @param platform the platform for which the registries are being initialized
-   * @param version the Minecraft version of the platform
+   * @param version  the Minecraft version of the platform
    */
   void initRegistries(final Platform platform, final String version);
 
   /**
    * Initializes the builders for the given platform and version.
    *
-   * @see ComponentBuilder
-   *
    * @param platform the platform to initialize the builders for
-   * @param version the Minecraft version string to initialize the builders with
+   * @param version  the Minecraft version string to initialize the builders with
+   *
+   * @see ComponentBuilder
    */
   ComponentBuilder[] initBuilders(final Platform platform, final String version);
 }

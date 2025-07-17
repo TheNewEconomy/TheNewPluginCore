@@ -29,6 +29,7 @@ import net.tnemc.plugincore.core.io.storage.engine.StandardSQL;
 public class H2 extends StandardSQL {
 
   public H2(final Dialect dialect) {
+
     super(dialect);
   }
 
@@ -39,25 +40,29 @@ public class H2 extends StandardSQL {
    */
   @Override
   public String name() {
+
     return "h2";
   }
 
   @Override
   public String[] driver() {
-    return new String[] {
+
+    return new String[]{
             "org.h2.Driver"
     };
   }
 
   @Override
   public String[] dataSource() {
-    return new String[] {
+
+    return new String[]{
             "org.h2.jdbcx.JdbcDataSource"
     };
   }
 
   @Override
   public String url(final String file, final String host, final int port, final String database) {
+
     return "jdbc:h2:file:" + file + ";mode=MySQL;DB_CLOSE_ON_EXIT=TRUE;FILE_LOCK=NO";
   }
 }

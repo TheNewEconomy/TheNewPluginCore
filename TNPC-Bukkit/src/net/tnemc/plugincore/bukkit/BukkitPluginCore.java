@@ -37,18 +37,26 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class BukkitPluginCore extends PluginCore {
 
   private final JavaPlugin plugin;
+
   public BukkitPluginCore(final JavaPlugin plugin, final PluginEngine engine, final TranslationProvider provider,
                           final CallbackProvider callbackProvider) {
+
     this(plugin, engine, new BukkitServerProvider(), provider, callbackProvider);
   }
 
   public BukkitPluginCore(final JavaPlugin plugin, final PluginEngine engine, final ServerConnector connector,
                           final TranslationProvider provider, final CallbackProvider callbackProvider) {
+
     super(engine, connector, new BukkitLogProvider(plugin.getLogger()), provider, callbackProvider, Platform.BUKKIT,
-            Bukkit.getServer().getBukkitVersion().split("-")[0]);
+          Bukkit.getServer().getBukkitVersion().split("-")[0]);
 
     setInstance(this);
     this.plugin = plugin;
+  }
+
+  public static BukkitPluginCore instance() {
+
+    return (BukkitPluginCore)PluginCore.instance();
   }
 
   /**
@@ -57,16 +65,14 @@ public class BukkitPluginCore extends PluginCore {
    */
   @Override
   protected void onEnable() {
+
     this.directory = plugin.getDataFolder();
 
     super.onEnable();
   }
 
-  public static BukkitPluginCore instance() {
-    return (BukkitPluginCore)PluginCore.instance();
-  }
-
   public JavaPlugin getPlugin() {
+
     return plugin;
   }
 }

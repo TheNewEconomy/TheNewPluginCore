@@ -26,8 +26,8 @@ import java.lang.annotation.Target;
 /**
  * Used to specify a key for an {@link EnhancedHashMap}.
  *
- * @see EnhancedHashMap
  * @author creatorfromhell
+ * @see EnhancedHashMap
  * @since 0.1.2.0
  */
 

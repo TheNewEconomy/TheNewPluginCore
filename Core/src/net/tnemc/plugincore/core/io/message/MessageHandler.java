@@ -38,17 +38,18 @@ import java.util.UUID;
 public class MessageHandler {
 
   public static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
+  private static MessageHandler instance;
   final TranslationProvider translator;
 
-  private static MessageHandler instance;
-
   public MessageHandler(final TranslationProvider translator) {
+
     this.translator = translator;
 
     instance = this;
   }
 
   public MessageHandler(final TranslationProvider translator, final TagResolver... resolvers) {
+
     this.translator = translator;
 
     instance = this;
@@ -58,12 +59,13 @@ public class MessageHandler {
    * Used to translate a message for a player and return the translated {@link Component}.
    *
    * @param messageData The message data to utilize for this translation.
-   * @param player The {@link PlayerProvider player} to translate this for.
+   * @param player      The {@link PlayerProvider player} to translate this for.
    *
    * @return The {@link Component} that is the result of the translation process of the message for
    * the given player.
    */
   public static Component grab(final MessageData messageData, @NotNull final PlayerProvider player) {
+
     return MINI_MESSAGE.deserialize(PluginCore.server().replacePlaceholder(player.identifier(), instance.translator.translate(player.identifier(), messageData)));
   }
 
@@ -71,12 +73,13 @@ public class MessageHandler {
    * Used to translate a message for a player and return the translated {@link Component}.
    *
    * @param messageData The message data to utilize for this translation.
-   * @param id The {@link UUID unique identifier} of the player to translate this for.
+   * @param id          The {@link UUID unique identifier} of the player to translate this for.
    *
    * @return The {@link Component} that is the result of the translation process of the message for
    * the given player.
    */
   public static Component grab(final MessageData messageData, @NotNull final UUID id) {
+
     return MINI_MESSAGE.deserialize(PluginCore.server().replacePlaceholder(id, instance.translator.translate(id, messageData)));
   }
 
@@ -84,9 +87,10 @@ public class MessageHandler {
    * Used to translate a message for an {@link Audience}.
    *
    * @param messageData The message data to utilize for this translation.
-   * @param audience The audience that should receive the translated message.
+   * @param audience    The audience that should receive the translated message.
    */
   public static void translate(final MessageData messageData, final UUID identifier, final Audience audience) {
+
     final String msg = PluginCore.server().replacePlaceholder(identifier, instance.translator.translateNode(messageData, "default"));
 
     if(identifier == null) {
@@ -108,7 +112,7 @@ public class MessageHandler {
    * Used to translate a message for numerous players.
    *
    * @param messageData The message data to utilize for this translation.
-   * @param audiences The audiences that should receive the translated message.
+   * @param audiences   The audiences that should receive the translated message.
    */
   public static void translate(final MessageData messageData, final UUID identifier, final Audience... audiences) {
 
@@ -122,15 +126,18 @@ public class MessageHandler {
     }
   }
 
+  public static MessageHandler getInstance() {
+
+    return instance;
+  }
+
   public MiniMessage getMini() {
+
     return MINI_MESSAGE;
   }
 
   public TranslationProvider getTranslator() {
-    return translator;
-  }
 
-  public static MessageHandler getInstance() {
-    return instance;
+    return translator;
   }
 }

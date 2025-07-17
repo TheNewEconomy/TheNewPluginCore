@@ -34,12 +34,8 @@ import java.util.Collection;
 import java.util.Optional;
 
 /**
- * The manager, which manages everything related to storage.
- * Manages:
- * - Loading
- * - Saving
- * - Caching
- * - Connections
+ * The manager, which manages everything related to storage. Manages: - Loading - Saving - Caching -
+ * Connections
  *
  * @author creatorfromhell
  * @since 0.1.2.0
@@ -48,14 +44,13 @@ public class StorageManager {
 
   private static StorageManager instance;
   private final StorageSettings settings;
-
-  private StorageProvider provider;
-
   private final TNEJedisManager jedisManager;
+  private StorageProvider provider;
 
 
   public StorageManager(final String engine, final StorageProvider provider,
                         final StorageSettings settings, final JedisPool pool) {
+
     instance = this;
     this.settings = settings;
 
@@ -70,7 +65,13 @@ public class StorageManager {
     initialize(engine);
   }
 
+  public static StorageManager instance() {
+
+    return instance;
+  }
+
   public boolean meetsRequirement() {
+
     if(this.provider instanceof SQLConnector) {
       return ((SQLConnector)this.provider.connector()).checkVersion();
     }
@@ -86,11 +87,8 @@ public class StorageManager {
     this.provider.initialize();
   }
 
-  public static StorageManager instance() {
-    return instance;
-  }
-
   public void sendProxyMessage(final String channel, final byte[] data) {
+
     switch(settings.proxyType().toLowerCase()) {
       case "redis" -> {
         if(jedisManager != null) {
@@ -103,11 +101,14 @@ public class StorageManager {
 
   /**
    * Used to load this object.
-   * @param object The class of the object to be loaded.
+   *
+   * @param object     The class of the object to be loaded.
    * @param identifier The identifier used to identify the object to load.
+   *
    * @return The object to load.
    */
   public <T> Optional<T> load(Class<? extends T> object, @NotNull final String identifier) {
+
     final Datable<T> data = (Datable<T>)provider.engine().datables().get(object);
     if(data != null) {
       return data.load(provider.connector(), identifier);
@@ -117,12 +118,15 @@ public class StorageManager {
 
   /**
    * Used to load all objects of this type.
-   * @param object The class of the object to be loaded.
-   * @param identifier The identifier used to load objects, if they relate to a specific
-   *                   identifier, otherwise this will be null.
+   *
+   * @param object     The class of the object to be loaded.
+   * @param identifier The identifier used to load objects, if they relate to a specific identifier,
+   *                   otherwise this will be null.
+   *
    * @return A collection containing the objects loaded.
    */
   public <T> Collection<T> loadAll(Class<? extends T> object, @Nullable final String identifier) {
+
     final Datable<T> data = (Datable<T>)provider.engine().datables().get(object);
     if(data != null) {
       return data.loadAll(provider.connector(), identifier);
@@ -133,9 +137,10 @@ public class StorageManager {
 
   /**
    * Used to store this object.
-   * @param object The object to be stored.
-   * @param identifier An optional identifier for loading this object. Note: some Datables may require
-   *                   this identifier.
+   *
+   * @param object     The object to be stored.
+   * @param identifier An optional identifier for loading this object. Note: some Datables may
+   *                   require this identifier.
    */
   public <T> void store(T object, @Nullable String identifier) {
 
@@ -143,15 +148,16 @@ public class StorageManager {
     final Datable<T> data = (Datable<T>)provider.engine().datables().get(object.getClass());
     if(data != null) {
       PluginCore.server().scheduler().createDelayedTask(()->data.store(provider.connector(), object, identifier),
-                                                     new ChoreTime(0), ChoreExecution.SECONDARY);
+                                                        new ChoreTime(0), ChoreExecution.SECONDARY);
     }
   }
 
   /**
-   * Used to store all data for an identifier in TNE. This method is not switched over to a secondary
-   * thread automatically. Please make sure to use wisely.
+   * Used to store all data for an identifier in TNE. This method is not switched over to a
+   * secondary thread automatically. Please make sure to use wisely.
    */
   public void storeAll(@NotNull final String identifier) {
+
     provider.storeAll(identifier);
   }
 
@@ -159,6 +165,7 @@ public class StorageManager {
    * Used to store all data in TNE.
    */
   public void storeAll() {
+
     provider.storeAll();
   }
 
@@ -166,6 +173,7 @@ public class StorageManager {
    * Used to purge TNE data.
    */
   public void purge() {
+
     for(Datable<?> data : provider.engine().datables().values()) {
       PluginCore.server().scheduler().createDelayedTask(()->data.purge(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);
     }
@@ -178,7 +186,7 @@ public class StorageManager {
    */
   public void reset() {
     //call the reset method for all modules.
-    PluginCore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().reset(this)));
+    PluginCore.loader().getModules().values().forEach((moduleWrapper->moduleWrapper.getModule().reset(this)));
 
     PluginCore.server().scheduler().createDelayedTask(()->provider.engine().reset(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);
 
@@ -187,11 +195,12 @@ public class StorageManager {
 
   /**
    * Used to back up data that is currently in the database.
+   *
    * @return True if the backup was successful, otherwise false.
    */
   public boolean backup() {
     //call the backup method for all modules.
-    PluginCore.loader().getModules().values().forEach((moduleWrapper -> moduleWrapper.getModule().backup(this)));
+    PluginCore.loader().getModules().values().forEach((moduleWrapper->moduleWrapper.getModule().backup(this)));
 
     PluginCore.server().scheduler().createDelayedTask(()->provider.engine().backup(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);
 
@@ -200,14 +209,17 @@ public class StorageManager {
   }
 
   public StorageEngine getEngine() {
+
     return provider.engine();
   }
 
   public StorageConnector<?> getConnector() {
+
     return provider.connector();
   }
 
   public StorageSettings settings() {
+
     return settings;
   }
 }

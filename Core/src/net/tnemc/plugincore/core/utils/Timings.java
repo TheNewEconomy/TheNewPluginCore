@@ -36,43 +36,53 @@ public class Timings implements AutoCloseable {
 
   /**
    * Starts our timings in order to measure duration of methods or actions.
+   *
    * @return The timings object.
    */
   public Timings start() {
+
     start = System.nanoTime();
     return this;
   }
 
   /**
    * Used to build our timings with a statement for logging purposes.
+   *
    * @param statement The statement to use.
+   *
    * @return The timings instance.
    */
   public Timings withStatement(String statement) {
+
     this.statement = statement;
     return this;
   }
 
   /**
    * Stops the timings and returns the duration.
+   *
    * @return Return the duration this timing lasted.
    */
   public long stop() {
+
     this.end = System.nanoTime();
     return (end - start);
   }
 
   /**
    * Stops the timings and logs it to the console and server log.
+   *
    * @param level The DebugLevel to use for this.
    */
   public void stopLog(DebugLevel level) {
+
     this.end = System.nanoTime();
     PluginCore.log().debug(statement + (end - start), level);
   }
 
   @Override
   public void close() throws Exception {
+
     stopLog(DebugLevel.DETAILED);
   }
 }
