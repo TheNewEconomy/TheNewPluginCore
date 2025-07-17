@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.tnemc</groupId>
     <artifactId>TNPC</artifactId>
-    <version>1.1.0.0-SNAPSHOT-8</version>
+    <version>1.1.0.0-SNAPSHOT-9</version>
     <packaging>pom</packaging>
     <name>The New Plugin Core</name>
 
@@ -15,7 +15,7 @@
 
     <properties>
         <tnil.version>0.1.2.0-SNAPSHOT-17</tnil.version>
-        <tnml.version>1.7.0.0-SNAPSHOT-4</tnml.version>
+        <tnml.version>1.7.0.0-SNAPSHOT-5</tnml.version>
         <lamp.version>4.0.0-rc.12</lamp.version>
         <tne.relocation>net.tnpc.libs</tne.relocation>
         <maven.javadoc.plugin.version>3.0.1</maven.javadoc.plugin.version>
