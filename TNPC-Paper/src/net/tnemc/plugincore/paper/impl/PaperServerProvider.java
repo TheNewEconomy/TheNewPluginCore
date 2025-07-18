@@ -194,6 +194,18 @@ public class PaperServerProvider implements ServerConnector {
   }
 
   /**
+   * Creates a custom texture for a specific UUID.
+   *
+   * @param identifier The UUID to create the custom texture for.
+   * @param username   The username of the profile for which the custom texture is being created.
+   * @param texture    The custom texture data to apply to the profile.
+   */
+  @Override
+  public void createCustomTexture(final UUID identifier, final String username, final String texture) {
+
+  }
+
+  /**
    * Used to determine if this player has played on this server before.
    *
    * @param uuid The {@link UUID} that is associated with the player.
