@@ -80,6 +80,7 @@ public class SQLConnector implements StorageConnector<Connection> {
     config.setMaximumPoolSize(StorageManager.instance().settings().maxPool());
     config.setMaxLifetime(StorageManager.instance().settings().maxLife());
     config.setConnectionTimeout(StorageManager.instance().settings().timeout());
+    config.setAutoCommit(true);
 
     for(final Map.Entry<String, Object> entry : ((SQLEngine)StorageManager.instance().getEngine()).properties().entrySet()) {
       config.addDataSourceProperty(entry.getKey(), entry.getValue());

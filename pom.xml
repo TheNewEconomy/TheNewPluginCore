@@ -17,7 +17,7 @@
 
     <properties>
         <tnil.version>0.1.2.1-SNAPSHOT-4</tnil.version>
-        <tnml.version>1.7.0.1-SNAPSHOT-1</tnml.version>
+        <tnml.version>1.7.0.1-SNAPSHOT-2</tnml.version>
         <lamp.version>4.0.0-rc.12</lamp.version>
         <tne.relocation>net.tnpc.libs</tne.relocation>
         <maven.javadoc.plugin.version>3.0.1</maven.javadoc.plugin.version>
