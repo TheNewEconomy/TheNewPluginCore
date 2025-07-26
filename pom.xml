@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.tnemc</groupId>
     <artifactId>TNPC</artifactId>
-    <version>1.1.0.1-SNAPSHOT-13</version>
+    <version>1.1.0.1-SNAPSHOT-14</version>
     <packaging>pom</packaging>
     <name>The New Plugin Core</name>
 
@@ -16,7 +16,7 @@
     </modules>
 
     <properties>
-        <tnil.version>0.1.2.1-SNAPSHOT-13</tnil.version>
+        <tnil.version>0.1.2.1-SNAPSHOT-14</tnil.version>
         <tnml.version>1.7.0.1-SNAPSHOT-3</tnml.version>
         <lamp.version>4.0.0-rc.12</lamp.version>
         <tne.relocation>net.tnpc.libs</tne.relocation>
