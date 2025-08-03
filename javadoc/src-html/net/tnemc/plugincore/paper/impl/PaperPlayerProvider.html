@@ -265,12 +265,9 @@
 <span class="source-line-no">252</span><span id="line-252">    if(player.getPlayer() == null) {</span>
 <span class="source-line-no">253</span><span id="line-253">      return;</span>
 <span class="source-line-no">254</span><span id="line-254">    }</span>
-<span class="source-line-no">255</span><span id="line-255"></span>
-<span class="source-line-no">256</span><span id="line-256">    try(final BukkitAudiences provider = BukkitAudiences.create(PaperPluginCore.instance().getPlugin())) {</span>
-<span class="source-line-no">257</span><span id="line-257">      MessageHandler.translate(messageData, player.getUniqueId(), provider.sender(player.getPlayer()));</span>
-<span class="source-line-no">258</span><span id="line-258">    }</span>
-<span class="source-line-no">259</span><span id="line-259">  }</span>
-<span class="source-line-no">260</span><span id="line-260">}</span>
+<span class="source-line-no">255</span><span id="line-255">    MessageHandler.translate(messageData, player.getUniqueId(), player.getPlayer());</span>
+<span class="source-line-no">256</span><span id="line-256">  }</span>
+<span class="source-line-no">257</span><span id="line-257">}</span>
 
 
 
