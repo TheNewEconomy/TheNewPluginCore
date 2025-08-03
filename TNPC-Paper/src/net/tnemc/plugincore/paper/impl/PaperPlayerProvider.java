@@ -252,9 +252,6 @@ public class PaperPlayerProvider extends PaperPlayer implements PlayerProvider {
     if(player.getPlayer() == null) {
       return;
     }
-
-    try(final BukkitAudiences provider = BukkitAudiences.create(PaperPluginCore.instance().getPlugin())) {
-      MessageHandler.translate(messageData, player.getUniqueId(), provider.sender(player.getPlayer()));
-    }
+    MessageHandler.translate(messageData, player.getUniqueId(), player.getPlayer());
   }
 }
