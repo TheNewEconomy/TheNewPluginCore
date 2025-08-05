@@ -59,6 +59,7 @@ public class BukkitPluginCore extends PluginCore {
     return (BukkitPluginCore)PluginCore.instance();
   }
 
+  @Override
   protected void onLoad() {
 
     this.directory = plugin.getDataFolder();

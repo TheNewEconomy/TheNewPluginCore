@@ -59,6 +59,7 @@ public class PaperPluginCore extends PluginCore {
     return (PaperPluginCore)PluginCore.instance();
   }
 
+  @Override
   protected void onLoad() {
 
     this.directory = plugin.getDataFolder();

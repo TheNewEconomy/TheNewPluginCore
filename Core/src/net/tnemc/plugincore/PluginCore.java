@@ -73,6 +73,7 @@ public class PluginCore {
   protected UUID serverID;
   protected Platform platform;
   protected String version;
+  private boolean loaded = false;
   private boolean enabled = false;
 
   public PluginCore(final PluginEngine engine, final ServerConnector server, final LogProvider logger,
@@ -170,6 +171,14 @@ public class PluginCore {
     return instance.engine;
   }
 
+  public void load() {
+
+    if(loaded) {
+      throw new IllegalStateException("PluginCore has already been loaded!");
+    }
+    onLoad();
+  }
+
   protected void onLoad() {
 
     this.engine.load();
@@ -197,15 +206,13 @@ public class PluginCore {
 
   public void enable() {
 
-    if(!enabled) {
-
-      this.enabled = true;
-      this.loader = new ModuleLoader();
-      onEnable();
-
-    } else {
+    if(enabled) {
       throw new IllegalStateException("PluginCore has already been enabled!");
     }
+
+    this.enabled = true;
+    this.loader = new ModuleLoader();
+    onEnable();
   }
 
   /**
