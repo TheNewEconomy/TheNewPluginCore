@@ -49,6 +49,14 @@ public interface ServerConnector {
   String name();
 
   /**
+   * Finds a WorldProvider object based on the provided world name.
+   *
+   * @param world The name of the world to search for.
+   * @return An Optional containing the located WorldProvider object if found, or an empty Optional otherwise.
+   */
+  Optional<WorldProvider> findWorld(final String world);
+
+  /**
    * Used to replace placeholders from a string.
    *
    * @param player  The player to use for the placeholder replacement.

@@ -24,6 +24,7 @@ import net.tnemc.plugincore.core.compatibility.LogProvider;
 import net.tnemc.plugincore.core.compatibility.PlayerProvider;
 import net.tnemc.plugincore.core.compatibility.ProxyProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
+import net.tnemc.plugincore.core.compatibility.WorldProvider;
 import net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe;
 import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
 import net.tnemc.plugincore.sponge.SpongePluginCore;
@@ -32,10 +33,12 @@ import net.tnemc.sponge.SpongeItemCalculationsProvider;
 import net.tnemc.sponge.SpongeItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.world.DefaultWorldKeys;
+import org.spongepowered.api.world.server.ServerWorld;
 import revxrsal.commands.command.CommandActor;
 import revxrsal.commands.sponge.actor.SpongeCommandActor;
 
@@ -75,6 +78,21 @@ public class SpongeServerProvider implements ServerConnector {
   public String name() {
 
     return "sponge";
+  }
+
+  /**
+   * Finds a WorldProvider object based on the provided world name.
+   *
+   * @param world The name of the world to search for.
+   *
+   * @return An Optional containing the located WorldProvider object if found, or an empty Optional
+   * otherwise.
+   */
+  @Override
+  public Optional<WorldProvider> findWorld(final String world) {
+
+    final Optional<ServerWorld> worldOptional = Sponge.server().worldManager().world(ResourceKey.resolve(world));
+    return worldOptional.map(SpongeWorldProvider::new);
   }
 
   /**

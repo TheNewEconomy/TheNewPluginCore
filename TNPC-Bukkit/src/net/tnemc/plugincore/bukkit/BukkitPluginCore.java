@@ -59,14 +59,19 @@ public class BukkitPluginCore extends PluginCore {
     return (BukkitPluginCore)PluginCore.instance();
   }
 
+  protected void onLoad() {
+
+    this.directory = plugin.getDataFolder();
+
+    super.onLoad();
+  }
+
   /**
    * Used to enable the core. This should contain things that can't be initialized until after the
    * server software is operational.
    */
   @Override
   protected void onEnable() {
-
-    this.directory = plugin.getDataFolder();
 
     super.onEnable();
   }

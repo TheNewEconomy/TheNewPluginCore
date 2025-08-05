@@ -170,6 +170,27 @@ public class PluginCore {
     return instance.engine;
   }
 
+  protected void onLoad() {
+
+    if(!directory.exists()) {
+      final boolean created = directory.mkdir();
+      if(!created) {
+        logger.error("Failed to create plugin directory. Disabling plugin.", DebugLevel.OFF);
+        return;
+      }
+    }
+    this.serverID = UUID.randomUUID();
+
+    this.uuidProvider = new BaseUUIDProvider();
+
+    this.engine.registerConfigs();
+
+    this.engine.initComponents(platform, version);
+    this.engine.initRegistries(platform, version);
+
+    this.engine.registerCallbacks(callbackManager);
+  }
+
   public void enable() {
 
     if(!enabled) {
@@ -189,22 +210,6 @@ public class PluginCore {
    */
   protected void onEnable() {
 
-    if(!directory.exists()) {
-      final boolean created = directory.mkdir();
-      if(!created) {
-        logger.error("Failed to create plugin directory. Disabling plugin.", DebugLevel.OFF);
-        return;
-      }
-    }
-    this.serverID = UUID.randomUUID();
-
-    this.uuidProvider = new BaseUUIDProvider();
-
-    this.engine.registerConfigs();
-
-    this.engine.initComponents(platform, version);
-    this.engine.initRegistries(platform, version);
-
     //Load our modules
     loader.load();
 
@@ -213,8 +218,6 @@ public class PluginCore {
 
     //Call initConfigurations for all modules loaded.
     loader.getModules().values().forEach((moduleWrapper->moduleWrapper.getModule().initConfigurations(directory)));
-
-    this.engine.registerCallbacks(callbackManager);
 
     //Register the callback listeners and callbacks for the modules
     loader.getModules().values().forEach((moduleWrapper->{

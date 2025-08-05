@@ -18,7 +18,6 @@ package net.tnemc.plugincore.paper.impl;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.tnemc.menu.paper.PaperPlayer;
 import net.tnemc.plugincore.core.compatibility.Location;
 import net.tnemc.plugincore.core.compatibility.PlayerProvider;

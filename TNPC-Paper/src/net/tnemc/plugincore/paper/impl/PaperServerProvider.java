@@ -26,6 +26,7 @@ import net.tnemc.plugincore.core.compatibility.CmdSource;
 import net.tnemc.plugincore.core.compatibility.PlayerProvider;
 import net.tnemc.plugincore.core.compatibility.ProxyProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
+import net.tnemc.plugincore.core.compatibility.WorldProvider;
 import net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe;
 import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
 import net.tnemc.plugincore.paper.PaperPluginCore;
@@ -36,6 +37,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
@@ -90,6 +92,25 @@ public class PaperServerProvider implements ServerConnector {
   public String name() {
 
     return "paper";
+  }
+
+  /**
+   * Finds a WorldProvider object based on the provided world name.
+   *
+   * @param world The name of the world to search for.
+   *
+   * @return An Optional containing the located WorldProvider object if found, or an empty Optional
+   * otherwise.
+   */
+  @Override
+  public Optional<WorldProvider> findWorld(final String world) {
+
+    final World worldObj = Bukkit.getWorld(world);
+    if(worldObj == null) {
+      return Optional.empty();
+    }
+
+    return Optional.of(new PaperWorldProvider(worldObj));
   }
 
   /**
