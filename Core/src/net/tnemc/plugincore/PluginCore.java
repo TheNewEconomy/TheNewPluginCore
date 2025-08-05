@@ -172,6 +172,8 @@ public class PluginCore {
 
   protected void onLoad() {
 
+    this.engine.load();
+
     if(!directory.exists()) {
       final boolean created = directory.mkdir();
       if(!created) {
@@ -189,6 +191,8 @@ public class PluginCore {
     this.engine.initRegistries(platform, version);
 
     this.engine.registerCallbacks(callbackManager);
+
+    this.engine.postLoad();
   }
 
   public void enable() {

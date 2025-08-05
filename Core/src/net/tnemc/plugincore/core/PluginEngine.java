@@ -63,6 +63,14 @@ public abstract class PluginEngine {
 
   //TODO: onDisable
 
+  public void load() {
+
+  }
+
+  public void postLoad() {
+
+  }
+
   public abstract String versionCheckSite();
 
   /**
