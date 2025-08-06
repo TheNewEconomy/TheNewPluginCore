@@ -197,7 +197,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">BukkitChunkProvider</div>
 </dd>
-<dt><a href="net/tnemc/plugincore/bukkit/impl/BukkitChunkProvider.html#%3Cinit%3E(org.bukkit.Chunk)" class="member-name-link">BukkitChunkProvider(Chunk)</a> - Constructor for class net.tnemc.plugincore.bukkit.impl.<a href="net/tnemc/plugincore/bukkit/impl/BukkitChunkProvider.html" title="class in net.tnemc.plugincore.bukkit.impl">BukkitChunkProvider</a></dt>
+<dt><a href="net/tnemc/plugincore/bukkit/impl/BukkitChunkProvider.html#%3Cinit%3E(org.bukkit.Chunk,int)" class="member-name-link">BukkitChunkProvider(Chunk, int)</a> - Constructor for class net.tnemc.plugincore.bukkit.impl.<a href="net/tnemc/plugincore/bukkit/impl/BukkitChunkProvider.html" title="class in net.tnemc.plugincore.bukkit.impl">BukkitChunkProvider</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="net/tnemc/plugincore/bukkit/impl/BukkitCMDSource.html" class="type-name-link" title="class in net.tnemc.plugincore.bukkit.impl">BukkitCMDSource</a> - Class in <a href="net/tnemc/plugincore/bukkit/impl/package-summary.html">net.tnemc.plugincore.bukkit.impl</a></dt>
 <dd>
@@ -384,19 +384,19 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="net/tnemc/plugincore/core/compatibility/scheduler/ChoreTime.html#%3Cinit%3E(int,java.util.concurrent.TimeUnit)" class="member-name-link">ChoreTime(int, TimeUnit)</a> - Constructor for class net.tnemc.plugincore.core.compatibility.scheduler.<a href="net/tnemc/plugincore/core/compatibility/scheduler/ChoreTime.html" title="class in net.tnemc.plugincore.core.compatibility.scheduler">ChoreTime</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="net/tnemc/plugincore/bukkit/impl/BukkitWorldProvider.html#chunkProvider(int,int)" class="member-name-link">chunkProvider(int, int)</a> - Method in class net.tnemc.plugincore.bukkit.impl.<a href="net/tnemc/plugincore/bukkit/impl/BukkitWorldProvider.html" title="class in net.tnemc.plugincore.bukkit.impl">BukkitWorldProvider</a></dt>
+<dt><a href="net/tnemc/plugincore/bukkit/impl/BukkitWorldProvider.html#chunkProvider(int,int,int)" class="member-name-link">chunkProvider(int, int, int)</a> - Method in class net.tnemc.plugincore.bukkit.impl.<a href="net/tnemc/plugincore/bukkit/impl/BukkitWorldProvider.html" title="class in net.tnemc.plugincore.bukkit.impl">BukkitWorldProvider</a></dt>
 <dd>
 <div class="block">Retrieves a ChunkProvider object based on the provided coordinates.</div>
 </dd>
-<dt><a href="net/tnemc/plugincore/core/compatibility/WorldProvider.html#chunkProvider(int,int)" class="member-name-link">chunkProvider(int, int)</a> - Method in interface net.tnemc.plugincore.core.compatibility.<a href="net/tnemc/plugincore/core/compatibility/WorldProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">WorldProvider</a></dt>
+<dt><a href="net/tnemc/plugincore/core/compatibility/WorldProvider.html#chunkProvider(int,int,int)" class="member-name-link">chunkProvider(int, int, int)</a> - Method in interface net.tnemc.plugincore.core.compatibility.<a href="net/tnemc/plugincore/core/compatibility/WorldProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">WorldProvider</a></dt>
 <dd>
 <div class="block">Retrieves a ChunkProvider object based on the provided coordinates.</div>
 </dd>
-<dt><a href="net/tnemc/plugincore/paper/impl/PaperWorldProvider.html#chunkProvider(int,int)" class="member-name-link">chunkProvider(int, int)</a> - Method in class net.tnemc.plugincore.paper.impl.<a href="net/tnemc/plugincore/paper/impl/PaperWorldProvider.html" title="class in net.tnemc.plugincore.paper.impl">PaperWorldProvider</a></dt>
+<dt><a href="net/tnemc/plugincore/paper/impl/PaperWorldProvider.html#chunkProvider(int,int,int)" class="member-name-link">chunkProvider(int, int, int)</a> - Method in class net.tnemc.plugincore.paper.impl.<a href="net/tnemc/plugincore/paper/impl/PaperWorldProvider.html" title="class in net.tnemc.plugincore.paper.impl">PaperWorldProvider</a></dt>
 <dd>
 <div class="block">Retrieves a ChunkProvider object based on the provided coordinates.</div>
 </dd>
-<dt><a href="net/tnemc/plugincore/sponge/impl/SpongeWorldProvider.html#chunkProvider(int,int)" class="member-name-link">chunkProvider(int, int)</a> - Method in class net.tnemc.plugincore.sponge.impl.<a href="net/tnemc/plugincore/sponge/impl/SpongeWorldProvider.html" title="class in net.tnemc.plugincore.sponge.impl">SpongeWorldProvider</a></dt>
+<dt><a href="net/tnemc/plugincore/sponge/impl/SpongeWorldProvider.html#chunkProvider(int,int,int)" class="member-name-link">chunkProvider(int, int, int)</a> - Method in class net.tnemc.plugincore.sponge.impl.<a href="net/tnemc/plugincore/sponge/impl/SpongeWorldProvider.html" title="class in net.tnemc.plugincore.sponge.impl">SpongeWorldProvider</a></dt>
 <dd>
 <div class="block">Retrieves a ChunkProvider object based on the provided coordinates.</div>
 </dd>
@@ -1034,6 +1034,8 @@ loadScripts(document, 'script');</script>
 <dt><a href="net/tnemc/plugincore/PluginCore.html#getChannelMessageManager()" class="member-name-link">getChannelMessageManager()</a> - Method in class net.tnemc.plugincore.<a href="net/tnemc/plugincore/PluginCore.html" title="class in net.tnemc.plugincore">PluginCore</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="net/tnemc/plugincore/core/compatibility/Location.html#getChunkX()" class="member-name-link">getChunkX()</a> - Method in class net.tnemc.plugincore.core.compatibility.<a href="net/tnemc/plugincore/core/compatibility/Location.html" title="class in net.tnemc.plugincore.core.compatibility">Location</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="net/tnemc/plugincore/core/compatibility/Location.html#getChunkY()" class="member-name-link">getChunkY()</a> - Method in class net.tnemc.plugincore.core.compatibility.<a href="net/tnemc/plugincore/core/compatibility/Location.html" title="class in net.tnemc.plugincore.core.compatibility">Location</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="net/tnemc/plugincore/core/compatibility/Location.html#getChunkZ()" class="member-name-link">getChunkZ()</a> - Method in class net.tnemc.plugincore.core.compatibility.<a href="net/tnemc/plugincore/core/compatibility/Location.html" title="class in net.tnemc.plugincore.core.compatibility">Location</a></dt>
 <dd>&nbsp;</dd>
@@ -2171,7 +2173,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">PaperChunkProvider</div>
 </dd>
-<dt><a href="net/tnemc/plugincore/paper/impl/PaperChunkProvider.html#%3Cinit%3E(org.bukkit.Chunk)" class="member-name-link">PaperChunkProvider(Chunk)</a> - Constructor for class net.tnemc.plugincore.paper.impl.<a href="net/tnemc/plugincore/paper/impl/PaperChunkProvider.html" title="class in net.tnemc.plugincore.paper.impl">PaperChunkProvider</a></dt>
+<dt><a href="net/tnemc/plugincore/paper/impl/PaperChunkProvider.html#%3Cinit%3E(org.bukkit.Chunk,int)" class="member-name-link">PaperChunkProvider(Chunk, int)</a> - Constructor for class net.tnemc.plugincore.paper.impl.<a href="net/tnemc/plugincore/paper/impl/PaperChunkProvider.html" title="class in net.tnemc.plugincore.paper.impl">PaperChunkProvider</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="net/tnemc/plugincore/paper/impl/PaperCMDSource.html" class="type-name-link" title="class in net.tnemc.plugincore.paper.impl">PaperCMDSource</a> - Class in <a href="net/tnemc/plugincore/paper/impl/package-summary.html">net.tnemc.plugincore.paper.impl</a></dt>
 <dd>
@@ -2867,6 +2869,22 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Used to convert an <code>CommandActor</code> to a <a href="net/tnemc/plugincore/core/compatibility/CmdSource.html" title="class in net.tnemc.plugincore.core.compatibility"><code>CmdSource</code></a>.</div>
 </dd>
+<dt><a href="net/tnemc/plugincore/bukkit/impl/BukkitWorldProvider.html#spawn()" class="member-name-link">spawn()</a> - Method in class net.tnemc.plugincore.bukkit.impl.<a href="net/tnemc/plugincore/bukkit/impl/BukkitWorldProvider.html" title="class in net.tnemc.plugincore.bukkit.impl">BukkitWorldProvider</a></dt>
+<dd>
+<div class="block">Retrieves the spawn location.</div>
+</dd>
+<dt><a href="net/tnemc/plugincore/core/compatibility/WorldProvider.html#spawn()" class="member-name-link">spawn()</a> - Method in interface net.tnemc.plugincore.core.compatibility.<a href="net/tnemc/plugincore/core/compatibility/WorldProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">WorldProvider</a></dt>
+<dd>
+<div class="block">Retrieves the spawn location.</div>
+</dd>
+<dt><a href="net/tnemc/plugincore/paper/impl/PaperWorldProvider.html#spawn()" class="member-name-link">spawn()</a> - Method in class net.tnemc.plugincore.paper.impl.<a href="net/tnemc/plugincore/paper/impl/PaperWorldProvider.html" title="class in net.tnemc.plugincore.paper.impl">PaperWorldProvider</a></dt>
+<dd>
+<div class="block">Retrieves the spawn location.</div>
+</dd>
+<dt><a href="net/tnemc/plugincore/sponge/impl/SpongeWorldProvider.html#spawn()" class="member-name-link">spawn()</a> - Method in class net.tnemc.plugincore.sponge.impl.<a href="net/tnemc/plugincore/sponge/impl/SpongeWorldProvider.html" title="class in net.tnemc.plugincore.sponge.impl">SpongeWorldProvider</a></dt>
+<dd>
+<div class="block">Retrieves the spawn location.</div>
+</dd>
 <dt><a href="net/tnemc/plugincore/core/Platform.html#SPONGE_8" class="member-name-link">SPONGE_8</a> - Enum constant in enum class net.tnemc.plugincore.core.<a href="net/tnemc/plugincore/core/Platform.html" title="enum class in net.tnemc.plugincore.core">Platform</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="net/tnemc/plugincore/sponge/impl/scheduler/SpongeChore.html" class="type-name-link" title="class in net.tnemc.plugincore.sponge.impl.scheduler">SpongeChore</a> - Class in <a href="net/tnemc/plugincore/sponge/impl/scheduler/package-summary.html">net.tnemc.plugincore.sponge.impl.scheduler</a></dt>
@@ -2879,7 +2897,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">SpongeChunkProvider</div>
 </dd>
-<dt><a href="net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#%3Cinit%3E()" class="member-name-link">SpongeChunkProvider()</a> - Constructor for class net.tnemc.plugincore.sponge.impl.<a href="net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html" title="class in net.tnemc.plugincore.sponge.impl">SpongeChunkProvider</a></dt>
+<dt><a href="net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#%3Cinit%3E(org.spongepowered.api.world.chunk.WorldChunk)" class="member-name-link">SpongeChunkProvider(WorldChunk)</a> - Constructor for class net.tnemc.plugincore.sponge.impl.<a href="net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html" title="class in net.tnemc.plugincore.sponge.impl">SpongeChunkProvider</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="net/tnemc/plugincore/sponge/impl/SpongeCMDSource.html" class="type-name-link" title="class in net.tnemc.plugincore.sponge.impl">SpongeCMDSource</a> - Class in <a href="net/tnemc/plugincore/sponge/impl/package-summary.html">net.tnemc.plugincore.sponge.impl</a></dt>
 <dd>
@@ -3407,23 +3425,39 @@ the order they are declared.</div>
 <dl class="index">
 <dt><a href="net/tnemc/plugincore/bukkit/impl/BukkitChunkProvider.html#x()" class="member-name-link">x()</a> - Method in class net.tnemc.plugincore.bukkit.impl.<a href="net/tnemc/plugincore/bukkit/impl/BukkitChunkProvider.html" title="class in net.tnemc.plugincore.bukkit.impl">BukkitChunkProvider</a></dt>
 <dd>
-<div class="block">This method is responsible for calculating and returning an integer value.</div>
+<div class="block">This method is used to get the chunk's x coordinate.</div>
 </dd>
 <dt><a href="net/tnemc/plugincore/core/compatibility/ChunkProvider.html#x()" class="member-name-link">x()</a> - Method in interface net.tnemc.plugincore.core.compatibility.<a href="net/tnemc/plugincore/core/compatibility/ChunkProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ChunkProvider</a></dt>
 <dd>
-<div class="block">This method is responsible for calculating and returning an integer value.</div>
+<div class="block">This method is used to get the chunk's x coordinate.</div>
 </dd>
 <dt><a href="net/tnemc/plugincore/paper/impl/PaperChunkProvider.html#x()" class="member-name-link">x()</a> - Method in class net.tnemc.plugincore.paper.impl.<a href="net/tnemc/plugincore/paper/impl/PaperChunkProvider.html" title="class in net.tnemc.plugincore.paper.impl">PaperChunkProvider</a></dt>
 <dd>
-<div class="block">This method is responsible for calculating and returning an integer value.</div>
+<div class="block">This method is used to get the chunk's x coordinate.</div>
 </dd>
 <dt><a href="net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#x()" class="member-name-link">x()</a> - Method in class net.tnemc.plugincore.sponge.impl.<a href="net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html" title="class in net.tnemc.plugincore.sponge.impl">SpongeChunkProvider</a></dt>
 <dd>
-<div class="block">This method is responsible for calculating and returning an integer value.</div>
+<div class="block">This method is used to get the chunk's x coordinate.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:Y">Y</h2>
 <dl class="index">
+<dt><a href="net/tnemc/plugincore/bukkit/impl/BukkitChunkProvider.html#y()" class="member-name-link">y()</a> - Method in class net.tnemc.plugincore.bukkit.impl.<a href="net/tnemc/plugincore/bukkit/impl/BukkitChunkProvider.html" title="class in net.tnemc.plugincore.bukkit.impl">BukkitChunkProvider</a></dt>
+<dd>
+<div class="block">This method is used to get the chunk's y coordinate.</div>
+</dd>
+<dt><a href="net/tnemc/plugincore/core/compatibility/ChunkProvider.html#y()" class="member-name-link">y()</a> - Method in interface net.tnemc.plugincore.core.compatibility.<a href="net/tnemc/plugincore/core/compatibility/ChunkProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ChunkProvider</a></dt>
+<dd>
+<div class="block">This method is used to get the chunk's y coordinate.</div>
+</dd>
+<dt><a href="net/tnemc/plugincore/paper/impl/PaperChunkProvider.html#y()" class="member-name-link">y()</a> - Method in class net.tnemc.plugincore.paper.impl.<a href="net/tnemc/plugincore/paper/impl/PaperChunkProvider.html" title="class in net.tnemc.plugincore.paper.impl">PaperChunkProvider</a></dt>
+<dd>
+<div class="block">This method is used to get the chunk's y coordinate.</div>
+</dd>
+<dt><a href="net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#y()" class="member-name-link">y()</a> - Method in class net.tnemc.plugincore.sponge.impl.<a href="net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html" title="class in net.tnemc.plugincore.sponge.impl">SpongeChunkProvider</a></dt>
+<dd>
+<div class="block">This method is used to get the chunk's y coordinate.</div>
+</dd>
 <dt><a href="net/tnemc/plugincore/core/io/storage/engine/flat/YAML.html" class="type-name-link" title="class in net.tnemc.plugincore.core.io.storage.engine.flat">YAML</a> - Class in <a href="net/tnemc/plugincore/core/io/storage/engine/flat/package-summary.html">net.tnemc.plugincore.core.io.storage.engine.flat</a></dt>
 <dd>
 <div class="block">YAML</div>
@@ -3441,7 +3475,7 @@ the order they are declared.</div>
 <dl class="index">
 <dt><a href="net/tnemc/plugincore/bukkit/impl/BukkitChunkProvider.html#z()" class="member-name-link">z()</a> - Method in class net.tnemc.plugincore.bukkit.impl.<a href="net/tnemc/plugincore/bukkit/impl/BukkitChunkProvider.html" title="class in net.tnemc.plugincore.bukkit.impl">BukkitChunkProvider</a></dt>
 <dd>
-<div class="block">This method is responsible for returning a value of type int.</div>
+<div class="block">This method is used to get the chunk's z coordinate.</div>
 </dd>
 <dt><a href="net/tnemc/plugincore/core/compatibility/ChunkProvider.html#z()" class="member-name-link">z()</a> - Method in interface net.tnemc.plugincore.core.compatibility.<a href="net/tnemc/plugincore/core/compatibility/ChunkProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ChunkProvider</a></dt>
 <dd>
@@ -3449,11 +3483,11 @@ the order they are declared.</div>
 </dd>
 <dt><a href="net/tnemc/plugincore/paper/impl/PaperChunkProvider.html#z()" class="member-name-link">z()</a> - Method in class net.tnemc.plugincore.paper.impl.<a href="net/tnemc/plugincore/paper/impl/PaperChunkProvider.html" title="class in net.tnemc.plugincore.paper.impl">PaperChunkProvider</a></dt>
 <dd>
-<div class="block">This method is responsible for returning a value of type int.</div>
+<div class="block">This method is used to get the chunk's z coordinate.</div>
 </dd>
 <dt><a href="net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#z()" class="member-name-link">z()</a> - Method in class net.tnemc.plugincore.sponge.impl.<a href="net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html" title="class in net.tnemc.plugincore.sponge.impl">SpongeChunkProvider</a></dt>
 <dd>
-<div class="block">This method is responsible for returning a value of type int.</div>
+<div class="block">This method is used to get the chunk's z coordinate.</div>
 </dd>
 </dl>
 <a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:Q">Q</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<a href="#I:X">X</a>&nbsp;<a href="#I:Y">Y</a>&nbsp;<a href="#I:Z">Z</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a></main>

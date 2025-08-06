@@ -94,7 +94,7 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="../../core/compatibility/ChunkProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ChunkProvider</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public class </span><span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-29">SpongeChunkProvider</a></span>
+<div class="type-signature"><span class="modifiers">public class </span><span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-30">SpongeChunkProvider</a></span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="../../core/compatibility/ChunkProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ChunkProvider</a></span></div>
 <div class="block">SpongeChunkProvider</div>
@@ -115,7 +115,7 @@ implements <a href="../../core/compatibility/ChunkProvider.html" title="interfac
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">SpongeChunkProvider</a>()</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.spongepowered.api.world.chunk.WorldChunk)" class="member-name-link">SpongeChunkProvider</a><wbr>(org.spongepowered.api.world.chunk.WorldChunk&nbsp;chunk)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -149,12 +149,17 @@ implements <a href="../../core/compatibility/ChunkProvider.html" title="interfac
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#x()" class="member-name-link">x</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">This method is responsible for calculating and returning an integer value.</div>
+<div class="block">This method is used to get the chunk's x coordinate.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#z()" class="member-name-link">z</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#y()" class="member-name-link">y</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">This method is responsible for returning a value of type int.</div>
+<div class="block">This method is used to get the chunk's y coordinate.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#z()" class="member-name-link">z</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">This method is used to get the chunk's z coordinate.</div>
 </div>
 </div>
 </div>
@@ -177,9 +182,9 @@ implements <a href="../../core/compatibility/ChunkProvider.html" title="interfac
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;()">
+<section class="detail" id="&lt;init&gt;(org.spongepowered.api.world.chunk.WorldChunk)">
 <h3>SpongeChunkProvider</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-29">SpongeChunkProvider</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-34">SpongeChunkProvider</a></span><wbr><span class="parameters">(org.spongepowered.api.world.chunk.WorldChunk&nbsp;chunk)</span></div>
 </section>
 </li>
 </ul>
@@ -193,34 +198,46 @@ implements <a href="../../core/compatibility/ChunkProvider.html" title="interfac
 <li>
 <section class="detail" id="x()">
 <h3>x</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-36">x</a></span>()</div>
-<div class="block">This method is responsible for calculating and returning an integer value.</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-43">x</a></span>()</div>
+<div class="block">This method is used to get the chunk's x coordinate.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../core/compatibility/ChunkProvider.html#x()">x</a></code>&nbsp;in interface&nbsp;<code><a href="../../core/compatibility/ChunkProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ChunkProvider</a></code></dd>
 <dt>Returns:</dt>
-<dd>The calculated integer value.</dd>
+<dd>The chunk's x coordinate.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="y()">
+<h3>y</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-54">y</a></span>()</div>
+<div class="block">This method is used to get the chunk's y coordinate.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../core/compatibility/ChunkProvider.html#y()">y</a></code>&nbsp;in interface&nbsp;<code><a href="../../core/compatibility/ChunkProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ChunkProvider</a></code></dd>
+<dt>Returns:</dt>
+<dd>The chunk's y coordinate.</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="z()">
 <h3>z</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-48">z</a></span>()</div>
-<div class="block">This method is responsible for returning a value of type int. The specific logic and
- calculations performed to determine this value are not documented.</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-65">z</a></span>()</div>
+<div class="block">This method is used to get the chunk's z coordinate.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../core/compatibility/ChunkProvider.html#z()">z</a></code>&nbsp;in interface&nbsp;<code><a href="../../core/compatibility/ChunkProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ChunkProvider</a></code></dd>
 <dt>Returns:</dt>
-<dd>The integer value calculated by the method.</dd>
+<dd>The chunk's z coordinate.</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isSlime()">
 <h3>isSlime</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-59">isSlime</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-76">isSlime</a></span>()</div>
 <div class="block">Checks if the ChunkProvider represents a slime chunk.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -233,7 +250,7 @@ implements <a href="../../core/compatibility/ChunkProvider.html" title="interfac
 <li>
 <section class="detail" id="containsBiome(java.lang.String)">
 <h3>containsBiome</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-72">containsBiome</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-89">containsBiome</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;biome)</span></div>
 <div class="block">Checks if the specified biome is contained within the chunk provider.</div>
 <dl class="notes">
@@ -249,7 +266,7 @@ implements <a href="../../core/compatibility/ChunkProvider.html" title="interfac
 <li>
 <section class="detail" id="containsStructure(java.lang.String)">
 <h3>containsStructure</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-85">containsStructure</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/sponge/impl/SpongeChunkProvider.html#line-102">containsStructure</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;structure)</span></div>
 <div class="block">Checks if the provided structure is contained.</div>
 <dl class="notes">

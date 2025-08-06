@@ -141,11 +141,16 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#x()" class="member-name-link">x</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">This method is responsible for calculating and returning an integer value.</div>
+<div class="block">This method is used to get the chunk's x coordinate.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#z()" class="member-name-link">z</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#y()" class="member-name-link">y</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">This method is used to get the chunk's y coordinate.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#z()" class="member-name-link">z</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">This method is responsible for returning a value of type int.</div>
 </div>
 </div>
@@ -166,17 +171,28 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="x()">
 <h3>x</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-37">x</a></span>()</div>
-<div class="block">This method is responsible for calculating and returning an integer value.</div>
+<div class="block">This method is used to get the chunk's x coordinate.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The calculated integer value.</dd>
+<dd>The chunk's x coordinate.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="y()">
+<h3>y</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-44">y</a></span>()</div>
+<div class="block">This method is used to get the chunk's y coordinate.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The chunk's y coordinate.</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="z()">
 <h3>z</h3>
-<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-45">z</a></span>()</div>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-54">z</a></span>()</div>
 <div class="block">This method is responsible for returning a value of type int. The specific logic and calculations
  performed to determine this value are not documented.</div>
 <dl class="notes">
@@ -188,7 +204,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="isSlime()">
 <h3>isSlime</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-52">isSlime</a></span>()</div>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-61">isSlime</a></span>()</div>
 <div class="block">Checks if the ChunkProvider represents a slime chunk.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -199,7 +215,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="containsBiome(java.lang.String)">
 <h3>containsBiome</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-60">containsBiome</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-69">containsBiome</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;biome)</span></div>
 <div class="block">Checks if the specified biome is contained within the chunk provider.</div>
 <dl class="notes">
@@ -213,7 +229,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="containsBiomes(java.util.List)">
 <h3>containsBiomes</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-68">containsBiomes</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-77">containsBiomes</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;biomes)</span></div>
 <div class="block">Checks if the provided list of biomes contains any of the specified biomes.</div>
 <dl class="notes">
@@ -227,7 +243,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="containsStructure(java.lang.String)">
 <h3>containsStructure</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-84">containsStructure</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-93">containsStructure</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;structure)</span></div>
 <div class="block">Checks if the provided structure is contained.</div>
 <dl class="notes">
@@ -241,7 +257,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="containsStructures(java.util.List)">
 <h3>containsStructures</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-92">containsStructures</a></span><wbr><span class="parameters">(@NotNull
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/ChunkProvider.html#line-101">containsStructures</a></span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;structures)</span></div>
 <div class="block">Checks if the provided list of structures contains any structures.</div>
 <dl class="notes">

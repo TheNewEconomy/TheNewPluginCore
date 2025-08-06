@@ -46,7 +46,7 @@
 <span class="source-line-no">033</span><span id="line-33">  private double y;</span>
 <span class="source-line-no">034</span><span id="line-34">  private double z;</span>
 <span class="source-line-no">035</span><span id="line-35"></span>
-<span class="source-line-no">036</span><span id="line-36">  public Location(String world, double x, double y, double z) {</span>
+<span class="source-line-no">036</span><span id="line-36">  public Location(final String world, final double x, final double y, final double z) {</span>
 <span class="source-line-no">037</span><span id="line-37"></span>
 <span class="source-line-no">038</span><span id="line-38">    this.world = world;</span>
 <span class="source-line-no">039</span><span id="line-39">    this.x = x;</span>
@@ -59,7 +59,7 @@
 <span class="source-line-no">046</span><span id="line-46">    return world;</span>
 <span class="source-line-no">047</span><span id="line-47">  }</span>
 <span class="source-line-no">048</span><span id="line-48"></span>
-<span class="source-line-no">049</span><span id="line-49">  public void setWorld(String world) {</span>
+<span class="source-line-no">049</span><span id="line-49">  public void setWorld(final String world) {</span>
 <span class="source-line-no">050</span><span id="line-50"></span>
 <span class="source-line-no">051</span><span id="line-51">    this.world = world;</span>
 <span class="source-line-no">052</span><span id="line-52">  }</span>
@@ -69,46 +69,51 @@
 <span class="source-line-no">056</span><span id="line-56">    return (int)(x / 16);</span>
 <span class="source-line-no">057</span><span id="line-57">  }</span>
 <span class="source-line-no">058</span><span id="line-58"></span>
-<span class="source-line-no">059</span><span id="line-59">  public int getChunkZ() {</span>
+<span class="source-line-no">059</span><span id="line-59">  public int getChunkY() {</span>
 <span class="source-line-no">060</span><span id="line-60"></span>
-<span class="source-line-no">061</span><span id="line-61">    return (int)(z / 16);</span>
+<span class="source-line-no">061</span><span id="line-61">    return (int)(y / 16);</span>
 <span class="source-line-no">062</span><span id="line-62">  }</span>
 <span class="source-line-no">063</span><span id="line-63"></span>
-<span class="source-line-no">064</span><span id="line-64">  public double distance(@NotNull final Location location) {</span>
+<span class="source-line-no">064</span><span id="line-64">  public int getChunkZ() {</span>
 <span class="source-line-no">065</span><span id="line-65"></span>
-<span class="source-line-no">066</span><span id="line-66">    return Math.sqrt(Math.pow(x - location.x, 2) + Math.pow(y - location.y, 2) + Math.pow(z - location.z, 2));</span>
+<span class="source-line-no">066</span><span id="line-66">    return (int)(z / 16);</span>
 <span class="source-line-no">067</span><span id="line-67">  }</span>
 <span class="source-line-no">068</span><span id="line-68"></span>
-<span class="source-line-no">069</span><span id="line-69">  public double getX() {</span>
+<span class="source-line-no">069</span><span id="line-69">  public double distance(@NotNull final Location location) {</span>
 <span class="source-line-no">070</span><span id="line-70"></span>
-<span class="source-line-no">071</span><span id="line-71">    return x;</span>
+<span class="source-line-no">071</span><span id="line-71">    return Math.sqrt(Math.pow(x - location.x, 2) + Math.pow(y - location.y, 2) + Math.pow(z - location.z, 2));</span>
 <span class="source-line-no">072</span><span id="line-72">  }</span>
 <span class="source-line-no">073</span><span id="line-73"></span>
-<span class="source-line-no">074</span><span id="line-74">  public void setX(double x) {</span>
+<span class="source-line-no">074</span><span id="line-74">  public double getX() {</span>
 <span class="source-line-no">075</span><span id="line-75"></span>
-<span class="source-line-no">076</span><span id="line-76">    this.x = x;</span>
+<span class="source-line-no">076</span><span id="line-76">    return x;</span>
 <span class="source-line-no">077</span><span id="line-77">  }</span>
 <span class="source-line-no">078</span><span id="line-78"></span>
-<span class="source-line-no">079</span><span id="line-79">  public double getY() {</span>
+<span class="source-line-no">079</span><span id="line-79">  public void setX(final double x) {</span>
 <span class="source-line-no">080</span><span id="line-80"></span>
-<span class="source-line-no">081</span><span id="line-81">    return y;</span>
+<span class="source-line-no">081</span><span id="line-81">    this.x = x;</span>
 <span class="source-line-no">082</span><span id="line-82">  }</span>
 <span class="source-line-no">083</span><span id="line-83"></span>
-<span class="source-line-no">084</span><span id="line-84">  public void setY(double y) {</span>
+<span class="source-line-no">084</span><span id="line-84">  public double getY() {</span>
 <span class="source-line-no">085</span><span id="line-85"></span>
-<span class="source-line-no">086</span><span id="line-86">    this.y = y;</span>
+<span class="source-line-no">086</span><span id="line-86">    return y;</span>
 <span class="source-line-no">087</span><span id="line-87">  }</span>
 <span class="source-line-no">088</span><span id="line-88"></span>
-<span class="source-line-no">089</span><span id="line-89">  public double getZ() {</span>
+<span class="source-line-no">089</span><span id="line-89">  public void setY(final double y) {</span>
 <span class="source-line-no">090</span><span id="line-90"></span>
-<span class="source-line-no">091</span><span id="line-91">    return z;</span>
+<span class="source-line-no">091</span><span id="line-91">    this.y = y;</span>
 <span class="source-line-no">092</span><span id="line-92">  }</span>
 <span class="source-line-no">093</span><span id="line-93"></span>
-<span class="source-line-no">094</span><span id="line-94">  public void setZ(double z) {</span>
+<span class="source-line-no">094</span><span id="line-94">  public double getZ() {</span>
 <span class="source-line-no">095</span><span id="line-95"></span>
-<span class="source-line-no">096</span><span id="line-96">    this.z = z;</span>
+<span class="source-line-no">096</span><span id="line-96">    return z;</span>
 <span class="source-line-no">097</span><span id="line-97">  }</span>
-<span class="source-line-no">098</span><span id="line-98">}</span>
+<span class="source-line-no">098</span><span id="line-98"></span>
+<span class="source-line-no">099</span><span id="line-99">  public void setZ(final double z) {</span>
+<span class="source-line-no">100</span><span id="line-100"></span>
+<span class="source-line-no">101</span><span id="line-101">    this.z = z;</span>
+<span class="source-line-no">102</span><span id="line-102">  }</span>
+<span class="source-line-no">103</span><span id="line-103">}</span>
 
 
 

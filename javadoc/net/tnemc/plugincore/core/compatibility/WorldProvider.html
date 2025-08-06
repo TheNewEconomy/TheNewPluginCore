@@ -114,7 +114,8 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="ChunkProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ChunkProvider</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#chunkProvider(int,int)" class="member-name-link">chunkProvider</a><wbr>(int&nbsp;x,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#chunkProvider(int,int,int)" class="member-name-link">chunkProvider</a><wbr>(int&nbsp;x,
+ int&nbsp;y,
  int&nbsp;z)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Retrieves a ChunkProvider object based on the provided coordinates.</div>
@@ -139,14 +140,19 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Returns the name associated with this object.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#weather()" class="member-name-link">weather</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@NotNull <a href="Location.html" title="class in net.tnemc.plugincore.core.compatibility">Location</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#spawn()" class="member-name-link">spawn</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Retrieves the spawn location.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>@NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#weather()" class="member-name-link">weather</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Retrieves the current weather conditions.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>long</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#worldTime()" class="member-name-link">worldTime</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>long</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#worldTime()" class="member-name-link">worldTime</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Retrieves the current world time.</div>
 </div>
 </div>
@@ -188,10 +194,22 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="spawn()">
+<h3>spawn</h3>
+<div class="member-signature"><span class="annotations">@NotNull
+</span><span class="return-type">@NotNull <a href="Location.html" title="class in net.tnemc.plugincore.core.compatibility">Location</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/WorldProvider.html#line-49">spawn</a></span>()</div>
+<div class="block">Retrieves the spawn location.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>a Location object representing the spawn location.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="moonPhase()">
 <h3>moonPhase</h3>
 <div class="member-signature"><span class="annotations">@NotNull
-</span><span class="return-type">@NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/WorldProvider.html#line-49">moonPhase</a></span>()</div>
+</span><span class="return-type">@NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/WorldProvider.html#line-56">moonPhase</a></span>()</div>
 <div class="block">Retrieves the phase of the moon.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -203,7 +221,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="weather()">
 <h3>weather</h3>
 <div class="member-signature"><span class="annotations">@NotNull
-</span><span class="return-type">@NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/WorldProvider.html#line-56">weather</a></span>()</div>
+</span><span class="return-type">@NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/WorldProvider.html#line-63">weather</a></span>()</div>
 <div class="block">Retrieves the current weather conditions.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -214,7 +232,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="worldTime()">
 <h3>worldTime</h3>
-<div class="member-signature"><span class="return-type">long</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/WorldProvider.html#line-63">worldTime</a></span>()</div>
+<div class="member-signature"><span class="return-type">long</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/WorldProvider.html#line-70">worldTime</a></span>()</div>
 <div class="block">Retrieves the current world time.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -225,7 +243,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="gameTime()">
 <h3>gameTime</h3>
-<div class="member-signature"><span class="return-type">long</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/WorldProvider.html#line-70">gameTime</a></span>()</div>
+<div class="member-signature"><span class="return-type">long</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/WorldProvider.html#line-77">gameTime</a></span>()</div>
 <div class="block">Returns the current game time.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -234,14 +252,16 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="chunkProvider(int,int)">
+<section class="detail" id="chunkProvider(int,int,int)">
 <h3>chunkProvider</h3>
-<div class="member-signature"><span class="return-type"><a href="ChunkProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ChunkProvider</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/WorldProvider.html#line-79">chunkProvider</a></span><wbr><span class="parameters">(int&nbsp;x,
+<div class="member-signature"><span class="return-type"><a href="ChunkProvider.html" title="interface in net.tnemc.plugincore.core.compatibility">ChunkProvider</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/compatibility/WorldProvider.html#line-86">chunkProvider</a></span><wbr><span class="parameters">(int&nbsp;x,
+ int&nbsp;y,
  int&nbsp;z)</span></div>
 <div class="block">Retrieves a ChunkProvider object based on the provided coordinates.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>x</code> - The x-coordinate for the ChunkProvider.</dd>
+<dd><code>y</code> - The y-coordinate for the ChunkProvider.</dd>
 <dd><code>z</code> - The z-coordinate for the ChunkProvider.</dd>
 <dt>Returns:</dt>
 <dd>A ChunkProvider object that handles chunk-related operations for the specified coordinates.</dd>
