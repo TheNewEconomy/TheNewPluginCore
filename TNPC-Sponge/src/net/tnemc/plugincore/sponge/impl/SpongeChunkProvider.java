@@ -19,6 +19,7 @@ package net.tnemc.plugincore.sponge.impl;
 
 import net.tnemc.plugincore.core.compatibility.ChunkProvider;
 import org.jetbrains.annotations.NotNull;
+import org.spongepowered.api.world.chunk.WorldChunk;
 
 /**
  * SpongeChunkProvider
@@ -28,27 +29,43 @@ import org.jetbrains.annotations.NotNull;
  */
 public class SpongeChunkProvider implements ChunkProvider {
 
+  protected final WorldChunk chunk;
+
+  public SpongeChunkProvider(final WorldChunk chunk) {
+    this.chunk = chunk;
+  }
+
   /**
-   * This method is responsible for calculating and returning an integer value.
+   * This method is used to get the chunk's x coordinate.
    *
-   * @return The calculated integer value.
+   * @return The chunk's x coordinate.
    */
   @Override
   public int x() {
 
-    return 0;
+    return chunk.chunkPosition().x();
   }
 
   /**
-   * This method is responsible for returning a value of type int. The specific logic and
-   * calculations performed to determine this value are not documented.
+   * This method is used to get the chunk's y coordinate.
    *
-   * @return The integer value calculated by the method.
+   * @return The chunk's y coordinate.
+   */
+  @Override
+  public int y() {
+
+    return chunk.chunkPosition().y();
+  }
+
+  /**
+   * This method is used to get the chunk's z coordinate.
+   *
+   * @return The chunk's z coordinate.
    */
   @Override
   public int z() {
 
-    return 0;
+    return chunk.chunkPosition().z();
   }
 
   /**

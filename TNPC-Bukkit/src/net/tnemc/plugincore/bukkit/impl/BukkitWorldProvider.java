@@ -18,6 +18,7 @@ package net.tnemc.plugincore.bukkit.impl;
  */
 
 import net.tnemc.plugincore.core.compatibility.ChunkProvider;
+import net.tnemc.plugincore.core.compatibility.Location;
 import net.tnemc.plugincore.core.compatibility.WorldProvider;
 import org.bukkit.World;
 import org.jetbrains.annotations.NotNull;
@@ -56,6 +57,19 @@ public class BukkitWorldProvider implements WorldProvider {
   public @NotNull String dimension() {
 
     return world.getEnvironment().name();
+  }
+
+  /**
+   * Retrieves the spawn location.
+   *
+   * @return a Location object representing the spawn location.
+   */
+  @Override
+  public @NotNull Location spawn() {
+
+    final org.bukkit.Location spawn = world.getSpawnLocation();
+
+    return new Location(name(), spawn.getX(), spawn.getY(), spawn.getZ());
   }
 
   /**
@@ -115,14 +129,15 @@ public class BukkitWorldProvider implements WorldProvider {
    * Retrieves a ChunkProvider object based on the provided coordinates.
    *
    * @param x The x-coordinate for the ChunkProvider.
+   * @param y The y-coordinate for the ChunkProvider.
    * @param z The z-coordinate for the ChunkProvider.
    *
    * @return A ChunkProvider object that handles chunk-related operations for the specified
    * coordinates.
    */
   @Override
-  public ChunkProvider chunkProvider(final int x, final int z) {
+  public ChunkProvider chunkProvider(final int x, final int y, final int z) {
 
-    return new BukkitChunkProvider(world.getChunkAt(x, z));
+    return new BukkitChunkProvider(world.getChunkAt(x, z), y);
   }
 }

@@ -40,16 +40,18 @@ import java.util.Locale;
 public class PaperChunkProvider implements ChunkProvider {
 
   private final Chunk chunk;
+  private final int y;
 
-  public PaperChunkProvider(final Chunk chunk) {
+  public PaperChunkProvider(final Chunk chunk, final int y) {
 
     this.chunk = chunk;
+    this.y = y;
   }
 
   /**
-   * This method is responsible for calculating and returning an integer value.
+   * This method is used to get the chunk's x coordinate.
    *
-   * @return The calculated integer value.
+   * @return The chunk's x coordinate.
    */
   @Override
   public int x() {
@@ -58,10 +60,20 @@ public class PaperChunkProvider implements ChunkProvider {
   }
 
   /**
-   * This method is responsible for returning a value of type int. The specific logic and
-   * calculations performed to determine this value are not documented.
+   * This method is used to get the chunk's y coordinate.
    *
-   * @return The integer value calculated by the method.
+   * @return The chunk's y coordinate.
+   */
+  @Override
+  public int y() {
+
+    return y;
+  }
+
+  /**
+   * This method is used to get the chunk's z coordinate.
+   *
+   * @return The chunk's z coordinate.
    */
   @Override
   public int z() {

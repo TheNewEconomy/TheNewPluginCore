@@ -30,11 +30,20 @@ import java.util.List;
 public interface ChunkProvider {
 
   /**
-   * This method is responsible for calculating and returning an integer value.
+   * This method is used to get the chunk's x coordinate.
    *
-   * @return The calculated integer value.
+   * @return The chunk's x coordinate.
    */
   int x();
+
+  /**
+   * This method is used to get the chunk's y coordinate.
+   *
+   * @return The chunk's y coordinate.
+   */
+  default int y() {
+    return 0;
+  }
 
   /**
    * This method is responsible for returning a value of type int. The specific logic and calculations

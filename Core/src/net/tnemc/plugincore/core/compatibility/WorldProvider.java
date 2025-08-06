@@ -42,6 +42,13 @@ public interface WorldProvider {
   @NotNull String dimension();
 
   /**
+   * Retrieves the spawn location.
+   *
+   * @return a Location object representing the spawn location.
+   */
+  @NotNull Location spawn();
+
+  /**
    * Retrieves the phase of the moon.
    *
    * @return a string representing the phase of the moon.
@@ -68,13 +75,13 @@ public interface WorldProvider {
    * @return the current game time as a long value.
    */
   long gameTime();
-
   /**
    * Retrieves a ChunkProvider object based on the provided coordinates.
    *
    * @param x The x-coordinate for the ChunkProvider.
+   * @param y The y-coordinate for the ChunkProvider.
    * @param z The z-coordinate for the ChunkProvider.
    * @return A ChunkProvider object that handles chunk-related operations for the specified coordinates.
    */
-  ChunkProvider chunkProvider(final int x, final int z);
+  ChunkProvider chunkProvider(final int x, final int y, final int z);
 }

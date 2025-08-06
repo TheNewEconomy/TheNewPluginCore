@@ -18,9 +18,11 @@ package net.tnemc.plugincore.sponge.impl;
  */
 
 import net.tnemc.plugincore.core.compatibility.ChunkProvider;
+import net.tnemc.plugincore.core.compatibility.Location;
 import net.tnemc.plugincore.core.compatibility.WorldProvider;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.math.vector.Vector3i;
 
 /**
  * SpongeWorldProvider
@@ -56,6 +58,19 @@ public class SpongeWorldProvider implements WorldProvider {
   public @NotNull String dimension() {
 
     return world.properties().name();
+  }
+
+  /**
+   * Retrieves the spawn location.
+   *
+   * @return a Location object representing the spawn location.
+   */
+  @Override
+  public @NotNull Location spawn() {
+
+    final Vector3i spawn = world.properties().spawnPosition();
+
+    return new Location(name(), spawn.x(), spawn.y(), spawn.z());
   }
 
   /**
@@ -106,14 +121,15 @@ public class SpongeWorldProvider implements WorldProvider {
    * Retrieves a ChunkProvider object based on the provided coordinates.
    *
    * @param x The x-coordinate for the ChunkProvider.
+   * @param y The y-coordinate for the ChunkProvider.
    * @param z The z-coordinate for the ChunkProvider.
    *
    * @return A ChunkProvider object that handles chunk-related operations for the specified
    * coordinates.
    */
   @Override
-  public ChunkProvider chunkProvider(final int x, final int z) {
+  public ChunkProvider chunkProvider(final int x, final int y, final int z) {
 
-    return null;
+    return new SpongeChunkProvider(world.chunk(x, y, z));
   }
 }

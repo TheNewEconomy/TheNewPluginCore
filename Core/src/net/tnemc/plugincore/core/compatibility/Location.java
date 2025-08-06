@@ -33,7 +33,7 @@ public class Location {
   private double y;
   private double z;
 
-  public Location(String world, double x, double y, double z) {
+  public Location(final String world, final double x, final double y, final double z) {
 
     this.world = world;
     this.x = x;
@@ -46,7 +46,7 @@ public class Location {
     return world;
   }
 
-  public void setWorld(String world) {
+  public void setWorld(final String world) {
 
     this.world = world;
   }
@@ -54,6 +54,11 @@ public class Location {
   public int getChunkX() {
 
     return (int)(x / 16);
+  }
+
+  public int getChunkY() {
+
+    return (int)(y / 16);
   }
 
   public int getChunkZ() {
@@ -71,7 +76,7 @@ public class Location {
     return x;
   }
 
-  public void setX(double x) {
+  public void setX(final double x) {
 
     this.x = x;
   }
@@ -81,7 +86,7 @@ public class Location {
     return y;
   }
 
-  public void setY(double y) {
+  public void setY(final double y) {
 
     this.y = y;
   }
@@ -91,7 +96,7 @@ public class Location {
     return z;
   }
 
-  public void setZ(double z) {
+  public void setZ(final double z) {
 
     this.z = z;
   }
