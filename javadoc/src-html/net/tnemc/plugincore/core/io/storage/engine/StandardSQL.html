@@ -95,7 +95,7 @@
 <span class="source-line-no">082</span><span id="line-82">  @Override</span>
 <span class="source-line-no">083</span><span id="line-83">  public void reset(final StorageConnector&lt;?&gt; connector) {</span>
 <span class="source-line-no">084</span><span id="line-84"></span>
-<span class="source-line-no">085</span><span id="line-85">    @Language("SQL") final String truncateAll = "SELECT concat('TRUNCATE TABLE ',table_catalog,'.',table_schema,'.',table_name) AS query" +</span>
+<span class="source-line-no">085</span><span id="line-85">    @Language("SQL") final String truncateAll = "SELECT concat('TRUNCATE TABLE ',table_catalog,'.',table_schema,'.',table_name) AS query " +</span>
 <span class="source-line-no">086</span><span id="line-86">                                                "FROM information_schema.tables " +</span>
 <span class="source-line-no">087</span><span id="line-87">                                                "WHERE table_name LIKE '" + prefix + "%';";</span>
 <span class="source-line-no">088</span><span id="line-88"></span>
