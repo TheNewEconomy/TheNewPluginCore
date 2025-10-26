@@ -82,7 +82,7 @@ public abstract class StandardSQL implements SQLEngine {
   @Override
   public void reset(final StorageConnector<?> connector) {
 
-    @Language("SQL") final String truncateAll = "SELECT concat('TRUNCATE TABLE ',table_catalog,'.',table_schema,'.',table_name) AS query" +
+    @Language("SQL") final String truncateAll = "SELECT concat('TRUNCATE TABLE ',table_catalog,'.',table_schema,'.',table_name) AS query " +
                                                 "FROM information_schema.tables " +
                                                 "WHERE table_name LIKE '" + prefix + "%';";
 
