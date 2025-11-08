@@ -71,9 +71,9 @@
 <span class="source-line-no">058</span><span id="line-58">   * @return An optional containing the pair if found, otherwise an empty optional.</span>
 <span class="source-line-no">059</span><span id="line-59">   */</span>
 <span class="source-line-no">060</span><span id="line-60">  @Override</span>
-<span class="source-line-no">061</span><span id="line-61">  public Optional&lt;UUIDPair&gt; retrieve(String name) {</span>
+<span class="source-line-no">061</span><span id="line-61">  public Optional&lt;UUIDPair&gt; retrieve(final String name) {</span>
 <span class="source-line-no">062</span><span id="line-62"></span>
-<span class="source-line-no">063</span><span id="line-63">    for(UUIDPair pair : pairs.values()) {</span>
+<span class="source-line-no">063</span><span id="line-63">    for(final UUIDPair pair : pairs.values()) {</span>
 <span class="source-line-no">064</span><span id="line-64">      if(pair.getUsername().equalsIgnoreCase(name)) {</span>
 <span class="source-line-no">065</span><span id="line-65">        return Optional.of(pair);</span>
 <span class="source-line-no">066</span><span id="line-66">      }</span>
@@ -104,11 +104,22 @@
 <span class="source-line-no">091</span><span id="line-91">   * @param pair The {@link UUIDPair}</span>
 <span class="source-line-no">092</span><span id="line-92">   */</span>
 <span class="source-line-no">093</span><span id="line-93">  @Override</span>
-<span class="source-line-no">094</span><span id="line-94">  public void store(UUIDPair pair) {</span>
+<span class="source-line-no">094</span><span id="line-94">  public void store(final UUIDPair pair) {</span>
 <span class="source-line-no">095</span><span id="line-95"></span>
 <span class="source-line-no">096</span><span id="line-96">    pairs.put(pair.getIdentifier(), pair);</span>
 <span class="source-line-no">097</span><span id="line-97">  }</span>
-<span class="source-line-no">098</span><span id="line-98">}</span>
+<span class="source-line-no">098</span><span id="line-98"></span>
+<span class="source-line-no">099</span><span id="line-99">  /**</span>
+<span class="source-line-no">100</span><span id="line-100">   * Retrieves the map containing all stored UUID pairs.</span>
+<span class="source-line-no">101</span><span id="line-101">   *</span>
+<span class="source-line-no">102</span><span id="line-102">   * @return A map where the keys are UUIDs and the values are {@link UUIDPair} instances.</span>
+<span class="source-line-no">103</span><span id="line-103">   */</span>
+<span class="source-line-no">104</span><span id="line-104">  @Override</span>
+<span class="source-line-no">105</span><span id="line-105">  public ConcurrentHashMap&lt;UUID, UUIDPair&gt; pairs() {</span>
+<span class="source-line-no">106</span><span id="line-106"></span>
+<span class="source-line-no">107</span><span id="line-107">    return pairs;</span>
+<span class="source-line-no">108</span><span id="line-108">  }</span>
+<span class="source-line-no">109</span><span id="line-109">}</span>
 
 
 

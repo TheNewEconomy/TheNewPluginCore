@@ -91,7 +91,7 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="impl/provider/BaseUUIDProvider.html" title="class in net.tnemc.plugincore.core.id.impl.provider">BaseUUIDProvider</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-26">UUIDProvider</a></span></div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-27">UUIDProvider</a></span></div>
 <div class="block">Represents a provider that is used to resolve and store UUID<span class="invalid-tag">invalid input: '&lt;'</span>-&gt;Username Pairs.</div>
 <dl class="notes">
 <dt>Since:</dt>
@@ -126,24 +126,29 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1">
 <div class="block">Used to determine if a string is a valid UUID.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a><wbr>&lt;<a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#retrieve(java.lang.String)" class="member-name-link">retrieve</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ConcurrentHashMap.html" title="class or interface in java.util.concurrent" class="external-link">ConcurrentHashMap</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>,<wbr><a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#pairs()" class="member-name-link">pairs</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Retrieves the map containing all stored UUID pairs.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a><wbr>&lt;<a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#retrieve(java.lang.String)" class="member-name-link">retrieve</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to retrieve a <a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id"><code>UUIDPair</code></a>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#retrieveName(java.util.UUID)" class="member-name-link">retrieveName</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#retrieveName(java.util.UUID)" class="member-name-link">retrieveName</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to retrieve a name from its associated <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link"><code>UUID</code></a>.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#store(net.tnemc.plugincore.core.id.UUIDPair)" class="member-name-link">store</a><wbr>(<a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&nbsp;pair)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#store(net.tnemc.plugincore.core.id.UUIDPair)" class="member-name-link">store</a><wbr>(<a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&nbsp;pair)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to store a Username <span class="invalid-tag">invalid input: '&amp;'</span> UUID pair.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#validate(java.lang.String)" class="member-name-link">validate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#validate(java.lang.String)" class="member-name-link">validate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
 <div class="block">Used to determine if a string is a valid minecraft username or not.</div>
 </div>
 </div>
@@ -163,7 +168,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="validate(java.lang.String)">
 <h3>validate</h3>
-<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-35">validate</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-36">validate</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="block">Used to determine if a string is a valid minecraft username or not.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -176,7 +181,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="isUUID(java.lang.String)">
 <h3>isUUID</h3>
-<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-50">isUUID</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</span></div>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-51">isUUID</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</span></div>
 <div class="block">Used to determine if a string is a valid UUID.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -189,7 +194,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="api()">
 <h3>api</h3>
-<div class="member-signature"><span class="return-type"><a href="UUIDAPI.html" title="interface in net.tnemc.plugincore.core.id">UUIDAPI</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-67">api</a></span>()</div>
+<div class="member-signature"><span class="return-type"><a href="UUIDAPI.html" title="interface in net.tnemc.plugincore.core.id">UUIDAPI</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-68">api</a></span>()</div>
 <div class="block">Returns the associated <a href="UUIDAPI.html" title="interface in net.tnemc.plugincore.core.id"><code>uuid api</code></a> associated with this provider.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -206,7 +211,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="retrieve(java.lang.String)">
 <h3>retrieve</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-76">retrieve</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-77">retrieve</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="block">Used to retrieve a <a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id"><code>UUIDPair</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -219,7 +224,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="retrieveName(java.util.UUID)">
 <h3>retrieveName</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-85">retrieveName</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-86">retrieveName</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
 <div class="block">Used to retrieve a name from its associated <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link"><code>UUID</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -232,7 +237,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="store(net.tnemc.plugincore.core.id.UUIDPair)">
 <h3>store</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-93">store</a></span><wbr><span class="parameters">(<a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&nbsp;pair)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-94">store</a></span><wbr><span class="parameters">(<a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&nbsp;pair)</span></div>
 <div class="block">Used to store a Username <span class="invalid-tag">invalid input: '&amp;'</span> UUID pair. This could be to a map, or to a database for persistent
  usage or to both.</div>
 <dl class="notes">
@@ -244,7 +249,18 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="generateOffline(java.lang.String)">
 <h3>generateOffline</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-95">generateOffline</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-96">generateOffline</a></span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="pairs()">
+<h3>pairs</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ConcurrentHashMap.html" title="class or interface in java.util.concurrent" class="external-link">ConcurrentHashMap</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>,<wbr><a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id">UUIDPair</a>&gt;</span>&nbsp;<span class="element-name"><a href="../../../../../src-html/net/tnemc/plugincore/core/id/UUIDProvider.html#line-106">pairs</a></span>()</div>
+<div class="block">Retrieves the map containing all stored UUID pairs.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>A map where the keys are UUIDs and the values are <a href="UUIDPair.html" title="class in net.tnemc.plugincore.core.id"><code>UUIDPair</code></a> instances.</dd>
+</dl>
 </section>
 </li>
 </ul>
