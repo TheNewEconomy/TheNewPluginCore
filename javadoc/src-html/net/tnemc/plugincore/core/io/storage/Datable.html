@@ -80,26 +80,34 @@
 <span class="source-line-no">067</span><span id="line-67">  void storeAll(StorageConnector&lt;?&gt; connector, @Nullable String identifier);</span>
 <span class="source-line-no">068</span><span id="line-68"></span>
 <span class="source-line-no">069</span><span id="line-69">  /**</span>
-<span class="source-line-no">070</span><span id="line-70">   * Used to load this object.</span>
+<span class="source-line-no">070</span><span id="line-70">   * Deletes an object using the specified storage connector and identifier.</span>
 <span class="source-line-no">071</span><span id="line-71">   *</span>
-<span class="source-line-no">072</span><span id="line-72">   * @param connector  The storage connector to use for this transaction.</span>
-<span class="source-line-no">073</span><span id="line-73">   * @param identifier The identifier used to identify the object to load.</span>
-<span class="source-line-no">074</span><span id="line-74">   *</span>
-<span class="source-line-no">075</span><span id="line-75">   * @return The object to load.</span>
-<span class="source-line-no">076</span><span id="line-76">   */</span>
-<span class="source-line-no">077</span><span id="line-77">  Optional&lt;O&gt; load(StorageConnector&lt;?&gt; connector, @NotNull final String identifier);</span>
-<span class="source-line-no">078</span><span id="line-78"></span>
-<span class="source-line-no">079</span><span id="line-79">  /**</span>
-<span class="source-line-no">080</span><span id="line-80">   * Used to load all objects of this type.</span>
-<span class="source-line-no">081</span><span id="line-81">   *</span>
-<span class="source-line-no">082</span><span id="line-82">   * @param connector  The storage connector to use for this transaction.</span>
-<span class="source-line-no">083</span><span id="line-83">   * @param identifier The identifier used to load objects, if they relate to a specific identifier,</span>
-<span class="source-line-no">084</span><span id="line-84">   *                   otherwise this will be null.</span>
-<span class="source-line-no">085</span><span id="line-85">   *</span>
-<span class="source-line-no">086</span><span id="line-86">   * @return A collection containing the objects loaded.</span>
-<span class="source-line-no">087</span><span id="line-87">   */</span>
-<span class="source-line-no">088</span><span id="line-88">  Collection&lt;O&gt; loadAll(StorageConnector&lt;?&gt; connector, @Nullable final String identifier);</span>
-<span class="source-line-no">089</span><span id="line-89">}</span>
+<span class="source-line-no">072</span><span id="line-72">   * @param connector  The storage connector to use for the delete operation.</span>
+<span class="source-line-no">073</span><span id="line-73">   * @param identifier The unique identifier of the object to delete. This parameter must not be null.</span>
+<span class="source-line-no">074</span><span id="line-74">   */</span>
+<span class="source-line-no">075</span><span id="line-75">  void delete(StorageConnector&lt;?&gt; connector, @NotNull final String identifier);</span>
+<span class="source-line-no">076</span><span id="line-76"></span>
+<span class="source-line-no">077</span><span id="line-77">  /**</span>
+<span class="source-line-no">078</span><span id="line-78">   * Used to load this object.</span>
+<span class="source-line-no">079</span><span id="line-79">   *</span>
+<span class="source-line-no">080</span><span id="line-80">   * @param connector  The storage connector to use for this transaction.</span>
+<span class="source-line-no">081</span><span id="line-81">   * @param identifier The identifier used to identify the object to load.</span>
+<span class="source-line-no">082</span><span id="line-82">   *</span>
+<span class="source-line-no">083</span><span id="line-83">   * @return The object to load.</span>
+<span class="source-line-no">084</span><span id="line-84">   */</span>
+<span class="source-line-no">085</span><span id="line-85">  Optional&lt;O&gt; load(StorageConnector&lt;?&gt; connector, @NotNull final String identifier);</span>
+<span class="source-line-no">086</span><span id="line-86"></span>
+<span class="source-line-no">087</span><span id="line-87">  /**</span>
+<span class="source-line-no">088</span><span id="line-88">   * Used to load all objects of this type.</span>
+<span class="source-line-no">089</span><span id="line-89">   *</span>
+<span class="source-line-no">090</span><span id="line-90">   * @param connector  The storage connector to use for this transaction.</span>
+<span class="source-line-no">091</span><span id="line-91">   * @param identifier The identifier used to load objects, if they relate to a specific identifier,</span>
+<span class="source-line-no">092</span><span id="line-92">   *                   otherwise this will be null.</span>
+<span class="source-line-no">093</span><span id="line-93">   *</span>
+<span class="source-line-no">094</span><span id="line-94">   * @return A collection containing the objects loaded.</span>
+<span class="source-line-no">095</span><span id="line-95">   */</span>
+<span class="source-line-no">096</span><span id="line-96">  Collection&lt;O&gt; loadAll(StorageConnector&lt;?&gt; connector, @Nullable final String identifier);</span>
+<span class="source-line-no">097</span><span id="line-97">}</span>
 
 
 

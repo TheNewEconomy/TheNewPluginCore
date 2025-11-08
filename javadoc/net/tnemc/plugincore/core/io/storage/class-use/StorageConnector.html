@@ -95,44 +95,50 @@ loadScripts(document, 'script');</script>
 <div class="block">Used to back up all data in the database for this engine.</div>
 </div>
 <div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">StorageEngine.</span><code><a href="../StorageEngine.html#initialize(net.tnemc.plugincore.core.io.storage.StorageConnector)" class="member-name-link">initialize</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Datable.</span><code><a href="../Datable.html#delete(net.tnemc.plugincore.core.io.storage.StorageConnector,java.lang.String)" class="member-name-link">delete</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
+ @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</code></div>
 <div class="col-last odd-row-color">
+<div class="block">Deletes an object using the specified storage connector and identifier.</div>
+</div>
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">StorageEngine.</span><code><a href="../StorageEngine.html#initialize(net.tnemc.plugincore.core.io.storage.StorageConnector)" class="member-name-link">initialize</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Called after the connection is initialized, so we can do any actions that need done immediately
  after connecting.</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a><wbr>&lt;<a href="../Datable.html" title="type parameter in Datable">O</a>&gt;</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Datable.</span><code><a href="../Datable.html#load(net.tnemc.plugincore.core.io.storage.StorageConnector,java.lang.String)" class="member-name-link">load</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
+<div class="col-first odd-row-color"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a><wbr>&lt;<a href="../Datable.html" title="type parameter in Datable">O</a>&gt;</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Datable.</span><code><a href="../Datable.html#load(net.tnemc.plugincore.core.io.storage.StorageConnector,java.lang.String)" class="member-name-link">load</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
  @NotNull <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">Used to load this object.</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a><wbr>&lt;<a href="../Datable.html" title="type parameter in Datable">O</a>&gt;</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Datable.</span><code><a href="../Datable.html#loadAll(net.tnemc.plugincore.core.io.storage.StorageConnector,java.lang.String)" class="member-name-link">loadAll</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
+<div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a><wbr>&lt;<a href="../Datable.html" title="type parameter in Datable">O</a>&gt;</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Datable.</span><code><a href="../Datable.html#loadAll(net.tnemc.plugincore.core.io.storage.StorageConnector,java.lang.String)" class="member-name-link">loadAll</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
  @Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">Used to load all objects of this type.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Datable.</span><code><a href="../Datable.html#purge(net.tnemc.plugincore.core.io.storage.StorageConnector)" class="member-name-link">purge</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Datable.</span><code><a href="../Datable.html#purge(net.tnemc.plugincore.core.io.storage.StorageConnector)" class="member-name-link">purge</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">USed to purge the objects of this datable.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">StorageEngine.</span><code><a href="../StorageEngine.html#reset(net.tnemc.plugincore.core.io.storage.StorageConnector)" class="member-name-link">reset</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">StorageEngine.</span><code><a href="../StorageEngine.html#reset(net.tnemc.plugincore.core.io.storage.StorageConnector)" class="member-name-link">reset</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Used to reset all data for this engine.</div>
 </div>
-<div class="col-first even-row-color"><code>void</code></div>
-<div class="col-second even-row-color"><span class="type-name-label">Datable.</span><code><a href="../Datable.html#store(net.tnemc.plugincore.core.io.storage.StorageConnector,O,java.lang.String)" class="member-name-link">store</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
+<div class="col-first odd-row-color"><code>void</code></div>
+<div class="col-second odd-row-color"><span class="type-name-label">Datable.</span><code><a href="../Datable.html#store(net.tnemc.plugincore.core.io.storage.StorageConnector,O,java.lang.String)" class="member-name-link">store</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
  <a href="../Datable.html" title="type parameter in Datable">O</a>&nbsp;object,
  @Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</code></div>
-<div class="col-last even-row-color">
+<div class="col-last odd-row-color">
 <div class="block">Used to store this object.</div>
 </div>
-<div class="col-first odd-row-color"><code>void</code></div>
-<div class="col-second odd-row-color"><span class="type-name-label">Datable.</span><code><a href="../Datable.html#storeAll(net.tnemc.plugincore.core.io.storage.StorageConnector,java.lang.String)" class="member-name-link">storeAll</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
+<div class="col-first even-row-color"><code>void</code></div>
+<div class="col-second even-row-color"><span class="type-name-label">Datable.</span><code><a href="../Datable.html#storeAll(net.tnemc.plugincore.core.io.storage.StorageConnector,java.lang.String)" class="member-name-link">storeAll</a><wbr>(<a href="../StorageConnector.html" title="interface in net.tnemc.plugincore.core.io.storage">StorageConnector</a>&lt;?&gt;&nbsp;connector,
  @Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;identifier)</code></div>
-<div class="col-last odd-row-color">
+<div class="col-last even-row-color">
 <div class="block">Used to store all objects of this type.</div>
 </div>
 </div>

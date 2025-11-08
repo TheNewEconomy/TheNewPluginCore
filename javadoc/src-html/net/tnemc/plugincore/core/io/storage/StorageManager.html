@@ -120,7 +120,7 @@
 <span class="source-line-no">107</span><span id="line-107">   *</span>
 <span class="source-line-no">108</span><span id="line-108">   * @return The object to load.</span>
 <span class="source-line-no">109</span><span id="line-109">   */</span>
-<span class="source-line-no">110</span><span id="line-110">  public &lt;T&gt; Optional&lt;T&gt; load(Class&lt;? extends T&gt; object, @NotNull final String identifier) {</span>
+<span class="source-line-no">110</span><span id="line-110">  public &lt;T&gt; Optional&lt;T&gt; load(final Class&lt;? extends T&gt; object, @NotNull final String identifier) {</span>
 <span class="source-line-no">111</span><span id="line-111"></span>
 <span class="source-line-no">112</span><span id="line-112">    final Datable&lt;T&gt; data = (Datable&lt;T&gt;)provider.engine().datables().get(object);</span>
 <span class="source-line-no">113</span><span id="line-113">    if(data != null) {</span>
@@ -138,7 +138,7 @@
 <span class="source-line-no">125</span><span id="line-125">   *</span>
 <span class="source-line-no">126</span><span id="line-126">   * @return A collection containing the objects loaded.</span>
 <span class="source-line-no">127</span><span id="line-127">   */</span>
-<span class="source-line-no">128</span><span id="line-128">  public &lt;T&gt; Collection&lt;T&gt; loadAll(Class&lt;? extends T&gt; object, @Nullable final String identifier) {</span>
+<span class="source-line-no">128</span><span id="line-128">  public &lt;T&gt; Collection&lt;T&gt; loadAll(final Class&lt;? extends T&gt; object, @Nullable final String identifier) {</span>
 <span class="source-line-no">129</span><span id="line-129"></span>
 <span class="source-line-no">130</span><span id="line-130">    final Datable&lt;T&gt; data = (Datable&lt;T&gt;)provider.engine().datables().get(object);</span>
 <span class="source-line-no">131</span><span id="line-131">    if(data != null) {</span>
@@ -155,7 +155,7 @@
 <span class="source-line-no">142</span><span id="line-142">   * @param identifier An optional identifier for loading this object. Note: some Datables may</span>
 <span class="source-line-no">143</span><span id="line-143">   *                   require this identifier.</span>
 <span class="source-line-no">144</span><span id="line-144">   */</span>
-<span class="source-line-no">145</span><span id="line-145">  public &lt;T&gt; void store(T object, @Nullable String identifier) {</span>
+<span class="source-line-no">145</span><span id="line-145">  public &lt;T&gt; void store(final T object, @Nullable final String identifier) {</span>
 <span class="source-line-no">146</span><span id="line-146"></span>
 <span class="source-line-no">147</span><span id="line-147">    PluginCore.log().inform("Storing Datable of type: " + object.getClass().getName(), DebugLevel.DEVELOPER);</span>
 <span class="source-line-no">148</span><span id="line-148">    final Datable&lt;T&gt; data = (Datable&lt;T&gt;)provider.engine().datables().get(object.getClass());</span>
@@ -183,59 +183,76 @@
 <span class="source-line-no">170</span><span id="line-170">  }</span>
 <span class="source-line-no">171</span><span id="line-171"></span>
 <span class="source-line-no">172</span><span id="line-172">  /**</span>
-<span class="source-line-no">173</span><span id="line-173">   * Used to purge TNE data.</span>
-<span class="source-line-no">174</span><span id="line-174">   */</span>
-<span class="source-line-no">175</span><span id="line-175">  public void purge() {</span>
-<span class="source-line-no">176</span><span id="line-176"></span>
-<span class="source-line-no">177</span><span id="line-177">    for(Datable&lt;?&gt; data : provider.engine().datables().values()) {</span>
-<span class="source-line-no">178</span><span id="line-178">      PluginCore.server().scheduler().createDelayedTask(()-&gt;data.purge(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);</span>
-<span class="source-line-no">179</span><span id="line-179">    }</span>
+<span class="source-line-no">173</span><span id="line-173">   * Deletes a data object of the specified type and identifier.</span>
+<span class="source-line-no">174</span><span id="line-174">   *</span>
+<span class="source-line-no">175</span><span id="line-175">   * @param object     The class of the object to be deleted.</span>
+<span class="source-line-no">176</span><span id="line-176">   * @param identifier The identifier of the object to be deleted. Must not be null.</span>
+<span class="source-line-no">177</span><span id="line-177">   * @param &lt;T&gt;        The type of the object to be deleted.</span>
+<span class="source-line-no">178</span><span id="line-178">   */</span>
+<span class="source-line-no">179</span><span id="line-179">  public &lt;T&gt; void delete(final Class&lt;? extends T&gt; object, @NotNull final String identifier) {</span>
 <span class="source-line-no">180</span><span id="line-180"></span>
-<span class="source-line-no">181</span><span id="line-181">    provider.purge();</span>
-<span class="source-line-no">182</span><span id="line-182">  }</span>
-<span class="source-line-no">183</span><span id="line-183"></span>
-<span class="source-line-no">184</span><span id="line-184">  /**</span>
-<span class="source-line-no">185</span><span id="line-185">   * Used to reset all data in TNE.</span>
-<span class="source-line-no">186</span><span id="line-186">   */</span>
-<span class="source-line-no">187</span><span id="line-187">  public void reset() {</span>
-<span class="source-line-no">188</span><span id="line-188">    //call the reset method for all modules.</span>
-<span class="source-line-no">189</span><span id="line-189">    PluginCore.loader().getModules().values().forEach((moduleWrapper-&gt;moduleWrapper.getModule().reset(this)));</span>
-<span class="source-line-no">190</span><span id="line-190"></span>
-<span class="source-line-no">191</span><span id="line-191">    PluginCore.server().scheduler().createDelayedTask(()-&gt;provider.engine().reset(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);</span>
-<span class="source-line-no">192</span><span id="line-192"></span>
-<span class="source-line-no">193</span><span id="line-193">    provider.reset();</span>
-<span class="source-line-no">194</span><span id="line-194">  }</span>
-<span class="source-line-no">195</span><span id="line-195"></span>
-<span class="source-line-no">196</span><span id="line-196">  /**</span>
-<span class="source-line-no">197</span><span id="line-197">   * Used to back up data that is currently in the database.</span>
-<span class="source-line-no">198</span><span id="line-198">   *</span>
-<span class="source-line-no">199</span><span id="line-199">   * @return True if the backup was successful, otherwise false.</span>
-<span class="source-line-no">200</span><span id="line-200">   */</span>
-<span class="source-line-no">201</span><span id="line-201">  public boolean backup() {</span>
-<span class="source-line-no">202</span><span id="line-202">    //call the backup method for all modules.</span>
-<span class="source-line-no">203</span><span id="line-203">    PluginCore.loader().getModules().values().forEach((moduleWrapper-&gt;moduleWrapper.getModule().backup(this)));</span>
-<span class="source-line-no">204</span><span id="line-204"></span>
-<span class="source-line-no">205</span><span id="line-205">    PluginCore.server().scheduler().createDelayedTask(()-&gt;provider.engine().backup(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);</span>
-<span class="source-line-no">206</span><span id="line-206"></span>
-<span class="source-line-no">207</span><span id="line-207">    provider.backup();</span>
-<span class="source-line-no">208</span><span id="line-208">    return true;</span>
-<span class="source-line-no">209</span><span id="line-209">  }</span>
-<span class="source-line-no">210</span><span id="line-210"></span>
-<span class="source-line-no">211</span><span id="line-211">  public StorageEngine getEngine() {</span>
+<span class="source-line-no">181</span><span id="line-181">    PluginCore.log().inform("Deleting Datable of type: " + object.getClass().getName(), DebugLevel.DEVELOPER);</span>
+<span class="source-line-no">182</span><span id="line-182">    final Datable&lt;T&gt; data = (Datable&lt;T&gt;)provider.engine().datables().get(object.getClass());</span>
+<span class="source-line-no">183</span><span id="line-183">    if(data != null) {</span>
+<span class="source-line-no">184</span><span id="line-184">      PluginCore.server().scheduler().createDelayedTask(()-&gt;data.delete(provider.connector(), identifier),</span>
+<span class="source-line-no">185</span><span id="line-185">                                                        new ChoreTime(0), ChoreExecution.SECONDARY);</span>
+<span class="source-line-no">186</span><span id="line-186">    }</span>
+<span class="source-line-no">187</span><span id="line-187">  }</span>
+<span class="source-line-no">188</span><span id="line-188"></span>
+<span class="source-line-no">189</span><span id="line-189">  /**</span>
+<span class="source-line-no">190</span><span id="line-190">   * Used to purge TNE data.</span>
+<span class="source-line-no">191</span><span id="line-191">   */</span>
+<span class="source-line-no">192</span><span id="line-192">  public void purge() {</span>
+<span class="source-line-no">193</span><span id="line-193"></span>
+<span class="source-line-no">194</span><span id="line-194">    for(final Datable&lt;?&gt; data : provider.engine().datables().values()) {</span>
+<span class="source-line-no">195</span><span id="line-195">      PluginCore.server().scheduler().createDelayedTask(()-&gt;data.purge(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);</span>
+<span class="source-line-no">196</span><span id="line-196">    }</span>
+<span class="source-line-no">197</span><span id="line-197"></span>
+<span class="source-line-no">198</span><span id="line-198">    provider.purge();</span>
+<span class="source-line-no">199</span><span id="line-199">  }</span>
+<span class="source-line-no">200</span><span id="line-200"></span>
+<span class="source-line-no">201</span><span id="line-201">  /**</span>
+<span class="source-line-no">202</span><span id="line-202">   * Used to reset all data in TNE.</span>
+<span class="source-line-no">203</span><span id="line-203">   */</span>
+<span class="source-line-no">204</span><span id="line-204">  public void reset() {</span>
+<span class="source-line-no">205</span><span id="line-205">    //call the reset method for all modules.</span>
+<span class="source-line-no">206</span><span id="line-206">    PluginCore.loader().getModules().values().forEach((moduleWrapper-&gt;moduleWrapper.getModule().reset(this)));</span>
+<span class="source-line-no">207</span><span id="line-207"></span>
+<span class="source-line-no">208</span><span id="line-208">    PluginCore.server().scheduler().createDelayedTask(()-&gt;provider.engine().reset(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);</span>
+<span class="source-line-no">209</span><span id="line-209"></span>
+<span class="source-line-no">210</span><span id="line-210">    provider.reset();</span>
+<span class="source-line-no">211</span><span id="line-211">  }</span>
 <span class="source-line-no">212</span><span id="line-212"></span>
-<span class="source-line-no">213</span><span id="line-213">    return provider.engine();</span>
-<span class="source-line-no">214</span><span id="line-214">  }</span>
-<span class="source-line-no">215</span><span id="line-215"></span>
-<span class="source-line-no">216</span><span id="line-216">  public StorageConnector&lt;?&gt; getConnector() {</span>
-<span class="source-line-no">217</span><span id="line-217"></span>
-<span class="source-line-no">218</span><span id="line-218">    return provider.connector();</span>
-<span class="source-line-no">219</span><span id="line-219">  }</span>
-<span class="source-line-no">220</span><span id="line-220"></span>
-<span class="source-line-no">221</span><span id="line-221">  public StorageSettings settings() {</span>
-<span class="source-line-no">222</span><span id="line-222"></span>
-<span class="source-line-no">223</span><span id="line-223">    return settings;</span>
-<span class="source-line-no">224</span><span id="line-224">  }</span>
-<span class="source-line-no">225</span><span id="line-225">}</span>
+<span class="source-line-no">213</span><span id="line-213">  /**</span>
+<span class="source-line-no">214</span><span id="line-214">   * Used to back up data that is currently in the database.</span>
+<span class="source-line-no">215</span><span id="line-215">   *</span>
+<span class="source-line-no">216</span><span id="line-216">   * @return True if the backup was successful, otherwise false.</span>
+<span class="source-line-no">217</span><span id="line-217">   */</span>
+<span class="source-line-no">218</span><span id="line-218">  public boolean backup() {</span>
+<span class="source-line-no">219</span><span id="line-219">    //call the backup method for all modules.</span>
+<span class="source-line-no">220</span><span id="line-220">    PluginCore.loader().getModules().values().forEach((moduleWrapper-&gt;moduleWrapper.getModule().backup(this)));</span>
+<span class="source-line-no">221</span><span id="line-221"></span>
+<span class="source-line-no">222</span><span id="line-222">    PluginCore.server().scheduler().createDelayedTask(()-&gt;provider.engine().backup(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);</span>
+<span class="source-line-no">223</span><span id="line-223"></span>
+<span class="source-line-no">224</span><span id="line-224">    provider.backup();</span>
+<span class="source-line-no">225</span><span id="line-225">    return true;</span>
+<span class="source-line-no">226</span><span id="line-226">  }</span>
+<span class="source-line-no">227</span><span id="line-227"></span>
+<span class="source-line-no">228</span><span id="line-228">  public StorageEngine getEngine() {</span>
+<span class="source-line-no">229</span><span id="line-229"></span>
+<span class="source-line-no">230</span><span id="line-230">    return provider.engine();</span>
+<span class="source-line-no">231</span><span id="line-231">  }</span>
+<span class="source-line-no">232</span><span id="line-232"></span>
+<span class="source-line-no">233</span><span id="line-233">  public StorageConnector&lt;?&gt; getConnector() {</span>
+<span class="source-line-no">234</span><span id="line-234"></span>
+<span class="source-line-no">235</span><span id="line-235">    return provider.connector();</span>
+<span class="source-line-no">236</span><span id="line-236">  }</span>
+<span class="source-line-no">237</span><span id="line-237"></span>
+<span class="source-line-no">238</span><span id="line-238">  public StorageSettings settings() {</span>
+<span class="source-line-no">239</span><span id="line-239"></span>
+<span class="source-line-no">240</span><span id="line-240">    return settings;</span>
+<span class="source-line-no">241</span><span id="line-241">  }</span>
+<span class="source-line-no">242</span><span id="line-242">}</span>
 
 
 
