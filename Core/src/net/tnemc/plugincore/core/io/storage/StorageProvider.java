@@ -65,6 +65,13 @@ public interface StorageProvider {
   void storeAll();
 
   /**
+   * Deletes all data associated with the provided identifier.
+   *
+   * @param identifier The unique identifier for the data to be deleted. Must not be null.
+   */
+  void delete(@NotNull final String identifier);
+
+  /**
    * Used to purge TNE data.
    */
   void purge();

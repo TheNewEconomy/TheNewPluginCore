@@ -107,7 +107,7 @@ public class StorageManager {
    *
    * @return The object to load.
    */
-  public <T> Optional<T> load(Class<? extends T> object, @NotNull final String identifier) {
+  public <T> Optional<T> load(final Class<? extends T> object, @NotNull final String identifier) {
 
     final Datable<T> data = (Datable<T>)provider.engine().datables().get(object);
     if(data != null) {
@@ -125,7 +125,7 @@ public class StorageManager {
    *
    * @return A collection containing the objects loaded.
    */
-  public <T> Collection<T> loadAll(Class<? extends T> object, @Nullable final String identifier) {
+  public <T> Collection<T> loadAll(final Class<? extends T> object, @Nullable final String identifier) {
 
     final Datable<T> data = (Datable<T>)provider.engine().datables().get(object);
     if(data != null) {
@@ -142,7 +142,7 @@ public class StorageManager {
    * @param identifier An optional identifier for loading this object. Note: some Datables may
    *                   require this identifier.
    */
-  public <T> void store(T object, @Nullable String identifier) {
+  public <T> void store(final T object, @Nullable final String identifier) {
 
     PluginCore.log().inform("Storing Datable of type: " + object.getClass().getName(), DebugLevel.DEVELOPER);
     final Datable<T> data = (Datable<T>)provider.engine().datables().get(object.getClass());
@@ -170,11 +170,28 @@ public class StorageManager {
   }
 
   /**
+   * Deletes a data object of the specified type and identifier.
+   *
+   * @param object     The class of the object to be deleted.
+   * @param identifier The identifier of the object to be deleted. Must not be null.
+   * @param <T>        The type of the object to be deleted.
+   */
+  public <T> void delete(final Class<? extends T> object, @NotNull final String identifier) {
+
+    PluginCore.log().inform("Deleting Datable of type: " + object.getClass().getName(), DebugLevel.DEVELOPER);
+    final Datable<T> data = (Datable<T>)provider.engine().datables().get(object.getClass());
+    if(data != null) {
+      PluginCore.server().scheduler().createDelayedTask(()->data.delete(provider.connector(), identifier),
+                                                        new ChoreTime(0), ChoreExecution.SECONDARY);
+    }
+  }
+
+  /**
    * Used to purge TNE data.
    */
   public void purge() {
 
-    for(Datable<?> data : provider.engine().datables().values()) {
+    for(final Datable<?> data : provider.engine().datables().values()) {
       PluginCore.server().scheduler().createDelayedTask(()->data.purge(provider.connector()), new ChoreTime(0), ChoreExecution.SECONDARY);
     }
 

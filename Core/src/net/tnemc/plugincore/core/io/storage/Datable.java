@@ -67,6 +67,14 @@ public interface Datable<O> {
   void storeAll(StorageConnector<?> connector, @Nullable String identifier);
 
   /**
+   * Deletes an object using the specified storage connector and identifier.
+   *
+   * @param connector  The storage connector to use for the delete operation.
+   * @param identifier The unique identifier of the object to delete. This parameter must not be null.
+   */
+  void delete(StorageConnector<?> connector, @NotNull final String identifier);
+
+  /**
    * Used to load this object.
    *
    * @param connector  The storage connector to use for this transaction.
