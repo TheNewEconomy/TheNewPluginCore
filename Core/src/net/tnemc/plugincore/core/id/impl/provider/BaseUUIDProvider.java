@@ -58,9 +58,9 @@ public class BaseUUIDProvider implements UUIDProvider {
    * @return An optional containing the pair if found, otherwise an empty optional.
    */
   @Override
-  public Optional<UUIDPair> retrieve(String name) {
+  public Optional<UUIDPair> retrieve(final String name) {
 
-    for(UUIDPair pair : pairs.values()) {
+    for(final UUIDPair pair : pairs.values()) {
       if(pair.getUsername().equalsIgnoreCase(name)) {
         return Optional.of(pair);
       }
@@ -91,8 +91,19 @@ public class BaseUUIDProvider implements UUIDProvider {
    * @param pair The {@link UUIDPair}
    */
   @Override
-  public void store(UUIDPair pair) {
+  public void store(final UUIDPair pair) {
 
     pairs.put(pair.getIdentifier(), pair);
+  }
+
+  /**
+   * Retrieves the map containing all stored UUID pairs.
+   *
+   * @return A map where the keys are UUIDs and the values are {@link UUIDPair} instances.
+   */
+  @Override
+  public ConcurrentHashMap<UUID, UUIDPair> pairs() {
+
+    return pairs;
   }
 }

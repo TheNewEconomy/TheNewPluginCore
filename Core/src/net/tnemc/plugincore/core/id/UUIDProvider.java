@@ -14,6 +14,7 @@ package net.tnemc.plugincore.core.id;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static net.tnemc.plugincore.core.utils.PlayerHelper.playerMatcher;
 
@@ -52,7 +53,7 @@ public interface UUIDProvider {
     try {
       UUID.fromString(identifier);
       return true;
-    } catch(Exception ignore) {
+    } catch(final Exception ignore) {
       return false;
     }
   }
@@ -96,4 +97,11 @@ public interface UUIDProvider {
 
     return UUID.nameUUIDFromBytes(("Offline:" + name).getBytes(StandardCharsets.UTF_8));
   }
+
+  /**
+   * Retrieves the map containing all stored UUID pairs.
+   *
+   * @return A map where the keys are UUIDs and the values are {@link UUIDPair} instances.
+   */
+  ConcurrentHashMap<UUID, UUIDPair> pairs();
 }
