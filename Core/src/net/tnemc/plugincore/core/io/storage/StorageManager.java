@@ -178,8 +178,8 @@ public class StorageManager {
    */
   public <T> void delete(final Class<? extends T> object, @NotNull final String identifier) {
 
-    PluginCore.log().inform("Deleting Datable of type: " + object.getClass().getName(), DebugLevel.DEVELOPER);
-    final Datable<T> data = (Datable<T>)provider.engine().datables().get(object.getClass());
+    PluginCore.log().inform("Deleting Datable of type: " + object.getName(), DebugLevel.DEVELOPER);
+    final Datable<T> data = (Datable<T>)provider.engine().datables().get(object);
     if(data != null) {
       PluginCore.server().scheduler().createDelayedTask(()->data.delete(provider.connector(), identifier),
                                                         new ChoreTime(0), ChoreExecution.SECONDARY);
