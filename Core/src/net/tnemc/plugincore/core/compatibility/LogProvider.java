@@ -33,9 +33,9 @@ public interface LogProvider {
    *
    * @param message The message to send.
    */
-  default void inform(String message) {
+  default void inform(final String message) {
 
-    inform(message, DebugLevel.STANDARD);
+    inform(message, DebugLevel.OFF);
   }
 
   /**
@@ -51,7 +51,7 @@ public interface LogProvider {
    *
    * @param message The message to send.
    */
-  default void debug(String message) {
+  default void debug(final String message) {
 
     debug(message, DebugLevel.STANDARD);
   }
@@ -69,7 +69,7 @@ public interface LogProvider {
    *
    * @param message The message to send.
    */
-  default void warning(String message) {
+  default void warning(final String message) {
 
     warning(message, DebugLevel.STANDARD);
   }
@@ -87,7 +87,7 @@ public interface LogProvider {
    *
    * @param message The message to send.
    */
-  default void error(String message) {
+  default void error(final String message) {
 
     error(message, DebugLevel.STANDARD);
   }
@@ -119,7 +119,7 @@ public interface LogProvider {
    * @param variables An array of variables for the prepared statement.
    * @param level     The {@link DebugLevel} to log this message at.
    */
-  default void sqlError(String message, Exception exception, String query, Object[] variables, DebugLevel level) {
+  default void sqlError(final String message, final Exception exception, final String query, final Object[] variables, final DebugLevel level) {
 
     error("======= Query Error =======", level);
     error(message, exception, level);
