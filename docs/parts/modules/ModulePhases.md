@@ -1,8 +1,8 @@
 # Phases
 
-During the module loading process, TNCP follows a cadence of
+During the module loading process, TNPC follows a cadence of
 phases, which run various methods within the module interface.
-This document is to outline when each phases is actived in order
+This document is to outline when each phase is active 
 to provide a clearer understanding of what methods each developer
 should implement and when.
 

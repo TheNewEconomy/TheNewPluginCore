@@ -141,13 +141,13 @@
         <dependency>
             <groupId>net.tnemc</groupId>
             <artifactId>TNML-Sponge-API-8</artifactId>
-            <version>${tnml.version}</version>
+            <version>${lib.tnml}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>net.tnemc</groupId>
             <artifactId>TNIL-Sponge</artifactId>
-            <version>${tnil.version}</version>
+            <version>${lib.tnil}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -159,19 +159,19 @@
         <dependency>
             <groupId>io.github.revxrsal</groupId>
             <artifactId>lamp.sponge</artifactId>
-            <version>${lamp.version}</version>
+            <version>${lib.lamp}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-sponge</artifactId>
-            <version>3.0.2</version>
+            <version>${lib.bstats}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.spongepowered</groupId>
             <artifactId>spongeapi</artifactId>
-            <version>8.2.0-SNAPSHOT</version>
+            <version>${lib.sponge}</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>

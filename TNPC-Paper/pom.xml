@@ -153,13 +153,13 @@
         <dependency>
             <groupId>net.tnemc</groupId>
             <artifactId>TNML-Paper</artifactId>
-            <version>${tnml.version}</version>
+            <version>${lib.tnml}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>net.tnemc</groupId>
             <artifactId>TNIL-Paper</artifactId>
-            <version>${tnil.version}</version>
+            <version>${lib.tnil}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -171,25 +171,25 @@
         <dependency>
             <groupId>io.github.revxrsal</groupId>
             <artifactId>lamp.bukkit</artifactId>
-            <version>${lamp.version}</version>
+            <version>${lib.lamp}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
-            <version>3.0.2</version>
+            <version>${lib.bstats}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
-            <version>2.11.6</version>
+            <version>${lib.placeholderapi}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.8-R0.1-SNAPSHOT</version>
+            <version>${lib.papermc}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
