@@ -18,31 +18,19 @@ package net.tnemc.plugincore.api;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.logging.Logger;
-import net.tnemc.plugincore.api.scheduler.SchedulerProvider;
-import net.tnemc.plugincore.api.server.ServerConnector;
-
-import java.nio.file.Path;
+import java.util.Optional;
 
 /**
- * PluginContext
+ * PluginMetadata
  *
  * @author creatorfromhell
  * @since 2.0.0.0
  */
-public interface PluginContext {
+public interface PluginMetadata {
 
-    PluginMetadata metadata();
+  String name();
 
-    Logger logger();
+  String version();
 
-    ServerConnector server();
-
-    SchedulerProvider<?> scheduler();
-
-    Path dataDirectory();
-
-    Platform platform();
-
-    String version();
+  Optional<String> description();
 }

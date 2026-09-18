@@ -24,6 +24,6 @@ package net.tnemc.plugincore.api.scheduler;
  * @since 0.1.2.0
  */
 public enum ChoreExecution {
-  MAIN_THREAD,
-  SECONDARY
+  GLOBAL,
+  ASYNC
 }
