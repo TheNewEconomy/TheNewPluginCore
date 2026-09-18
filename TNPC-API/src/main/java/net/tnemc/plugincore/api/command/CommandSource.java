@@ -1,7 +1,8 @@
-package net.tnemc.plugincore.bukkit.impl.scheduler;
+package net.tnemc.plugincore.api.command;
+
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,29 +18,32 @@ package net.tnemc.plugincore.bukkit.impl.scheduler;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.scheduler.Chore;
-import net.tnemc.plugincore.api.scheduler.ChoreExecution;
-import org.bukkit.scheduler.BukkitTask;
+import net.tnemc.plugincore.api.server.player.PlayerProvider;
+
+import java.util.Optional;
+import java.util.UUID;
 
 /**
- * BukkitChore
+ * Provides a compatibility layer for logging purposes.
  *
  * @author creatorfromhell
  * @since 0.1.2.0
  */
-public class BukkitChore extends Chore<BukkitTask> {
+public interface CommandSource {
 
-  public BukkitChore(final BukkitTask task, final ChoreExecution execution) {
+    Optional<UUID> identifier();
 
-    super(task.getTaskId(), task, execution);
-  }
+    String name();
 
-  /**
-   * Cancels this task.
-   */
-  @Override
-  public void cancel() {
+    boolean isPlayer();
 
-    this.task.cancel();
-  }
+    default boolean isConsole() {
+        return !isPlayer();
+    }
+
+    Optional<PlayerProvider> player();
+
+    boolean hasPermission(String permission);
+
+    void message(String message);
 }

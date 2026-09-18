@@ -34,7 +34,6 @@ import java.util.Map;
 public class ChannelMessageManager {
 
   private final Map<String, ChannelMessageHandler> handlers = new HashMap<>();
-
   private final List<String> accountsMessage = new ArrayList<>();
 
   public void register(final ChannelMessageHandler handler) {
@@ -49,7 +48,7 @@ public class ChannelMessageManager {
     });
   }
 
-  public void handle(String channel, byte[] bytes) {
+  public void handle(final String channel, final byte[] bytes) {
 
     if(handlers.containsKey(channel)) {
       handlers.get(channel).handle(bytes);

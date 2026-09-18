@@ -1,7 +1,8 @@
-package net.tnemc.plugincore.bukkit.impl.scheduler;
+package net.tnemc.plugincore.api;
+
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,29 +18,16 @@ package net.tnemc.plugincore.bukkit.impl.scheduler;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.scheduler.Chore;
-import net.tnemc.plugincore.api.scheduler.ChoreExecution;
-import org.bukkit.scheduler.BukkitTask;
-
 /**
- * BukkitChore
+ * Platform
  *
  * @author creatorfromhell
- * @since 0.1.2.0
+ * @since 1.0.0.2
  */
-public class BukkitChore extends Chore<BukkitTask> {
-
-  public BukkitChore(final BukkitTask task, final ChoreExecution execution) {
-
-    super(task.getTaskId(), task, execution);
-  }
-
-  /**
-   * Cancels this task.
-   */
-  @Override
-  public void cancel() {
-
-    this.task.cancel();
-  }
+public enum Platform {
+    BUKKIT,
+    FOLIA,
+    PAPER,
+    SPONGE,
+    FABRIC
 }

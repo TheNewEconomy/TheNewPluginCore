@@ -14,6 +14,7 @@ import java.net.URL;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 /*
  * The New Economy Minecraft Server Plugin
@@ -35,9 +36,11 @@ import java.util.UUID;
  */
 public interface UUIDAPI {
 
-  static String dashUUIDString(String uuid) {
+  Pattern UUID_MATCHER_PATTERN = Pattern.compile("(\\w{8})(\\w{4})(\\w{4})(\\w{4})(\\w{12})");
 
-    return uuid.replaceAll(PluginCore.UUID_MATCHER_PATTERN.pattern(), "$1-$2-$3-$4-$5");
+  static String dashUUIDString(final String uuid) {
+
+    return uuid.replaceAll(UUID_MATCHER_PATTERN.pattern(), "$1-$2-$3-$4-$5");
   }
 
   /**
@@ -53,12 +56,12 @@ public interface UUIDAPI {
     return url().contains("https");
   }
 
-  default UUID getUUID(String username) {
+  default UUID getUUID(final String username) {
 
-    JSONObject object = sendRequestJSON(username);
+    final JSONObject object = sendRequestJSON(username);
 
-    UUID id = (object != null && object.containsKey("uuid"))? UUID.fromString(object.get("uuid").toString())
-                                                            : null;
+    final UUID id = (object != null && object.containsKey("uuid"))? UUID.fromString(object.get("uuid").toString())
+                                                                  : null;
 
     if(id != null) {
       PluginCore.uuidProvider().store(new UUIDPair(id, username));
@@ -73,23 +76,23 @@ public interface UUIDAPI {
 
   default String sendRequest(final String linkAddition) {
 
-    StringBuilder builder = new StringBuilder();
+    final StringBuilder builder = new StringBuilder();
     HttpsURLConnection connection = null;
     try {
 
-      TrustManager[] trustAllCerts = new TrustManager[]{ new X509TrustManager() {
+      final TrustManager[] trustAllCerts = new TrustManager[]{ new X509TrustManager() {
         public X509Certificate[] getAcceptedIssuers() { return null; }
 
-        public void checkClientTrusted(X509Certificate[] certs, String authType) {
+        public void checkClientTrusted(final X509Certificate[] certs, final String authType) {
           //empty
         }
 
-        public void checkServerTrusted(X509Certificate[] certs, String authType) {
+        public void checkServerTrusted(final X509Certificate[] certs, final String authType) {
           //empty
         }
       } };
 
-      SSLContext sc = SSLContext.getInstance("TLS");
+      final SSLContext sc = SSLContext.getInstance("TLS");
       sc.init(null, trustAllCerts, new SecureRandom());
       HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 
@@ -98,13 +101,13 @@ public interface UUIDAPI {
       connection.setReadTimeout(60000);
       connection.setRequestMethod("GET");
       connection.setRequestProperty("Accept", "application/json");
-      BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+      final BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
       String response;
       while((response = reader.readLine()) != null) {
         builder.append(response);
       }
       reader.close();
-    } catch(Exception e) {
+    } catch(final Exception e) {
       return "";
     } finally {
       if(connection != null) {

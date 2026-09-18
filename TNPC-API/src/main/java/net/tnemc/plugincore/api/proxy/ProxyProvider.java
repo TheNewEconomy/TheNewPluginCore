@@ -1,7 +1,8 @@
-package net.tnemc.plugincore.bukkit.impl.scheduler;
+package net.tnemc.plugincore.api.proxy;
+
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,29 +18,26 @@ package net.tnemc.plugincore.bukkit.impl.scheduler;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.scheduler.Chore;
-import net.tnemc.plugincore.api.scheduler.ChoreExecution;
-import org.bukkit.scheduler.BukkitTask;
-
 /**
- * BukkitChore
+ * ProxyProvider represents Proxy method instances such as Bungee/Velocity in an implementation.
  *
  * @author creatorfromhell
  * @since 0.1.2.0
  */
-public class BukkitChore extends Chore<BukkitTask> {
-
-  public BukkitChore(final BukkitTask task, final ChoreExecution execution) {
-
-    super(task.getTaskId(), task, execution);
-  }
+public interface ProxyProvider {
 
   /**
-   * Cancels this task.
+   * Used to register a plugin message channel.
+   *
+   * @param channel The channel to register.
    */
-  @Override
-  public void cancel() {
+  void registerChannel(final String channel);
 
-    this.task.cancel();
-  }
+  /**
+   * Used to send a message through a specific plugin message channel.
+   *
+   * @param channel The channel to send the message through.
+   * @param bytes   The byte data to send.
+   */
+  void send(final String channel, final byte[] bytes);
 }

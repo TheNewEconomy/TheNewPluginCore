@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.tnemc</groupId>
     <artifactId>TNPC</artifactId>
-    <version>1.1.0.2-SNAPSHOT-6</version>
+    <version>2.0.0.0-SNAPSHOT-1</version>
     <packaging>pom</packaging>
     <name>The New Plugin Core</name>
 
@@ -13,6 +13,7 @@
         <module>TNPC-Bukkit</module>
         <module>TNPC-Sponge</module>
         <module>TNPC-Paper</module>
+        <module>TNPC-API</module>
     </modules>
 
     <properties>

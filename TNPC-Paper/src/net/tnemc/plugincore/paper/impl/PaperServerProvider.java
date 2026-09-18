@@ -28,7 +28,7 @@ import net.tnemc.plugincore.core.compatibility.ProxyProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
 import net.tnemc.plugincore.core.compatibility.WorldProvider;
 import net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe;
-import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
+import net.tnemc.plugincore.api.scheduler.SchedulerProvider;
 import net.tnemc.plugincore.paper.PaperPluginCore;
 import net.tnemc.plugincore.paper.hook.PAPIParser;
 import net.tnemc.plugincore.paper.impl.scheduler.PaperScheduler;

@@ -20,7 +20,7 @@ package net.tnemc.plugincore.core.config;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.settings.Settings;
-import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.core.compatibility.LogProvider;
 import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
 import net.tnemc.plugincore.core.paste.IPasteable;
 import org.jetbrains.annotations.NotNull;
@@ -50,17 +50,20 @@ public abstract class Config implements IPasteable {
   protected YamlDocument yaml;
   protected Settings[] settings;
 
-  public Config(final String fileName, final String defaults, final List<String> nodes, final Settings... settings) {
+  private final LogProvider logProvider;
+
+  public Config(final LogProvider logProvider, final File directory, final String fileName, final String defaults, final List<String> nodes, final Settings... settings) {
 
     this.defaults = defaults;
     this.fileName = fileName;
     this.nodes.addAll(nodes);
-    file = new File(PluginCore.directory(), fileName);
+    file = new File(directory, fileName);
 
     this.settings = settings;
+    this.logProvider = logProvider;
 
     if(!file.exists()) {
-      PluginCore.log().error("Configuration doesn't exist! File Name:" + fileName, DebugLevel.OFF);
+      logProvider.error("Configuration doesn't exist! File Name:" + fileName, DebugLevel.OFF);
     }
   }
 
@@ -75,7 +78,7 @@ public abstract class Config implements IPasteable {
       }
     } catch(final IOException e) {
 
-      PluginCore.log().error("Error while creating config \"" + file.getName() + "\".", e, DebugLevel.OFF);
+      logProvider.error("Error while creating config \"" + file.getName() + "\".", e, DebugLevel.OFF);
       return false;
     }
     return false;
@@ -97,7 +100,7 @@ public abstract class Config implements IPasteable {
       yaml.save(file);
       return true;
     } catch(final IOException e) {
-      PluginCore.log().error("Error while saving config \"" + nodes.get(0) + "\".", e, DebugLevel.OFF);
+      logProvider.error("Error while saving config \"" + nodes.get(0) + "\".", e, DebugLevel.OFF);
       return false;
     }
   }
