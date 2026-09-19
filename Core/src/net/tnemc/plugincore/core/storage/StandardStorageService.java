@@ -45,11 +45,11 @@ public final class StandardStorageService implements StorageService, AutoCloseab
   @Override
   public void registerProvider(final StorageProvider provider) {
 
-    final String identifier = normalize(provider.identifier());
+    final String identifier = normalize(provider.type());
 
     if(providers.putIfAbsent(identifier, provider) != null) {
 
-      throw new IllegalStateException("Storage provider already registered: " + provider.identifier());
+      throw new IllegalStateException("Storage provider already registered: " + provider.type());
     }
   }
 
