@@ -17,6 +17,7 @@ package net.tnemc.plugincore.core.paste;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.kyori.adventure.key.Key;
 import net.tnemc.plugincore.api.paste.PasteClient;
 import net.tnemc.plugincore.api.paste.Pasteable;
 import org.json.JSONArray;
@@ -25,8 +26,12 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -46,37 +51,30 @@ public class PasteeClient implements PasteClient {
     this.apiKey = apiKey;
   }
 
+  /**
+   * Retrieves the identifier associated with this object.
+   *
+   * @return The identifier as a String.
+   */
   @Override
-  public String identifier() {
+  public Key key() {
 
-    return "paste.ee";
+    return Key.key("tnpc", "paste.ee");
   }
 
   @Override
-  public String endpoint() {
-
-    return PASTEEE_API_URL;
-  }
-
-  @Override
-  public String apiKey() {
-
-    return apiKey;
-  }
-
-  @Override
-  public Optional<String> createSingle(final Pasteable pasteable) {
+  public Optional<URI> createSingle(final Pasteable pasteable) {
 
     return createBatchPaste(pasteable);
   }
 
   @Override
-  public Optional<String> createMultiple(final Pasteable... pasteables) {
+  public Collection<URI> createMultiple(final Pasteable... pasteables) {
 
-    return createBatchPaste(pasteables);
+    return createBatchPaste(pasteables).map(Collections::singleton).orElse(Collections.emptySet());
   }
 
-  private Optional<String> createBatchPaste(final Pasteable... pasteables) {
+  private Optional<URI> createBatchPaste(final Pasteable... pasteables) {
 
     try {
       final JSONObject requestBody = new JSONObject();
@@ -110,9 +108,9 @@ public class PasteeClient implements PasteClient {
         final String response = scanner.useDelimiter("\\A").next();
         final JSONObject jsonResponse = new JSONObject(response);
 
-        return Optional.of(jsonResponse.getString("link"));
+        return Optional.of(URI.create(jsonResponse.getString("link")));
       }
-    } catch(final IOException e) {
+    } catch(final IOException | IllegalArgumentException e) {
 
       e.printStackTrace();
       return Optional.empty();

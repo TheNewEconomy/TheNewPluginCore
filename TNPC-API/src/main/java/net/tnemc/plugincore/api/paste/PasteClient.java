@@ -19,7 +19,7 @@ package net.tnemc.plugincore.api.paste;
 
 import net.kyori.adventure.key.Key;
 import java.net.URI;
-import java.util.Optional;
+import java.util.Collection;import java.util.Optional;
 
 /**
  * PasteClient
@@ -49,11 +49,8 @@ public interface PasteClient {
   /**
    * Creates multiple pastes based on the provided Pasteable objects.
    *
-   * @param pasteables an array of Pasteable objects containing the details of the pastes to
-   *                   create
-   *
-   * @return an Optional of String representing the URL of the last created paste, or an empty
-   * Optional if creation fails or no pastes were created
+   * @param pasteables an array of Pasteable objects containing the details of the pastes to create
+   * @return a collection of URIs representing the URLs of the created pastes
    */
-  Optional<URI> createMultiple(Pasteable... pasteables);
+  Collection<URI> createMultiple(Pasteable... pasteables);
 }

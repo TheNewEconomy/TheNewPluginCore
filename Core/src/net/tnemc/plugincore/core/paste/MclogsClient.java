@@ -17,6 +17,7 @@ package net.tnemc.plugincore.core.paste;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.kyori.adventure.key.Key;
 import net.tnemc.plugincore.api.paste.PasteClient;
 import net.tnemc.plugincore.api.paste.Pasteable;
 import org.json.JSONObject;
@@ -24,9 +25,11 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -40,41 +43,38 @@ public class MclogsClient implements PasteClient {
 
   private static final String MCLOGS_API_URL = "https://api.mclo.gs/1/log";
 
+  /**
+   * Retrieves the identifier associated with this object.
+   *
+   * @return The identifier as a String.
+   */
   @Override
-  public String identifier() {
+  public Key key() {
 
-    return "mclo.gs";
+    return Key.key("tnpc", "mclo.gs");
   }
 
-  @Override
-  public String endpoint() {
-
-    return MCLOGS_API_URL;
-  }
-
-  @Override
   public String apiKey() {
 
     return "N/A"; // mclo.gs does not require an API key
   }
 
   @Override
-  public Optional<String> createSingle(final Pasteable pasteable) {
+  public Optional<URI> createSingle(final Pasteable pasteable) {
 
     return createPaste(pasteable);
   }
 
   @Override
-  public Optional<String> createMultiple(final Pasteable... pasteables) {
+  public Collection<URI> createMultiple(final Pasteable... pasteables) {
 
     return Arrays.stream(pasteables)
             .map(this::createPaste)
-            .filter(Optional::isPresent)
-            .map(Optional::get)
-            .reduce((first, second)->second); // Return the last created paste's URL
+            .flatMap(Optional::stream)
+            .toList();
   }
 
-  private Optional<String> createPaste(final Pasteable pasteable) {
+  private Optional<URI> createPaste(final Pasteable pasteable) {
 
     try {
 
@@ -96,9 +96,9 @@ public class MclogsClient implements PasteClient {
         final String response = scanner.useDelimiter("\\A").next();
         final JSONObject jsonResponse = new JSONObject(response);
 
-        return Optional.of(jsonResponse.getString("url"));
+        return Optional.of(URI.create(jsonResponse.getString("url")));
       }
-    } catch(final IOException e) {
+    } catch(final IOException | IllegalArgumentException e) {
 
       e.printStackTrace();
       return Optional.empty();
