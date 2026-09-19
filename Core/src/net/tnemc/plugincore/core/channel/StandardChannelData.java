@@ -1,7 +1,7 @@
 package net.tnemc.plugincore.core.channel;
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,6 +17,8 @@ package net.tnemc.plugincore.core.channel;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.tnemc.plugincore.api.channel.ChannelData;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -30,61 +32,62 @@ import java.util.UUID;
  * @author creatorfromhell
  * @since 0.1.2.0
  */
-public class ChannelBytesWrapper implements AutoCloseable {
+public final class StandardChannelData implements ChannelData {
 
-  private final byte[] data;
-  private DataInputStream in;
+  private final DataInputStream input;
 
-  public ChannelBytesWrapper(byte[] data) {
+  public StandardChannelData(final byte[] data) {
 
-    this.data = data;
-    open();
-  }
-
-  public void open() {
-
-    this.in = new DataInputStream(new ByteArrayInputStream(data));
+    this.input = new DataInputStream(
+            new ByteArrayInputStream(data)
+    );
   }
 
   @Override
-  public void close() {
-
-    try {
-      in.close();
-    } catch(IOException e) {
-      e.printStackTrace();
-    }
-  }
-
   public short readShort() throws IOException {
 
-    return in.readShort();
+    return input.readShort();
   }
 
+  @Override
+  public int readInt() throws IOException {
+
+    return input.readInt();
+  }
+
+  @Override
+  public long readLong() throws IOException {
+
+    return input.readLong();
+  }
+
+  @Override
+  public boolean readBoolean() throws IOException {
+
+    return input.readBoolean();
+  }
+
+  @Override
   public String readUTF() throws IOException {
 
-    return in.readUTF();
+    return input.readUTF();
   }
 
-  public Optional<UUID> readUUID() throws IOException {
+  @Override
+  public UUID readUUID() throws IOException {
 
-    final String str = readUTF();
-
-    try {
-      return Optional.of(UUID.fromString(str));
-    } catch(Exception ignore) {
-      return Optional.empty();
-    }
+    return UUID.fromString(input.readUTF());
   }
 
-  public Optional<BigDecimal> readBigDecimal() throws IOException {
+  @Override
+  public BigDecimal readBigDecimal() throws IOException {
 
-    final String str = readUTF();
+    return new BigDecimal(input.readUTF());
+  }
 
-    try {
-      return Optional.of(new BigDecimal(str));
-    } catch(Exception ignore) {
-      return Optional.empty();
-    }
+  @Override
+  public void close() throws IOException {
+
+    input.close();
   }
 }

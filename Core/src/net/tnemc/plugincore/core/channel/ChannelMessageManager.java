@@ -1,7 +1,7 @@
 package net.tnemc.plugincore.core.channel;
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,12 +18,18 @@ package net.tnemc.plugincore.core.channel;
  */
 
 
+import net.kyori.adventure.key.Key;
 import net.tnemc.plugincore.PluginCore;
+import net.tnemc.plugincore.api.channel.ChannelData;
+import net.tnemc.plugincore.api.channel.ChannelMessageHandler;
+import net.tnemc.plugincore.api.proxy.ProxyProvider;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * ChannelMessageManager
@@ -31,42 +37,32 @@ import java.util.Map;
  * @author creatorfromhell
  * @since 0.1.2.0
  */
-public class ChannelMessageManager {
+public final class ChannelMessageManager {
 
-  private final Map<String, ChannelMessageHandler> handlers = new HashMap<>();
-  private final List<String> accountsMessage = new ArrayList<>();
+  private final Map<Key, ChannelMessageHandler> handlers = new HashMap<>();
 
-  public void register(final ChannelMessageHandler handler) {
+  private final ProxyProvider proxy;
 
-    handlers.put("tne:" + handler.tag, handler);
+  public ChannelMessageManager(final ProxyProvider proxy) {
+
+    this.proxy = proxy;
   }
 
-  public void register() {
+  public void register(final Key channel, final ChannelMessageHandler handler) {
 
-    handlers.keySet().forEach(channel->{
-      PluginCore.server().proxy().registerChannel(channel);
-    });
+    handlers.put(channel, handler);
+
+    proxy.registerChannel(channel.asString());
   }
 
-  public void handle(final String channel, final byte[] bytes) {
+  public void handle(final Key channel, final UUID source, final byte[] data) throws IOException {
 
-    if(handlers.containsKey(channel)) {
-      handlers.get(channel).handle(bytes);
+    final ChannelMessageHandler handler = handlers.get(channel);
+
+    if(handler != null) {
+      try(final ChannelData channelData = new StandardChannelData(data)) {
+        handler.handle(source, channelData);
+      }
     }
-  }
-
-  public boolean isAffected(final String account) {
-
-    return accountsMessage.contains(account);
-  }
-
-  public void removeAccount(final String account) {
-
-    accountsMessage.remove(account);
-  }
-
-  public void addAccount(final String account) {
-
-    accountsMessage.add(account);
   }
 }
