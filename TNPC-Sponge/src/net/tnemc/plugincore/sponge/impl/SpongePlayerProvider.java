@@ -20,7 +20,7 @@ package net.tnemc.plugincore.sponge.impl;
 
 import net.tnemc.menu.sponge8.SpongePlayer;
 import net.tnemc.plugincore.core.compatibility.PlayerProvider;
-import net.tnemc.plugincore.core.io.message.MessageData;
+import net.tnemc.plugincore.api.message.MessageData;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;

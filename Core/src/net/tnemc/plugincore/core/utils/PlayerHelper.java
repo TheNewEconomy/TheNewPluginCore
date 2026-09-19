@@ -21,7 +21,7 @@ package net.tnemc.plugincore.core.utils;
 import net.tnemc.menu.core.compatibility.MenuPlayer;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.api.server.player.PlayerProvider;
-import net.tnemc.plugincore.core.io.message.MessageData;
+import net.tnemc.plugincore.api.message.MessageData;
 
 import java.util.Optional;
 import java.util.UUID;

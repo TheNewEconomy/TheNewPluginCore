@@ -1,8 +1,8 @@
-package net.tnemc.plugincore.core.io.message.translation;
+package net.tnemc.plugincore.api.message;
 
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,23 +18,27 @@ package net.tnemc.plugincore.core.io.message.translation;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import dev.dejvokep.boostedyaml.YamlDocument;
+import java.util.UUID;
 
 /**
- * Language
+ * PlaceholderProvider
  *
  * @author creatorfromhell
- * @since 0.1.2.0
+ * @since 2.0.0.0
  */
-public record Language(String name, YamlDocument config) {
+@FunctionalInterface
+public interface PlaceholderProvider {
 
-  public boolean hasTranslation(String node) {
+  PlaceholderProvider NONE = (identifier, message)->message;
 
-    return config.contains(node);
-  }
-
-  public String getTranslation(String node) {
-
-    return config.getString(node);
-  }
+  /**
+   * Replaces placeholders in the given message based on the player's unique identifier.
+   *
+   * @param identifier The unique identifier of the player.
+   * @param message    The message containing placeholders to be replaced.
+   *
+   * @return The message with placeholders replaced based on the player's context, or the original
+   *         message if no replacements were made.
+   */
+  String replace(UUID identifier, String message);
 }

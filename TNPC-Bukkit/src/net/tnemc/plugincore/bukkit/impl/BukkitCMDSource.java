@@ -23,8 +23,8 @@ import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.bukkit.BukkitPluginCore;
 import net.tnemc.plugincore.core.compatibility.CmdSource;
 import net.tnemc.plugincore.core.compatibility.PlayerProvider;
-import net.tnemc.plugincore.core.io.message.MessageData;
-import net.tnemc.plugincore.core.io.message.MessageHandler;
+import net.tnemc.plugincore.api.message.MessageData;
+import net.tnemc.plugincore.core.message.MessageHandler;
 import revxrsal.commands.bukkit.actor.BukkitCommandActor;
 
 import java.util.Optional;

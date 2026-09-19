@@ -19,8 +19,8 @@ package net.tnemc.plugincore.sponge.impl;
 
 import net.tnemc.plugincore.core.compatibility.CmdSource;
 import net.tnemc.plugincore.core.compatibility.PlayerProvider;
-import net.tnemc.plugincore.core.io.message.MessageData;
-import net.tnemc.plugincore.core.io.message.MessageHandler;
+import net.tnemc.plugincore.api.message.MessageData;
+import net.tnemc.plugincore.core.message.MessageHandler;
 import net.tnemc.plugincore.sponge.SpongePluginCore;
 import revxrsal.commands.sponge.actor.SpongeCommandActor;
 

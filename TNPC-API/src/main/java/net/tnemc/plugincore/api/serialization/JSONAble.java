@@ -1,10 +1,8 @@
-package net.tnemc.plugincore.core.io.serialization;
-
-import org.json.simple.JSONObject;
+package net.tnemc.plugincore.api.serialization;
 
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -19,6 +17,8 @@ import org.json.simple.JSONObject;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+import org.json.simple.JSONObject;
 
 /**
  * A class which represents an object that can be parsed to or from JSON.
