@@ -18,7 +18,13 @@ package net.tnemc.plugincore.core.utils;
  */
 
 import com.vdurmont.semver4j.Semver;
-import net.tnemc.plugincore.PluginCore;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.Optional;
 
 /**
  * UpdateChecker
@@ -28,33 +34,38 @@ import net.tnemc.plugincore.PluginCore;
  */
 public class UpdateChecker {
 
-  private final Semver ver;
+  private final URI endpoint;
+  private final Semver currentVersion;
+  private final HttpClient client;
 
-  public UpdateChecker() {
+  public UpdateChecker(final URI endpoint, final String currentVersion) {
 
-    ver = IOUtil.readVersion().map(Semver::new).orElseGet(()->new Semver("0.0.0.0"));
+    this.endpoint = endpoint;
+    this.currentVersion = new Semver(currentVersion, Semver.SemverType.LOOSE);
+
+    this.client = HttpClient.newHttpClient();
   }
 
-  public boolean isEarlyBuild() {
+  public Optional<Semver> latest() {
 
-    return ver.isLowerThan(PluginCore.engine().version());
-  }
+    final HttpRequest request = HttpRequest.newBuilder(endpoint).GET().build();
+    try {
 
-  public boolean needsUpdate() {
+      final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+      if(response.statusCode() != 200) {
+        return Optional.empty();
+      }
 
-    return ver.isGreaterThan(PluginCore.engine().version());
-  }
+      return Optional.of(new Semver(response.body().trim(), Semver.SemverType.LOOSE));
 
-  public String stable() {
+    } catch(final IOException e) {
 
-    if(new Semver(PluginCore.engine().version() + "-" + PluginCore.engine().build(), Semver.SemverType.LOOSE).isStable()) {
-      return "Stable";
+      return Optional.empty();
+
+    } catch(final InterruptedException e) {
+
+      Thread.currentThread().interrupt();
+      return Optional.empty();
     }
-    return "Not Stable";
-  }
-
-  public String getBuild() {
-
-    return ver.getValue();
   }
 }

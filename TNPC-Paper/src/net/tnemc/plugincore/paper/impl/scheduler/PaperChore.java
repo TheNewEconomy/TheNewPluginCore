@@ -17,8 +17,8 @@ package net.tnemc.plugincore.paper.impl.scheduler;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.core.compatibility.scheduler.Chore;
-import net.tnemc.plugincore.core.compatibility.scheduler.ChoreExecution;
+import net.tnemc.plugincore.api.scheduler.Chore;
+import net.tnemc.plugincore.api.scheduler.ChoreExecution;
 import org.bukkit.scheduler.BukkitTask;
 
 /**

@@ -22,7 +22,7 @@ import net.tnemc.plugincore.core.Platform;
 import net.tnemc.plugincore.core.PluginEngine;
 import net.tnemc.plugincore.core.api.CallbackProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
-import net.tnemc.plugincore.core.io.message.TranslationProvider;
+import net.tnemc.plugincore.api.message.TranslationProvider;
 import net.tnemc.plugincore.sponge.impl.SpongeLogProvider;
 import net.tnemc.plugincore.sponge.impl.SpongeServerProvider;
 import org.apache.logging.log4j.Logger;

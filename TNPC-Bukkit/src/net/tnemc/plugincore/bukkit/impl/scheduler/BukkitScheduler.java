@@ -18,10 +18,10 @@ package net.tnemc.plugincore.bukkit.impl.scheduler;
  */
 
 import net.tnemc.plugincore.bukkit.BukkitPluginCore;
-import net.tnemc.plugincore.core.compatibility.scheduler.Chore;
-import net.tnemc.plugincore.core.compatibility.scheduler.ChoreExecution;
-import net.tnemc.plugincore.core.compatibility.scheduler.ChoreTime;
-import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
+import net.tnemc.plugincore.api.scheduler.Chore;
+import net.tnemc.plugincore.api.scheduler.ChoreExecution;
+import net.tnemc.plugincore.api.scheduler.ChoreTime;
+import net.tnemc.plugincore.api.scheduler.SchedulerProvider;
 import org.bukkit.Bukkit;
 
 /**
