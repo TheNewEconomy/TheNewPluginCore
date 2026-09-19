@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.api.channel;
+package net.tnemc.plugincore.core.channel;
 
 /*
  * The New Plugin Core
@@ -18,22 +18,13 @@ package net.tnemc.plugincore.api.channel;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.IOException;
+import net.tnemc.plugincore.api.channel.ChannelMessageContext;
 
 /**
- * ChannelMessageHandler
+ * SecureChannelMessage
  *
  * @author creatorfromhell
  * @since 2.0.0.0
  */
-@FunctionalInterface
-public interface ChannelMessageHandler {
-
-  /**
-   * Handles an incoming channel message.
-   *
-   * @param source The server that sent the message.
-   * @param data   The message payload.
-   */
-  void handle(ChannelMessageContext source, ChannelDataInput data) throws IOException;
+record SecureChannelMessage(ChannelMessageContext context, byte[] payload) {
 }

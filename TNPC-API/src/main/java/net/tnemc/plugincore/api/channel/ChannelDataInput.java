@@ -20,7 +20,6 @@ package net.tnemc.plugincore.api.channel;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -29,7 +28,7 @@ import java.util.UUID;
  * @author creatorfromhell
  * @since 2.0.0.0
  */
-public interface ChannelData extends AutoCloseable {
+public interface ChannelDataInput extends AutoCloseable {
 
   /**
    * Reads a short value from the underlying data source.

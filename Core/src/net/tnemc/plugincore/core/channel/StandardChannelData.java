@@ -17,13 +17,12 @@ package net.tnemc.plugincore.core.channel;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.channel.ChannelData;
+import net.tnemc.plugincore.api.channel.ChannelDataInput;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -32,7 +31,7 @@ import java.util.UUID;
  * @author creatorfromhell
  * @since 0.1.2.0
  */
-public final class StandardChannelData implements ChannelData {
+public final class StandardChannelData implements ChannelDataInput {
 
   private final DataInputStream input;
 

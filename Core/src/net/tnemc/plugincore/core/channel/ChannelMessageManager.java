@@ -19,18 +19,18 @@ package net.tnemc.plugincore.core.channel;
 
 
 import net.kyori.adventure.key.Key;
-import net.tnemc.plugincore.PluginCore;
-import net.tnemc.plugincore.api.channel.ChannelData;
+import net.tnemc.plugincore.api.channel.ChannelDataInput;
 import net.tnemc.plugincore.api.channel.ChannelMessageHandler;
 import net.tnemc.plugincore.api.logging.DebugLevel;
 import net.tnemc.plugincore.api.logging.Logger;
 import net.tnemc.plugincore.api.proxy.ProxyProvider;
+import net.tnemc.plugincore.core.exception.ChannelVerificationException;
 
+import javax.crypto.SecretKey;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -43,13 +43,19 @@ public final class ChannelMessageManager {
 
   private final Map<Key, ChannelMessageHandler> handlers = new HashMap<>();
 
+  private final ChannelMessageVerifier verifier;
+
   private final ProxyProvider proxy;
   private final Logger logger;
 
-  public ChannelMessageManager(final ProxyProvider proxy, final Logger logger) {
+  //TODO: How to handle the secret key?
+  //final SecretKey secretKey = ChannelSecurity.decodeKey(configuration.channelSecret());
+
+  public ChannelMessageManager(final ProxyProvider proxy, final SecretKey secretKey, final Logger logger) {
 
     this.proxy = proxy;
     this.logger = logger;
+    this.verifier = new ChannelMessageVerifier(secretKey);
   }
 
   public void register(final Key channel, final ChannelMessageHandler handler) {
@@ -67,9 +73,18 @@ public final class ChannelMessageManager {
       return;
     }
 
-    try(final ChannelData channelData = new StandardChannelData(data)) {
+    try {
 
-      handler.handle(source, channelData);
+      final SecureChannelMessage message = verifier.verify(channel, data);
+
+      try(final ChannelDataInput channelData = new StandardChannelData(message.payload())) {
+
+        handler.handle(message.context(), channelData);
+      }
+
+    } catch(final ChannelVerificationException e) {
+
+      logger.debug("Rejected channel message for " + channel.asString() + ": " + e.getMessage(), DebugLevel.DEVELOPER);
 
     } catch(final IOException e) {
 
