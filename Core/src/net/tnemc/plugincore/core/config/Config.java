@@ -22,7 +22,7 @@ import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.settings.Settings;
 import net.tnemc.plugincore.core.compatibility.LogProvider;
 import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
-import net.tnemc.plugincore.core.paste.IPasteable;
+import net.tnemc.plugincore.api.paste.Pasteable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -41,7 +41,7 @@ import java.util.List;
  * @author creatorfromhell
  * @since 0.1.2.0
  */
-public abstract class Config implements IPasteable {
+public abstract class Config implements Pasteable {
 
   protected final String fileName;
   protected final File file;

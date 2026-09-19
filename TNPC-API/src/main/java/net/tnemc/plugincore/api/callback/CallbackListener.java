@@ -1,8 +1,8 @@
-package net.tnemc.plugincore.core.paste;
+package net.tnemc.plugincore.api.callback;
 
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2025 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -19,38 +19,18 @@ package net.tnemc.plugincore.core.paste;
  */
 
 /**
- * Pastable
+ * CallbackListener
  *
  * @author creatorfromhell
- * @since 1.0.0.2
+ * @since 2.0.0.0
  */
-public interface IPasteable {
+@FunctionalInterface
+public interface CallbackListener<T extends Callback> {
 
   /**
-   * Retrieves the file name associated with this object.
+   * Called when the associated callback is dispatched.
    *
-   * @return The file name as a String.
+   * @param callback The callback.
    */
-  String fileName();
-
-  /**
-   * Retrieves the extension associated with this object.
-   *
-   * @return The extension as a String.
-   */
-  String extension();
-
-  /**
-   * Retrieves the syntax associated with this object.
-   *
-   * @return The syntax as a String.
-   */
-  String syntax();
-
-  /**
-   * Retrieves the content of the object.
-   *
-   * @return The content as a String.
-   */
-  String content();
+  void handle(T callback);
 }

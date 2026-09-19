@@ -27,7 +27,7 @@ import net.tnemc.plugincore.core.compatibility.LogProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
 import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
 import net.tnemc.plugincore.core.id.UUIDProvider;
-import net.tnemc.plugincore.core.id.impl.provider.BaseUUIDProvider;
+import net.tnemc.plugincore.core.id.BaseUUIDProvider;
 import net.tnemc.plugincore.core.io.message.MessageHandler;
 import net.tnemc.plugincore.core.io.message.TranslationProvider;
 import net.tnemc.plugincore.core.io.storage.StorageManager;

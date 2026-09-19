@@ -17,10 +17,13 @@ package net.tnemc.plugincore.core.module;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.kyori.adventure.key.Key;
 import net.tnemc.menu.core.MenuHandler;
 import net.tnemc.plugincore.PluginCore;
-import net.tnemc.plugincore.core.api.CallbackEntry;
+import net.tnemc.plugincore.api.callback.CallbackListener;
+import net.tnemc.plugincore.core.callback.CallbackEntry;
 import net.tnemc.plugincore.core.api.CallbackManager;
+import net.tnemc.plugincore.core.callback.StandardCallbackService;
 import net.tnemc.plugincore.core.api.callback.Callback;
 import net.tnemc.plugincore.core.io.storage.StorageManager;
 import org.jetbrains.annotations.NotNull;
@@ -33,7 +36,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 
 /**
  * Module represents an add-on module for TNE.
@@ -114,25 +116,25 @@ public interface Module {
   List<OrphanCommand> registerAdminSub();
 
   /**
-   * Called after the {@link CallbackManager} is initialized. This method will register new
+   * Called after the {@link StandardCallbackService} is initialized. This method will register new
    * callbacks with the manager automatically.
    *
    * @return A map containing the callbacks to register where the key is the callback name and the
    * value is the {@link CallbackEntry} function.
    */
-  default Map<String, CallbackEntry> registerCallbacks() {
+  default Map<Key, CallbackEntry> registerCallbacks() {
 
     return new HashMap<>();
   }
 
   /**
-   * Called after the {@link CallbackManager} is initialized. This method will register the callback
+   * Called after the {@link StandardCallbackService} is initialized. This method will register the callback
    * listeners with the manager automatically.
    *
    * @return A map containing the listeners to register where the key is the callback name and the
    * value is the listener function.
    */
-  default Map<String, Function<Callback, Boolean>> registerListeners() {
+  default Map<Key, CallbackListener<?>> registerListeners() {
 
     return new HashMap<>();
   }

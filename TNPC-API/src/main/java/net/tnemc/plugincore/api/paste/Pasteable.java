@@ -1,7 +1,8 @@
-package net.tnemc.plugincore.core.paste;
+package net.tnemc.plugincore.api.paste;
+
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2025 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -23,47 +24,33 @@ package net.tnemc.plugincore.core.paste;
  * @author creatorfromhell
  * @since 1.0.0.2
  */
-class PasteableText implements IPasteable {
+public interface Pasteable {
 
-  private final String fileName;
-  private final String extension;
-  private final String syntax;
-  private final String content;
+  /**
+   * Retrieves the file name associated with this object.
+   *
+   * @return The file name as a String.
+   */
+  String fileName();
 
-  public PasteableText(final String fileName, final String extension, final String syntax, final String content) {
-
-    this.fileName = fileName;
-    this.extension = extension;
-    this.syntax = syntax;
-    this.content = content;
-  }
-
-  @Override
-  public String fileName() {
-
-    return fileName;
-  }
-
-  @Override
-  public String extension() {
-
-    return extension;
-  }
+  /**
+   * Retrieves the extension associated with this object.
+   *
+   * @return The extension as a String.
+   */
+  String extension();
 
   /**
    * Retrieves the syntax associated with this object.
    *
    * @return The syntax as a String.
    */
-  @Override
-  public String syntax() {
+  String syntax();
 
-    return syntax;
-  }
-
-  @Override
-  public String content() {
-
-    return content;
-  }
+  /**
+   * Retrieves the content of the object.
+   *
+   * @return The content as a String.
+   */
+  String content();
 }

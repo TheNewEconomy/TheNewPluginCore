@@ -1,7 +1,8 @@
-package net.tnemc.plugincore.core.api.callback;
+package net.tnemc.plugincore.api.callback;
+
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,17 +19,24 @@ package net.tnemc.plugincore.core.api.callback;
  */
 
 /**
- * TNECallback represents a base callback.
+ * CancellableCallback
  *
  * @author creatorfromhell
- * @since 0.1.2.0
+ * @since 2.0.0.0
  */
-public interface Callback {
+public interface CancellableCallback extends Callback {
 
   /**
-   * The name of this callback.
+   * Used to determine whether this callback has been cancelled.
    *
-   * @return The name of this callback.
+   * @return True if cancelled, otherwise false.
    */
-  String name();
+  boolean cancelled();
+
+  /**
+   * Used to change the cancelled state of this callback.
+   *
+   * @param cancelled The new cancelled state.
+   */
+  void cancelled(boolean cancelled);
 }

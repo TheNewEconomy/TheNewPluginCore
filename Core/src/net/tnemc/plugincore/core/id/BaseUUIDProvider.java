@@ -1,8 +1,8 @@
-package net.tnemc.plugincore.core.id.impl.provider;
+package net.tnemc.plugincore.core.id;
 
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,11 +18,12 @@ package net.tnemc.plugincore.core.id.impl.provider;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.core.id.UUIDAPI;
-import net.tnemc.plugincore.core.id.UUIDPair;
-import net.tnemc.plugincore.core.id.UUIDProvider;
-import net.tnemc.plugincore.core.id.impl.AshconAPI;
+import net.tnemc.plugincore.api.id.UUIDPair;
+import net.tnemc.plugincore.api.id.UUIDProvider;
+import net.tnemc.plugincore.api.id.UUIDResolver;
+import net.tnemc.plugincore.core.id.resolver.AshconAPI;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -38,14 +39,13 @@ public class BaseUUIDProvider implements UUIDProvider {
   private final ConcurrentHashMap<UUID, UUIDPair> pairs = new ConcurrentHashMap<>();
 
   /**
-   * Returns the associated {@link UUIDAPI uuid api} associated with this provider.
+   * Returns the associated {@link UUIDResolver uuid api} associated with this provider.
    *
-   * @return The associated {@link UUIDAPI uuid api} associated with this provider.
+   * @return The associated {@link UUIDResolver uuid api} associated with this provider.
    *
-   * @see UUIDAPI
+   * @see UUIDResolver
    */
-  @Override
-  public UUIDAPI api() {
+  public UUIDResolver api() {
 
     return new AshconAPI();
   }
@@ -101,9 +101,19 @@ public class BaseUUIDProvider implements UUIDProvider {
    *
    * @return A map where the keys are UUIDs and the values are {@link UUIDPair} instances.
    */
-  @Override
-  public ConcurrentHashMap<UUID, UUIDPair> pairs() {
+  public ConcurrentHashMap<UUID, UUIDPair> pairsMap() {
 
     return pairs;
+  }
+
+  /**
+   * Retrieves all known UUID pairs.
+   *
+   * @return The known UUID pairs.
+   */
+  @Override
+  public Collection<UUIDPair> pairs() {
+
+    return pairs.values();
   }
 }

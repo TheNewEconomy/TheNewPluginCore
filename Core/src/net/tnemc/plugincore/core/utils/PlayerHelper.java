@@ -20,10 +20,11 @@ package net.tnemc.plugincore.core.utils;
 
 import net.tnemc.menu.core.compatibility.MenuPlayer;
 import net.tnemc.plugincore.PluginCore;
-import net.tnemc.plugincore.core.compatibility.PlayerProvider;
+import net.tnemc.plugincore.api.server.player.PlayerProvider;
 import net.tnemc.plugincore.core.io.message.MessageData;
 
 import java.util.Optional;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 /**
@@ -48,9 +49,41 @@ public class PlayerHelper {
     return Pattern.compile("^\\w*$");
   }
 
-  public static void message(MenuPlayer player, final MessageData data) {
+  public static void message(final MenuPlayer player, final MessageData data) {
 
     final Optional<PlayerProvider> provider = PluginCore.server().findPlayer(player.identifier());
     provider.ifPresent(playerProvider->playerProvider.message(data));
+  }
+
+  /**
+   * Used to determine if a string is a valid minecraft username or not.
+   *
+   * @param name The name to check.
+   *
+   * @return True if the name is a valid minecraft username, otherwise false.
+   */
+  public static boolean validate(final String name) {
+
+    if(name.length() >= 3 && name.length() <= 16) {
+      return playerMatcher().matcher(name).matches();
+    }
+    return false;
+  }
+
+  /**
+   * Used to determine if a string is a valid UUID.
+   *
+   * @param identifier The string to check.
+   *
+   * @return True if the name is a valid UUID, otherwise false.
+   */
+  public static boolean isUUID(final String identifier) {
+
+    try {
+      UUID.fromString(identifier);
+      return true;
+    } catch(final Exception ignore) {
+      return false;
+    }
   }
 }

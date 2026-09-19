@@ -25,5 +25,10 @@
             <version>${lib.tnil}</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>io.github.revxrsal</groupId>
+            <artifactId>lamp.common</artifactId>
+            <version>${lib.lamp}</version>
+        </dependency>
     </dependencies>
 </project>

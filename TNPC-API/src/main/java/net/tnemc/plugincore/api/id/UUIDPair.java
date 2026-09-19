@@ -1,9 +1,7 @@
-package net.tnemc.plugincore.core.id.impl;
-
-
+package net.tnemc.plugincore.api.id;
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -19,22 +17,23 @@ package net.tnemc.plugincore.core.id.impl;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.core.id.UUIDAPI;
+import java.util.UUID;
 
 /**
- * Represents the Official Mojang API.
+ * Class that represents a Name & UUID pair.
  *
  * @author creatorfromhell
  * @since 0.1.2.0
  */
-public class MojangAPI implements UUIDAPI {
+public record UUIDPair(UUID identifier, String username) {
 
-  /**
-   * @return The URL for this UUID API Service.
-   */
-  @Override
-  public String url() {
+  public UUID getIdentifier() {
 
-    return "https://api.mojang.com/users/profiles/minecraft/";
+    return identifier;
+  }
+
+  public String getUsername() {
+
+    return username;
   }
 }
