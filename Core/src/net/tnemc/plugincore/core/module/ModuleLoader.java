@@ -24,6 +24,7 @@ import net.tnemc.plugincore.api.logging.DebugLevel;
 import net.tnemc.plugincore.api.logging.Logger;
 import net.tnemc.plugincore.api.module.Module;
 import net.tnemc.plugincore.api.module.ModuleInfo;
+import net.tnemc.plugincore.api.service.ServiceRegistry;
 import net.tnemc.plugincore.core.exception.ModuleDependencyException;
 import net.tnemc.plugincore.core.module.update.ModuleArtifact;
 import net.tnemc.plugincore.core.module.update.ModuleUpdateService;
@@ -58,21 +59,23 @@ public final class ModuleLoader implements AutoCloseable {
 
   private final Path directory;
   private final PluginContext plugin;
+  private final ServiceRegistry services;
   private final Logger logger;
   private final String pluginVersion;
   private final ModuleUpdateService updates;
   private final ClassLoader parentClassLoader;
 
-  public ModuleLoader(final Path directory, final PluginContext plugin, final String pluginVersion, final ModuleUpdateService updates) {
+  public ModuleLoader(final Path directory, final PluginContext plugin, final ServiceRegistry services, final String pluginVersion, final ModuleUpdateService updates) {
 
-    this(directory, plugin, pluginVersion, updates, ModuleLoader.class.getClassLoader());
+    this(directory, plugin, services, pluginVersion, updates, ModuleLoader.class.getClassLoader());
   }
 
-  public ModuleLoader(final Path directory, final PluginContext plugin, final String pluginVersion,
-                      final ModuleUpdateService updates, final ClassLoader parentClassLoader) {
+  public ModuleLoader(final Path directory, final PluginContext plugin, final ServiceRegistry services,
+                      final String pluginVersion, final ModuleUpdateService updates, final ClassLoader parentClassLoader) {
 
     this.directory = directory;
     this.plugin = plugin;
+    this.services = services;
     this.logger = plugin.logger();
     this.pluginVersion = pluginVersion;
     this.updates = updates;
@@ -430,7 +433,7 @@ public final class ModuleLoader implements AutoCloseable {
       final Path dataDirectory = directory.resolve(container.info().name());
       Files.createDirectories(dataDirectory);
 
-      final StandardModuleContext context = new StandardModuleContext(plugin, container.info(), dataDirectory);
+      final StandardModuleContext context = new StandardModuleContext(plugin, container.info(), dataDirectory, services);
 
       container.module().initialize(context);
       container.module().enable();

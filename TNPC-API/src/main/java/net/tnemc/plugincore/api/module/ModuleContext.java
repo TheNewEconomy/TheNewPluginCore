@@ -19,6 +19,7 @@ package net.tnemc.plugincore.api.module;
  */
 
 import net.tnemc.plugincore.api.PluginContext;
+import net.tnemc.plugincore.api.service.ServiceRegistry;
 
 import java.nio.file.Path;
 
@@ -35,4 +36,6 @@ public interface ModuleContext {
   ModuleInfo module();
 
   Path dataDirectory();
+
+  ServiceRegistry services();
 }

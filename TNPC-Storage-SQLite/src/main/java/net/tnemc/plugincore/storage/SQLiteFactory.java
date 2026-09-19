@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.module;
+package net.tnemc.plugincore.storage;
 
 /*
  * The New Plugin Core
@@ -18,18 +18,34 @@ package net.tnemc.plugincore.core.module;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.PluginContext;
-import net.tnemc.plugincore.api.module.ModuleContext;
-import net.tnemc.plugincore.api.module.ModuleInfo;
-import net.tnemc.plugincore.api.service.ServiceRegistry;
-
-import java.nio.file.Path;
+import cc.carm.lib.easysql.api.SQLManager;
+import net.tnemc.plugincore.api.storage.StorageFactory;
+import net.tnemc.plugincore.api.storage.StorageProvider;
+import net.tnemc.plugincore.core.storage.SQLStorageConfiguration;
+import net.tnemc.plugincore.core.storage.SQLStorageProvider;
 
 /**
- * StandardModuleContext
+ * MySQLFactory
  *
  * @author creatorfromhell
  * @since 2.0.0.0
  */
-public record StandardModuleContext(PluginContext plugin, ModuleInfo module, Path dataDirectory, ServiceRegistry services) implements ModuleContext {
+public class SQLiteFactory implements StorageFactory<SQLiteStorageConfiguration> {
+
+  @Override
+  public String identifier() {
+
+    return "sqlite";
+  }
+
+  @Override
+  public StorageProvider create(final SQLiteStorageConfiguration configuration) {
+
+    final String url = "jdbc:sqlite:" + configuration.file().toAbsolutePath();
+
+    //TODO: Create SQLManager
+    final SQLManager manager = null;
+
+    return new SQLStorageProvider("sqlite", manager);
+  }
 }

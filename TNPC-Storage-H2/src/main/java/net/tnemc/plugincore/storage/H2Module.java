@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.module;
+package net.tnemc.plugincore.storage;
 
 /*
  * The New Plugin Core
@@ -18,18 +18,42 @@ package net.tnemc.plugincore.core.module;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.PluginContext;
+import net.tnemc.plugincore.api.module.Module;
 import net.tnemc.plugincore.api.module.ModuleContext;
 import net.tnemc.plugincore.api.module.ModuleInfo;
-import net.tnemc.plugincore.api.service.ServiceRegistry;
-
-import java.nio.file.Path;
+import net.tnemc.plugincore.api.storage.StorageFactory;
 
 /**
- * StandardModuleContext
+ * MySQLModule
  *
  * @author creatorfromhell
  * @since 2.0.0.0
  */
-public record StandardModuleContext(PluginContext plugin, ModuleInfo module, Path dataDirectory, ServiceRegistry services) implements ModuleContext {
+@ModuleInfo(
+        name = "TNPC-Storage-H2",
+        author = "creatorfromhell",
+        version = "2.0.0.0",
+        minimumVersion = "2.0.0.0"
+)
+public class H2Module implements Module {
+
+  private ModuleContext context;
+
+  @Override
+  public void initialize(final ModuleContext context) {
+
+    this.context = context;
+  }
+
+  @Override
+  public void enable() {
+
+    context.services().register(StorageFactory.class, "h2", new H2Factory());
+  }
+
+  @Override
+  public void disable() {
+
+    context.services().unregister(StorageFactory.class, "h2");
+  }
 }

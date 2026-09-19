@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.module;
+package net.tnemc.plugincore.storage;
 
 /*
  * The New Plugin Core
@@ -18,18 +18,37 @@ package net.tnemc.plugincore.core.module;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.PluginContext;
-import net.tnemc.plugincore.api.module.ModuleContext;
-import net.tnemc.plugincore.api.module.ModuleInfo;
-import net.tnemc.plugincore.api.service.ServiceRegistry;
+import net.tnemc.plugincore.api.storage.StorageFactory;
+import net.tnemc.plugincore.api.storage.StorageProvider;
+import net.tnemc.plugincore.api.storage.exception.StorageException;
 
-import java.nio.file.Path;
+import java.io.IOException;
+import java.nio.file.Files;
 
 /**
- * StandardModuleContext
+ * YAMLFactory
  *
  * @author creatorfromhell
  * @since 2.0.0.0
  */
-public record StandardModuleContext(PluginContext plugin, ModuleInfo module, Path dataDirectory, ServiceRegistry services) implements ModuleContext {
+public class YAMLFactory implements StorageFactory<YAMLStorageConfiguration> {
+
+  @Override
+  public String identifier() {
+
+    return "yaml";
+  }
+
+  @Override
+  public StorageProvider create(final YAMLStorageConfiguration configuration) {
+
+    try {
+
+      Files.createDirectories(configuration.directory());
+    } catch(final IOException e) {
+
+      throw new StorageException("Unable to create YAML storage directory.", e);
+    }
+    return new YAMLStorageProvider(configuration.directory());
+  }
 }

@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.module;
+package net.tnemc.plugincore.api.storage.schema;
 
 /*
  * The New Plugin Core
@@ -18,18 +18,26 @@ package net.tnemc.plugincore.core.module;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.PluginContext;
-import net.tnemc.plugincore.api.module.ModuleContext;
-import net.tnemc.plugincore.api.module.ModuleInfo;
-import net.tnemc.plugincore.api.service.ServiceRegistry;
-
-import java.nio.file.Path;
-
 /**
- * StandardModuleContext
+ * MigrationContext
  *
  * @author creatorfromhell
  * @since 2.0.0.0
  */
-public record StandardModuleContext(PluginContext plugin, ModuleInfo module, Path dataDirectory, ServiceRegistry services) implements ModuleContext {
+public interface MigrationContext {
+
+  /**
+   * Retrieves the database dialect associated with the migration context.
+   *
+   * @return the database dialect as a String
+   */
+  String dialect();
+
+  /**
+   * Executes a given SQL statement within the context of the migration process.
+   *
+   * @param statement the SQL statement to be executed
+   * @throws Exception if an error occurs during the execution of the statement
+   */
+  void execute(String statement) throws Exception;
 }

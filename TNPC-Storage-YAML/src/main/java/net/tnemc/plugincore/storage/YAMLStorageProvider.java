@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.module;
+package net.tnemc.plugincore.storage;
 
 /*
  * The New Plugin Core
@@ -18,18 +18,44 @@ package net.tnemc.plugincore.core.module;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.PluginContext;
-import net.tnemc.plugincore.api.module.ModuleContext;
-import net.tnemc.plugincore.api.module.ModuleInfo;
-import net.tnemc.plugincore.api.service.ServiceRegistry;
+import net.tnemc.plugincore.api.storage.StorageProvider;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * StandardModuleContext
+ * YAMLStorageProvider
  *
  * @author creatorfromhell
  * @since 2.0.0.0
  */
-public record StandardModuleContext(PluginContext plugin, ModuleInfo module, Path dataDirectory, ServiceRegistry services) implements ModuleContext {
+public class YAMLStorageProvider implements StorageProvider {
+
+  private final Path directory;
+
+  public YAMLStorageProvider(final Path directory) {
+
+    this.directory = directory;
+  }
+
+  @Override
+  public String type() {
+
+    return "yaml";
+  }
+
+  @Override
+  public boolean available() {
+
+    return Files.isDirectory(directory) && Files.isReadable(directory) && Files.isWritable(directory);
+  }
+
+  public Path directory() {
+
+    return directory;
+  }
+
+  @Override
+  public void close() {
+  }
 }

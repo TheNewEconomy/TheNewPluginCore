@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.module;
+package net.tnemc.plugincore.core.storage;
 
 /*
  * The New Plugin Core
@@ -18,18 +18,18 @@ package net.tnemc.plugincore.core.module;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.PluginContext;
-import net.tnemc.plugincore.api.module.ModuleContext;
-import net.tnemc.plugincore.api.module.ModuleInfo;
-import net.tnemc.plugincore.api.service.ServiceRegistry;
-
-import java.nio.file.Path;
-
 /**
- * StandardModuleContext
+ * SQLStorageConfiguration
  *
  * @author creatorfromhell
  * @since 2.0.0.0
  */
-public record StandardModuleContext(PluginContext plugin, ModuleInfo module, Path dataDirectory, ServiceRegistry services) implements ModuleContext {
+public record SQLStorageConfiguration(String host, int port, String database, String username,
+                                      String password, int minimumConnections, int maximumConnections) {
+
+  public SQLStorageConfiguration(final String host, final int port, final String database,
+                                 final String username, final String password) {
+
+    this(host, port, database, username, password, 2, 10);
+  }
 }

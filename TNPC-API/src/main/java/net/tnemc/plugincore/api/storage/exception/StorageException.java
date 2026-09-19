@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.module;
+package net.tnemc.plugincore.api.storage.exception;
 
 /*
  * The New Plugin Core
@@ -18,18 +18,26 @@ package net.tnemc.plugincore.core.module;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.PluginContext;
-import net.tnemc.plugincore.api.module.ModuleContext;
-import net.tnemc.plugincore.api.module.ModuleInfo;
-import net.tnemc.plugincore.api.service.ServiceRegistry;
-
-import java.nio.file.Path;
-
 /**
- * StandardModuleContext
+ * StorageException
  *
  * @author creatorfromhell
  * @since 2.0.0.0
  */
-public record StandardModuleContext(PluginContext plugin, ModuleInfo module, Path dataDirectory, ServiceRegistry services) implements ModuleContext {
+public class StorageException extends RuntimeException {
+
+  public StorageException(final String message) {
+
+    super(message);
+  }
+
+  public StorageException(final String message, final Throwable cause) {
+
+    super(message, cause);
+  }
+
+  public StorageException(final Throwable cause) {
+
+    super(cause);
+  }
 }

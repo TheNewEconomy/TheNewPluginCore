@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.module;
+package net.tnemc.plugincore.api.storage.schema;
 
 /*
  * The New Plugin Core
@@ -18,18 +18,33 @@ package net.tnemc.plugincore.core.module;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.PluginContext;
-import net.tnemc.plugincore.api.module.ModuleContext;
-import net.tnemc.plugincore.api.module.ModuleInfo;
-import net.tnemc.plugincore.api.service.ServiceRegistry;
-
-import java.nio.file.Path;
-
 /**
- * StandardModuleContext
+ * SchemaMigration
  *
  * @author creatorfromhell
  * @since 2.0.0.0
  */
-public record StandardModuleContext(PluginContext plugin, ModuleInfo module, Path dataDirectory, ServiceRegistry services) implements ModuleContext {
+public interface SchemaMigration {
+
+  /**
+   * Retrieves the version of the schema migration.
+   *
+   * @return the version number of the schema migration as an integer
+   */
+  int version();
+
+  /**
+   * Retrieves the description associated with the schema migration.
+   *
+   * @return the description of the schema migration as a String
+   */
+  String description();
+
+  /**
+   * Executes the schema migration process using the provided migration context.
+   *
+   * @param context the migration context containing utility methods and details about the environment
+   * @throws Exception if an error occurs during the migration process
+   */
+  void migrate(MigrationContext context) throws Exception;
 }

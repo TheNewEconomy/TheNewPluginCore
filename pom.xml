@@ -14,6 +14,14 @@
         <module>TNPC-Sponge</module>
         <module>TNPC-Paper</module>
         <module>TNPC-API</module>
+        <module>TNPC-Storage-SQL</module>
+        <module>TNPC-Storage-MySQL</module>
+        <module>TNPC-Storage-MariaDB</module>
+        <module>TNPC-Storage-PostgreSQL</module>
+        <module>TNPC-Storage-SQLite</module>
+        <module>TNPC-Storage-H2</module>
+        <module>TNPC-Storage-MongoDB</module>
+        <module>TNPC-Storage-YAML</module>
     </modules>
 
     <properties>
