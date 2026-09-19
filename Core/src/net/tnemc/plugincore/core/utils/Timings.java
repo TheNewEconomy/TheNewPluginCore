@@ -18,8 +18,6 @@ package net.tnemc.plugincore.core.utils;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.api.logging.DebugLevel;
 import net.tnemc.plugincore.api.logging.Logger;
 

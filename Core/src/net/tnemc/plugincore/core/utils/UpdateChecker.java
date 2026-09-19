@@ -18,7 +18,6 @@ package net.tnemc.plugincore.core.utils;
  */
 
 import com.vdurmont.semver4j.Semver;
-import net.tnemc.plugincore.PluginCore;
 
 import java.io.IOException;
 import java.net.URI;

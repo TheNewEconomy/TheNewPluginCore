@@ -18,8 +18,8 @@ package net.tnemc.plugincore.core.module;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.module.ModuleInfo;
 import net.tnemc.plugincore.api.module.Module;
+import net.tnemc.plugincore.api.module.ModuleInfo;
 
 import java.io.IOException;
 import java.nio.file.Path;

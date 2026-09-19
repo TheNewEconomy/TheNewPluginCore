@@ -19,10 +19,10 @@ package net.tnemc.plugincore.core.io.storage;
  */
 
 import net.tnemc.plugincore.PluginCore;
-import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
 import net.tnemc.plugincore.api.scheduler.ChoreExecution;
 import net.tnemc.plugincore.api.scheduler.ChoreTime;
 import net.tnemc.plugincore.core.channel.redis.RedisChannelTransport;
+import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
 import net.tnemc.plugincore.core.io.storage.connect.SQLConnector;
 import net.tnemc.plugincore.core.io.storage.engine.StorageSettings;
 import org.jetbrains.annotations.NotNull;

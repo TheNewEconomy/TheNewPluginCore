@@ -18,8 +18,8 @@ package net.tnemc.plugincore.core.callback;
  */
 
 
-import net.tnemc.plugincore.api.callback.CallbackListener;
 import net.tnemc.plugincore.api.callback.Callback;
+import net.tnemc.plugincore.api.callback.CallbackListener;
 
 import java.util.ArrayList;
 import java.util.List;
