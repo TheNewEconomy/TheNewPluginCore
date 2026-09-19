@@ -1,7 +1,8 @@
-package net.tnemc.plugincore.core;
+package net.tnemc.plugincore.core.module.update;
+
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,49 +18,13 @@ package net.tnemc.plugincore.core;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.PluginContext;
+import java.net.URI;
 
 /**
- * PluginEngine
+ * ModuleArtifact
  *
  * @author creatorfromhell
- * @since 0.0.1.0
+ * @since 2.0.0.0
  */
-public abstract class PluginEngine {
-
-  private final PluginContext context;
-
-  protected PluginEngine(final PluginContext context) {
-
-    this.context = context;
-  }
-
-  public void load() {
-
-  }
-
-  public void enable() {
-
-  }
-
-  public void disable() {
-
-  }
-
-  public void registerConfigs() {
-
-  }
-
-  public void registerCommands() {
-
-  }
-
-  public void registerPluginChannels() {
-
-  }
-
-  public PluginContext context() {
-
-    return context;
-  }
+public record ModuleArtifact(String name, String version, URI download, String sha256) {
 }

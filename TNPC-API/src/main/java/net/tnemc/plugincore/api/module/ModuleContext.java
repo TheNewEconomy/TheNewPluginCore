@@ -1,8 +1,8 @@
-package net.tnemc.plugincore.core.module.cache;
+package net.tnemc.plugincore.api.module;
 
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,46 +17,22 @@ package net.tnemc.plugincore.core.module.cache;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ModuleFile {
 
-  private String name;
-  private String version;
-  private String url;
+import net.tnemc.plugincore.api.PluginContext;
 
-  public ModuleFile(String name, String version, String url) {
+import java.nio.file.Path;
 
-    this.name = name;
-    this.version = version;
-    this.url = url;
-  }
+/**
+ * ModuleContext
+ *
+ * @author creatorfromhell
+ * @since 2.0.0.0
+ */
+public interface ModuleContext {
 
-  public String getName() {
+  PluginContext plugin();
 
-    return name;
-  }
+  ModuleInfo module();
 
-  public void setName(String name) {
-
-    this.name = name;
-  }
-
-  public String getVersion() {
-
-    return version;
-  }
-
-  public void setVersion(String version) {
-
-    this.version = version;
-  }
-
-  public String getUrl() {
-
-    return url;
-  }
-
-  public void setUrl(String url) {
-
-    this.url = url;
-  }
+  Path dataDirectory();
 }

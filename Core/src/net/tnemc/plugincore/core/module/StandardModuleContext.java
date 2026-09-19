@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core;
+package net.tnemc.plugincore.core.module;
 
 /*
  * The New Plugin Core
@@ -19,18 +19,16 @@ package net.tnemc.plugincore.core;
  */
 
 import net.tnemc.plugincore.api.PluginContext;
-import net.tnemc.plugincore.api.callback.CallbackService;
-import net.tnemc.plugincore.api.id.UUIDProvider;
+import net.tnemc.plugincore.api.module.ModuleContext;
+import net.tnemc.plugincore.api.module.ModuleInfo;
+
+import java.nio.file.Path;
 
 /**
- * RevampedPluginCore
+ * StandardModuleContext
  *
  * @author creatorfromhell
  * @since 2.0.0.0
  */
-public final class RevampedPluginCore {
-
-  private final PluginContext context;
-  private final UUIDProvider uuidProvider;
-  private final CallbackService callbackService;
+public record StandardModuleContext(PluginContext plugin, ModuleInfo module, Path dataDirectory) implements ModuleContext {
 }

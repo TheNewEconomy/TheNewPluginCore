@@ -1,14 +1,8 @@
-package net.tnemc.plugincore.core.module;
-
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+package net.tnemc.plugincore.api.module;
 
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -23,6 +17,19 @@ import java.lang.annotation.Target;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * ModuleInfo
+ *
+ * @author creatorfromhell
+ * @since 2.0.0.0
+ */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
@@ -34,9 +41,7 @@ public @interface ModuleInfo {
 
   String version();
 
-  String pluginVersion();
+  String minimumVersion() default "0.0.0";
 
   String[] dependencies() default {};
-
-  String updateURL() default "";
 }

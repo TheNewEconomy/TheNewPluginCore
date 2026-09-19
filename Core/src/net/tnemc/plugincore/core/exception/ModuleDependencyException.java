@@ -1,7 +1,8 @@
-package net.tnemc.plugincore.core;
+package net.tnemc.plugincore.core.exception;
+
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,49 +18,16 @@ package net.tnemc.plugincore.core;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.api.PluginContext;
-
 /**
- * PluginEngine
+ * ModuleDependencyException
  *
  * @author creatorfromhell
- * @since 0.0.1.0
+ * @since 2.0.0.0
  */
-public abstract class PluginEngine {
+public class ModuleDependencyException extends RuntimeException {
 
-  private final PluginContext context;
+  public ModuleDependencyException(final String message) {
 
-  protected PluginEngine(final PluginContext context) {
-
-    this.context = context;
-  }
-
-  public void load() {
-
-  }
-
-  public void enable() {
-
-  }
-
-  public void disable() {
-
-  }
-
-  public void registerConfigs() {
-
-  }
-
-  public void registerCommands() {
-
-  }
-
-  public void registerPluginChannels() {
-
-  }
-
-  public PluginContext context() {
-
-    return context;
+    super(message);
   }
 }
