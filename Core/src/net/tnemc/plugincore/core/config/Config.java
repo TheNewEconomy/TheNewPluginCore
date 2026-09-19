@@ -20,8 +20,8 @@ package net.tnemc.plugincore.core.config;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.settings.Settings;
-import net.tnemc.plugincore.core.compatibility.LogProvider;
-import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
+import net.tnemc.plugincore.api.logging.DebugLevel;
+import net.tnemc.plugincore.api.logging.Logger;
 import net.tnemc.plugincore.api.paste.Pasteable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -50,9 +50,9 @@ public abstract class Config implements Pasteable {
   protected YamlDocument yaml;
   protected Settings[] settings;
 
-  private final LogProvider logProvider;
+  private final Logger logger;
 
-  public Config(final LogProvider logProvider, final File directory, final String fileName, final String defaults, final List<String> nodes, final Settings... settings) {
+  public Config(final Logger logger, final File directory, final String fileName, final String defaults, final List<String> nodes, final Settings... settings) {
 
     this.defaults = defaults;
     this.fileName = fileName;
@@ -60,10 +60,10 @@ public abstract class Config implements Pasteable {
     file = new File(directory, fileName);
 
     this.settings = settings;
-    this.logProvider = logProvider;
+    this.logger = logger;
 
     if(!file.exists()) {
-      logProvider.error("Configuration doesn't exist! File Name:" + fileName, DebugLevel.OFF);
+      logger.error("Configuration doesn't exist! File Name:" + fileName, DebugLevel.OFF);
     }
   }
 
@@ -78,7 +78,7 @@ public abstract class Config implements Pasteable {
       }
     } catch(final IOException e) {
 
-      logProvider.error("Error while creating config \"" + file.getName() + "\".", e, DebugLevel.OFF);
+      logger.error("Error while creating config \"" + file.getName() + "\".", e, DebugLevel.OFF);
       return false;
     }
     return false;
@@ -100,7 +100,7 @@ public abstract class Config implements Pasteable {
       yaml.save(file);
       return true;
     } catch(final IOException e) {
-      logProvider.error("Error while saving config \"" + nodes.get(0) + "\".", e, DebugLevel.OFF);
+      logger.error("Error while saving config \"" + nodes.get(0) + "\".", e, DebugLevel.OFF);
       return false;
     }
   }
