@@ -1,7 +1,7 @@
 package net.tnemc.plugincore.core.paste;
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2025 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by

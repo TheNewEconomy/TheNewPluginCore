@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.io.serialization;
+package net.tnemc.plugincore.core.serialization;
 
 import org.json.simple.JSONObject;
 
@@ -8,57 +8,57 @@ public class JSONHelper {
 
   private JSONObject object;
 
-  public JSONHelper(JSONObject object) {
+  public JSONHelper(final JSONObject object) {
 
     this.object = object;
   }
 
-  public boolean has(String identifier) {
+  public boolean has(final String identifier) {
 
     return object.containsKey(identifier);
   }
 
-  public boolean isNull(String identifier) {
+  public boolean isNull(final String identifier) {
 
     return object.get(identifier) == null;
   }
 
-  public JSONHelper getHelper(String identifier) {
+  public JSONHelper getHelper(final String identifier) {
 
     return new JSONHelper(getJSON(identifier));
   }
 
-  public JSONObject getJSON(String identifier) {
+  public JSONObject getJSON(final String identifier) {
 
     return (JSONObject)object.get(identifier);
   }
 
-  public Short getShort(String identifier) {
+  public Short getShort(final String identifier) {
 
     return Short.valueOf(getString(identifier));
   }
 
-  public Double getDouble(String identifier) {
+  public Double getDouble(final String identifier) {
 
     return Double.valueOf(getString(identifier));
   }
 
-  public Integer getInteger(String identifier) {
+  public Integer getInteger(final String identifier) {
 
     return Integer.valueOf(getString(identifier));
   }
 
-  public Boolean getBoolean(String identifier) {
+  public Boolean getBoolean(final String identifier) {
 
     return Boolean.valueOf(getString(identifier));
   }
 
-  public String getString(String identifier) {
+  public String getString(final String identifier) {
 
     return object.get(identifier).toString();
   }
 
-  public UUID getUUID(String identifier) {
+  public UUID getUUID(final String identifier) {
 
     return UUID.fromString(object.get(identifier).toString());
   }
@@ -68,7 +68,7 @@ public class JSONHelper {
     return object;
   }
 
-  public void setObject(JSONObject object) {
+  public void setObject(final JSONObject object) {
 
     this.object = object;
   }
