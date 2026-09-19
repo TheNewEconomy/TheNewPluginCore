@@ -65,7 +65,7 @@ public final class ChannelMessageManager {
     proxy.registerChannel(channel.asString());
   }
 
-  public void handle(final Key channel, final UUID source, final byte[] data) {
+  public void handle(final Key channel, final byte[] data) {
 
     final ChannelMessageHandler handler = handlers.get(channel);
 

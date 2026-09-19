@@ -1,4 +1,4 @@
-package net.tnemc.plugincore.core.io.redis;
+package net.tnemc.plugincore.core.channel.redis;
 /*
  * The New Plugin Core
  * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
@@ -17,8 +17,8 @@ package net.tnemc.plugincore.core.io.redis;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.PluginCore;
-import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
+import net.kyori.adventure.key.Key;
+import net.tnemc.plugincore.core.channel.ChannelMessageManager;
 import redis.clients.jedis.BinaryJedisPubSub;
 
 import java.nio.charset.StandardCharsets;
@@ -29,16 +29,20 @@ import java.nio.charset.StandardCharsets;
  * @author creatorfromhell
  * @since 0.1.2.0
  */
-public class TNESubscriber extends BinaryJedisPubSub {
+public class RedisChannelSubscriber extends BinaryJedisPubSub {
+
+  private final ChannelMessageManager manager;
+
+  RedisChannelSubscriber(final ChannelMessageManager manager) {
+
+    this.manager = manager;
+  }
 
   @Override
-  public void onMessage(byte[] channel, byte[] message) {
+  public void onMessage(final byte[] channel, final byte[] message) {
 
-    super.onMessage(channel, message);
+    final Key key = Key.key(new String(channel, StandardCharsets.UTF_8));
 
-    final String channelStr = new String(channel, StandardCharsets.UTF_8);
-
-    PluginCore.log().debug("Redis Message Received: " + channelStr, DebugLevel.STANDARD);
-    PluginCore.instance().getChannelMessageManager().handle(channelStr, message);
+    manager.handle(key, message);
   }
 }

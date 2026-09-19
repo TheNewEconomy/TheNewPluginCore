@@ -22,7 +22,7 @@ import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
 import net.tnemc.plugincore.api.scheduler.ChoreExecution;
 import net.tnemc.plugincore.api.scheduler.ChoreTime;
-import net.tnemc.plugincore.core.io.redis.TNEJedisManager;
+import net.tnemc.plugincore.core.channel.redis.RedisChannelTransport;
 import net.tnemc.plugincore.core.io.storage.connect.SQLConnector;
 import net.tnemc.plugincore.core.io.storage.engine.StorageSettings;
 import org.jetbrains.annotations.NotNull;
@@ -44,7 +44,7 @@ public class StorageManager {
 
   private static StorageManager instance;
   private final StorageSettings settings;
-  private final TNEJedisManager jedisManager;
+  private final RedisChannelTransport jedisManager;
   private StorageProvider provider;
 
 
@@ -57,7 +57,7 @@ public class StorageManager {
     if(pool == null || settings.proxyType().equalsIgnoreCase("bungee")) {
       this.jedisManager = null;
     } else {
-      this.jedisManager = new TNEJedisManager(pool);
+      this.jedisManager = new RedisChannelTransport(pool);
     }
 
     this.provider = provider;
