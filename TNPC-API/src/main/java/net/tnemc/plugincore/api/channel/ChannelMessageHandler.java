@@ -18,6 +18,7 @@ package net.tnemc.plugincore.api.channel;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import java.io.IOException;
 import java.util.UUID;
 
 /**
@@ -35,5 +36,5 @@ public interface ChannelMessageHandler {
    * @param source The server that sent the message.
    * @param data   The message payload.
    */
-  void handle(UUID source, ChannelData data);
+  void handle(UUID source, ChannelData data) throws IOException;;
 }

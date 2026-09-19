@@ -22,6 +22,8 @@ import net.kyori.adventure.key.Key;
 import net.tnemc.plugincore.PluginCore;
 import net.tnemc.plugincore.api.channel.ChannelData;
 import net.tnemc.plugincore.api.channel.ChannelMessageHandler;
+import net.tnemc.plugincore.api.logging.DebugLevel;
+import net.tnemc.plugincore.api.logging.Logger;
 import net.tnemc.plugincore.api.proxy.ProxyProvider;
 
 import java.io.IOException;
@@ -42,10 +44,12 @@ public final class ChannelMessageManager {
   private final Map<Key, ChannelMessageHandler> handlers = new HashMap<>();
 
   private final ProxyProvider proxy;
+  private final Logger logger;
 
-  public ChannelMessageManager(final ProxyProvider proxy) {
+  public ChannelMessageManager(final ProxyProvider proxy, final Logger logger) {
 
     this.proxy = proxy;
+    this.logger = logger;
   }
 
   public void register(final Key channel, final ChannelMessageHandler handler) {
@@ -55,14 +59,21 @@ public final class ChannelMessageManager {
     proxy.registerChannel(channel.asString());
   }
 
-  public void handle(final Key channel, final UUID source, final byte[] data) throws IOException {
+  public void handle(final Key channel, final UUID source, final byte[] data) {
 
     final ChannelMessageHandler handler = handlers.get(channel);
 
-    if(handler != null) {
-      try(final ChannelData channelData = new StandardChannelData(data)) {
-        handler.handle(source, channelData);
-      }
+    if(handler == null) {
+      return;
+    }
+
+    try(final ChannelData channelData = new StandardChannelData(data)) {
+
+      handler.handle(source, channelData);
+
+    } catch(final IOException e) {
+
+      logger.error("Failed to handle channel message: " + channel.asString(), e, DebugLevel.OFF);
     }
   }
 }
