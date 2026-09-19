@@ -46,7 +46,7 @@ public interface PlayerProvider {
 
     int getExp();
 
-    void setExp(int exp);
+    void setExp(float exp);
 
     int getExpLevel();
 
