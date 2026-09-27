@@ -29,31 +29,88 @@ import java.util.Objects;
  */
 public interface ChunkProvider {
 
+    /**
+     * Retrieves the x-coordinate of the chunk represented by the ChunkProvider.
+     *
+     * @return The x-coordinate of the chunk as an integer.
+     */
     int x();
 
+    /**
+     * Retrieves the z-coordinate of the chunk represented by the ChunkProvider.
+     *
+     * @return The z-coordinate of the chunk as an integer.
+     */
     int z();
 
+    /**
+     * Checks if the current chunk is classified as a slime chunk.
+     *
+     * @return {@code true} if the chunk is a slime chunk, otherwise {@code false}.
+     */
     boolean isSlime();
 
+    /**
+     * Checks if the specified biome is present.
+     *
+     * @param biome The name of the biome to check. Cannot be null.
+     * @return {@code true} if the specified biome is present, otherwise {@code false}.
+     * @throws NullPointerException if {@code biome} is null.
+     */
     boolean containsBiome(String biome);
 
+    /**
+     * Checks if all of the specified biomes are present.
+     *
+     * @param biomes A collection of biome names to check. Cannot be null.
+     * @return {@code true} if all of the specified biomes are present, otherwise {@code false}.
+     * @throws NullPointerException if {@code biomes} is null.
+     */
     default boolean containsAllBiomes(final Collection<String> biomes) {
         Objects.requireNonNull(biomes, "biomes");
         return biomes.stream().allMatch(this::containsBiome);
     }
 
+    /**
+     * Checks if any of the specified biomes are present.
+     *
+     * @param biomes A collection of biome names to check. Cannot be null.
+     * @return {@code true} if at least one of the specified biomes is present, otherwise {@code false}.
+     * @throws NullPointerException if {@code biomes} is null.
+     */
     default boolean containsAnyBiome(final Collection<String> biomes) {
         Objects.requireNonNull(biomes, "biomes");
         return biomes.stream().anyMatch(this::containsBiome);
     }
 
+    /**
+     * Checks if a specific structure is present.
+     *
+     * @param structure The name of the structure to check. Cannot be null.
+     * @return {@code true} if the specified structure is present, otherwise {@code false}.
+     * @throws NullPointerException if {@code structure} is null.
+     */
     boolean containsStructure(String structure);
 
+    /**
+     * Checks if all of the specified structures are present.
+     *
+     * @param structures A collection of structure names to check. Cannot be null.
+     * @return {@code true} if all of the specified structures are present, otherwise {@code false}.
+     * @throws NullPointerException if {@code structures} is null.
+     */
     default boolean containsAllStructures(final Collection<String> structures) {
         Objects.requireNonNull(structures, "structures");
         return structures.stream().allMatch(this::containsStructure);
     }
 
+    /**
+     * Checks if any of the specified structures are present.
+     *
+     * @param structures A collection of structure names to check. Cannot be null.
+     * @return {@code true} if at least one of the specified structures is present, otherwise {@code false}.
+     * @throws NullPointerException if {@code structures} is null.
+     */
     default boolean containsAnyStructure(final Collection<String> structures) {
         Objects.requireNonNull(structures, "structures");
         return structures.stream().anyMatch(this::containsStructure);

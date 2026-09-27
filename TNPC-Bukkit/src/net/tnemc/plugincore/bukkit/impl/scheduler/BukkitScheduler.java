@@ -42,7 +42,7 @@ public class BukkitScheduler extends SchedulerProvider<BukkitChore> {
   @Override
   public void createDelayedTask(final Runnable task, final ChoreTime delay, final ChoreExecution environment) {
 
-    if(environment.equals(ChoreExecution.MAIN_THREAD)) {
+    if(environment.equals(ChoreExecution.GLOBAL)) {
       Bukkit.getScheduler().runTaskLater(BukkitPluginCore.instance().getPlugin(), task, delay.asTicks());
       return;
     }
@@ -62,7 +62,7 @@ public class BukkitScheduler extends SchedulerProvider<BukkitChore> {
   @Override
   public BukkitChore createRepeatingTask(final Runnable task, final ChoreTime delay, final ChoreTime period, final ChoreExecution environment) {
 
-    if(environment.equals(ChoreExecution.MAIN_THREAD)) {
+    if(environment.equals(ChoreExecution.GLOBAL)) {
       return new BukkitChore(Bukkit.getScheduler().runTaskTimer(BukkitPluginCore.instance().getPlugin(), task, delay.asTicks(), period.asTicks()), environment);
     }
     return new BukkitChore(Bukkit.getScheduler().runTaskTimerAsynchronously(BukkitPluginCore.instance().getPlugin(), task, delay.asTicks(), period.asTicks()), environment);

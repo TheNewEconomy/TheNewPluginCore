@@ -256,5 +256,17 @@ public interface ServerConnector {
   SchedulerProvider<?> scheduler();
 
 
+  /**
+   * Provides an instance of the CalculationsProvider, which serves as a utility for performing
+   * calculations related to item stacks, inventories, and related operations. The returned
+   * CalculationsProvider is parameterized to match the specific implementation requirements
+   * involving item stack types, storage systems, and inventory-related abstractions.
+   *
+   * @param <S>   The underlying type or data structure used by the {@link AbstractItemStack}.
+   * @param <T>   The specific implementation of {@link AbstractItemStack} that extends it.
+   * @param <INV> The type representing the inventory abstraction.
+   * @return An instance of CalculationsProvider parameterized to operate on the specified
+   *         item stack, type, and inventory structures.
+   */
   <S, T extends AbstractItemStack<S>, INV> CalculationsProvider<T, S, INV> calculations();
 }

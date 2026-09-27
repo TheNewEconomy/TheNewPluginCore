@@ -40,9 +40,9 @@ public class PaperScheduler extends SchedulerProvider<PaperChore> {
    * @param environment The execution environment for the task.
    */
   @Override
-  public void createDelayedTask(Runnable task, ChoreTime delay, ChoreExecution environment) {
+  public void createDelayedTask(final Runnable task, final ChoreTime delay, final ChoreExecution environment) {
 
-    if(environment.equals(ChoreExecution.MAIN_THREAD)) {
+    if(environment.equals(ChoreExecution.GLOBAL)) {
       Bukkit.getScheduler().runTaskLater(PaperPluginCore.instance().getPlugin(), task, delay.asTicks());
       return;
     }
@@ -60,9 +60,9 @@ public class PaperScheduler extends SchedulerProvider<PaperChore> {
    * @return The associated {@link Chore} with this task.
    */
   @Override
-  public PaperChore createRepeatingTask(Runnable task, ChoreTime delay, ChoreTime period, ChoreExecution environment) {
+  public PaperChore createRepeatingTask(final Runnable task, final ChoreTime delay, final ChoreTime period, final ChoreExecution environment) {
 
-    if(environment.equals(ChoreExecution.MAIN_THREAD)) {
+    if(environment.equals(ChoreExecution.GLOBAL)) {
       return new PaperChore(Bukkit.getScheduler().runTaskTimer(PaperPluginCore.instance().getPlugin(), task, delay.asTicks(), period.asTicks()), environment);
     }
     return new PaperChore(Bukkit.getScheduler().runTaskTimerAsynchronously(PaperPluginCore.instance().getPlugin(), task, delay.asTicks(), period.asTicks()), environment);

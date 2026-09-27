@@ -29,6 +29,11 @@ package net.tnemc.plugincore.api.server.inventory;
  */
 public interface InventoryProvider<I> {
 
-    /** Returns the platform inventory handle. Prefer platform-neutral operations where available. */
+    /**
+     * Retrieves the inventory based on the specified type.
+     *
+     * @param ender if true, retrieves the Ender Chest inventory; otherwise, retrieves the regular inventory.
+     * @return the inventory object, which may vary depending on the implementation and platform.
+     */
     I getInventory(boolean ender);
 }
