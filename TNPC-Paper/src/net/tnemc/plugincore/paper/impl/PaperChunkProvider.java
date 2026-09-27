@@ -19,12 +19,10 @@ package net.tnemc.plugincore.paper.impl;
 
 import io.papermc.paper.registry.RegistryAccess;
 import io.papermc.paper.registry.RegistryKey;
-import net.tnemc.item.providers.VersionUtil;
 import net.tnemc.plugincore.core.compatibility.ChunkProvider;
 import org.bukkit.Chunk;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Registry;
-import org.bukkit.StructureType;
 import org.bukkit.block.Biome;
 import org.bukkit.generator.structure.Structure;
 import org.jetbrains.annotations.NotNull;

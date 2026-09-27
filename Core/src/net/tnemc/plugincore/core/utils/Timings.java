@@ -2,7 +2,7 @@ package net.tnemc.plugincore.core.utils;
 
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,9 +18,8 @@ package net.tnemc.plugincore.core.utils;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-import net.tnemc.plugincore.PluginCore;
-import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
+import net.tnemc.plugincore.api.logging.DebugLevel;
+import net.tnemc.plugincore.api.logging.Logger;
 
 /**
  * Timings
@@ -30,9 +29,15 @@ import net.tnemc.plugincore.core.compatibility.log.DebugLevel;
  */
 public class Timings implements AutoCloseable {
 
+  private final Logger logger;
+
   private String statement = "Timings: ";
   private long start;
-  private long end;
+
+  public Timings(final Logger logger) {
+
+    this.logger = logger;
+  }
 
   /**
    * Starts our timings in order to measure duration of methods or actions.
@@ -52,7 +57,7 @@ public class Timings implements AutoCloseable {
    *
    * @return The timings instance.
    */
-  public Timings withStatement(String statement) {
+  public Timings withStatement(final String statement) {
 
     this.statement = statement;
     return this;
@@ -65,8 +70,7 @@ public class Timings implements AutoCloseable {
    */
   public long stop() {
 
-    this.end = System.nanoTime();
-    return (end - start);
+    return System.nanoTime() - start;
   }
 
   /**
@@ -74,10 +78,9 @@ public class Timings implements AutoCloseable {
    *
    * @param level The DebugLevel to use for this.
    */
-  public void stopLog(DebugLevel level) {
+  public void stopLog(final DebugLevel level) {
 
-    this.end = System.nanoTime();
-    PluginCore.log().debug(statement + (end - start), level);
+    logger.debug(statement + stop(), level);
   }
 
   @Override

@@ -31,7 +31,7 @@ import net.tnemc.plugincore.core.compatibility.ProxyProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
 import net.tnemc.plugincore.core.compatibility.WorldProvider;
 import net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe;
-import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
+import net.tnemc.plugincore.api.scheduler.SchedulerProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

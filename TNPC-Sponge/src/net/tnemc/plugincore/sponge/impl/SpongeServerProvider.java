@@ -26,7 +26,7 @@ import net.tnemc.plugincore.core.compatibility.ProxyProvider;
 import net.tnemc.plugincore.core.compatibility.ServerConnector;
 import net.tnemc.plugincore.core.compatibility.WorldProvider;
 import net.tnemc.plugincore.core.compatibility.helper.CraftingRecipe;
-import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
+import net.tnemc.plugincore.api.scheduler.SchedulerProvider;
 import net.tnemc.plugincore.sponge.SpongePluginCore;
 import net.tnemc.plugincore.sponge.impl.scheduler.SpongeScheduler;
 import net.tnemc.sponge.SpongeItemCalculationsProvider;

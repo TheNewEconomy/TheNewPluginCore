@@ -1,7 +1,7 @@
 package net.tnemc.plugincore.core.channel;
 /*
  * The New Plugin Core
- * Copyright (C) 2022 - 2024 Daniel "creatorfromhell" Vidmar
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,11 +18,17 @@ package net.tnemc.plugincore.core.channel;
  */
 
 
-import net.tnemc.plugincore.PluginCore;
+import net.kyori.adventure.key.Key;
+import net.tnemc.plugincore.api.channel.ChannelDataInput;
+import net.tnemc.plugincore.api.channel.ChannelMessageHandler;
+import net.tnemc.plugincore.api.logging.DebugLevel;
+import net.tnemc.plugincore.api.logging.Logger;
+import net.tnemc.plugincore.api.proxy.ProxyProvider;
+import net.tnemc.plugincore.core.exception.ChannelVerificationException;
 
-import java.util.ArrayList;
+import javax.crypto.SecretKey;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,43 +37,56 @@ import java.util.Map;
  * @author creatorfromhell
  * @since 0.1.2.0
  */
-public class ChannelMessageManager {
+public final class ChannelMessageManager {
 
-  private final Map<String, ChannelMessageHandler> handlers = new HashMap<>();
+  private final Map<Key, ChannelMessageHandler> handlers = new HashMap<>();
 
-  private final List<String> accountsMessage = new ArrayList<>();
+  private final ChannelMessageVerifier verifier;
 
-  public void register(final ChannelMessageHandler handler) {
+  private final ProxyProvider proxy;
+  private final Logger logger;
 
-    handlers.put("tne:" + handler.tag, handler);
+  //TODO: How to handle the secret key?
+  //final SecretKey secretKey = ChannelSecurity.decodeKey(configuration.channelSecret());
+
+  public ChannelMessageManager(final ProxyProvider proxy, final SecretKey secretKey, final Logger logger) {
+
+    this.proxy = proxy;
+    this.logger = logger;
+    this.verifier = new ChannelMessageVerifier(secretKey);
   }
 
-  public void register() {
+  public void register(final Key channel, final ChannelMessageHandler handler) {
 
-    handlers.keySet().forEach(channel->{
-      PluginCore.server().proxy().registerChannel(channel);
-    });
+    handlers.put(channel, handler);
+
+    proxy.registerChannel(channel.asString());
   }
 
-  public void handle(String channel, byte[] bytes) {
+  public void handle(final Key channel, final byte[] data) {
 
-    if(handlers.containsKey(channel)) {
-      handlers.get(channel).handle(bytes);
+    final ChannelMessageHandler handler = handlers.get(channel);
+
+    if(handler == null) {
+      return;
     }
-  }
 
-  public boolean isAffected(final String account) {
+    try {
 
-    return accountsMessage.contains(account);
-  }
+      final SecureChannelMessage message = verifier.verify(channel, data);
 
-  public void removeAccount(final String account) {
+      try(final ChannelDataInput channelData = new StandardChannelData(message.payload())) {
 
-    accountsMessage.remove(account);
-  }
+        handler.handle(message.context(), channelData);
+      }
 
-  public void addAccount(final String account) {
+    } catch(final ChannelVerificationException e) {
 
-    accountsMessage.add(account);
+      logger.debug("Rejected channel message for " + channel.asString() + ": " + e.getMessage(), DebugLevel.DEVELOPER);
+
+    } catch(final IOException e) {
+
+      logger.error("Failed to handle channel message: " + channel.asString(), e, DebugLevel.OFF);
+    }
   }
 }

@@ -1,11 +1,14 @@
 package net.tnemc.plugincore.core.utils;
 
 
-import net.tnemc.plugincore.core.compatibility.PlayerProvider;
+import net.tnemc.plugincore.api.server.player.PlayerProvider;
 
 import java.math.BigDecimal;
 
-public class Experience {
+public final class Experience {
+
+  private Experience() {
+  }
 
   /**
    * Calculates a player's total exp based on level and progress to next.
@@ -14,7 +17,7 @@ public class Experience {
    *
    * @return the amount of exp the Player has
    */
-  public static BigDecimal getExperienceAsDecimal(PlayerProvider player) {
+  public static BigDecimal getExperienceAsDecimal(final PlayerProvider player) {
 
     return new BigDecimal(getExperienceFromLevel(player.getExpLevel()))
             .add(new BigDecimal(getExperienceToNext(player.getExpLevel()) * player.getExp()));
@@ -27,7 +30,7 @@ public class Experience {
    *
    * @return the amount of exp the Player has
    */
-  public static int getExperience(PlayerProvider player) {
+  public static int getExperience(final PlayerProvider player) {
 
     return getExperienceFromLevel(player.getExpLevel())
            + Math.round(getExperienceToNext(player.getExpLevel()) * player.getExp());
@@ -44,7 +47,7 @@ public class Experience {
    *
    * @return the total experience calculated
    */
-  public static int getExperienceFromLevel(int level) {
+  public static int getExperienceFromLevel(final int level) {
 
     if(level > 30) {
       return (int)(4.5 * level * level - 162.5 * level + 2220);
@@ -62,7 +65,7 @@ public class Experience {
    *
    * @return the level calculated
    */
-  public static double getLevelFromExperience(long exp) {
+  public static double getLevelFromExperience(final long exp) {
 
     if(exp > 1395) {
       return (Math.sqrt(72 * exp - 54215) + 325) / 18;
@@ -81,7 +84,7 @@ public class Experience {
    * as follows: Experience Required = 2[Current Level] + 7 (at levels 0-15) 5[Current Level] - 38
    * (at levels 16-30) 9[Current Level] - 158 (at level 31+)"
    */
-  private static int getExperienceToNext(int level) {
+  private static int getExperienceToNext(final int level) {
 
     if(level > 30) {
       return 9 * level - 158;
@@ -101,7 +104,7 @@ public class Experience {
    * @param player the Player affected
    * @param exp    the amount of experience to add or remove
    */
-  public static void setExperience(PlayerProvider player, int exp) {
+  public static void setExperience(final PlayerProvider player, final int exp) {
 
     final int playerExperience = getExperience(player);
     final boolean remove = exp < playerExperience;
@@ -117,7 +120,7 @@ public class Experience {
    * @param player The Player affected.
    * @param level  the new level
    */
-  public static void setLevel(PlayerProvider player, int level) {
+  public static void setLevel(final PlayerProvider player, final int level) {
 
     player.setExpLevel(level);
   }
@@ -129,7 +132,7 @@ public class Experience {
    * @param level  the new level
    * @param remove should this be a removal?
    */
-  public static void changeLevel(PlayerProvider player, int level, boolean remove) {
+  public static void changeLevel(final PlayerProvider player, final int level, final boolean remove) {
 
     final int newLevel = (remove)? player.getExpLevel() - level : player.getExpLevel() + level;
     player.setExpLevel(newLevel);
@@ -144,7 +147,7 @@ public class Experience {
    * @param player the Player affected
    * @param exp    the amount of experience to add or remove
    */
-  public static void changeExperience(PlayerProvider player, int exp, boolean remove) {
+  public static void changeExperience(final PlayerProvider player, final int exp, final boolean remove) {
 
     int xp = ((remove)? getExperience(player) - exp : getExperience(player) + exp);
 
@@ -152,10 +155,12 @@ public class Experience {
       xp = 0;
     }
 
-    double levelAndExp = getLevelFromExperience(xp);
+    final double levelAndExp = getLevelFromExperience(xp);
 
-    int level = (int)levelAndExp;
+    final int level = (int)levelAndExp;
+    final float progress = (float)(levelAndExp - level);
+
     player.setExpLevel(level);
-    player.setExp((int)(levelAndExp - level));
+    player.setExp(progress);
   }
 }

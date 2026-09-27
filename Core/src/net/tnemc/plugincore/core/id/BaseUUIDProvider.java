@@ -1,0 +1,119 @@
+package net.tnemc.plugincore.core.id;
+
+/*
+ * The New Plugin Core
+ * Copyright (C) 2022 - 2026 Daniel "creatorfromhell" Vidmar
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import net.tnemc.plugincore.api.id.UUIDPair;
+import net.tnemc.plugincore.api.id.UUIDProvider;
+import net.tnemc.plugincore.api.id.UUIDResolver;
+import net.tnemc.plugincore.core.id.resolver.AshconAPI;
+
+import java.util.Collection;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * BaseUUIDProvider
+ *
+ * @author creatorfromhell
+ * @since 0.1.2.0
+ */
+public class BaseUUIDProvider implements UUIDProvider {
+
+  private final ConcurrentHashMap<UUID, UUIDPair> pairs = new ConcurrentHashMap<>();
+
+  /**
+   * Returns the associated {@link UUIDResolver uuid api} associated with this provider.
+   *
+   * @return The associated {@link UUIDResolver uuid api} associated with this provider.
+   *
+   * @see UUIDResolver
+   */
+  public UUIDResolver api() {
+
+    return new AshconAPI();
+  }
+
+  /**
+   * Used to retrieve a {@link UUIDPair}.
+   *
+   * @param name The username of the pair.
+   *
+   * @return An optional containing the pair if found, otherwise an empty optional.
+   */
+  @Override
+  public Optional<UUIDPair> retrieve(final String name) {
+
+    for(final UUIDPair pair : pairs.values()) {
+      if(pair.getUsername().equalsIgnoreCase(name)) {
+        return Optional.of(pair);
+      }
+    }
+    return Optional.empty();
+  }
+
+  /**
+   * Used to retrieve a name from its associated {@link UUID}.
+   *
+   * @param id The {@link UUID} to use in the search.
+   *
+   * @return An optional containing the name if found, otherwise an empty optional.
+   */
+  @Override
+  public Optional<String> retrieveName(final UUID id) {
+
+    if(pairs.containsKey(id)) {
+      return Optional.ofNullable(pairs.get(id).getUsername());
+    }
+    return Optional.empty();
+  }
+
+  /**
+   * Used to store a Username & UUID pair. This could be to a map, or to a database for persistent
+   * usage or to both.
+   *
+   * @param pair The {@link UUIDPair}
+   */
+  @Override
+  public void store(final UUIDPair pair) {
+
+    pairs.put(pair.getIdentifier(), pair);
+  }
+
+  /**
+   * Retrieves the map containing all stored UUID pairs.
+   *
+   * @return A map where the keys are UUIDs and the values are {@link UUIDPair} instances.
+   */
+  public ConcurrentHashMap<UUID, UUIDPair> pairsMap() {
+
+    return pairs;
+  }
+
+  /**
+   * Retrieves all known UUID pairs.
+   *
+   * @return The known UUID pairs.
+   */
+  @Override
+  public Collection<UUIDPair> pairs() {
+
+    return pairs.values();
+  }
+}

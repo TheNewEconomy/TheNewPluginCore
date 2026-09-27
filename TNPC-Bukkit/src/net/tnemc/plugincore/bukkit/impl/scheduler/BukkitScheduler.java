@@ -18,10 +18,10 @@ package net.tnemc.plugincore.bukkit.impl.scheduler;
  */
 
 import net.tnemc.plugincore.bukkit.BukkitPluginCore;
-import net.tnemc.plugincore.core.compatibility.scheduler.Chore;
-import net.tnemc.plugincore.core.compatibility.scheduler.ChoreExecution;
-import net.tnemc.plugincore.core.compatibility.scheduler.ChoreTime;
-import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
+import net.tnemc.plugincore.api.scheduler.Chore;
+import net.tnemc.plugincore.api.scheduler.ChoreExecution;
+import net.tnemc.plugincore.api.scheduler.ChoreTime;
+import net.tnemc.plugincore.api.scheduler.SchedulerProvider;
 import org.bukkit.Bukkit;
 
 /**
@@ -42,7 +42,7 @@ public class BukkitScheduler extends SchedulerProvider<BukkitChore> {
   @Override
   public void createDelayedTask(final Runnable task, final ChoreTime delay, final ChoreExecution environment) {
 
-    if(environment.equals(ChoreExecution.MAIN_THREAD)) {
+    if(environment.equals(ChoreExecution.GLOBAL)) {
       Bukkit.getScheduler().runTaskLater(BukkitPluginCore.instance().getPlugin(), task, delay.asTicks());
       return;
     }
@@ -62,7 +62,7 @@ public class BukkitScheduler extends SchedulerProvider<BukkitChore> {
   @Override
   public BukkitChore createRepeatingTask(final Runnable task, final ChoreTime delay, final ChoreTime period, final ChoreExecution environment) {
 
-    if(environment.equals(ChoreExecution.MAIN_THREAD)) {
+    if(environment.equals(ChoreExecution.GLOBAL)) {
       return new BukkitChore(Bukkit.getScheduler().runTaskTimer(BukkitPluginCore.instance().getPlugin(), task, delay.asTicks(), period.asTicks()), environment);
     }
     return new BukkitChore(Bukkit.getScheduler().runTaskTimerAsynchronously(BukkitPluginCore.instance().getPlugin(), task, delay.asTicks(), period.asTicks()), environment);

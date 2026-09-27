@@ -17,10 +17,10 @@ package net.tnemc.plugincore.paper.impl.scheduler;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import net.tnemc.plugincore.core.compatibility.scheduler.Chore;
-import net.tnemc.plugincore.core.compatibility.scheduler.ChoreExecution;
-import net.tnemc.plugincore.core.compatibility.scheduler.ChoreTime;
-import net.tnemc.plugincore.core.compatibility.scheduler.SchedulerProvider;
+import net.tnemc.plugincore.api.scheduler.Chore;
+import net.tnemc.plugincore.api.scheduler.ChoreExecution;
+import net.tnemc.plugincore.api.scheduler.ChoreTime;
+import net.tnemc.plugincore.api.scheduler.SchedulerProvider;
 import net.tnemc.plugincore.paper.PaperPluginCore;
 import org.bukkit.Bukkit;
 
@@ -40,9 +40,9 @@ public class PaperScheduler extends SchedulerProvider<PaperChore> {
    * @param environment The execution environment for the task.
    */
   @Override
-  public void createDelayedTask(Runnable task, ChoreTime delay, ChoreExecution environment) {
+  public void createDelayedTask(final Runnable task, final ChoreTime delay, final ChoreExecution environment) {
 
-    if(environment.equals(ChoreExecution.MAIN_THREAD)) {
+    if(environment.equals(ChoreExecution.GLOBAL)) {
       Bukkit.getScheduler().runTaskLater(PaperPluginCore.instance().getPlugin(), task, delay.asTicks());
       return;
     }
@@ -60,9 +60,9 @@ public class PaperScheduler extends SchedulerProvider<PaperChore> {
    * @return The associated {@link Chore} with this task.
    */
   @Override
-  public PaperChore createRepeatingTask(Runnable task, ChoreTime delay, ChoreTime period, ChoreExecution environment) {
+  public PaperChore createRepeatingTask(final Runnable task, final ChoreTime delay, final ChoreTime period, final ChoreExecution environment) {
 
-    if(environment.equals(ChoreExecution.MAIN_THREAD)) {
+    if(environment.equals(ChoreExecution.GLOBAL)) {
       return new PaperChore(Bukkit.getScheduler().runTaskTimer(PaperPluginCore.instance().getPlugin(), task, delay.asTicks(), period.asTicks()), environment);
     }
     return new PaperChore(Bukkit.getScheduler().runTaskTimerAsynchronously(PaperPluginCore.instance().getPlugin(), task, delay.asTicks(), period.asTicks()), environment);

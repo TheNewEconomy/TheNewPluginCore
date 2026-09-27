@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.tnemc</groupId>
+        <artifactId>TNPC</artifactId>
+        <version>2.0.0.0-SNAPSHOT-1</version>
+    </parent>
+
+    <artifactId>TNPC-Storage-SQL</artifactId>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <!--采用Maven中心库，安全稳定，但版本更新需要等待同步-->
+            <id>maven</id>
+            <name>Maven Central</name>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.tnemc</groupId>
+            <artifactId>TNPC-API</artifactId>
+            <version>2.0.0.0-SNAPSHOT-1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>cc.carm.lib</groupId>
+            <artifactId>easysql-api</artifactId>
+            <version>0.4.7</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>cc.carm.lib</groupId>
+            <artifactId>easysql-impl</artifactId>
+            <version>0.4.7</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>cc.carm.lib</groupId>
+            <artifactId>easysql-hikaricp</artifactId>
+            <version>0.4.7</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>
