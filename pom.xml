@@ -22,7 +22,7 @@
         <lib.bstats>3.1.0</lib.bstats>
         <lib.cassandra-driver>4.19.2</lib.cassandra-driver>
         <lib.commons-pool>2.13.1</lib.commons-pool>
-        <lib.guava>32.1.1-jre</lib.guava>
+        <lib.guava>33.7.1-jre</lib.guava>
         <lib.hikari>7.0.2</lib.hikari>
         <lib.jaxb>2.3.1</lib.jaxb>
         <lib.jedis>7.2.0</lib.jedis>
